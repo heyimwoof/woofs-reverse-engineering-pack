@@ -1,4 +1,4 @@
-# woofs reversal pack
+# woofs reverse engineering pack
 <img align="right" src="https://i.pinimg.com/originals/14/a7/97/14a7977ee7bfb0a98c49d9393c1184db.gif">
 
 **Includes .NET Unpackers, Tools, Obfuscators, Decompilers** 
