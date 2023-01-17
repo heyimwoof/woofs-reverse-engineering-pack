@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.ReSharper.Refactorings.CSharp</name>
+    </assembly>
+    <members>
+        <member name="T:JetBrains.ReSharper.Refactorings.CSharp.ChangeSignature.Impl.TypeSuggestion">
+            <summary>
+            Suggestion for an unresolved type
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Refactorings.CSharp.ExtractMethod2.Common.CSharpExtractMethodParameterKind.PassByValue">
+            <summary>
+            p -> m
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Refactorings.CSharp.ExtractMethod2.Common.CSharpExtractMethodParameterKind.ReturnOnly">
+            <summary>
+            return value only
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Refactorings.CSharp.ExtractMethod2.Common.CSharpExtractMethodParameterKind.Return">
+            <summary>
+            return value, out parameter
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Refactorings.CSharp.ExtractMethod2.Common.CSharpExtractMethodParameterKind.CanReturn">
+            <summary>
+            value is defined in the method and can be returned but it has no usages outside.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Refactorings.CSharp.ExtractMethod2.Common.CSharpExtractMethodParameterKind.PassThrough">
+            <summary>
+            ref parameter or a combination of value parameter and return value...
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Refactorings.CSharp.ExtractMethod2.Common.CSharpExtractMethodParameterKind.DoNotPass">
+            <summary>
+            Do not pass this parameter at all
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Refactorings.CSharp.Rename.ConstructorParameterRenameEvaluator">
+            <summary>
+            Constructor parameter to:
+            1. initialized field...
+            2. Base constructor parameter...
+            3. Derived constructor parameter...
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Refactorings.CSharp.Rename.EventRenameEvaluator">
+            <summary>
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Refactorings.CSharp.Rename.FieldDerivedRenames">
+            <summary>
+            Add renames derived from field
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Refactorings.CSharp.Rename.PropertyDerivedRenameEvaluator">
+            <summary>
+            Property to its backing field...
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Refactorings.CSharp.Util.CSharpAbstractor.MakeDeclaration``1(JetBrains.ReSharper.Psi.Tree.IDeclaration,System.Boolean)">
+            <summary>
+            Create CS abstracts declaration
+            </summary>
+        </member>
+    </members>
+</doc>

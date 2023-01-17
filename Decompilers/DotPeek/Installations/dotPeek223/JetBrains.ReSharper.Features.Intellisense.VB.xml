@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+JetBrains.ReSharper.Features.Intellisense.VB
+</name>
+</assembly>
+<members>
+<member name="T:JetBrains.ReSharper.Features.Intellisense.VB.CodeCompletion.Rules.VBSimpleTypeItemsRule">
+ <summary>
+ In case of smart completion add items if and only if simple type is present in the collector
+ Add items in other completios
+ </summary>
+</member>
+</members>
+</doc>

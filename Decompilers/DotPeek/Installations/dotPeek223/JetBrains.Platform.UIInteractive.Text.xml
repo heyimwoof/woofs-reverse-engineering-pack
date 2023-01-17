@@ -1,0 +1,227 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.Platform.UIInteractive.Text</name>
+    </assembly>
+    <members>
+        <member name="F:JetBrains.Platform.UIInteractive.Text.TextControl.Diagnostics.TextControlDebugMonitor.ShowWindow">
+            <summary>
+            Shows the monitor window.
+            Routed thru a signal to deactivate on disposal.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.UIInteractive.Text.TextControl.Diagnostics.TextControlDebugMonitor.InitWindow_Viewport(JetBrains.Lifetimes.Lifetime,System.Windows.Window,JetBrains.Application.UI.Components.IUIApplication,JetBrains.TextControl.ITextControlManager)">
+            <summary>
+            Last focused text control viewport coordinates.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.UIInteractive.Text.TextControl.Diagnostics.TextControlDebugMonitor.ShowScrollingAndCaret(JetBrains.Lifetimes.Lifetime,System.Windows.Window,JetBrains.Application.UI.Components.IUIApplication,JetBrains.TextControl.ITextControlManager)">
+            <summary>
+            Shows text control scrolling and caret info for the last-focused text control.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.UIInteractive.Text.TextControl.Diagnostics.TextControlDebugMonitor.TextControlDebugMonitor_ShowAction.JetBrains#Application#UI#ActionsRevised#Menu#IExecutableAction#Execute(JetBrains.Application.DataContext.IDataContext,JetBrains.Application.UI.Actions.DelegateExecute)">
+            <summary>
+            Executes action. Called after Update, that set ActionPresentation.Enabled to true.
+            </summary>
+            <param name="context">DataContext</param>
+            <param name="nextExecute">delegate to call</param>
+        </member>
+        <member name="M:JetBrains.Platform.UIInteractive.Text.TextControl.Diagnostics.TextControlDebugMonitor.TextControlDebugMonitor_ShowAction.JetBrains#Application#UI#ActionsRevised#Menu#IExecutableAction#Update(JetBrains.Application.DataContext.IDataContext,JetBrains.Application.UI.Actions.ActionPresentation,JetBrains.Application.UI.Actions.DelegateUpdate)">
+            <summary>
+            Updates action visual presentation. If presentation.Enabled is set to false, Execute
+            will not be called.
+            </summary>
+            <param name="context">DataContext</param>
+            <param name="presentation">presentation to update</param>
+            <param name="nextUpdate">delegate to call</param>
+        </member>
+        <member name="T:JetBrains.Platform.UIInteractive.Text.TextControl.ErrorStripe.ErrorStripeIndicatorView">
+            <summary>
+            Error stripe indicator.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.UIInteractive.Text.TextControl.ErrorStripe.ErrorStripeMarkerBarView">
+            <summary>
+            Renders error stripe markers.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.UIInteractive.Text.TextControl.ErrorStripe.ErrorStripeMarkerBarView.IsHandlingAlreadyHandledMouseEvents">
+            <summary>
+            VS12 Special Mode.
+            </summary>
+            <remarks>
+            Originally a tweak in <c>VsErrorStripeControlSinceVs12</c>.
+            (DK) VS12 OverviewMargin in map mode marks PreviewMouseLeftButtonDown event as handled and captures mouse input in it.
+            As a result clicking error stripe markers does not work, as we don't receive PreviewMouseLeftButtonDown nor MouseLeftButtonDown events.
+            To cope with it, I register PreviewMouseLeftButtonDown event handler with handledEventsToo flag = true, so we receive handled events.
+            The element that has captured the mouse should be an ancestor of our marker bar.
+            Most probably it is the case we are looking for.
+            At that point VS has already scroll text control view to the mouse position. The caret hasn't been moved, cause VS doesn't move the caret at that case.
+            Fire the event, and if the mouse is over our marker, the caret will be moved to the corresponding highlighter (which is already within the view)
+            We will get no other mouse events until VS releases mouse capture.
+            </remarks>
+        </member>
+        <member name="F:JetBrains.Platform.UIInteractive.Text.TextControl.ErrorStripe.ErrorStripeMarkerBarView.MarkerHeight">
+            <summary>
+            Based on <see cref="F:JetBrains.Platform.UIInteractive.Text.TextControl.ErrorStripe.ErrorStripeMarkerBarView.Dim.MarkerHeight" />, but can be customized by views layouter to better fit VS.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.UIInteractive.Text.TextControl.ErrorStripe.ErrorStripeMarkerBarView.MarkerMargin">
+            <summary>
+            Based on <see cref="F:JetBrains.Platform.UIInteractive.Text.TextControl.ErrorStripe.ErrorStripeMarkerBarView.Dim.MarkerMargin" />, but can be customized by views layouter to better fit VS.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.UIInteractive.Text.TextControl.ErrorStripe.ErrorStripeMarkerBarView.OnSlotsLayoutInvalidated">
+            <summary>
+            Fires when this view thinks its properties have changed so that the slots layout also changes.
+            Consolidates the knowledge for outside clients when to recalc.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.UIInteractive.Text.TextControl.ErrorStripe.ErrorStripeMarkerBarView.SlotsStackHeight">
+            <summary>
+            The space for the stack of the slots, as last arranged.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.UIInteractive.Text.TextControl.ErrorStripe.ErrorStripeMarkerBarView.CurrentSlots">
+            <summary>
+            Slots layout at this moment.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.UIInteractive.Text.TextControl.ErrorStripe.ErrorStripeMarkerBarView.CurrentSlots.GetMarkerPlacement(JetBrains.Util.Media.JetRect@,JetBrains.Util.Media.JetRect@,JetBrains.Util.Media.JetRect@)">
+            <summary>
+            Tells how markers are placed within the line (y-coord is empty to apply to each marker, and x/width/height are all real).
+            </summary>
+            <param name="placeMarkSingle">If one marker in this slot.</param>
+            <param name="placeMarkPrimary">If two markers in this slot, primary color half (to the right).</param>
+            <param name="placeMarkSecondary">If two markers in this slot, secondary color half (to the left).</param>
+        </member>
+        <member name="M:JetBrains.Platform.UIInteractive.Text.TextControl.ErrorStripe.ErrorStripeMarkerBarView.CurrentSlots.GetToolArea(JetBrains.TextControl.ErrorStripe.ErrorStripeTransport.ErrorStripeMarker@)">
+            <summary>
+            Tool area around the marker for tootip and mousedown tracking.
+            NOTE that it covers space around the marker, so might not be suitable for initial hit testing (see <see cref="M:JetBrains.Platform.UIInteractive.Text.TextControl.ErrorStripe.ErrorStripeMarkerBarView.CurrentSlots.HitTestMarker(JetBrains.Util.Media.JetPoint@,System.Collections.Immutable.ImmutableArray{JetBrains.TextControl.ErrorStripe.ErrorStripeTransport.ErrorStripeMarker}@,JetBrains.TextControl.ErrorStripe.ErrorStripeTransport.ErrorStripeMarker@)" />).
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.UIInteractive.Text.TextControl.ErrorStripe.ErrorStripeMarkerBarView.CurrentSlots.GetToolArea(System.Single)">
+            <inheritdoc cref="!:GetToolArea(ErrorStripeTransport.ErrorStripeMarker)" />
+        </member>
+        <member name="M:JetBrains.Platform.UIInteractive.Text.TextControl.ErrorStripe.ErrorStripeMarkerBarView.CurrentSlots.HitTestMarker(JetBrains.Util.Media.JetPoint@,System.Collections.Immutable.ImmutableArray{JetBrains.TextControl.ErrorStripe.ErrorStripeTransport.ErrorStripeMarker}@,JetBrains.TextControl.ErrorStripe.ErrorStripeTransport.ErrorStripeMarker@)">
+            <summary>
+            Hit tests for the marker, accounts for some space around the marker in a way which does not interfere with other markers.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.UIInteractive.Text.TextControl.ErrorStripe.ErrorStripeMarkerBarView.CurrentSlots.HitTestMarkerOrSlot(JetBrains.Util.Media.JetPoint@,System.Collections.Immutable.ImmutableArray{JetBrains.TextControl.ErrorStripe.ErrorStripeTransport.ErrorStripeMarker}@,System.Collections.Immutable.ImmutableArray{JetBrains.TextControl.DocOffset}@,System.Boolean,JetBrains.Util.TextRange@,JetBrains.Util.Media.JetRect@)">
+            <summary>
+            Calls <see cref="M:JetBrains.Platform.UIInteractive.Text.TextControl.ErrorStripe.ErrorStripeMarkerBarView.CurrentSlots.HitTestMarker(JetBrains.Util.Media.JetPoint@,System.Collections.Immutable.ImmutableArray{JetBrains.TextControl.ErrorStripe.ErrorStripeTransport.ErrorStripeMarker}@,JetBrains.TextControl.ErrorStripe.ErrorStripeTransport.ErrorStripeMarker@)" />.
+            If none hit, but <see cref="F:JetBrains.Platform.UIInteractive.Text.TextControl.ErrorStripe.ErrorStripeMarkerBarView.IsEntireBarClickable" />, then chooses the nearest slot and still returns <c>True</c> (in this mode, <c>False</c> would be when captured and outside client area).
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.UIInteractive.Text.TextControl.ErrorStripe.ErrorStripeMarkerBarView.Dim.MarkerHeight">
+            <summary>
+            Horizontal: N/A.
+            Vertical: default height of error stripe mark.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.UIInteractive.Text.TextControl.ErrorStripe.ErrorStripeMarkerBarView.Dim.MarkerMargin">
+            <summary>
+            Horizontal: gap between error stripe mark and MarkerBar left/right margins.
+            Vertical: gap between two marks.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.UIInteractive.Text.TextControl.ErrorStripe.WpfErrorStripeSubViews">
+            <summary>
+            Creates and stores views for indicators and markers. Does NOT handle their laying out or parenting, because laying out depends on the specific text editor implementation.
+            Some layouting + calculation clients need to access the specific view, so we are not operating automation objects by letting Avalon lay them out automatically.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.UIInteractive.Text.TextControl.ErrorStripe.WpfErrorStripeSubViews.MarkerBar">
+            <summary>
+            The view with marker bars. Occupies most of the space.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.UIInteractive.Text.TextControl.ErrorStripe.WpfErrorStripeSubViews.CreateSingleControl(JetBrains.Lifetimes.Lifetime,JetBrains.Application.UI.Components.Theming.ThemeColor,JetBrains.Application.UI.Components.IUIApplication)">
+            <summary>
+            For the basic layout when indicators sit on top of the marker bar within the same panel, makes such a control.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.UIInteractive.Text.TextControl.GutterMarks.GutterMarkMenuLayouterInteractive.#ctor(JetBrains.TextControl.JetActionMargin.IJetActionEditorMarginBehavior,JetBrains.Application.UI.PopupLayout.IMainWindowPopupWindowContext)">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.Platform.UIInteractive.Text.TextControl.GutterMarks.GutterMarkMenuLayouterInteractive.GetPopupWindowContextForWhateverSomethingCore">
+            <inheritdoc />
+        </member>
+        <member name="T:JetBrains.Platform.UIInteractive.Text.TextControl.GutterMarks.GutterMarkSingleTierAvalonHelpers">
+            <summary>
+            Impl for gutter marks represented as separate Avalon elements on an Avalon gutter margin. Jet Action Bar has a more optimal impl.
+            Single-tier highlighter-based impl.
+            </summary>
+            <seealso cref="T:JetBrains.Platform.UIInteractive.Text.TextControl.GutterMarks.GutterMarkTransportAvalonHelpers"/>
+        </member>
+        <member name="M:JetBrains.Platform.UIInteractive.Text.TextControl.GutterMarks.GutterMarkSingleTierAvalonHelpers.CreateGutterMarkAvalonView(JetBrains.Lifetimes.Lifetime,JetBrains.TextControl.DocumentMarkup.IGutterMarkInfo,JetBrains.Util.dataStructures.FrugalLocalList{JetBrains.Util.TextRange},JetBrains.DocumentModel.IDocument,JetBrains.Platform.UIInteractive.Text.TextControl.GutterMarks.GutterMarkSingleTierAvalonHelpers.GutterMarkAvalonComponents)">
+            <summary>
+            Main method which helps for setting up a view for a gutter mark glyph with all appropriate click, menu dropdown, and tooltip handlers.
+            </summary>
+            <param name="lifetime">Lifetime for all the bindings, <paramref name="context" /> must be valid and non-NULL within this lifetime, not guaranteed outside.</param>
+            <param name="document"></param>
+            <param name="context">Must be valid and non-NULL within <paramref name="lifetime" />. Components required for works.</param>
+            <param name="guttermark"></param>
+            <param name="docrangesOfGlyphsLine"></param>
+        </member>
+        <member name="F:JetBrains.Platform.UIInteractive.Text.TextControl.GutterMarks.GutterMarkSingleTierAvalonHelpers.GutterMarkAvalonComponents.PopupWindowContextSource">
+            <summary>
+            Base popup window context, usually from the main window which holds the text control.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.UIInteractive.Text.TextControl.GutterMarks.GutterMarkTooltipLinesAutomation">
+            <summary>
+            Used by <see cref="T:JetBrains.Platform.UIInteractive.Text.TextControl.GutterMarks.GutterMarkTransportAvalonHelpers" />. TODO should be updated to a better aligned presentation.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.UIInteractive.Text.TextControl.GutterMarks.GutterMarkTooltipLinesWindowlessControlView">
+            <seealso cref="T:JetBrains.Platform.UIInteractive.Text.TextControl.GutterMarks.GutterMarkTooltipLinesAutomation" />
+        </member>
+        <member name="P:JetBrains.Platform.UIInteractive.Text.TextControl.GutterMarks.GutterMarkTooltipLinesWindowlessControlView.JetBrains#Application#UI#Controls#IConstrainableControl#AutoActivate">
+            <inheritdoc />
+        </member>
+        <member name="P:JetBrains.Platform.UIInteractive.Text.TextControl.GutterMarks.GutterMarkTooltipLinesWindowlessControlView.JetBrains#Application#UI#Controls#IWindowlessControl#Bounds">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.Platform.UIInteractive.Text.TextControl.GutterMarks.GutterMarkTooltipLinesWindowlessControlView.JetBrains#Application#UI#Controls#IConstrainableControl#GetDesiredSize(JetBrains.UI.IGraphicsContainer,System.Drawing.Size)">
+            <inheritdoc />
+        </member>
+        <member name="P:JetBrains.Platform.UIInteractive.Text.TextControl.GutterMarks.GutterMarkTooltipLinesWindowlessControlView.JetBrains#Application#UI#Controls#IWindowlessControl#GottenDirty">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.Platform.UIInteractive.Text.TextControl.GutterMarks.GutterMarkTooltipLinesWindowlessControlView.JetBrains#Application#UI#Controls#IWindowlessControl#Paint(JetBrains.UI.IGraphicsContainer)">
+            <inheritdoc />
+        </member>
+        <member name="P:JetBrains.Platform.UIInteractive.Text.TextControl.GutterMarks.GutterMarkTooltipLinesWindowlessControlView.JetBrains#Application#UI#Controls#IHaveRenderParams#RenderParams">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.Platform.UIInteractive.Text.TextControl.GutterMarks.GutterMarkTooltipLinesWindowlessControlView.JetBrains#Application#UI#Controls#IWindowlessControl#SetBounds(JetBrains.UI.IGraphicsContainer,System.Drawing.Rectangle)">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.Platform.UIInteractive.Text.TextControl.GutterMarks.GutterMarkTooltipLinesWindowlessControlView.JetBrains#Application#UI#Controls#IConstrainableControl#SetLayout(JetBrains.Application.UI.PopupLayout.LayoutResult)">
+            <inheritdoc />
+        </member>
+        <member name="P:JetBrains.Platform.UIInteractive.Text.TextControl.GutterMarks.GutterMarkTooltipLinesWindowlessControlView.JetBrains#Application#UI#Controls#IConstrainableControl#WantsResize">
+            <inheritdoc />
+        </member>
+        <member name="T:JetBrains.Platform.UIInteractive.Text.TextControl.GutterMarks.GutterMarkTransportAvalonHelpers">
+            <summary>
+            Impl for gutter marks represented as separate Avalon elements on an Avalon gutter margin. Jet Action Bar has a more optimal impl.
+            Transport-based impl.
+            </summary>
+            <seealso cref="T:JetBrains.Platform.UIInteractive.Text.TextControl.GutterMarks.GutterMarkSingleTierAvalonHelpers" />
+        </member>
+        <member name="M:JetBrains.Platform.UIInteractive.Text.TextControl.GutterMarks.GutterMarkTransportAvalonHelpers.CreateTransportGutterMarkAvalonView(JetBrains.Lifetimes.Lifetime,JetBrains.TextControl.DocumentMarkup.GutterMarksTransport.LineGlyphInfo,JetBrains.TextControl.DocumentMarkup.GutterMarksTransport,JetBrains.Application.UI.Components.IUIApplication)">
+            <summary>
+            Main method which helps for setting up a view for a gutter mark glyph with all appropriate click, menu dropdown, and tooltip handlers.
+            </summary>
+            <param name="lifetime">Lifetime for all the bindings, <paramref name="uiapp" /> must be valid and non-NULL within this lifetime, not guaranteed outside.</param>
+            <param name="glyph"></param>
+            <param name="gutterMarksTransport"></param>
+            <param name="uiapp"></param>
+        </member>
+    </members>
+</doc>

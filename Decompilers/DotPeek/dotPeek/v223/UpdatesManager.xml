@@ -1,0 +1,13 @@
+﻿<UpdatesManager>
+  <XmlExternalizable></XmlExternalizable>
+  <Categories>
+    <UpdatesCategory>
+      <XmlExternalizable>
+        <LastActivationDate>01/15/2023 10:18:26</LastActivationDate>
+        <Name>ShellProduct</Name>
+        <UpdatesFilterUri>https://www.jetbrains.com/dotnet/updates/dotnet.Updates.xslt</UpdatesFilterUri>
+      </XmlExternalizable>
+      <UpdateInfos></UpdateInfos>
+    </UpdatesCategory>
+  </Categories>
+</UpdatesManager>

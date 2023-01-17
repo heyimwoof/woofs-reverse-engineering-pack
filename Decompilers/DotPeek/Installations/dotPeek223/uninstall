@@ -1,0 +1,67 @@
+{
+  "VsVersion": 0,
+  "Hive": "",
+  "RegistryValues": [
+    {
+      "RegistryHive": -2147483647,
+      "Key": "Software\\JetBrains\\dotPeek\\v223"
+    },
+    {
+      "RegistryHive": -2147483647,
+      "Key": "Software\\Classes\\Applications\\dotPeek64.exe"
+    },
+    {
+      "RegistryHive": -2147483647,
+      "Key": "Software\\Classes\\Applications\\dotPeek64.exe\\shell\\open"
+    },
+    {
+      "RegistryHive": -2147483647,
+      "Key": "Software\\Classes\\dotPeek64.dpl.223"
+    },
+    {
+      "RegistryHive": -2147483647,
+      "Key": "Software\\Classes\\dotPeek64.dpl.223\\shell\\open"
+    },
+    {
+      "RegistryHive": -2147483647,
+      "Key": "Software\\Classes\\dllfile\\shell\\dotPeek64.2022.3.0.0"
+    },
+    {
+      "RegistryHive": -2147483647,
+      "Key": "Software\\Classes\\dotPeek64.winmd.223"
+    },
+    {
+      "RegistryHive": -2147483647,
+      "Key": "Software\\Classes\\dotPeek64.winmd.223\\shell\\dotPeek64.2022.3.0.0"
+    },
+    {
+      "RegistryHive": -2147483647,
+      "Key": "Software\\Classes\\dotPeek64.vsix.223"
+    },
+    {
+      "RegistryHive": -2147483647,
+      "Key": "Software\\Classes\\dotPeek64.vsix.223\\shell\\dotPeek64.2022.3.0.0"
+    },
+    {
+      "RegistryHive": -2147483647,
+      "Key": "Software\\Classes\\dotPeek64.nupkg.223"
+    },
+    {
+      "RegistryHive": -2147483647,
+      "Key": "Software\\Classes\\dotPeek64.nupkg.223\\shell\\dotPeek64.2022.3.0.0"
+    },
+    {
+      "RegistryHive": -2147483647,
+      "Key": "Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{ce44e9cd-c154-5559-91d6-73af9b2b8be7}"
+    }
+  ],
+  "FilesToTouch": [],
+  "UninstallableFiles": [
+    {
+      "Path": "C:\\Users\\woof\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\JetBrains\\JetBrains dotPeek 2022.3.lnk"
+    }
+  ],
+  "InstalledSharedMsi": [],
+  "PostInstallExecutables": [],
+  "AssembliesToNgenUninstall": null
+}

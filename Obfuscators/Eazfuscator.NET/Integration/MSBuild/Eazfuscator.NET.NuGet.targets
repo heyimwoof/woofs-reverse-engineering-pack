@@ -1,0 +1,52 @@
+<!--
+***********************************************************************************************
+Eazfuscator.NET.NuGet.targets
+
+WARNING:  DO NOT MODIFY this file. Incorrect changes to this file will make it impossible to
+          load or build your Eazfuscator.NET projects from the command-line or the IDE.
+
+Copyright (C) 2008-2020 Gapotchenko
+***********************************************************************************************
+-->
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Import Project="Eazfuscator.NET.Common.Tasks.targets" Condition=" '$(Eazfuscator_NET_CommonTasksImported)' == '' " />
+
+  <Target Name="_Eazfuscator_NET_NuGet_EnablePatch">
+    <PropertyGroup>
+      <_Eazfuscator_NET_NuGet_PatchEnabled>true</_Eazfuscator_NET_NuGet_PatchEnabled>
+    </PropertyGroup>    
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_NuGet_PrepareForBuild"
+          BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <_Eazfuscator_NET_NuGet_Active>false</_Eazfuscator_NET_NuGet_Active>
+      <_Eazfuscator_NET_NuGet_Triggered>false</_Eazfuscator_NET_NuGet_Triggered>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_NuGet_Activation"
+          Condition=" '$(GenerateNuspecDependsOn)' != '' AND '$(IsPackable)' == 'true' AND '$(_Eazfuscator_NET_NuGet_Active)' != '' "
+	  BeforeTargets="ResolvePackageAssets">
+    <PropertyGroup>
+      <_Eazfuscator_NET_NuGet_Active>true</_Eazfuscator_NET_NuGet_Active>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_NuGet_RemoveReferences"
+          AfterTargets="ResolvePackageAssets"
+          Condition=" '$(_Eazfuscator_NET_NuGet_Active)' == 'true' AND '$(Configuration)' == '$(EazfuscatorActiveConfiguration)' AND '$(EazfuscatorSkipExecution)' != 'true' AND '$(ContinuePackingAfterGeneratingNuspec)' != 'true' AND '$(_Eazfuscator_NET_NuGet_PatchEnabled)' == 'true' "
+          DependsOnTargets="_Eazfuscator_NET_GetRemovedReferencePaths">
+    <ItemGroup>
+      <RuntimeCopyLocalItems Remove="@(_Eazfuscator_NET_RemovedReferencePaths)" />
+    </ItemGroup>
+  </Target>
+
+  <PropertyGroup>
+    <_Eazfuscator_NET_ActivationTargets>$(_Eazfuscator_NET_ActivationTargets);_Eazfuscator_NET_NuGet_Activation</_Eazfuscator_NET_ActivationTargets>
+    <TargetsForTfmSpecificContentInPackage>_Eazfuscator_NET_NuGet_EnablePatch;$(TargetsForTfmSpecificContentInPackage)</TargetsForTfmSpecificContentInPackage>
+  </PropertyGroup>
+
+</Project>

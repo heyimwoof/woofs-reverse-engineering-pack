@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TokenGenerator</name>
+    </assembly>
+    <members>
+        <member name="T:JetBrains.ReSharper.PsiGen.TokenGenerator.TokenGeneratorTaskStub">
+             <summary>
+             This complies with the <c>ProxyToSolutionCompiledTask</c> calling convention.
+            
+             Expected parameters (task items with metadata <c>ParameterName</c> equal to these):
+             • <c>Inputs</c>, multiple input files to process. Metadata:
+             • • <c>FullPath</c> — full path to the input file.
+             • • <c>OutputFile</c> — full path to the output file.
+             <c></c>
+             </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.PsiGen.TokenGenerator.TokenGeneratorTaskStub.#ctor(System.Collections.Generic.Dictionary{System.String,System.String}[])">
+            <summary>
+            This complies with the <c>ProxyToSolutionCompiledTask</c> calling convention.
+            </summary>
+        </member>
+    </members>
+</doc>

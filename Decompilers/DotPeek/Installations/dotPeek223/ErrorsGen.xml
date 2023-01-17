@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ErrorsGen</name>
+    </assembly>
+    <members>
+        <member name="M:JetBrains.ReSharper.Build.Tools.ErrorDescriptionGenerator.ParseCommandLine(System.String[])">
+            <summary>
+            Entry point for the cmdline-mode.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Build.Tools.ErrorDescriptionGenerator.Generate(JetBrains.ReSharper.Build.Tools.WorkMode,System.String,System.String,System.String,System.String,System.String,System.Action{System.String},System.Action{System.String})">
+            <summary>
+            Does all the useful sorta things.
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Build.Tools.ErrorsGenTaskStub">
+             <summary>
+             Generates source code definitions from the <c>Errors.xml</c> files.
+             This complies with the <c>ProxyToSolutionCompiledTask</c> calling convention.
+            
+             Expected parameters (task items with metadata <c>ParameterName</c> equal to these):
+             • <c>Inputs</c>, multiple input files to process. Metadata:
+             • • <c>FullPath</c> — full path to the input file.
+             • • <c>OutputFile</c> — full path to the output file.
+             • • <c>Mode</c> — <see cref="T:JetBrains.ReSharper.Build.Tools.WorkMode"/>.
+             • • <c>LangMacro</c> — macro to replace with language name.
+             • • <c>Namespace</c> — NS to put generated files into.
+             </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Build.Tools.ErrorsGenTaskStub.#ctor(System.Collections.Generic.Dictionary{System.String,System.String}[],System.Collections.Generic.List{System.Collections.Generic.Dictionary{System.String,System.String}},System.Collections.Generic.IDictionary{System.String,System.Action{System.String}})">
+            <summary>
+            This complies with the <c>ProxyToSolutionCompiledTask</c> calling convention.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Build.Tools.QuickFixRegistrarComponent.Registration.MakeUpperCamelCaseName(System.String)">
+            <summary>
+            Changes the name from lowerCamelCase or MixedCAMELCase or
+            dashed-words or underscored_words into the UpperCamelCase format.
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

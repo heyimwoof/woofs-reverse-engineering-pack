@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.Platform.Installer.Bootstrap</name>
+    </assembly>
+    <members>
+        <member name="M:JetBrains.Platform.Installer.Bootstrap.JetSemanticVersion.ToVersion4Lossy">
+            <summary>
+            Throws out all other information but for the version number.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.Installer.Bootstrap.JetSemanticVersion.ToVersion4Exact">
+            <summary>
+            For a semantic version which has only the version number, returns the version number.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Platform.Installer.Bootstrap.JetSemanticVersion.IsVersionNumberOnly">
+            <summary>
+            Gets whether this semantic version has no info besides the version number.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.Installer.Bootstrap.SafeIconExtension">
+            <summary>
+            Loads an icon in such a way that it does not cause unhandled exceptions on Windows XP HiColor when it encounters the icons in the icon group which it can't handle with WIC.
+            TODO: load icon with smth else but WIC actually, somewhen
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.Installer.Bootstrap.InstallerBootstrapConstants">
+            <summary>
+            Keep in sync with JetBrains.Application.Install.PlatformInstallerConstants.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.Installer.Bootstrap.InstallerBootstrapConstants.ProductionCdnUrl">
+            <summary>
+            Production CDN (RTM and EAP).
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.Installer.Bootstrap.InstallerBootstrapConstants.StagingCdnUrl">
+            <summary>
+            Internal staging CDN. Contains the latest build only (RTM or EAP). See <see cref="M:JetBrains.Platform.Installer.Bootstrap.InstallerBootstrapConstants.IsStagingMode"/>.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.Installer.Bootstrap.InstallerBootstrapConstants.VersionJsonRtmName">
+            <summary>
+            Contains the version of the latest RTM build, e.g. "111.0.20180201.62931".
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.Installer.Bootstrap.InstallerBootstrapConstants.VersionJsonEapName">
+            <summary>
+            Contains the version of the latest EAP build, e.g. "111.0.20180124.70542-eap".
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.Installer.Bootstrap.InstallerBootstrapConstants.LightInstallerRtmName">
+            <summary>
+            The latest RTM single executable web-installer (no .exe extension).
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.Installer.Bootstrap.InstallerBootstrapConstants.LightInstallerEapName">
+            <summary>
+            The latest EAP single executable web-installer (no .exe extension).
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.Installer.Bootstrap.InstallerBootstrapConstants.ObsoleteProductionGalleryUrlUntilWave06">
+            <summary>
+            Nuget gallery used by bootstrappers until wave06.
+            </summary>
+            <remarks>
+            The bootstrappers: 
+            1) Look for "Wave" packages and take the max version. This version is considered as the latest.
+            2) Download "JetBrains.Platform.Installer" package of the latest version and all its dependencies.
+            </remarks>>
+        </member>
+        <member name="M:JetBrains.Platform.Installer.Bootstrap.BootstrapperView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.Installer.Bootstrap.Runs">
+            <summary>
+            Public API
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.Installer.Bootstrap.Runs.MainX">
+            <summary>
+            Entry point for packed single executable.
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
+        </member>
+    </members>
+</doc>

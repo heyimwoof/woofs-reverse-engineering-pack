@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.ReSharper.Features.ReSpeller</name>
+    </assembly>
+    <members>
+        <member name="T:JetBrains.ReSharper.Features.ReSpeller.Icons.ReSpellerThemedIcons.ReSpellerIcon">
+             <summary>
+            	<para>
+            		<para>ReSpeller Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Features.ReSpeller.Icons.ReSpellerThemedIcons.ReSpellerIcon"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Features.ReSpeller.Icons.ReSpellerThemedIcons.ReSpellerIcon.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                                             
+                    *aaaaaa*                 
+                   'V5    CV_                
+                   o4_ '` 'KE                
+                  +A?  C?  *AL               
+                 .bh` "qq'  aX_     `={I!`   
+                 u#"  *77!  _#V   `;Y|::|5+` 
+                ;83  .____-  T8L`;2v,````,vu*
+               `##` `R8Paah. `pby1"``````_Ta(
+               oW;  FqP{~~{PL+P{~------_)Ps_ 
+               NNNNmhY^----^YY^------_|6F_   
+                   |4v:............:v41_     
+                    'iwl,........,lw{_       
+                      'lXt,'''',tXY_         
+                        'CRY""YR5_           
+                          'I##j_             
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:GerycylThemedIconsThemedIcons+ReSpeller}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(GerycylThemedIconsThemedIcons.ReSpeller))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = GerycylThemedIconsThemedIcons.ReSpeller.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;GerycylThemedIconsThemedIcons.ReSpeller&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.ReSpeller.Icons.ReSpellerThemedIcons.ReSpellerIcon.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Features.ReSpeller.Icons.ReSpellerThemedIcons.ReSpellerIcon">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.ReSpeller.Icons.ReSpellerThemedIcons.ReSpellerIcon.Load_Color">
+            <summary>Loads the image for Themed Icon ReSpeller theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.ReSpeller.Icons.ReSpellerThemedIcons.ReSpellerIcon.Load_Gray">
+            <summary>Loads the image for Themed Icon ReSpeller theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.ReSpeller.Icons.ReSpellerThemedIcons.ReSpellerIcon.Load_GrayDark">
+            <summary>Loads the image for Themed Icon ReSpeller theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.ReSpeller.Icons.ReSpellerThemedIcons.ReSpellerIcon.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon ReSpeller.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.ReSpeller.SpellEngine.Sources.DictionarySourceOnSettings.#ctor(JetBrains.Lifetimes.Lifetime,JetBrains.Util.ILogger,JetBrains.Application.Settings.ISettingsStore,JetBrains.Application.Threading.IThreading)">
+            <summary>
+            You must call <see cref="M:JetBrains.ReSharper.Features.ReSpeller.SpellEngine.Sources.DictionarySourceOnSettings.Init"/> in derived constructor
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.ReSpeller.SpellEngine.Sources.DictionarySourceOnSettings.Init">
+            <summary>
+            Must be called in derived constructor to load initial content from settings
+            Can't be called in own ctor because virtual method GetCurrentContent can try accessing uninitialized data in an inheritor (virtual member call in ctor)
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.ReSpeller.SpellEngine.TextSplitter.IsSupportedLetter(System.Char)">
+            <summary>
+            Checks that char is letter and isn't CJK ideograph, because we don't know how to split CJK texts
+            <para>
+            Block                                   Range       Comment
+            Hiragana                                3040 — 309F
+            Katakana                                30A0 — 30FF
+            CJK Unified Ideographs                  4E00-9FFF   Common
+            CJK Unified Ideographs Extension A      3400-4DBF   Rare
+            CJK Unified Ideographs Extension B      20000-2A6DF Rare, historic
+            CJK Unified Ideographs Extension C      2A700–2B73F Rare, historic
+            CJK Unified Ideographs Extension D      2B740–2B81F Uncommon, some in current use
+            CJK Unified Ideographs Extension E      2B820–2CEAF Rare, historic
+            CJK Compatibility Ideographs            F900-FAFF   Duplicates, unifiable variants, corporate characters
+            CJK Compatibility Ideographs Supplement 2F800-2FA1F Unifiable variants
+            </para>
+            </summary>
+            <param name="c"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

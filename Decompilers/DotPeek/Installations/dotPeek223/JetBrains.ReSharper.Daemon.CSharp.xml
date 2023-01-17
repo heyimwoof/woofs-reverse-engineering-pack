@@ -1,0 +1,293 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.ReSharper.Daemon.CSharp</name>
+    </assembly>
+    <members>
+        <member name="P:JetBrains.ReSharper.Daemon.CSharp.Errors.MissingConstructHintIntraTextAdornmentProvider.MissingConstructHintModel.Data">
+            <inheritdoc />
+        </member>
+        <member name="P:JetBrains.ReSharper.Daemon.CSharp.Errors.ResourceDisposePointsIntraTextAdornmentProvider.ResourceDisposePointsModel.Data">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.CallGraph.CallGraphUtil.IsCallGraphLocalEntity(JetBrains.ReSharper.Psi.IDeclaredElement)">
+            <summary>
+            <paramref name="element"/> definitely has only 1 declaration.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.CallGraph.CallGraphUtil.IsCallGraphLambdaContainer(JetBrains.ReSharper.Psi.IType)">
+            <summary>
+            <paramref name="type"/> is delegate. Func, Action, event also returns true.
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.CallGraph.CallGraphUtil.IsCallGraphFunc(JetBrains.ReSharper.Psi.IType)">
+            <summary>
+            <paramref name="type"/> is func with any number of type parameters.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.CallGraph.CallGraphUtil.IsCallGraphAction(JetBrains.ReSharper.Psi.IType)">
+            <summary>
+            <paramref name="type"/> is action with any number of type parameters.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.CallGraph.CallGraphUtil.IsCallGraphEventOrDelegate(JetBrains.ReSharper.Psi.IDeclaredElement)">
+            <summary>
+            <paramref name="element"/> is event or delegate.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.CallGraph.CallGraphUtil.IsCallGraphLambdaContainer(JetBrains.ReSharper.Psi.IDeclaredElement)">
+            <summary>
+            <paramref name="element"/> is delegate. Func, Action, event also returns true.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.CallGraph.CallGraphUtil.IsCallGraphPureLambda(JetBrains.ReSharper.Psi.IDeclaredElement)">
+            <summary>
+            <paramref name="element"/> is function, local function or anonymous method.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.CallGraph.CallGraphUtil.IsCallGraphLambda(JetBrains.ReSharper.Psi.IDeclaredElement)">
+            <summary>
+            <paramref name="element"/> can be executed.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.CallGraph.CallGraphUtil.ExtractCallGraphLambdas(JetBrains.ReSharper.Psi.CSharp.Tree.ICSharpExpression)">
+            <summary>
+            Returns call graph lambdas that can be result of evaluating <paramref name="node"/>
+            example: ((Object) (condition ? (a as SomeClass) : (b ?? c)))
+            then ExtractDeclaredElement would return [a, b, c]
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.CallGraph.CallGraphUtil.ExtractCallGraphDeclaredElements(JetBrains.ReSharper.Psi.CSharp.Tree.ICSharpExpression)">
+            <summary>
+            Returns elements that can be result of evaluating <paramref name="node"/>
+            example: ((Object) (condition ? (a as SomeClass) : (b ?? c)))
+            then ExtractDeclaredElement would return [a, b, c]
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.CallGraph.CallGraphUtil.GetElementDescriptionForCallGraph(JetBrains.ReSharper.Psi.IDeclaredElement)">
+            <summary>
+            String presentation for <paramref name="element"/> in call graph
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.CallGraph.CallGraphUtil.GetCallee(JetBrains.ReSharper.Psi.CSharp.Tree.ICSharpExpression)">
+            <summary>
+            Extracts call graph invocable entity from <paramref name="node"/>
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Daemon.CSharp.Cipa.ClassInheritanceProblemsAnalyzer.myMemberDeclarations">
+            <summary>
+            Collection of all type members of the class being inspected.
+            Only members of the class part being expected has declarations in the value of the dictionary
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.Cipa.ClassInheritanceProblemsAnalyzer.GetPolymorphicMembers">
+            <summary>
+            Enumerate members which could be overridden in this class.
+            NOTE: call this method only before inspection
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.Cipa.ClassInheritanceProblemsAnalyzer.GetInterfaceMembers">
+            <summary>
+            Enumerate all members from the interfaces of the given class.
+            NOTE: call this method only before inspection
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.Cipa.ClassInheritanceProblemsAnalyzer.TryGetQuasiImplementation(JetBrains.ReSharper.Daemon.CSharp.Cipa.InheritanceProblemsAnalyzer.MemberItem,System.Boolean,System.Collections.Generic.IReadOnlyList{JetBrains.ReSharper.Feature.Services.Daemon.IHighlighting}@)">
+            <summary>
+            Check if the given member of direct interface is quasi implemented
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.Cipa.ClassInheritanceProblemsAnalyzer.CheckInterfaceMemberNotImplemented(JetBrains.ReSharper.Psi.CSharp.Tree.IMemberOwnerDeclaration)">
+            <summary>
+            Analyze which interface members are implemented by this class.
+            The implementation check should be weak, because accessibility and type mismatch problems
+            will be highlighted elsewhere
+            </summary>
+            <param name="typeDeclarationParam"></param>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.Cipa.ClassInheritanceProblemsAnalyzer.CanHide(JetBrains.ReSharper.Daemon.CSharp.Cipa.InheritanceProblemsAnalyzer.MemberItem,JetBrains.ReSharper.Daemon.CSharp.Cipa.InheritanceProblemsAnalyzer.MemberItem)">
+            <summary>
+            predicate: inheritor and parent must have same name
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.Cipa.ClassInheritanceProblemsAnalyzer.CanQuasiImplement(JetBrains.ReSharper.Daemon.CSharp.Cipa.InheritanceProblemsAnalyzer.MemberItem,JetBrains.ReSharper.Daemon.CSharp.Cipa.InheritanceProblemsAnalyzer.MemberItem)">
+            <summary>
+            predicate: inheritor and parent must have same name
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.Cipa.InheritanceProblemsAnalyzer.GetExplicitlyImplementedMembers(JetBrains.ReSharper.Psi.CSharp.Conversions.ICSharpTypeConversionRule,JetBrains.ReSharper.Daemon.CSharp.Cipa.InheritanceProblemsAnalyzer.MemberItem,JetBrains.ReSharper.Psi.CSharp.Tree.IClassMemberDeclaration,JetBrains.ReSharper.Psi.IDeclaredType,System.Collections.Generic.IEnumerable{JetBrains.ReSharper.Daemon.CSharp.Cipa.InheritanceProblemsAnalyzer.MemberItem},JetBrains.ReSharper.Psi.IPsiSourceFile,System.Boolean)">
+            <summary>
+            Get all interface members which could be implemented by the given class member
+            The candidates are categorized into two groups - with match of return type, and candidates when return type didn't match
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.Cipa.InterfaceInheritanceProblemsAnalyzerBase.GetInterfaceMembers">
+            <summary>
+            Enumerate all members from the interfaces of the given class.
+            NOTE: call this method only before inspection
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Daemon.CSharp.CodeCleanup.CodeStyles.RepeatSyntaxStylesCleanupModule">
+            <summary>
+            We need to repeat some syntax style after formatting code, because it can change line breaks
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.EditorConfig.EcRoslynNamingConverter.AdjustNamingRules(System.Collections.Generic.List{System.ValueTuple{System.Guid,JetBrains.ReSharper.Psi.Naming.Settings.ClrUserDefinedNamingRule}},JetBrains.ReSharper.Psi.CSharp.Naming2.CSharpNamingPolicyProvider,System.Boolean[])">
+            <summary>
+            ReSharper allow some naming rules that are impossible in Roslyn, so we should adjust them before converting
+            1. ReSharper rules could specify fields that are not readonly or const. In Roslyn we must specify rule for all fields + overrides for readonly/const fields.
+            2. ReSharper rules could be specified for strange bedfellows, like const fields together with local non-const variables. It's not possible to do in Roslyn, so we have to separate them.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.Stages.Analysis.ArrayCreationProblemAnalyzer.CheckArrayInitializer(JetBrains.ReSharper.Feature.Services.Daemon.ElementProblemAnalyzerData,JetBrains.ReSharper.Feature.Services.Daemon.IHighlightingConsumer,JetBrains.ReSharper.Psi.CSharp.Tree.IArrayInitializer,System.Nullable{System.UInt64}[],JetBrains.ReSharper.Psi.IType)">
+            <summary>
+            Check for arrays in array initializer.
+            </summary>
+            <param name="data"></param>
+            <param name="consumer"></param>
+            <param name="initializer"></param>
+            <param name="size">Sizes of the array. Element == -1 for open array. Array size is the rank ot the array</param>
+            <param name="elementType"></param>
+            <returns>Number of initializer elements in the array (for each dimension)</returns>
+        </member>
+        <member name="T:JetBrains.ReSharper.Daemon.CSharp.Stages.Analysis.LoopConditionAssignmentProblemAnalyzer">
+            <summary>
+            Finds assignments inside loop conditions and suggests using pattern matching instead when appropriate.
+            For example, if you apply the corresponding QF, the following code <code>while ((o = Next()) != null)</code>
+            gets rewritten as <code>while (Next() is { } o)</code>
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.Stages.Analysis.ObjectCreationExpressionProblemAnalyzer.IsObjectCreationRedundant(JetBrains.ReSharper.Psi.CSharp.Tree.IObjectCreationExpression,JetBrains.ReSharper.Psi.CSharp.Conversions.ICSharpTypeConversionRule)">
+            <summary>
+            In some cases, object creation could be redundant. (For example, delegate creation and nullable type conversion)
+            Check that!
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.Stages.Analysis.RefEscapeScopeProblemAnalyzer.EscapeScopeProcessor.GetFilteredInvocationArgumentsForEscapeWithUpdatedRules``2(JetBrains.ReSharper.Psi.CSharp.Tree.ICSharpExpression,JetBrains.ReSharper.Psi.CSharp.Tree.ICSharpArgumentsOwner,JetBrains.ReSharper.Psi.Resolve.IReference,``1,System.Boolean,System.Boolean)">
+            <summary>
+            Returns the set of arguments to be considered for escape analysis of a method
+            invocation. Each argument is returned with the corresponding parameter and
+            whether analysis should consider value or ref escape. Not all method arguments
+            are included, and some arguments may be included twice - once for value, once for ref.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.Stages.Analysis.SpecifyStringComparisonAnalyzer.Matchers.EnsureCreatedIfAvailable">
+            <summary>
+            Creates matchers on demand if C# language is availble
+            </summary>
+            <returns>True if there is C# language, false otherwise</returns>
+        </member>
+        <member name="F:JetBrains.ReSharper.Daemon.CSharp.Stages.Analysis.StringProblemAnalyzer.ourUnrecognizedEscapeSequence">
+            <summary>
+            error CS1009: Unrecognized escape sequence
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Daemon.CSharp.Stages.Analysis.StringProblemAnalyzer.ourUnescapedCurly">
+            <summary>
+            error CS8086: A '}' character must be escaped (by doubling) in an interpolated string
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Daemon.CSharp.Stages.Analysis.StringProblemAnalyzer.ourEscapedCurly">
+            <summary>
+            error CS8087: A '}' character may only be escaped by doubling '}}' in an interpolated string
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Daemon.CSharp.Stages.Analysis.XmlDocProblemAnalyzer">
+            <summary>
+            This will analyze semantic problems in XML documentation
+            Resolve errors are highlighted in <see cref="T:JetBrains.ReSharper.Daemon.CSharp.Stages.Resolve.ResolveProblemHighlighter"/>
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.Stages.AnonymousFunctionExpressionProblemAnalyzer.ShouldHighlightAnonymousMethodConversionProblem(JetBrains.ReSharper.Psi.CSharp.Types.IAnonymousFunctionType,JetBrains.ReSharper.Psi.IType,JetBrains.ReSharper.Psi.CSharp.Conversions.ICSharpTypeConversionRule)">
+            <summary>
+            Highlight errors when anonymous method couldn't be assigned to target type,
+            except for return type mismatch - it will be highlighted
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.Stages.ControlFlowProblemAnalyzerBase.IsUsageOfRecursiveLambdaDeclaration(JetBrains.ReSharper.Psi.CSharp.Tree.ICSharpExpression,JetBrains.ReSharper.Daemon.UsageChecking.CollectUsagesStageProcess)">
+            <summary>
+            Detects the case of recursive lambda declaration:
+            <code>Action lambda = null; lambda = () => { lambda(); };</code>
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.Stages.AttributeAnalyzer.IsSpecifiedValidTargetUsage(System.AttributeTargets,JetBrains.ReSharper.Psi.Tree.IDeclaration,JetBrains.ReSharper.Psi.CSharp.Tree.IAttribute)">
+            <summary>According to C# specs 22.3</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Daemon.CSharp.Stages.CSharpIncrementalDaemonStageProcessBase">
+            <summary>
+            Base class for daemon stages which can incrementally re-highlight changed function only
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.Stages.InconsistentAccessibilityAnalyzer.CheckAccessibilityConsistent(JetBrains.ReSharper.Psi.ITypeElement,JetBrains.ReSharper.Psi.ITypeMember,JetBrains.ReSharper.Daemon.UsageChecking.CollectUsagesStageProcess)">
+            <summary>
+            Compare the accessibility rights and returns <c>false</c>
+            if <paramref name="testType"/> is less accessible then <paramref name="contextMember"/>, 
+            which means that the error should be highlighted according to C# specs 10.5.2
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.Stages.LocalVariableScopeAnalyzer.Run(JetBrains.ReSharper.Psi.CSharp.Tree.ILocalVariableDeclaration,JetBrains.ReSharper.Daemon.UsageChecking.CollectUsagesStageProcess,System.Boolean,JetBrains.ReSharper.Feature.Services.Daemon.IHighlightingConsumer)">
+            <summary></summary>
+            <param name="declaration"></param>
+            <param name="ignoreInitializerPresence">
+            This parameter is set to <c>true</c> when control flow analysis checks that
+            constant initializer isn't used at any execution path
+            </param>
+        </member>
+        <member name="T:JetBrains.ReSharper.Daemon.CSharp.Stages.Multithreading.Locks.SimpleCyclesInspector">
+            <summary>
+            Implements Johnson algorithm to enumerate simple cycles inside a graph 
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Daemon.CSharp.Stages.SmartResolverProcess.ScopeResolver.myCheckRedundantQualifiers">
+            <summary>
+            Indicates whether resolve for redundant qualifier check should be done
+            If daemon incrementally re-highlights method body, then only this body should be checked
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Daemon.CSharp.Stages.TypeArgumentProblemAnalyzer">
+            <summary>
+            According to C# specs 25.7.1
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.Stages.TypeElementProblemAnalyzer.CheckStaticClassProblems(JetBrains.ReSharper.Psi.CSharp.Tree.IClassDeclaration,JetBrains.ReSharper.Psi.IClass,JetBrains.ReSharper.Feature.Services.Daemon.IHighlightingConsumer)">
+            <summary>
+            According to paragraph 25.2.1 of C# specs
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.Stages.TypeParameterProblemAnalyzer.IsValid(System.Collections.Generic.IEnumerable{JetBrains.ReSharper.Psi.CSharp.Tree.ITypeParameterConstraintsClause})">
+            <summary>
+            Check that constraints clasuses are subject for further analysis, i.e. all parsed properly
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Daemon.CSharp.Stages.UnsafeContextCheckingStageProcess.myUnsafeContextCounter">
+            <summary>
+            Current number of 'unsafe' keywords upper in the tree.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.Stages.UnsafeContextCheckingStageProcess.GetTypeToCheckForUnsafe(JetBrains.ReSharper.Psi.Tree.IExpression,JetBrains.ReSharper.Psi.IDeclaredElement@,JetBrains.ReSharper.Psi.Resolve.ISubstitution@)">
+            <summary>
+            just optimizations, since asking type of every expression is too expensive
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CSharp.Stages.VariableDeclarationProblemAnalyzer.CheckFixedPointerInitializer(JetBrains.ReSharper.Psi.CSharp.Tree.IUnsafeCodeFixedPointerDeclaration,JetBrains.ReSharper.Psi.IPointerType,JetBrains.ReSharper.Psi.CSharp.Tree.ICSharpExpression,System.Func{JetBrains.ReSharper.Daemon.CSharp.Stages.VariableDeclarationRanges},JetBrains.ReSharper.Feature.Services.Daemon.ElementProblemAnalyzerData,JetBrains.ReSharper.Feature.Services.Daemon.IHighlightingConsumer)">
+            <summary>
+            C# specs 18.6 - special rules for fixed pointer initializer
+            + improvisation for C# 7.3 (see https://github.com/dotnet/csharplang/blob/master/proposals/csharp-7.3/pattern-based-fixed.md)
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Daemon.CSharp.StyleCop.StyleCopToSettingsConverter">
+            <summary>
+            This class and it's extension methods provide a DSL that is used to describe how external (mainly, Roslyn-based)
+            inspections' severities should be mapped to the ReSharper code style settings schema and ReSharper inspections'
+            severities.
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Daemon.CSharp.Syntax.CSharpSoftKeywordHighlightingProcessor">
+            <summary>
+            Highlights C# contextual keywords, doc comments
+            </summary>
+        </member>
+    </members>
+</doc>

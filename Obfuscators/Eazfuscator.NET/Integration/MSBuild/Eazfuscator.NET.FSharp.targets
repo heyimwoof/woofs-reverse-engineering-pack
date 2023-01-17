@@ -1,0 +1,28 @@
+<!--
+***********************************************************************************************
+Eazfuscator.NET.FSharp.targets
+
+WARNING:  DO NOT MODIFY this file. Incorrect changes to this file will make it impossible to
+          load or build your Eazfuscator.NET projects from the command-line or the IDE.
+
+Copyright (C) 2008-2018 Gapotchenko
+***********************************************************************************************
+-->
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Target Name="_Eazfuscator_NET_FSharp_PrepareForBuild"
+          Condition=" '$(Language)' == 'F#' "
+          BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ProvideCommandLineArgs>true</ProvideCommandLineArgs>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_FSharp_CompilationTrigger"
+          Condition=" '$(Language)' == 'F#' AND @(FscCommandLineArgs) != '' "
+          AfterTargets="CoreCompile">
+    <CallTarget Targets="_Eazfuscator_NET_CompilationTrigger" />
+  </Target>
+
+</Project>

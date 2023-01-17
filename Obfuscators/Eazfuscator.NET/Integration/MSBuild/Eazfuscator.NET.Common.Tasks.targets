@@ -1,0 +1,49 @@
+<!--
+***********************************************************************************************
+Eazfuscator.NET.Common.Tasks.targets
+
+WARNING:  DO NOT MODIFY this file. Incorrect changes to this file will make it impossible to
+          load or build your Eazfuscator.NET projects from the command-line or the IDE.
+
+Copyright (C) 2008-2022 Gapotchenko
+***********************************************************************************************
+-->
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Import Project="Eazfuscator.NET.Bootstrap.Prerequisites.targets" Condition=" '$(Eazfuscator_NET_BootstrapPrerequisites_Imported)' == '' " />
+
+  <PropertyGroup>
+    <Eazfuscator_NET_CommonTasksImported>true</Eazfuscator_NET_CommonTasksImported>
+
+    <Eazfuscator_NET_MSBuildTasksAssemblyFile>$(MSBuildToolsPath)\Microsoft.Build.Tasks.v$(MSBuildToolsVersion).dll</Eazfuscator_NET_MSBuildTasksAssemblyFile>
+    <Eazfuscator_NET_MSBuildTasksAssemblyFile Condition=" '$(Eazfuscator_NET_MSBuildToolsVersion)' &gt;= '14.0' ">$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll</Eazfuscator_NET_MSBuildTasksAssemblyFile>
+
+    <Eazfuscator_NET_MSBuildCodeTaskFactory>CodeTaskFactory</Eazfuscator_NET_MSBuildCodeTaskFactory>
+    <Eazfuscator_NET_MSBuildCodeTaskFactory Condition=" '$(MSBuildRuntimeType)' == 'Core' ">RoslynCodeTaskFactory</Eazfuscator_NET_MSBuildCodeTaskFactory>
+
+    <Eazfuscator_NET_TasksAssemblyFile>$(MSBuildThisFileDirectory)net40\Eazfuscator.NET.Integration.MSBuild.Tasks.dll</Eazfuscator_NET_TasksAssemblyFile>
+    <Eazfuscator_NET_TasksAssemblyFile Condition=" '$(MSBuildRuntimeType)' == 'Core' ">$(MSBuildThisFileDirectory)netcoreapp2.0\Eazfuscator.NET.Integration.MSBuild.Tasks.dll</Eazfuscator_NET_TasksAssemblyFile>
+  </PropertyGroup>
+
+  <UsingTask
+    TaskName="Eazfuscator_NET_SetEnvironmentVariableTask"
+    AssemblyFile="$(Eazfuscator_NET_TasksAssemblyFile)"/>
+
+  <UsingTask
+    TaskName="Eazfuscator_NET_AddPathToEnvironmentTask"
+    AssemblyFile="$(Eazfuscator_NET_TasksAssemblyFile)"/>
+
+  <UsingTask
+    TaskName="Eazfuscator_NET_PrerequisitesValidationTask"
+    AssemblyFile="$(Eazfuscator_NET_TasksAssemblyFile)"/>
+
+  <UsingTask
+    TaskName="Eazfuscator_NET_CorrelateAssemblyAliasedFiles"
+    AssemblyFile="$(Eazfuscator_NET_TasksAssemblyFile)"/>
+
+  <UsingTask
+    TaskName="Eazfuscator_NET_CheckActivation"
+    AssemblyFile="$(Eazfuscator_NET_TasksAssemblyFile)"/>
+
+</Project>

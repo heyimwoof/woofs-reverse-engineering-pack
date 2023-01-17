@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<assembly name="System.Drawing, Version=2.0.0.0">
+  <member name="M:System.Drawing.Design.ToolboxItem.CreateComponents">
+    <attribute ctor="M:JetBrains.Annotations.CanBeNullAttribute.#ctor"/>
+  </member>
+</assembly>

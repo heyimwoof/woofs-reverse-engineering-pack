@@ -1,0 +1,53 @@
+<!--
+***********************************************************************************************
+Eazfuscator.NET.WiX.targets
+
+WARNING:  DO NOT MODIFY this file. Incorrect changes to this file will make it impossible to
+          load or build your Eazfuscator.NET projects from the command-line or the IDE.
+
+Copyright (C) 2008-2019 Gapotchenko
+***********************************************************************************************
+-->
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Import Project="Eazfuscator.NET.Common.Tasks.targets" Condition=" '$(Eazfuscator_NET_CommonTasksImported)' == '' " />
+
+  <Target Name="_Eazfuscator_NET_WiX_PrepareForBuild"
+          BeforeTargets="PrepareForBuild"
+          Condition=" '$(WixCATargetsPath)' != '' ">
+    <PropertyGroup>
+      <_Eazfuscator_NET_WiX_Triggered>false</_Eazfuscator_NET_WiX_Triggered>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_WiX_Trigger"
+          Condition=" '$(WixCATargetsPath)' != '' ">
+    <PropertyGroup>
+      <_Eazfuscator_NET_WiX_Triggered>true</_Eazfuscator_NET_WiX_Triggered>
+      <_Eazfuscator_NET_NETFramework_Specialty>true</_Eazfuscator_NET_NETFramework_Specialty>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_WiX"
+          BeforeTargets="PackCustomAction"
+          Condition=" '$(_Eazfuscator_NET_WiX_Triggered)' == 'true' "
+          DependsOnTargets="$(_Eazfuscator_NET_CoreCompileTargets)">
+    <CallTarget Targets="_Eazfuscator_NET_RetargetToIntermediate;_Eazfuscator_NET;_Eazfuscator_NET_WiX_RemoveReferencePaths" />
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_WiX_RemoveReferencePaths"
+          DependsOnTargets="_Eazfuscator_NET_GetRemovedReferencePaths">
+    <ItemGroup>
+      <ReferenceCopyLocalPaths Remove="@(_Eazfuscator_NET_RemovedReferencePaths)" />
+    </ItemGroup>
+  </Target>
+
+  <PropertyGroup>
+    <_Eazfuscator_NET_TriggerTargets>
+      $(_Eazfuscator_NET_TriggerTargets);
+      _Eazfuscator_NET_WiX_Trigger
+    </_Eazfuscator_NET_TriggerTargets>
+  </PropertyGroup>
+
+</Project>

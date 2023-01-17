@@ -1,0 +1,205 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.Platform.RdFramework.Shell</name>
+    </assembly>
+    <members>
+        <member name="M:JetBrains.Platform.RdFramework.ExternalProcess.ProtocolConnection`1.Queue(System.Action)">
+            <summary>
+            Queues an action on the external process protocol thread
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.RdFramework.ExternalProcess.ProtocolConnection`1.Execute(System.Action)">
+            <summary>
+            Executes an action on the external process protocol thread and waits
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.RdFramework.ExternalProcess.ProtocolConnection`1.Execute``1(System.Func{``0})">
+            <summary>
+            Executes an action on the external process protocol thread and waits for result
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.RdFramework.ExternalProcess.ProtocolEndPoint`2">
+            <summary>
+            Represents an endpoint that allows to communicate by Rd Protocol from the side of external process.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Platform.RdFramework.Impl.ProtocolComponent.IsBackend">
+            <summary>
+            A way to differentiate side in C#-C# communations.
+            Expected semantic: true for side without UI, false for UI side
+            Null if not applicable. Null may mean either that separation to backend/fronted does not makes sense in current
+            scenario or there are no two sides at all (like local protocol)
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.RdFramework.Impl.ProtocolComponent.#ctor(JetBrains.Application.Threading.IShellLocks,JetBrains.Rd.ITypesRegistrar,JetBrains.Lifetimes.Lifetime)">
+            <summary>
+            Stub ctor for local use by Shell container.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.RdFramework.Impl.RdDispatcher.RunWhile(System.Func{System.Boolean},System.Boolean)">
+            <summary>
+            Pumps protocol messages while given condition is satisfied.
+            </summary>
+            <param name="condition"> A delegate to be executed over and over while it returns true. </param>
+            <param name="pumpJetDispatcher">
+            Allows to pump unguarded actions on UI thread if flag is true.
+            But it might causes messages reordering.
+            </param>
+        </member>
+        <member name="M:JetBrains.Platform.RdFramework.Impl.ShellRdDispatcher.AllowScheduler(JetBrains.Lifetimes.Lifetime,JetBrains.Collections.Viewable.IScheduler)">
+            <summary>
+            This is an api hack to avoid Illegal Scheduler Exception during rd entity bindings when code cannot be executed in the main thread.
+            Please DO NOT USE this api if you do not fully understand what you are doing.
+            </summary>
+            <param name="lifetime"></param>
+            <param name="scheduler"></param>
+        </member>
+        <member name="T:JetBrains.Platform.RdFramework.Impl.SimpleInpaceExecutingScheduler">
+            <summary>
+            Executes the given action just in the current thread in Queue method
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.RdFramework.RdTypeAttribute">
+             <summary>
+             This attribute is used to discover runtime types by RdId using PartCatalog
+            
+             If you are using the interface in Rd communications without DSL, you must register all inheritors of this
+             interface using this attribute
+             </summary>
+        </member>
+        <member name="T:JetBrains.Platform.RdFramework.RdVerification.IRdShell">
+            <summary>
+            A set of components required for using reactive model with Reflection-based serializers. Do not inject this
+            component directly, use either RdShell for synchronous execution in in-process mode or pair of IFrontendRdShell and
+            IBackendRdShell for asynchronous execution.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.RdFramework.RdVerification.RdModelsVerifier">
+            <summary>
+            RdModel verification for each <see cref="T:JetBrains.Platform.RdFramework.RdTypeAttribute"/>
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.RdFramework.RdVerification.RdTypesCatalogWrapper">
+            <summary>
+            This discovery point for models marked with <see cref="T:JetBrains.Platform.RdFramework.RdTypeAttribute"/>
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.RdFramework.RdVerification.RdTypesCatalogWrapper.Hash(JetBrains.Util.dataStructures.Sources.StringSource,System.Int64)">
+            <summary>
+            Reimplementation of <see cref="M:JetBrains.Rd.RdId.Hash(System.String,System.Int64)"/>, which can't use <see cref="T:JetBrains.Util.dataStructures.Sources.StringSource"/> type directly
+            </summary>
+            <param name="s"></param>
+            <param name="initValue"></param>
+            <returns></returns>
+        </member>
+        <member name="T:JetBrains.Platform.RdFramework.Util.UInOutSignal`2">
+            <summary>
+            A wrapper around <see cref="T:JetBrains.Rd.Tasks.RdCall`2"/> to support two-sides calls, exposing a signal interface.
+            The value for out signal can be provided only by the protocol counterpart, not the local side.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.RdFramework.Util.UInOutSignal`2.#ctor(JetBrains.Rd.CtxReadDelegate{`0},JetBrains.Rd.CtxWriteDelegate{`0},JetBrains.Rd.CtxReadDelegate{`1},JetBrains.Rd.CtxWriteDelegate{`1})">
+            <summary> 
+            It is discouraged to use this constructor directly (as well as for others Rd-entities in reflection-based Rd), use
+            <see cref="T:JetBrains.Rd.Reflection.ReflectionRdActivator"/> or similar runtime factory. It is incredible important to have synchronized
+            serializers on the both sides. If you provide serializers manually, the runtime activator used by proxy generator
+            will be unable to guess proper serializer at the counterpart side which will lead to undefined behaviour.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.RdFramework.Util.UInOutSignal`2.FireAsync(`0)">
+            <summary>
+            Ask the counterpart to provide value asynchronously
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.RdFramework.Util.UInOutSignal`2.Fire(JetBrains.DataFlow.InOutEventArgs{`0,`1})">
+            <summary>
+            Ask the counterpart to provide value
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.RdFramework.Util.UInOutSignal`2.Advise(JetBrains.Lifetimes.Lifetime,System.Action{JetBrains.DataFlow.InOutEventArgs{`0,`1}})">
+            <summary>
+            Subscribe to values requests from the other side
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.RdFramework.Util.UListEvents`1.OnAcknowledgeSinkAddRemove_Add(System.Action{JetBrains.DataFlow.AddRemoveIndexEventArgs{`0}})">
+            <summary>
+            Ackhowledges the handler.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.RdFramework.Util.UListEvents`1.OnAcknowledgeSinkAddRemove_Remove(System.Action{JetBrains.DataFlow.AddRemoveIndexEventArgs{`0}})">
+            <summary>
+            Ackhowledges the handler.
+            Cannot be merged with <see cref="M:JetBrains.Platform.RdFramework.Util.UListEvents`1.OnAcknowledgeSinkAddRemove_Add(System.Action{JetBrains.DataFlow.AddRemoveIndexEventArgs{`0}})"/> because the iteration should go in the reverse order.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.RdFramework.Util.UListEvents`1.OnAcknowledgeSinkAddRemove(System.Action{JetBrains.DataFlow.AddRemoveEventArgs{`0}},JetBrains.Collections.Viewable.AddRemove)">
+            <summary>
+            Ackhowledges the handler.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Platform.RdFramework.Util.UProperty`1.Change">
+            <inheritdoc />
+        </member>
+        <member name="P:JetBrains.Platform.RdFramework.Util.UProperty`1.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:JetBrains.Platform.RdFramework.Util.UProperty`1.IsNullValueAllowed">
+            <inheritdoc />
+        </member>
+        <member name="P:JetBrains.Platform.RdFramework.Util.UProperty`1.Maybe">
+            <inheritdoc />
+        </member>
+        <member name="P:JetBrains.Platform.RdFramework.Util.UProperty`1.Value">
+            <inheritdoc cref="P:JetBrains.Platform.RdFramework.Util.UProperty`1.Value" />
+        </member>
+        <member name="M:JetBrains.Platform.RdFramework.Util.UProperty`1.JetBrains#Collections#Viewable#ISource{TValue}#Advise(JetBrains.Lifetimes.Lifetime,System.Action{`0})">
+            <inheritdoc />
+        </member>
+        <member name="P:JetBrains.Platform.RdFramework.Util.UProperty`1.JetBrains#DataFlow#IHaveUntypedProperty#AsUntyped">
+            <inheritdoc />
+        </member>
+        <member name="P:JetBrains.Platform.RdFramework.Util.UProperty`1.JetBrains#DataFlow#IProperty{TValue}#BeforeChange">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.Platform.RdFramework.Util.UProperty`1.JetBrains#Rd#Base#IRdBindable#Bind(JetBrains.Lifetimes.Lifetime,JetBrains.Rd.Base.IRdDynamic,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:JetBrains.Platform.RdFramework.Util.UProperty`1.JetBrains#Collections#Viewable#IReadonlyProperty{TValue}#Change">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.Platform.RdFramework.Util.UProperty`1.System#IDisposable#Dispose">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.Platform.RdFramework.Util.UProperty`1.JetBrains#DataFlow#IProperty{TValue}#GetValue">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.Platform.RdFramework.Util.UProperty`1.JetBrains#DataFlow#IProperty{TValue}#GetValue(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.Platform.RdFramework.Util.UProperty`1.JetBrains#Rd#Base#IRdBindable#Identify(JetBrains.Rd.IIdentities,JetBrains.Rd.RdId)">
+            <inheritdoc />
+        </member>
+        <member name="P:JetBrains.Platform.RdFramework.Util.UProperty`1.JetBrains#Rd#Base#IRdDynamic#Location">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.Platform.RdFramework.Util.UProperty`1.JetBrains#Rd#Base#IPrintable#Print(JetBrains.Rd.Util.PrettyPrinter)">
+            <inheritdoc />
+        </member>
+        <member name="P:JetBrains.Platform.RdFramework.Util.UProperty`1.JetBrains#Rd#Base#IRdDynamic#Proto">
+            <inheritdoc />
+        </member>
+        <member name="P:JetBrains.Platform.RdFramework.Util.UProperty`1.JetBrains#Rd#Base#IRdBindable#RdId">
+            <inheritdoc />
+        </member>
+        <member name="P:JetBrains.Platform.RdFramework.Util.UProperty`1.JetBrains#Rd#Base#IRdDynamic#SerializationContext">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.Platform.RdFramework.Util.UProperty`1.JetBrains#DataFlow#IProperty{TValue}#SetValue(`0)">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.Platform.RdFramework.Util.UProperty`1.SetValue(`0,System.Object)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

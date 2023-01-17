@@ -1,0 +1,1499 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.PsiFeatures.UIInteractive.Features</name>
+    </assembly>
+    <members>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeCleanup2.CleanupFileListWindow">
+            <summary>
+            Interaction logic for MainWindow.xaml
+            </summary>
+            <summary>
+            CleanupFileListWindow
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeCleanup2.CleanupFileListWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeCleanup2.CleanupProfilesListBar">
+            <summary>
+            Interaction logic for CleanupProfilesListBar.xaml
+            </summary>
+            <summary>
+            CleanupProfilesListBar
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeCleanup2.CleanupProfilesListBar.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeCleanup2.CleanupProfilesSelectorEditorControl">
+            <summary>
+            CleanupProfilesSelectorEditorControl
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeCleanup2.CleanupProfilesSelectorEditorControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeCleanup2.CleanupToolMainControl">
+            <summary>
+            Interaction logic for CleanupToolMainControl.xaml
+            </summary>
+            <summary>
+            CleanupToolMainControl
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeCleanup2.CleanupToolMainControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeCleanup2.CleanupToolWindow">
+            <summary>
+            Interaction logic for MainWindow.xaml
+            </summary>
+            <summary>
+            CleanupToolWindow
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeCleanup2.CleanupToolWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeCleanup2.Options.CleanupOptionsPageView">
+            <summary>
+            CleanupOptionsPageView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeCleanup2.Options.CleanupOptionsPageView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeCleanup2.ProfilesListControl">
+            <summary>
+            Interaction logic for ProfilesListControl.xaml
+            </summary>
+            <summary>
+            ProfilesListControl
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeCleanup2.ProfilesListControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeCleanup2.ProfileTasksEditControl">
+            <summary>
+            Interaction logic for ProfileTasksEditControl.xaml
+            </summary>
+            <summary>
+            ProfileTasksEditControl
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeCleanup2.ProfileTasksEditControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeCleanup2.ProfileTasksViewControl">
+            <summary>
+            Interaction logic for ProfileTasksViewControl.xaml
+            </summary>
+            <summary>
+            ProfileTasksViewControl
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeCleanup2.ProfileTasksViewControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeCleanup2.Tasks.ProfileTasksProvider.JetBrains#Application#UI#Controls#TreeGrid#Revised#IChildrenProvider#IndexOf(System.Object,System.Object)">
+            <summary>
+            Gets index of child in parent's children colleciton, 
+            or -1 in case of the child is not found in the parent's collection
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeCleanup.CodeCleanupView">
+            <summary>
+            CodeCleanupView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeCleanup.CodeCleanupView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeCleanup.ProfileNameDialog.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeCleanup.ProfileNameDialog.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeCleanup.ProfileNameDialog.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeCleanup.SilentCleanupView">
+            <summary>
+            SilentCleanupView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeCleanup.SilentCleanupView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Constraints.AccessConstraintDesigner">
+            <summary>
+            AccessConstraintDesigner
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Constraints.AccessConstraintDesigner.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Constraints.AndConstraintDesigner">
+            <summary>
+            AndConstraintDesigner
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Constraints.AndConstraintDesigner.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Constraints.BodyConstraintDesigner">
+            <summary>
+            BodyConstraintDesigner
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Constraints.BodyConstraintDesigner.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Constraints.DependencyPropertyPartDesigner">
+            <summary>
+            DependencyPropertyPartDesigner
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Constraints.DependencyPropertyPartDesigner.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Constraints.HasAttributeConstraintDesigner">
+            <summary>
+            HasAttributeConstraintDesigner
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Constraints.HasAttributeConstraintDesigner.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Constraints.HasMemberConstraintDesigner">
+            <summary>
+            HasMemberConstraintDesigner
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Constraints.HasMemberConstraintDesigner.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Constraints.ImplementsInterfaceConstraintDesigner">
+            <summary>
+            ImplementsInterfaceConstraintDesigner
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Constraints.ImplementsInterfaceConstraintDesigner.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Constraints.InheritsFromTypeConstraintDesigner">
+            <summary>
+            InheritsFromTypeConstraintDesigner
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Constraints.InheritsFromTypeConstraintDesigner.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Constraints.KindConstraintDesigner">
+            <summary>
+            KindConstraintDesigner
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Constraints.KindConstraintDesigner.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Constraints.NameConstraintDesigner">
+            <summary>
+            NameConstraintDesigner
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Constraints.NameConstraintDesigner.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Constraints.NotConstraintDesigner">
+            <summary>
+            NotConstraintDesigner
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Constraints.NotConstraintDesigner.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Constraints.OrConstraintDesigner">
+            <summary>
+            OrConstraintDesigner
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Constraints.OrConstraintDesigner.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Constraints.PropertyPartDesigner">
+            <summary>
+            PropertyPartDesigner
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Constraints.PropertyPartDesigner.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Constraints.TypeConstraintDesigner">
+            <summary>
+            TypeConstraintDesigner
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Constraints.TypeConstraintDesigner.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Constraints.ConstraintPresenterDictionary">
+            <summary>
+            ConstraintPresenterDictionary
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Constraints.ConstraintPresenterDictionary.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Entries.DependencyPropertyDesigner">
+            <summary>
+            DependencyPropertyDesigner
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Entries.DependencyPropertyDesigner.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Entries.EntryDesigner">
+            <summary>
+            EntryDesigner
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Entries.EntryDesigner.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Entries.GroupDesigner">
+            <summary>
+            GroupDesigner
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Entries.GroupDesigner.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Entries.PropertyDesigner">
+            <summary>
+            PropertyDesigner
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Entries.PropertyDesigner.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Entries.RegionDesigner">
+            <summary>
+            RegionDesigner
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Entries.RegionDesigner.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.ErrorItemDesigner">
+            <summary>
+            ErrorItemDesigner
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.ErrorItemDesigner.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Patterns.FilePatternDesigner">
+            <summary>
+            FilePatternDesigner
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Patterns.FilePatternDesigner.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Patterns.PatternsDesigner">
+            <summary>
+            PatternsDesigner
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Patterns.PatternsDesigner.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Patterns.TypePatternDesigner">
+            <summary>
+            TypePatternDesigner
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Designers.Patterns.TypePatternDesigner.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Editors.GroupDescriptorEditor.GroupDescriptorEditor">
+            <summary>
+            GroupDescriptorEditor
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Editors.GroupDescriptorEditor.GroupDescriptorEditor.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Editors.SequentialEditor.Themes.SequentialEditorResourceDictionary">
+            <summary>
+            SequentialEditorResourceDictionary
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Editors.SequentialEditor.Themes.SequentialEditorResourceDictionary.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Editors.SortDescriptorEditor.SortDescriptorEditor">
+            <summary>
+            SortDescriptorEditor
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.Presentation.Editors.SortDescriptorEditor.SortDescriptorEditor.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.View.FileLayoutDesignerView">
+            <summary>
+            FileLayoutDesignerView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.View.FileLayoutDesignerView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.View.FileLayoutDesignerWrapperView">
+            <summary>
+            FileLayoutDesignerWrapperView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.CodeFormatter.CSharp.FileLayout.View.FileLayoutDesignerWrapperView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.NullChecking.CSharpNullCheckingSettingsView">
+            <summary>
+            CSharpNullCheckingSettingsView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.NullChecking.CSharpNullCheckingSettingsView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.PostfixTemplates.PostfixTemplatesLanguageSettingsView">
+            <summary>
+            PostfixTemplatesLanguageSettingsView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.PostfixTemplates.PostfixTemplatesLanguageSettingsView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Altering.PostfixTemplates.PostfixTemplatesSettingsView">
+            <summary>
+            PostfixTemplatesSettingsView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Altering.PostfixTemplates.PostfixTemplatesSettingsView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.CallHierarchy.CallHierarchyExplorerViewManagerNewTreeView.OnRenderView(JetBrains.Lifetimes.Lifetime,JetBrains.ReSharper.Features.Inspections.CallHierarchy.CallHierarchyExplorerViewManagerTreeAutomation)">
+            <inheritdoc />
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.CallHierarchy.New.CallHierarchyTreeModelPanel.CallHierarchyMultilineResultList">
+            <summary>
+            Smart next/previous behaviour for result list.
+            When several invocation of target call occur in the method, it is presented as a single node in call tracking
+            tree. To take into account these "sub nodes" during next/previous navigation this class preserve active node.
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.CallHierarchy.New.NodeWithAsyncChildrenView">
+            <summary>
+            NodeWithAsyncChildrenView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.CallHierarchy.New.NodeWithAsyncChildrenView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Daemon.OptionPages.Inspections.AnnotationNamespaceView">
+            <summary>
+            AnnotationNamespaceView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Daemon.OptionPages.Inspections.AnnotationNamespaceView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Daemon.OptionPages.Inspections.CodeAnnotationsPageView">
+            <summary>
+            CodeAnnotationsPageView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Daemon.OptionPages.Inspections.CodeAnnotationsPageView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Daemon.OptionPages.Inspections.CodeInspectionGeneratedView">
+            <summary>
+            CodeInspectionGeneratedView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Daemon.OptionPages.Inspections.CodeInspectionGeneratedView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Daemon.OptionPages.Inspections.CodeInspectionSeverityView">
+            <summary>
+            CodeInspectionSeverityView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Daemon.OptionPages.Inspections.CodeInspectionSeverityView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Debugger.TracePointEdit.TracePointEditorDialog">
+            <summary>
+            TracePointEditorDialog
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Debugger.TracePointEdit.TracePointEditorDialog.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Debugger.TracePointEdit.TracePointEditorDialogOwnerWpf.Show(System.String,System.Action{System.String})">
+            <summary>
+            Show create tracepoint dialog and invoke callback functions when it is done.
+            
+            Call back function is guarantee to execute even if user cancelled input (in this case string parameter will be null) 
+            </summary>
+            <param name="initialValue"></param>
+            <param name="commit">executed when dialog closed. If user doesn't enter any </param>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Environment.PsiCacheNotifier.CacheNotifierIndicator">
+            <summary>
+            A status bar indicator for the PSI cache notifier.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Environment.PsiCacheNotifier.CacheNotifierIndicator.GetTooltip(JetBrains.Lifetimes.Lifetime,System.Drawing.Point,JetBrains.PsiFeatures.UIInteractive.Features.Environment.PsiCacheNotifier.PsiCacheNotifierUi)">
+            <summary>
+            Called by tooltip manager, if the tooltip is to be displayed
+            </summary>
+            <param name="lifetime"></param>
+            <param name="point">Point in control's coordinates</param>
+            <param name="psiCacheNotifierImpl"></param>
+            <returns><see cref="T:JetBrains.Application.UI.Tooltips.ITooltipInfo" />, or <c>Null</c> if no tooltip should be displayed.</returns>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Environment.PsiCacheNotifier.CacheNotifierPopup">
+            <summary>
+            The popup view for the cache notifier.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Features.Environment.PsiCacheNotifier.CacheNotifierPopup.myPopupWindowMutex">
+            <summary>
+            Identity for the background notifier windows.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Features.Environment.PsiCacheNotifier.CacheNotifierPopup.myWantsResize">
+            <summary>
+            Fires when the control would like to be reasked of its desired size.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Environment.PsiCacheNotifier.CacheNotifierPopup.OnAnyClick(System.Object,System.EventArgs)">
+            <summary>
+            Something has been clicked — turn modal.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Environment.PsiCacheNotifier.CacheNotifierPopup.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            
+            </summary>
+            
+            <param name="e">A <see cref="T:System.Windows.Forms.PaintEventArgs" /> that contains the event data. </param>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Features.Environment.PsiCacheNotifier.CacheNotifierPopup.ShowWithoutActivation">
+            <summary>
+            Gets a value indicating whether the window will be activated when it is shown.
+            </summary>
+            
+            <returns>
+            True if the window will not be activated when it is shown; otherwise, false. The default is false.
+            </returns>
+            
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Environment.PsiCacheNotifier.CacheNotifierPopup.GetDesiredSize(JetBrains.UI.IGraphicsContainer,System.Drawing.Size)">
+            <summary>
+            Performs the bottom-up layouting stage, when the control calculates its desired size using the given constraints.
+            Should give generally the same results as <see cref="T:JetBrains.Application.UI.Controls.IConstrainableControl"/>, but could employ the <paramref name="gc"/> device context for the sake of optimization.
+            </summary>
+            <param name="gc">The device context to measure against.</param>
+            <param name="limit">The maximum available space (that could affect the shape of the control, or strip down unnecessary calculations over the invisible items).
+            May be a <see cref="T:System.Drawing.Size"/> with width and height equal to <see cref="F:System.Int32.MaxValue"/>, which means that the size is not limited.</param>
+            <returns>The desired size, must be no larger than <paramref name="limit"/>.</returns>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Environment.PsiCacheNotifier.CacheNotifierPopup.SetLayout(JetBrains.Application.UI.PopupLayout.LayoutResult)">
+            <summary>
+            Tells the control the details about the new layout applied to it by the controlling entity in conjunction with some <see cref="T:JetBrains.Application.UI.PopupLayout.IPopupLayouter"/>.
+            Typically, the control need not apply the given size and location because that should be done by the controlling entity.
+            The control may change its presentation in response to the layouting details, for example, whether it's attached to the top or the bottom of the anchoring rect.
+            </summary>
+            <param name="layout">The layouting details.</param>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Features.Environment.PsiCacheNotifier.CacheNotifierPopup.AutoActivate">
+            <summary>
+            Gets or sets whether the control should be activated initially when it's shown.
+            The typical implementation for a form is to return a negative of this value from the <see cref="P:System.Windows.Forms.Form.ShowWithoutActivation"/> override.
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Features.Environment.PsiCacheNotifier.CacheNotifierPopup.WantsResize">
+            <summary>
+            Fires when the control would like to be reasked of its desired size.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Features.Environment.PsiCacheNotifier.PsiCacheNotifierUi.IsVisibleViewIndicatorUi">
+            <summary>
+            Gets whether the corresponding view should be visible.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Features.Environment.PsiCacheNotifier.PsiCacheNotifierUi.IsVisibleViewPopupUi">
+            <summary>
+            Gets whether the corresponding view should be visible.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Features.Environment.PsiCacheNotifier.PsiCacheNotifierUi.DescriptionUi">
+            <summary>
+            The <see cref="!:PsiCacheNotifier.Description" />, marshalled to UI.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Features.Environment.PsiCacheNotifier.PsiCacheNotifierUi.HeaderUi">
+            <summary>
+            The <see cref="!:PsiCacheNotifier.Header" />, marshalled to UI.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Features.Environment.PsiCacheNotifier.PsiCacheNotifierUi.IsActiveUi">
+            <summary>
+            The <see cref="!:PsiCacheNotifier.IsActive" />, marshalled to UI.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Features.Environment.PsiCacheNotifier.PsiCacheNotifierUi.ProgressUi">
+            <summary>
+            The <see cref="!:PsiCacheNotifier.Progress" />, marshalled to UI.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Environment.PsiCacheNotifier.PsiCacheNotifierUi.InitDataFlow_AutoCleanUp">
+            <summary>
+            Whenever notifier is hidden, clean it up.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Environment.PsiCacheNotifier.PsiCacheNotifierUi.InitDataFlow_MarshalUi">
+            <summary>
+            Marshal from the immediate thread-neutral properties to the in-ui-thread safe properties.
+            When reading values, use the UI versions.
+            When setting the values, use the non-UI versions.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Environment.PsiCacheNotifier.PsiCacheNotifierUi.InitDataFlow_ShowViews(JetBrains.Application.StdApplicationUI.StatusBars.IStatusBar)">
+            <summary>
+            What views to show, and when.
+            </summary>
+            <param name="statusBar"></param>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Environment.PsiCacheNotifier.PsiCacheNotifierUi.WaitForCaches(System.String,System.String)">
+            <summary>
+            Synchronously wait until caches are ready, with a popup progress window.
+            Must be called under a read lock.
+            </summary>
+            <returns><c>True</c> if the caches are ready, <c>False</c> if user-cancelled.</returns>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.ExternalSources.AssemblyExplorer.AssemblyExplorerPanelNew.CanSearchOccurrenceInto(JetBrains.Application.UI.TreeModels.TreeModelNode)">
+            <summary>
+            Defines predicate to prevent endless traversing in case of 'infinite' tree model, 
+            or pevent consuming a lot of process/memory resources, 
+            it defines if we are allowed to get into the given node's children
+            </summary>
+            <param name="treeModelNode">Node</param>
+            <returns>Returns true if we are allowed to get into the given node's children</returns>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.ExternalSources.AssemblyExplorer.ExportedProject.ExportParameters.#ctor(JetBrains.ProjectModel.Model2.Assemblies.Interfaces.IAssemblyFile,JetBrains.Util.FileSystemPath,JetBrains.ReSharper.Feature.Services.ExternalSources.CSharp.AssemblyExport.FolderIsNotEmptyAction,System.String,System.Boolean,System.Boolean,JetBrains.Util.FileSystemPath,System.Boolean,System.Boolean)">
+            <param name="assemblyFile"></param>
+            <param name="folder">folder for project exporting</param>
+            <param name="folderIsNotEmptyChoice">what to do if chosen folder is not empty</param>
+            <param name="projectName">Name of .csproj, .sln and .pdb files (if requested)</param>
+            <param name="createSolution">Create appropriate .sln file, if true (and createProject)</param>
+            <param name="createPdb">Create appropriate .pdb file, if true (and performDecompilation)</param>
+            <param name="pdbFolder">Folder for pdb (if createPdb; null indicates same folder as project folder)</param>
+            <param name="addProjectToAssemblyExplorer"></param>
+            <param name="openProjectInVisualStudio"></param>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.ExternalSources.AssemblyExplorer.ExportedProject.ExportToProjectDialog">
+            <summary>
+            Interaction logic for ExportToProjectDialog.xaml
+            </summary>
+            <summary>
+            ExportToProjectDialog
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.ExternalSources.AssemblyExplorer.ExportedProject.ExportToProjectDialog.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.ExternalSources.AssemblyExplorer.ExportedProject.ExportToProjectUserInteraction.AskUser(JetBrains.Util.FileSystemPath)">
+            <summary>
+            Shows task dialog,
+            performs user selected action (other then "Export again")
+            </summary>
+            <returns>true, if user selects "export again"</returns>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.ExternalSources.AssemblyExplorer.ExportedProject.FolderIsNotEmptyDialog">
+            <summary>
+            Interaction logic for FolderIsNotEmptyDialog.xaml
+            </summary>
+            <summary>
+            FolderIsNotEmptyDialog
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.ExternalSources.AssemblyExplorer.ExportedProject.FolderIsNotEmptyDialog.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.ExternalSources.AssemblyExplorer.NuPeek.OpenFromNuGetDialog">
+            <summary>
+            Interaction logic for OpenFromNuGetDialog.xaml
+            </summary>
+            <summary>
+            OpenFromNuGetDialog
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.ExternalSources.AssemblyExplorer.NuPeek.OpenFromNuGetDialog.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.ExternalSources.AssemblyExplorer.OpenFromGac.OpenFromGacDialog">
+            <summary>
+            Interaction logic for OpenFromGacDialog.xaml
+            </summary>
+            <summary>
+            OpenFromGacDialog
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.ExternalSources.AssemblyExplorer.OpenFromGac.OpenFromGacDialog.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.ExternalSources.AssemblyExplorer.OpenFromNuGetPackagesCache.OpenFromNuGetPackagesCacheDialog">
+            <summary>
+            Interaction logic for OpenFromNuGetPackagesCacheDialog.xaml
+            </summary>
+            <summary>
+            OpenFromNuGetPackagesCacheDialog
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.ExternalSources.AssemblyExplorer.OpenFromNuGetPackagesCache.OpenFromNuGetPackagesCacheDialog.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.ExternalSources.AssemblyExplorer.PdbGeneration.PdbGenerationDialog">
+            <summary>
+            Interaction logic for ExportToProjectDialog.xaml
+            </summary>
+            <summary>
+            PdbGenerationDialog
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.ExternalSources.AssemblyExplorer.PdbGeneration.PdbGenerationDialog.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.ExternalSources.Generation.GenerationView">
+            <summary>
+            Interaction logic for GenerationView.xaml
+            </summary>
+            <summary>
+            GenerationView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.ExternalSources.Generation.GenerationView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Features.ExternalSources.ILViewer.IlViewerViewModel.Lines">
+            <remarks>StartLine of range is treated as caret line</remarks>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.ExternalSources.ReSharperIntegration.ExternalSourcesFirstTimeNavigationInteractive.Execute">
+            <summary>
+            Show first-time navigation dialog and alter ES options according to
+            user choices
+            </summary>
+            <returns>Whether dialog was successfully executed</returns>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.ExternalSources.ReSharperIntegration.ExternalSourcesShowSupportInfoView">
+            <summary>
+            ExternalSourcesShowSupportInfoView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.ExternalSources.ReSharperIntegration.ExternalSourcesShowSupportInfoView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Features.I18n.Actions.ResourceEditorForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.I18n.Actions.ResourceEditorForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.I18n.Actions.ResourceEditorForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.I18n.ResxEditor.View.LoadingView">
+            <summary>
+            LoadingView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.I18n.ResxEditor.View.LoadingView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.I18n.ResxEditor.View.ResxEditorView">
+            <summary>
+            ResxEditorView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.I18n.ResxEditor.View.ResxEditorView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.I18n.ResxEditor.View.WrapperView">
+            <summary>
+            WrapperView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.I18n.ResxEditor.View.WrapperView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Inspections.CodeStructure.CodeStructureViewImpl.JetBrains#ReSharper#Features#Inspections#CodeStructure#ICodeStructureView#CreateGraphicsContainer">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Inspections.CodeStructure.CodeStructureToolWindowAutomation.#ctor(JetBrains.Application.UI.ToolWindowManagement.ToolWindowInstance,JetBrains.ReSharper.Features.Inspections.CodeStructure.CodeStructureBrowser)">
+            <inheritdoc />
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Features.Inspections.TodoItems.Editor.TodoItemPatternDialog.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Inspections.TodoItems.Editor.TodoItemPatternDialog.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Inspections.TodoItems.Editor.TodoItemPatternDialog.InitializeComponent(System.Boolean)">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Inspections.TodoItems.Editor.TodoItemPatternWindow">
+            <summary>
+            TodoItemPatternWindow
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Inspections.TodoItems.Editor.TodoItemPatternWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Intellisense.CodeCompletion.Filters.Clr.ClrSymbolsFilterSettingsView">
+            <summary>
+            Interaction logic for CLRSymbolsFilterSettingsView.xaml
+            </summary>
+            <summary>
+            ClrSymbolsFilterSettingsView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Intellisense.CodeCompletion.Filters.Clr.ClrSymbolsFilterSettingsView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Intellisense.CodeCompletion.Filters.Clr.ClrSymbolsFilterView">
+            <summary>
+            Interaction logic for ClrSymbolsFilterView.xaml
+            </summary>
+            <summary>
+            ClrSymbolsFilterView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Intellisense.CodeCompletion.Filters.Clr.ClrSymbolsFilterView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Intellisense.CodeCompletion.Filters.CustomFilterConfigurationWindow">
+            <summary>
+            Interaction logic for MainWindow.xaml
+            </summary>
+            <summary>
+            CustomFilterConfigurationWindow
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Intellisense.CodeCompletion.Filters.CustomFilterConfigurationWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Intellisense.CodeCompletion.Filters.CustomFiltersView">
+            <summary>
+            Interaction logic for CustomFiltersView.xaml
+            </summary>
+            <summary>
+            CustomFiltersView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Intellisense.CodeCompletion.Filters.CustomFiltersView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Intellisense.Options.AdvancedCompletionSettingsControl">
+            <summary>
+            Interaction logic for AdvancedCompletionSettingsControl.xaml
+            </summary>
+            <summary>
+            AdvancedCompletionSettingsControl
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Intellisense.Options.AdvancedCompletionSettingsControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Intellisense.Options.AutomaticCompletionSettignsControl">
+            <summary>
+            Interaction logic for UserControl1.xaml
+            </summary>
+            <summary>
+            AutomaticCompletionSettignsControl
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Intellisense.Options.AutomaticCompletionSettignsControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Intellisense.Options.CompletingCharactersSettingsControl">
+            <summary>
+            Interaction logic for CompletingCharactersSettingsControl.xaml
+            </summary>
+            <summary>
+            CompletingCharactersSettingsControl
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Intellisense.Options.CompletingCharactersSettingsControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Intellisense.Options.CompletionBehaviorPage">
+            <summary>
+            The behavioral code completion settings.
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Intellisense.Options.LanguageCompletingCharSettings">
+            <summary>
+            Interaction logic for LanguageCompletingCharSettings.xaml
+            </summary>
+            <summary>
+            LanguageCompletingCharSettings
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Intellisense.Options.LanguageCompletingCharSettings.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Intellisense.Options.View.AutomaticCompletionSettignsControl2">
+            <summary>
+            AutomaticCompletionSettignsControl2
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Intellisense.Options.View.AutomaticCompletionSettignsControl2.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Intellisense.Options.View.CompletingCharactersSettingsControl2">
+            <summary>
+            CompletingCharactersSettingsControl2
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Intellisense.Options.View.CompletingCharactersSettingsControl2.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Intellisense.Options.View.CompletionAppearanceLookupHeightView2">
+            <summary>
+            CompletionAppearanceLookupHeightView2
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Intellisense.Options.View.CompletionAppearanceLookupHeightView2.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Intellisense.Options.View.CompletionFiltersSettingsControl2">
+            <summary>
+            CompletionFiltersSettingsControl2
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Intellisense.Options.View.CompletionFiltersSettingsControl2.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Intellisense.Options.View.CompletionPerformanceDelayView">
+            <summary>
+            Interaction logic for CompletionPerformanceDelayView.xaml
+            </summary>
+            <summary>
+            CompletionPerformanceDelayView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Intellisense.Options.View.CompletionPerformanceDelayView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Intellisense.Options.View.ParameterInfoAutopopupView2">
+            <summary>
+            ParameterInfoAutopopupView2
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Intellisense.Options.View.ParameterInfoAutopopupView2.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Intellisense.Options.View.TwoPropertiesWithIntValueViewModel2">
+            <summary>
+            TwoPropertiesWithIntValueViewModel2
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Intellisense.Options.View.TwoPropertiesWithIntValueViewModel2.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Intentions.Bulb.BulbIndicator">
+            <summary>
+              The bulb indicator.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Features.Intentions.Bulb.BulbIndicator.ArrowGap">
+            <summary>Width of gap between indicator image and down arrow</summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Features.Intentions.Bulb.BulbIndicator.ourArrowDefaultSize">
+            <summary>Size of down arrow</summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Features.Intentions.Bulb.BulbIndicator.ourBorderWidth">
+            <summary>width of indicator border (hot mode)</summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Features.Intentions.Bulb.BulbIndicator.ourIndicatorPadding">
+            <summary>Padding around indicator including border. Used also as a distance from base point to image.</summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Features.Intentions.Bulb.BulbIndicator.ShadowExtentBottom">
+            <summary>Extra space required for image shadow frame</summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Intentions.Bulb.BulbIndicator.GetImageSize(JetBrains.Util.Interop.DpiResolution)">
+            <summary>
+              Gets the image size, or the default 16?16 size if it has not been specified yet.
+            </summary>
+            <param name="dpi"></param>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Features.Intentions.Bulb.BulbIndicator.MouseOver">
+            <summary>
+              Gets or sets the “hot” control state.
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Intentions.Bulb.PopupIndicator">
+            <summary>
+            The blueish popup indicator with icon and text, eg, the “Import Namespace” popup.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Intentions.Bulb.PopupIndicator.PaintImpl(JetBrains.UI.IGraphicsContainer)">
+            <summary>
+            Does the rendering.
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Intentions.Formatting.View.ConfigureFormatDialog">
+            <summary>
+            ConfigureFormatDialog
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Intentions.Formatting.View.ConfigureFormatDialog.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Intentions.Options.ChangeInspectionSeverityDialog">
+            <summary>
+            ChangeInspectionSeverityDialog
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Features.Intentions.Options.ChangeInspectionSeverityDialog.SeverityOptionsTitle">
+            <summary>
+            Gets or sets title of options which severity will be changed
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Features.Intentions.Options.ChangeInspectionSeverityDialog.SeverityOptionsTitleProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for SeverityOptionsTitle.  
+            This enables animation, styling, binding, etc...
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Features.Intentions.Options.ChangeInspectionSeverityDialog.CanBeErrorProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for <see cref="P:JetBrains.PsiFeatures.UIInteractive.Features.Intentions.Options.ChangeInspectionSeverityDialog.CanBeError"/>. 
+            This enables animation, styling, binding, etc...
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Features.Intentions.Options.ChangeInspectionSeverityDialog.CanBeWarningProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for <see cref="P:JetBrains.PsiFeatures.UIInteractive.Features.Intentions.Options.ChangeInspectionSeverityDialog.CanBeWarning"/>. 
+            This enables animation, styling, binding, etc...
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Features.Intentions.Options.ChangeInspectionSeverityDialog.CanBeSuggestionProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for <see cref="P:JetBrains.PsiFeatures.UIInteractive.Features.Intentions.Options.ChangeInspectionSeverityDialog.CanBeSuggestion"/>. 
+            This enables animation, styling, binding, etc...
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Features.Intentions.Options.ChangeInspectionSeverityDialog.CanBeHintProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for <see cref="P:JetBrains.PsiFeatures.UIInteractive.Features.Intentions.Options.ChangeInspectionSeverityDialog.CanBeHint"/>. 
+            This enables animation, styling, binding, etc...
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Features.Intentions.Options.ChangeInspectionSeverityDialog.SelectedSettingsLayer">
+            <summary>
+            Gets settings layer if user used Save To, null otherwise
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Intentions.Options.ChangeInspectionSeverityDialog.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Intentions.Options.ContextActionsPageView">
+            <summary>
+            ContextActionsPageView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Intentions.Options.ContextActionsPageView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Internal.Performance.TaskMonitorView">
+            <summary>
+            Interaction logic for TaskMonitorView.xaml
+            </summary>
+            <summary>
+            TaskMonitorView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Internal.Performance.TaskMonitorView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Internal.ProjectDependenciesBuilder.BuildDependenciesWindow">
+            <summary>
+            BuildDependenciesWindow
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Internal.ProjectDependenciesBuilder.BuildDependenciesWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.Internal.ReSharper.Options.MultiCoreFibersPoolStrategyOptionsView">
+            <summary>
+            MultiCoreFibersPoolStrategyOptionsView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.Internal.ReSharper.Options.MultiCoreFibersPoolStrategyOptionsView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.RegExp.Editor.RegularExpressionEditorWindow">
+            <summary>
+            RegularExpressionEditorWindow
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.RegExp.Editor.RegularExpressionEditorWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.Daemon.CustomPatternsView">
+            <summary>
+            Interaction logic for CustomPatternsView.xaml
+            </summary>
+            <summary>
+            CustomPatternsView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.Daemon.CustomPatternsView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.Daemon.CustomPatternsView2.#ctor">
+            <inheritdoc />
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.PlaceholderEditor">
+            <summary>
+            Interaction logic for PlaceholderEditor.xaml
+            </summary>
+            <summary>
+            PlaceholderEditor
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.PlaceholderEditor.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.PlaceholderOccurrencesConverter">
+            <summary>
+            Converts -1 to 1
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.PlaceholdersCollectionTreeView.EndInit">
+            <inheritdoc />
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.Placeholders.CSharp.UI.CSharpArgumentPlaceholderEditor">
+            <summary>
+            Interaction logic for CSharpArgumentPlaceholderEditor.xaml
+            </summary>
+            <summary>
+            CSharpArgumentPlaceholderEditor
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.Placeholders.CSharp.UI.CSharpArgumentPlaceholderEditor.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.Placeholders.CSharp.UI.CSharpExpressionPlaceholderEditor">
+            <summary>
+            Interaction logic for CSharpExpressionPlaceholderEditor.xaml
+            </summary>
+            <summary>
+            CSharpExpressionPlaceholderEditor
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.Placeholders.CSharp.UI.CSharpExpressionPlaceholderEditor.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.Placeholders.CSharp.UI.CSharpIdentifierPlaceholderEditor">
+            <summary>
+            Interaction logic for CSharpIdentifierPlaceholderEditor.xaml
+            </summary>
+            <summary>
+            CSharpIdentifierPlaceholderEditor
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.Placeholders.CSharp.UI.CSharpIdentifierPlaceholderEditor.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.Placeholders.CSharp.UI.CSharpMemberPlaceholderEditor">
+            <summary>
+            Interaction logic for CSharpMemberPlaceholderEditor.xaml
+            </summary>
+            <summary>
+            CSharpMemberPlaceholderEditor
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.Placeholders.CSharp.UI.CSharpMemberPlaceholderEditor.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.Placeholders.CSharp.UI.CSharpStatementPlaceholderEditor">
+            <summary>
+            Interaction logic for CSharpStatementPlaceholderEditor.xaml
+            </summary>
+            <summary>
+            CSharpStatementPlaceholderEditor
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.Placeholders.CSharp.UI.CSharpStatementPlaceholderEditor.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.Placeholders.CSharp.UI.CSharpTypePlaceholderEditor">
+            <summary>
+            Interaction logic for CSharpTypePlaceholderEditor.xaml
+            </summary>
+            <summary>
+            CSharpTypePlaceholderEditor
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.Placeholders.CSharp.UI.CSharpTypePlaceholderEditor.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.Placeholders.VB.UI.VBArgumentPlaceholderEditor">
+            <summary>
+            Interaction logic for CSharpArgumentPlaceholderEditor.xaml
+            </summary>
+            <summary>
+            VBArgumentPlaceholderEditor
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.Placeholders.VB.UI.VBArgumentPlaceholderEditor.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.Placeholders.VB.UI.VBExpressionPlaceholderEditor">
+            <summary>
+            Interaction logic for CSharpExpressionPlaceholderEditor.xaml
+            </summary>
+            <summary>
+            VBExpressionPlaceholderEditor
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.Placeholders.VB.UI.VBExpressionPlaceholderEditor.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.Placeholders.VB.UI.VBIdentifierPlaceholderEditor">
+            <summary>
+            VBIdentifierPlaceholderEditor
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.Placeholders.VB.UI.VBIdentifierPlaceholderEditor.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.Placeholders.VB.UI.VBStatementPlaceholderEditor">
+            <summary>
+            Interaction logic for CSharpStatementPlaceholderEditor.xaml
+            </summary>
+            <summary>
+            VBStatementPlaceholderEditor
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.Placeholders.VB.UI.VBStatementPlaceholderEditor.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.Placeholders.VB.UI.VBTypePlaceholderEditor">
+            <summary>
+            Interaction logic for CSharpTypePlaceholderEditor.xaml
+            </summary>
+            <summary>
+            VBTypePlaceholderEditor
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.Placeholders.VB.UI.VBTypePlaceholderEditor.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.ReplaceOccurrencesWindow">
+            <summary>
+            ReplaceOccurrencesWindow
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.ReplaceOccurrencesWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.ReplaceOccurrencesConflictsWindow">
+            <summary>
+            ReplaceOccurrencesConflictsWindow
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.ReplaceOccurrencesConflictsWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.StructuralSearchForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.StructuralSearchForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.StructuralSearchForm.InitializeComponent(JetBrains.Lifetimes.Lifetime,JetBrains.ProjectModel.ISolution,JetBrains.PsiFeatures.UIInteractive.Features.StructuralSearch.Placeholders.PlaceholderEditorManager,JetBrains.ReSharper.Psi.LanguageManager,JetBrains.Application.UI.Components.IUIApplication)">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+            <param name="lifetime"></param>
+            <param name="solution"> </param>
+            <param name="placeholderEditorManager"> </param>
+            <param name="languageManager"></param>
+            <param name="uiapp"></param>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
+        </member>
+    </members>
+</doc>

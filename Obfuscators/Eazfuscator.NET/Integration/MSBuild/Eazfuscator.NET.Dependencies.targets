@@ -1,0 +1,28 @@
+<!--
+***********************************************************************************************
+Eazfuscator.NET.Dependencies.targets
+
+WARNING:  DO NOT MODIFY this file. Incorrect changes to this file will make it impossible to
+          load or build your Eazfuscator.NET projects from the command-line or the IDE.
+
+Copyright (C) 2008-2022 Gapotchenko
+***********************************************************************************************
+-->
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" InitialTargets="_Eazfuscator_NET_InitializeAdditionalCompileInputs">
+
+  <Target Name="_Eazfuscator_NET_InitializeAdditionalCompileInputs"
+          Condition=" '$(Configuration)' == '$(EazfuscatorActiveConfiguration)' AND Exists('$(IntermediateOutputPath)eazfuscator_cache\$packaging\RemovedReferencePaths.txt') ">
+    <PropertyGroup>
+      <_Eazfuscator_NET_RemovedReferencePaths_FilePath>$(IntermediateOutputPath)eazfuscator_cache\$packaging\RemovedReferencePaths.txt</_Eazfuscator_NET_RemovedReferencePaths_FilePath>
+    </PropertyGroup>
+    <ReadLinesFromFile File="$(_Eazfuscator_NET_RemovedReferencePaths_FilePath)">
+      <Output TaskParameter="Lines" ItemName="_Eazfuscator_NET_RemovedReferencePaths"/>
+    </ReadLinesFromFile>
+    <ItemGroup>
+      <CustomAdditionalCompileInputs Include="@(_Eazfuscator_NET_RemovedReferencePaths)"/>
+      <_Eazfuscator_NET_RemovedReferencePaths Remove="@(_Eazfuscator_NET_RemovedReferencePaths)" />
+    </ItemGroup>
+  </Target>
+
+</Project>

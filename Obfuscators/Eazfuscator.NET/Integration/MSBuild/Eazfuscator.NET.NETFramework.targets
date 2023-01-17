@@ -1,0 +1,74 @@
+<!--
+***********************************************************************************************
+Eazfuscator.NET.NETFramework.targets
+
+WARNING:  DO NOT MODIFY this file. Incorrect changes to this file will make it impossible to
+          load or build your Eazfuscator.NET projects from the command-line or the IDE.
+
+Copyright (C) 2008-2020 Gapotchenko
+***********************************************************************************************
+-->
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Import Project="Eazfuscator.NET.Common.Tasks.targets" Condition=" '$(Eazfuscator_NET_CommonTasksImported)' == '' " />
+  <Import Project="Eazfuscator.NET.Cooperation.targets" Condition=" '$(Eazfuscator_NET_Cooperation_Imported)' == '' " />
+
+  <Target Name="_Eazfuscator_NET_NETFramework_PrepareForBuild"
+          BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <_Eazfuscator_NET_NETFramework_Triggered>false</_Eazfuscator_NET_NETFramework_Triggered>
+      <_Eazfuscator_NET_NETFramework_Specialty>false</_Eazfuscator_NET_NETFramework_Specialty>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_NETFramework_Trigger_A"
+          Condition=" '$(TargetFrameworkIdentifier)' == '.NETFramework' ">
+    <PropertyGroup>
+      <_Eazfuscator_NET_NETFramework_Triggered>true</_Eazfuscator_NET_NETFramework_Triggered>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_NETFramework_Trigger_B"
+          Condition=" '$(_Eazfuscator_NET_NETFramework_Triggered)' != 'true' AND '$(TargetFrameworkIdentifier)' == '' AND $(TargetFramework.Length) &gt;= 4 AND $(TargetFramework.StartsWith('net', StringComparison.OrdinalIgnoreCase)) "
+          DependsOnTargets="_Eazfuscator_NET_NETFramework_Trigger_B1" />
+
+  <Target Name="_Eazfuscator_NET_NETFramework_Trigger_B1"
+          Condition=" $([System.Char]::IsDigit($(TargetFramework[3]))) ">
+    <PropertyGroup>
+      <_Eazfuscator_NET_NETFramework_Triggered>true</_Eazfuscator_NET_NETFramework_Triggered>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_NETFramework_Trigger_C"
+          Condition=" '$(_Eazfuscator_NET_NETFramework_Triggered)' != 'true' AND '$(TargetFrameworkIdentifier)' == '' AND '$(TargetFramework)' == '' "
+          DependsOnTargets="_Eazfuscator_NET_NETFramework_Trigger_C1" />
+
+  <Target Name="_Eazfuscator_NET_NETFramework_Trigger_C1"
+          Condition=" $(TargetFrameworkVersion.Length) &gt;= 2 AND $(TargetFrameworkVersion.StartsWith('v', StringComparison.OrdinalIgnoreCase)) "
+          DependsOnTargets="_Eazfuscator_NET_NETFramework_Trigger_C2" />
+
+  <Target Name="_Eazfuscator_NET_NETFramework_Trigger_C2"
+          Condition=" $([System.Char]::IsDigit($(TargetFrameworkVersion[1]))) ">
+    <PropertyGroup>
+      <_Eazfuscator_NET_NETFramework_Triggered>true</_Eazfuscator_NET_NETFramework_Triggered>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_NETFramework"
+          Condition=" '$(_Eazfuscator_NET_NETFramework_Triggered)' == 'true' AND '$(_Eazfuscator_NET_NETFramework_Specialty)' != 'true' "
+          DependsOnTargets="$(_Eazfuscator_NET_CoreCompileTargets);$(_Eazfuscator_NET_Cooperation_DependsOnTargets)"
+	  AfterTargets="AfterCompile">
+    <CallTarget Targets="_Eazfuscator_NET_RetargetToIntermediate;_Eazfuscator_NET" />
+  </Target>
+
+  <PropertyGroup>
+    <_Eazfuscator_NET_TriggerTargets>
+      $(_Eazfuscator_NET_TriggerTargets);
+      _Eazfuscator_NET_NETFramework_Trigger_A;
+      _Eazfuscator_NET_NETFramework_Trigger_B;
+      _Eazfuscator_NET_NETFramework_Trigger_C
+    </_Eazfuscator_NET_TriggerTargets>
+  </PropertyGroup>
+
+</Project>

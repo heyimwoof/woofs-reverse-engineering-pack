@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.Psi.Features.Tasks.Build</name>
+    </assembly>
+    <members>
+        <member name="M:JetBrains.Psi.Features.Tasks.Build.BuildScript.PreCompile.Unwrap.InjectPsiToolsSupportMsbuild.ImportProxyTaskPackage(JetBrains.Application.BuildScript.Solution.AllAssembliesOnEverything,JetBrains.Application.BuildScript.LocalRestoredPackages,JetBrains.Application.BuildScript.Solution.AllAssembliesOnSources,JetBrains.Application.BuildScript.PackageVersionLocks,JetBrains.Util.ILogger)">
+            <summary>
+            ProxyTask. MSBuild Import.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Psi.Features.Tasks.Build.BuildScript.PreCompile.Unwrap.InjectPsiToolsSupportMsbuild.InjectTaskTargets(JetBrains.Application.BuildScript.Solution.AllAssembliesOnEverything,JetBrains.Application.BuildScript.Solution.AllAssembliesOnSources,System.Collections.Generic.ICollection{JetBrains.Psi.Features.Tasks.Build.BuildScript.PreCompile.Wrap.PublishedPsiTask},JetBrains.Application.Components.Optional{JetBrains.Application.BuildScript.DistributedCacheParams},JetBrains.Util.ILogger,System.Collections.Generic.IList{JetBrains.Application.BuildScript.PreCompile.GeneratedMsbuild.GeneratedMsbuildImport}@,System.Collections.Generic.IList{JetBrains.Application.BuildScript.PreCompile.GeneratedMsbuild.GeneratedMsbuildProperty}@,System.Collections.Generic.IList{JetBrains.Application.BuildScript.RetrievedPackageReferenceArtifact}@)">
+            <summary>
+            Targets files for individual tasks.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Psi.Features.Tasks.Build.BuildScript.PreCompile.Unwrap.InjectPsiToolsSupportMsbuild.RequestProxyTaskPackage(JetBrains.Application.BuildScript.Solution.AllAssembliesOnEverything,JetBrains.Application.BuildScript.PackageVersionLocks,JetBrains.Application.BuildScript.Solution.AllAssembliesOnSources)">
+            <summary>
+            ProxyTask. Package ref from any sub which might use tasks.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Psi.Features.Tasks.Build.BuildScript.PreCompile.Unwrap.InjectPsiToolsSupportMsbuild.GetSubplatformsToInjectTo(JetBrains.Application.BuildScript.Solution.AllAssembliesOnEverything,JetBrains.Application.BuildScript.Solution.AllAssembliesOnSources)">
+            <summary>
+            In which subs these tasks should be available.
+            </summary>
+            <param name="allass"></param>
+            <param name="allassSrc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JetBrains.Psi.Features.Tasks.Build.BuildScript.PreCompile.Wrap.MakeCustomNugetLayout.AddPackageReferenceToProxyTask(JetBrains.Application.BuildScript.Solution.AllAssembliesOnEverything,JetBrains.Application.BuildScript.PackageVersionLocks)">
+            <summary>
+            The package with tasks should also reference the package with ProxyTask explicitly, and as a not-only-dev-time ref. This way it would be shipped to all nuget servers and might be autoimported by any project which references nugets with tasks.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Psi.Features.Tasks.Build.BuildScript.PreCompile.Wrap.MakeCustomNugetLayout.EmbedPublishedTargetsAndSides(System.Collections.Generic.IEnumerable{JetBrains.Psi.Features.Tasks.Build.BuildScript.PreCompile.Wrap.PublishedPsiTask},JetBrains.Application.BuildScript.ProductHomeDirArtifact,JetBrains.Application.BuildScript.Solution.AllAssembliesOnSources)">
+            <summary>
+            Targets files and their side-files, as requested by tasks — should be embedded into the package with tasks.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:JetBrains.Psi.Features.Tasks.Build.BuildScript.PreCompile.Wrap.PublishedPsiTask">
+            <summary>
+            Only for needs of the Psi.Features\Tasks subplatform needs for publishing tasks for use in either src or binary form.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Psi.Features.Tasks.Build.BuildScript.PreCompile.Wrap.PublishedPsiTask.#ctor(JetBrains.Util.RelativePath)">
+            <summary>
+            Call for the targets file, then add side-files.
+            </summary>
+            <param name="relSubplatformPathToTargetsFile"></param>
+        </member>
+        <member name="F:JetBrains.Psi.Features.Tasks.Build.BuildScript.PreCompile.Wrap.PublishedPsiTask.SubplatformPathToSideFiles">
+            <summary>
+            Side-files (extra files required for the .taregts file to work).
+            </summary>
+        </member>
+        <member name="F:JetBrains.Psi.Features.Tasks.Build.BuildScript.PreCompile.Wrap.PublishedPsiTask.SubplatformPathToTargetsFile">
+            <summary>
+            The .targets file of the task.
+            </summary>
+        </member>
+    </members>
+</doc>

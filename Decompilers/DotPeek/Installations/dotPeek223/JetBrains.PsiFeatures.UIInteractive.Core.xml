@@ -1,0 +1,1588 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.PsiFeatures.UIInteractive.Core</name>
+    </assembly>
+    <members>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.CodeCompletion.Lookup.IListItemDescriptor">
+            <summary>
+            Interface for creating custom list items
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.CodeCompletion.Lookup.IListItemDescriptor.RichText">
+            <summary>
+            The presentation rich text
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.CodeCompletion.Lookup.IListItemDescriptor.Tag">
+            <summary>
+            The custom tag
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.CodeCompletion.Lookup.IListItemDescriptor.Image">
+            <summary>
+            The image
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.CodeCompletion.Lookup.Lookup">
+            <summary>
+            Form which is used to display list of lookup items
+            </summary>
+        </member>
+        <member name="E:JetBrains.PsiFeatures.UIInteractive.Core.CodeCompletion.Lookup.Lookup.CurrentItemChanged">
+            <summary>
+              Event which is raised when the current item changes
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.CodeCompletion.Lookup.LookupFiltersControl.GetPreferredSize(System.Drawing.Size)">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.CodeCompletion.Lookup.LookupFiltersControl.GetFilterArea(System.String)">
+            <summary>
+            Used in integration tests.
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.CodeCompletion.Lookup.LookupFiltersControl.Dim">
+            <summary>
+              <code>
+            ┌─────────────────────────────────────────────────────────┐
+            │                     ↕ControlMargin↕                     │
+            │      ┌──────────────────┐     ┌──────────────────┐      │
+            │      │      ↕SelM↕      │     │      ↕SelM↕      │      │
+            │      │      ┌────┐      │     │      ┌────┐      │      │
+            │←ConM→│←SelM→│Icon│←SelM→│←Gap→│←SelM→│Icon│←SelM→│←ConM→│
+            │      │      └────┘      │     │      └────┘      │      │
+            │      │      ↕SelM↕      │     │      ↕SelM↕      │      │
+            │      └──────────────────┘     └──────────────────┘      │
+            │                     ↕ControlMargin↕                     │
+            └─────────────────────────────────────────────────────────┘
+            </code>
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.CodeCompletion.Lookup.LookupItemPainter">
+            <summary>
+            Paints code completion items
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CodeCompletion.Lookup.LookupItemPainter.myRenderParams">
+            <summary>
+            The lookup item text rendering aspect.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.CodeCompletion.Lookup.LookupItemPainter.Paint(JetBrains.PsiFeatures.UIInteractive.Core.CodeCompletion.Lookup.LookupListItem,JetBrains.UI.IGraphicsContainer,System.Drawing.Rectangle,JetBrains.Application.UI.Controls.DrawMode,System.Boolean,JetBrains.PsiFeatures.UIInteractive.Core.CodeCompletion.Lookup.LookupItemPainter.Dim@,JetBrains.PsiFeatures.UIInteractive.Core.CodeCompletion.Lookup.LookupItemPainter.RenderingHint@)">
+            <summary>
+              <code>
+            ┌                                                                                                                          ┐
+            │                 ┌────┐               ┌─────────╒════╕─────────┐               ┌─────────╒════╕─────────┐                 │
+            │←IconOuterMargin→│Icon│←IconToTextGap→│←TxHMarg→│Name│←TxHMarg→│←NameToTypeGap→│←TxHMarg→│Type│←TxHMarg→│←TextOuterMargin→│
+            │                 └────┘               └─────────╘════╛─────────┘               └─────────╘════╛─────────┘                 │
+            │ BorderOffset??                                                                                                           │
+            └                                                                                                                          ┘
+            </code>
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.CodeCompletion.Lookup.LookupItemPainter.Dim">
+            <summary>
+              <code>
+            ┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+            │                                                      ↕ItemVMargin↕                                                       │
+            │                 ┌────┐               ┌─────────╒════╕─────────┐               ┌─────────╒════╕─────────┐                 │
+            │←IconOuterMargin→│Icon│←IconToTextGap→│←TxHMarg→│Name│←TxHMarg→│←NameToTypeGap→│←TxHMarg→│Type│←TxHMarg→│←TextOuterMargin→│
+            │                 └────┘               └─────────╘════╛─────────┘               └─────────╘════╛─────────┘                 │
+            │                                                      ↕ItemVMargin↕                                                       │
+            └──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+            </code>
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CodeCompletion.Lookup.LookupListItem.myImage">
+            <summary>The image</summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CodeCompletion.Lookup.LookupListItem.myNameText">
+            <summary>The rich presentation of name</summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CodeCompletion.Lookup.LookupListItem.myTypeText">
+            <summary>Rich presentation of the type</summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CodeCompletion.Lookup.LookupListItem.myItem">
+            <summary>The associated context item</summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.CodeCompletion.Lookup.LookupListItem.CancelShrink">
+            <summary>
+              Cancels all shrinks
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.CodeCompletion.Lookup.LookupListItem.Shrink">
+            <summary>
+              Shrinks the name a bit.
+            </summary>
+            <returns>Whether there was any shrinking. The <see cref="P:JetBrains.PsiFeatures.UIInteractive.Core.CodeCompletion.Lookup.LookupListItem.RichText" /> width must decrease if <c>True</c>.</returns>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CodeCompletion.Lookup.LookupListViewControl.RenderingHint">
+            <summary>
+            Collected from painter when measuring, used when painting.
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.CodeCompletion.Lookup.LookupWindowManager">
+            <summary>
+            Manages currently shown lookup window
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.CodeCompletion.Lookup.LookupWindowManager.IsExternalDocumentChangeAllowed">
+            <summary>
+            If this flag is set, any document change doesn't cancel code completion
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CodeCompletion.Lookup.LookupWindowsSharedCache.myCachedPhysicalFontSize">
+            <summary>
+            NOTE: why we track physical size + Avalon font rather than just GDI+ font? That's because the control has DPI for painting and Font and DPI for RenderParams, and these do not necessarily update in sync, so it might so happen that the cache would be refitted for the new font too early and a few requsts with the old font might be made. To avoid this inconsistency, we enforce the Avalon font strictly (there cannot be more than one really), but track pixel size ad hoc and reset the cache when it changes.
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.CodeCompletion.Lookup.VirtualLookupWindow.AutoActivate">
+            <summary>
+              Gets or sets whether the control should be activated initially when it's shown.
+              The typical implementation for a form is to return a negative of this value from the
+              <see cref="P:System.Windows.Forms.Form.ShowWithoutActivation" /> override.
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.CodeCompletion.Lookup.VirtualLookupWindow.JetBrains#ReSharper#Feature#Services#CodeCompletion#Lookup#ILookupWindow#CurrentItemBounds">
+            <summary>
+              Gets bounds of the current item
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.CodeCompletion.Lookup.VirtualLookupWindow.ListBox">
+            <summary>
+            Used in InTests.
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.CodeCompletion.Lookup.VirtualLookupWindow.Filters">
+            <summary>
+            Used in InTests.
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit">
+            <summary>
+            An edit-like control for placing on the dialog boxes that picks a type name from a tree or completion list.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.CommitCompletionListInputString">
+            <summary>
+            Immediately commits the <see cref="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.Text"/> to the completion lists's model.
+            Wired to the deferred binding when the completion list menu is lazy-created.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.CompletionListExecuteSelectedItem">
+            <summary>
+            Exec sel menu item, if any.
+            Returns exec success flag (<see cref="M:JetBrains.Application.UI.Controls.JetPopupMenu.Detail.JetPopupMenuDoc.ExecuteSelectedItem"/>).
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.CompletionListSelectNextItem">
+            <summary>
+            Selects the next item in the completion drop-down list, eg when up/down arrows are used in the edit box.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.IsCompletionListVisible">
+            <summary>
+            Gets whether we've ruled out that the completion list should be visible at the moment.
+            This means <see cref="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.CompletionListShowMode"/> is <see cref="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.CompletionListShowModes.Show"/> and the <see cref="F:JetBrains.ReSharper.Feature.Services.UI.CompletionPicker.CompletionPickerSettings.CompletionModel"/>'s <see cref="F:JetBrains.Application.UI.Controls.GotoByName.GotoByNameModel.Items"/> are not empty (and the model exists, in the first place).
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.myEvtUpdateTextBeforeCaret">
+            <summary>
+            As we can't (so it seems) get the event of caret movement in the edit box, we'd udpate it every so often. Probably the caret position can't change without a Windows message on the control, so we'd apply the change after each message, with a small delay needed just to group multiple consequent messages together.
+            GEvent is better than BeginInvoke because the latter adds to the messages itself and cannot guarantee all fo the dependent messages go thru before it executes.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.CaretPosition">
+            <summary>
+            Gives out the current caret position in the edit box, or the selection start position.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.CompletionListShowMode">
+            <summary>
+            Whether the completion list is allowed to be shown at the moment. Other filters could apply (eg will not be actually visible if there are no items).
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.Settings">
+            <summary>
+            Gets or sets the settings that define the behavior of the picker, like what it picks and which functionality is available.
+            Can be set only once.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.Text">
+            <summary>
+            Gets or sets the text of the editbox the user is typing.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.TextBeforeCaret">
+            <summary>
+            Gets or sets the text of the editbox the user is typing, up to the current caret position or the selection start. Could be used as the completion prefix.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.ExecuteCompletionListItem(JetBrains.Application.UI.Controls.JetPopupMenu.Detail.JetPopupMenuItem)">
+            <summary>
+            If menu is shown, selects the given item and applies its text.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.CompletionListHide(JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.CompletionListShowModeTransition)">
+            <summary>
+            Hides the completion list, either the soft or the hard way.
+            Modifies <see cref="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.CompletionListShowMode"/> based on its present value and the <paramref name="flag"/>.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.CompletionListShow(JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.CompletionListShowModeTransition)">
+            <summary>
+            Shows the completion list, either the soft or the hard way.
+            Modifies <see cref="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.CompletionListShowMode"/> based on its present value and the <paramref name="flag"/>.
+            Eg a soft-show won't actually show if currently in <see cref="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.CompletionListShowModes.HideHard"/> mode.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.Init_CompletionList_LazyCreate(System.IDisposable,JetBrains.Application.UI.Tooltips.ITooltipManager,JetBrains.Application.StdApplicationUI.IMainWindow,JetBrains.Application.Interop.NativeHook.IWindowsHookManager,JetBrains.Application.UI.PopupLayout.IMainWindowPopupWindowContext,JetBrains.UI.PopupLayout.PopupWindowManager,JetBrains.Application.UI.Components.Theming.ITheming)">
+            <summary>
+            Implements menu lazy-creation. Does nothing if already created.
+            </summary>
+            <param name="disLazyCreate">Disconnects from lazy creation, making sure it actually runs only once.</param>
+            <param name="tooltipman"> </param>
+            <param name="mainWindow"> </param>
+            <param name="windowsHookManager"> </param>
+            <param name="mainWindowPopupWindowContext"> </param>
+            <param name="popupWindowManager"> </param>
+            <param name="theming"> </param>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.OnCompletionOrPickerTextApplied">
+            <summary>
+            Called after:
+            • User executes an item in the completion list and some new text is applied to the editbox.
+            • User executes an item in the picker tree drop-down and some text is applied to the editbox.
+            Normally, selects the new text and sets focus to the editbox.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.OnLayout(System.Windows.Forms.LayoutEventArgs)">
+            <summary>
+            Raises the <see cref="E:System.Windows.Forms.Control.Layout"></see> event.
+            </summary>
+            
+            <param name="levent">A <see cref="T:System.Windows.Forms.LayoutEventArgs"></see> that contains the event data. </param>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.OnLostFocus(System.EventArgs)">
+            <summary>
+            Raises the <see cref="E:System.Windows.Forms.Control.LostFocus"></see> event.
+            </summary>
+            
+            <param name="e">An <see cref="T:System.EventArgs"></see> that contains the event data. </param>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.CompletionListShowModeTransition">
+            <summary>
+            Flag for transitioning between <see cref="T:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.CompletionListShowModes"/>.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.CompletionListShowModeTransition.Soft">
+            <summary>
+            Switches softly, cannot break <see cref="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.CompletionListShowModes.HideHard"/>. This is for handling implicit activities.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.CompletionListShowModeTransition.Hard">
+            <summary>
+            Switches forcibly, always transitions to the desired state. Must be done on explicit user actions only.
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.CompletionListShowModes">
+            <summary>
+            Whether the completion list is allowed to be shown at the moment. Other filters could apply (eg will not be actually visible if there are no items).
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.CompletionListShowModes.Show">
+            <summary>
+            The completion list could be visible if other factors (like items>0) are met.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.CompletionListShowModes.HideSoft">
+            <summary>
+            The completion list has been hidden indeliberately, and should transition to <see cref="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.CompletionListShowModes.Show"/> when there's an excuse.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit.CompletionListShowModes.HideHard">
+            <summary>
+            The completion list has been focibly hidden. Should not show again unless explicitly requested by the user.
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf">
+            <summary>
+            An edit-like control for placing on the dialog boxes that picks a type name from a tree or completion list.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf.CommitCompletionListInputString">
+            <summary>
+            Immediately commits the <see cref="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf.Text"/> to the completion lists's model.
+            Wired to the deferred binding when the completion list menu is lazy-created.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf.CompletionListExecuteSelectedItem">
+            <summary>
+            Exec sel menu item, if any.
+            Returns exec success flag (<see cref="M:JetBrains.Application.UI.Controls.JetPopupMenu.Detail.JetPopupMenuDoc.ExecuteSelectedItem"/>).
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf.CompletionListSelectNextItem">
+            <summary>
+            Selects the next item in the completion drop-down list, eg when up/down arrows are used in the edit box.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf.IsCompletionListVisible">
+            <summary>
+            Gets whether we've ruled out that the completion list should be visible at the moment.
+            This means <see cref="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf.CompletionListShowMode"/> is <see cref="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf.CompletionListShowModes.Show"/> and the <see cref="F:JetBrains.ReSharper.Feature.Services.UI.CompletionPicker.CompletionPickerSettings.CompletionModel"/>'s <see cref="F:JetBrains.Application.UI.Controls.GotoByName.GotoByNameModel.Items"/> are not empty (and the model exists, in the first place).
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf.myEvtUpdateTextBeforeCaret">
+            <summary>
+            As we can't (so it seems) get the event of caret movement in the edit box, we'd udpate it every so often. Probably the caret position can't change without a Windows message on the control, so we'd apply the change after each message, with a small delay needed just to group multiple consequent messages together.
+            GEvent is better than BeginInvoke because the latter adds to the messages itself and cannot guarantee all fo the dependent messages go thru before it executes.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf.CaretPosition">
+            <summary>
+            Gives out the current caret position in the edit box, or the selection start position.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf.CompletionListShowMode">
+            <summary>
+            Whether the completion list is allowed to be shown at the moment. Other filters could apply (eg will not be actually visible if there are no items).
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf.Settings">
+            <summary>
+            Gets or sets the settings that define the behavior of the picker, like what it picks and which functionality is available.
+            Can be set only once.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf.Text">
+            <summary>
+            Gets or sets the text of the editbox the user is typing.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf.TextBeforeCaret">
+            <summary>
+            Gets or sets the text of the editbox the user is typing, up to the current caret position or the selection start. Could be used as the completion prefix.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf.ExecuteCompletionListItem(JetBrains.Application.UI.Controls.JetPopupMenu.Detail.JetPopupMenuItem)">
+            <summary>
+            If menu is shown, selects the given item and applies its text.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf.CompletionListHide(JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf.CompletionListShowModeTransition)">
+            <summary>
+            Hides the completion list, either the soft or the hard way.
+            Modifies <see cref="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf.CompletionListShowMode"/> based on its present value and the <paramref name="flag"/>.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf.CompletionListShow(JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf.CompletionListShowModeTransition)">
+            <summary>
+            Shows the completion list, either the soft or the hard way.
+            Modifies <see cref="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf.CompletionListShowMode"/> based on its present value and the <paramref name="flag"/>.
+            Eg a soft-show won't actually show if currently in <see cref="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf.CompletionListShowModes.HideHard"/> mode.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf.Init_CompletionList_LazyCreate(System.IDisposable,JetBrains.Application.UI.Tooltips.ITooltipManager,JetBrains.Application.StdApplicationUI.IMainWindow,JetBrains.Application.Interop.NativeHook.IWindowsHookManager,JetBrains.Application.UI.PopupLayout.IMainWindowPopupWindowContext,JetBrains.UI.PopupLayout.PopupWindowManager,JetBrains.Application.UI.Components.Theming.ITheming)">
+            <summary>
+            Implements menu lazy-creation. Does nothing if already created.
+            </summary>
+            <param name="disLazyCreate">Disconnects from lazy creation, making sure it actually runs only once.</param>
+            <param name="tooltipman"> </param>
+            <param name="mainWindow"> </param>
+            <param name="windowsHookManager"> </param>
+            <param name="mainWindowPopupWindowContext"> </param>
+            <param name="popupWindowManager"> </param>
+            <param name="theming"> </param>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf.OnCompletionOrPickerTextApplied">
+            <summary>
+            Called after:
+            • User executes an item in the completion list and some new text is applied to the editbox.
+            • User executes an item in the picker tree drop-down and some text is applied to the editbox.
+            Normally, selects the new text and sets focus to the editbox.
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf.CompletionListShowModeTransition">
+            <summary>
+            Flag for transitioning between <see cref="T:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf.CompletionListShowModes"/>.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf.CompletionListShowModeTransition.Soft">
+            <summary>
+            Switches softly, cannot break <see cref="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf.CompletionListShowModes.HideHard"/>. This is for handling implicit activities.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf.CompletionListShowModeTransition.Hard">
+            <summary>
+            Switches forcibly, always transitions to the desired state. Must be done on explicit user actions only.
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf.CompletionListShowModes">
+            <summary>
+            Whether the completion list is allowed to be shown at the moment. Other filters could apply (eg will not be actually visible if there are no items).
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf.CompletionListShowModes.Show">
+            <summary>
+            The completion list could be visible if other factors (like items>0) are met.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf.CompletionListShowModes.HideSoft">
+            <summary>
+            The completion list has been hidden indeliberately, and should transition to <see cref="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf.CompletionListShowModes.Show"/> when there's an excuse.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEditWpf.CompletionListShowModes.HideHard">
+            <summary>
+            The completion list has been focibly hidden. Should not show again unless explicitly requested by the user.
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerPopupDialog">
+            <summary>
+            A self-contained popup type chooser that can be employed in case you'd like to use the <see cref="T:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerEdit"/>, but have no place to host it as a control and want to show it in a popup dialog.
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerPopupDialog.LabelText">
+            <summary>
+            Gets or sets the text displayed on the label.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerPopupDialog.Settings">
+            <summary>
+            Gets or sets the settings that define the behavior of the picker, like what it picks and which functionality is available.
+            Can be set only once.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerPopupDialog.TypeChooserText">
+            <summary>
+            Gets or sets the text contents of the type chooser.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker.CompletionPickerPopupDialog.OnVisibleChanged(System.EventArgs)">
+            <summary>
+            Raises the <see cref="E:System.Windows.Forms.Control.VisibleChanged"></see> event.
+            </summary>
+            
+            <param name="e">The <see cref="T:System.EventArgs"></see> that contains the event data. </param>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.Controls.TextControlWithLanguageViewControl.#ctor">
+            <inheritdoc />
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.ColoredPainters">
+            <summary>
+            These are color theming and dynamic resolution tweaks for the DevExpress tree.
+            Unfortunately, they're bound together, because many of the DPI tweakers live within the overridden painters which provide the styled painting.
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.ColoredPainters.ColoredElementPainters">
+            <summary>
+            Overrides element painters for the root tree list control. Delegates everything as much as possible to the original element painters (which correctly use the current LAF etc etc), but overrides the resize grip which must match the scrollbars in color (scroll bar track in our case).
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.ColoredPainters.ColoredElementPainters.CData.#ctor(DevExpress.XtraTreeList.Painter.ElementPainters,JetBrains.Application.UI.Components.Theming.ColorTheme,JetBrains.DataFlow.IProperty{JetBrains.Util.Interop.DpiResolution})">
+            <inheritdoc />
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.ColoredPainters.ColoredElementPainters.myData">
+            <summary>
+            Normally non-NULL, but NULL when called virtually from base ctor, use <see cref="P:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.ColoredPainters.ColoredElementPainters.Data" />.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.ColoredPainters.ColoredElementPainters.myDataBeingFactored">
+            <summary>
+            For virtual calls from .ctor. Set only while we're being factored. Threading: all this is a UI-only sync thing.
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.ColoredPainters.ColoredElementPainters.Data">
+            <summary>
+            Smart field getter, protects from virtual calls from base.
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.ColoredPainters.ColoredElementPainters.SizeGripColor">
+            <summary>
+            That's our main purpose. Return theme color.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.ColoredPainters.ColoredElementPainters.GetAppearanceDefault">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.ColoredPainters.ColoredElementPainters.CreateFooterCellPainter">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.ColoredPainters.ColoredElementPainters.CreateFooterPanelPainter">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.ColoredPainters.ColoredElementPainters.CreateHeaderPainter">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.ColoredPainters.ColoredElementPainters.CreateIndicatorPainter">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.ColoredPainters.ColoredElementPainters.CreateOpenCloseButtonPainter">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.ColoredPainters.ColoredElementPainters.CreateSortedShapePainter">
+            <inheritdoc />
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.ColoredPainters.ColoredScrollBarPainter">
+            <summary>
+            Paints scroll bars.
+            Partial override, leaves all the logic for partitioning, leaves painting the track (but supplies other colors), gives new painters for buttons and thumb.
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.ColoredPainters.ColoredScrollBarPainter.PressedScrollAreaBrush">
+            <inheritdoc />
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.ColoredPainters.ColoredScrollBarPainter.ScrollAreaBrush">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.ColoredPainters.ColoredScrollBarThumbPainter.DrawObject(DevExpress.Utils.Drawing.ObjectInfoArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.ColoredPainters.DpiedScrollBarViewInfo.#ctor(DevExpress.XtraEditors.IScrollBar,JetBrains.DataFlow.IProperty{JetBrains.Util.Interop.DpiResolution})">
+            <inheritdoc />
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.ColoredPainters.DpiedScrollBarViewInfo.VisibleDecButtonBounds">
+            <inheritdoc />
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.ColoredPainters.DpiedScrollBarViewInfo.VisibleIncButtonBounds">
+            <inheritdoc />
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.ColoredPainters.DpiedScrollBarViewInfo.CalcThumbButtonBounds">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.DevExpressTreeControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.DevExpressTreeControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.ICellRenderer.Render(JetBrains.UI.IGraphicsContainer,System.Drawing.Rectangle,System.Object,JetBrains.UI.RenderParams,System.Boolean)">
+            <param name="gc"></param>
+            <param name="bounds"></param>
+            <param name="data"></param>
+            <param name="renderParams"></param>
+            <param name="isAnimationSupported"><c>True</c> if you commit to calling this method periodically so that the renderer painted time-dependent animation frames. <c>False</c> means the renderer should not be expecting repaints with enough framerate, and should always yield the same static image.</param>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.ITreeCellPresentation">
+            <summary>
+            Presentation of the tree node cell
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.NodePainter.RowBackColor(JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.DevExpressTreeNode)">
+            <summary>
+            Get the color to paint the background of node cell
+            </summary>
+            <param name="node"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.NodePainter.Paint(JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.ITreeCellPresentation,System.Boolean,System.Boolean,DevExpress.XtraTreeList.CustomDrawNodeCellEventArgs)">
+            <summary>
+            Do custom painting of the node in SolutionExplorer tree
+            </summary>
+            <param name="cell"></param>
+            <param name="selected"><c>true</c> if node is selected</param>
+            <param name="focused"></param>
+            <param name="args"></param>
+            <returns><c>true</c> if node was painted. <c>false</c> for default painting </returns>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.NodePainter.GetCellHeight(JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.ITreeCellPresentation,JetBrains.UI.IGraphicsContainer)">
+            <summary>
+            Calculates the height (in pixels) of given node in the tree
+            </summary>
+            <param name="cell"></param>
+            <param name="gc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.NodePainter.GetCellWidth(JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.ITreeCellPresentation,JetBrains.UI.IGraphicsContainer)">
+            <summary>
+            Calculates the drawn width of the node in the tree
+            </summary>
+            <param name="cell"></param>
+            <param name="gc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.NodePainter.ImageHitTest(JetBrains.UI.IGraphicsContainer,JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.DevExpressTreeNode,System.Drawing.Rectangle,System.Drawing.Point,System.Drawing.Rectangle@)">
+             <summary>
+             Get the node image over which currently mouse is located
+             </summary>
+             <param name="gc"></param>
+             <param name="node"></param>
+             <param name="cellBounds"></param>
+             <param name="pos"></param>
+             <param name="imageRect"></param>
+             <returns></returns>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.SplittedContainer.ThemedIconManager">
+            <summary>
+            Null during virtual calls from base ctor.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.SplittedPanel.Owner">
+            <summary>
+            Null during virtual calls from base ctor.
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeControlNodeAnchoringRect">
+            <summary>
+            Anchors to the focused node or a manually specified node in the given tree model view.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeControlNodeAnchoringRect.myNode">
+            <summary>
+            <c>Null</c> if tracking selection.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeControlNodeAnchoringRect.myTreeControl">
+            <summary>
+            <c>Null</c> only when disposed.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeControlNodeAnchoringRect.#ctor(JetBrains.Lifetimes.Lifetime,DevExpress.XtraTreeList.TreeList,DevExpress.XtraTreeList.Nodes.TreeListNode)">
+            <summary>
+            Creates the instance.
+            </summary>
+            <param name="lifetime"></param>
+            <param name="treeControl">The owning tree model view.</param>
+            <param name="node">The node to anchor to.</param>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeControlNodeAnchoringRect.#ctor(JetBrains.Lifetimes.Lifetime,DevExpress.XtraTreeList.TreeList,DevExpress.XtraTreeList.Nodes.TreeListNode,DevExpress.XtraTreeList.Columns.TreeListColumn,System.Boolean)">
+            <summary>
+            An internal ctor that allows for <c>Null</c> nodes for tracking the selection.
+            </summary>
+            <param name="lifetime"></param>
+            <param name="treeControl">The owning tree model view.</param>
+            <param name="node">The node to anchor to, or <c>Null</c> to anchor to the selected node.</param>
+            <param name="column">The column to determine cell to anchor to, or null to anchor to whole node</param>
+            <param name="isNodeNullable">Whether to allow <c>Null</c> in <paramref name="node"/>.</param>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeControlNodeAnchoringRect.DefaultAnchoringDispositions">
+            <summary>
+            Gets the default dispositions to be used when creating a layouter out of this anchor.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeControlNodeAnchoringRect.CreateFromSelectionDynamic(JetBrains.Lifetimes.Lifetime,DevExpress.XtraTreeList.TreeList)">
+            <summary>
+            Creates the instance that tracks the selected node.
+            When selection changes, the anchor is updated to track the new selection.
+            </summary>
+            <param name="lifetime"></param>
+            <param name="treeControl">The owning tree model view.</param>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeControlNodeAnchoringRect.ClientToScreen(JetBrains.Lifetimes.Lifetime,JetBrains.Application.Interop.NativeHook.IWindowsHookManager)">
+            <summary>
+            Converts the <see cref="T:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeControlNodeAnchoringRect"/>, which operates in client coordinates, into a screen-coordinates anchor suitable for layouting popups.
+            Nests the current object within a window anchor attached to the tree control.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeControlNodeAnchoringRect.UpdateAnchor">
+            <summary>
+            Updates the anchoring rectangle as it gets dirty.
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelBrowserPanelImpl.IsControlInitialized">
+            <summary>
+            Gets whether the control is initialized fully
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelBrowserPanelImpl.OnLayout(System.Windows.Forms.LayoutEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelPresentableView.Presenter">
+            <summary>
+            Gets or sets presenter for this view
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelPresentableView.ModelColumn">
+            <summary>
+            Gets column which contents is provided my model
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelPresentableView.Initialize">
+            <summary>
+            Initializes custom properties of the view
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelPresentableViewInteractiveView.LazyDelegatingTooltipManager.Show(JetBrains.Lifetimes.LifetimeDefinition,JetBrains.Application.UI.UIAutomation.IAutomation,JetBrains.Application.UI.PopupLayout.IPopupWindowContext,System.Nullable{JetBrains.Application.UI.WindowManagement.HideFlags},System.Nullable{System.TimeSpan})">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelPresentableViewWPF.ReentrancyGuardExecuteOrQueueOrMerge(System.String,System.Action{System.Boolean})">
+            <param name="action">action to execute , boolean flag is true for immidiate execution</param>
+            <returns><c>True</c> if executed immediately, <c>False</c> if queued (<see cref="M:JetBrains.Threading.ReentrancyGuard.TryExecute(System.String,System.Action)"/>-compatible behavior).</returns>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelPresentableViewWPF.DefaultExpandLevels">
+            <summary>
+            Gets or sets default levels to expand on ExpandAll command (ex. if "*" key pressed)
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelView">
+            <summary>
+            Provides default viewer for tree models
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelView.#ctor(JetBrains.Application.UI.Controls.TreeView.ITreeViewController,JetBrains.Application.UI.Components.IUIApplication,JetBrains.Application.UI.Tooltips.ITooltipManager,JetBrains.Application.Interop.NativeHook.IWindowsHookManager,JetBrains.Application.UI.Actions.ActionManager.IActionManager)">
+            <summary>
+            Initializes new instance of the TreeModelView
+            </summary>
+            <param name="controller">Controller which defines behavior for this view</param>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelView.#ctor(JetBrains.Application.UI.TreeModels.TreeModel,JetBrains.Application.UI.Controls.TreeView.ITreeViewController,JetBrains.Application.UI.Components.IUIApplication,JetBrains.Application.UI.Tooltips.ITooltipManager,JetBrains.Application.Interop.NativeHook.IWindowsHookManager,JetBrains.Application.UI.Actions.ActionManager.IActionManager)">
+            <summary>
+            Initializes new instance of the TreeModelView using specified model
+            </summary>
+            <param name="model">Model to display in this view</param>
+            <param name="controller">Controller which defines behavior for this view</param>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelView.Model">
+            <summary>
+            Gets or sets model which is displayed in the view
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelView.MinimumRowHeight">
+            <summary>
+            Gets or sets minimum row height
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelView.RemoveOnCollapse">
+            <summary>
+            Gets or set value indicating whether nodes are removed on collapse or not
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelView.NavigateOnClick">
+            <summary>
+            Gets or sets value indicating whether Navigate command is issued on single click 
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelView.CustomPresenters">
+            <summary>
+            Gets map of custom presentation handlers
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelView.FocusedNode">
+            <summary>
+            Gets or sets currently focused node
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelView.ModelFocusedNode">
+            <summary>
+            Gets currently focused node in the model space
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelView.DefaultExpandLevels">
+            <summary>
+            Gets or sets default levels to expand on ExpandAll command (ex. if "*" key pressed)
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelView.ViewSelection">
+            <summary>
+            Gets currently selected nodes in the view space
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelView.ModelSelection">
+            <summary>
+            Gets currently selected nodes in the model space
+            </summary>
+        </member>
+        <member name="E:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelView.Navigate">
+            <summary>
+            Raised when node navigation is occurring
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelView.ApplyDefaultApperiance">
+            <summary>
+            Applies colors from System theme
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelView.Initialize">
+            <summary>
+            Initializes custom properties of the view
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelView.IsModelNodeVisible(JetBrains.Application.UI.TreeModels.TreeModelNode)">
+            <summary>
+            Returns value indicating if specified viewNode/modelNode pair is visible
+            </summary>
+            <param name="modelNode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelView.EnsureChildren(JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelViewNode)">
+            <summary>
+            Ensures that direct children for the node are created
+            </summary>
+            <param name="viewNode"></param>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelView.EnsureDescendants(JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelViewNode)">
+            <summary>
+            Ensures that whole subtree for the node is created
+            </summary>
+            <param name="viewNode"></param>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelView.InitializeNode(JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelViewNode,JetBrains.Application.UI.TreeModels.TreeModelNode)">
+            <summary>
+            Initializes visual representation of the model node
+            </summary>
+            <param name="viewNode">View node to initialize</param>
+            <param name="modelNode">Model node associated with view node</param>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelView.UpdateNodePresentation(JetBrains.Application.UI.TreeModels.TreeModelNode)">
+            <summary>
+            Updates presentation of the view node associated with specified model node
+            </summary>
+            <param name="modelNode">Model node to update presentation for</param>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelView.UpdateNodePresentation(System.Object)">
+            <summary>
+            Updates presentation of the view nodes associated with specified data value
+            </summary>
+            <param name="dataValue"></param>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelView.UpdateNodePresentation(JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelViewNode)">
+            <summary>
+            Updates presentation of the given view node
+            </summary>
+            <param name="viewNode"></param>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelView.UpdateAllNodesPresentation">
+            <summary>
+            Updates presentation for all view nodes
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelView.UpdateNodesPresentation(System.Collections.Generic.IEnumerable{JetBrains.Application.UI.TreeModels.TreeModelNode})">
+            <summary>
+            Updates presentation for specified model nodes
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelViewAnchoringRect">
+            <summary>
+            Anchors to the focused node or a manually specified node in the given tree model view.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelViewAnchoringRect.myViewNode">
+            <summary>
+            <c>Null</c> if tracking selection.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelViewAnchoringRect.myTreeModelView">
+            <summary>
+            <c>Null</c> only when disposed.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelViewAnchoringRect.#ctor(JetBrains.Lifetimes.Lifetime,JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelView,JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelViewNode,JetBrains.Application.Icons.IThemedIconManager)">
+            <summary>
+            Creates the instance.
+            </summary>
+            <param name="lifetime"></param>
+            <param name="treeModelView">The owning tree model view.</param>
+            <param name="node">The node to anchor to.</param>
+            <param name="themedIconManager"> </param>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelViewAnchoringRect.#ctor(JetBrains.Lifetimes.Lifetime,JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelView,JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelViewNode,JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelViewColumn,System.Boolean,JetBrains.Application.Icons.IThemedIconManager)">
+            <summary>
+            An internal ctor that allows for <c>Null</c> nodes for tracking the selection.
+            </summary>
+            <param name="lifetime"></param>
+            <param name="treeModelView">The owning tree model view.</param>
+            <param name="viewNode">The node to anchor to, or <c>Null</c> to anchor to the selected node.</param>
+            <param name="viewColumn">The column to determine cell to anchor to, or null to anchor to whole node</param>
+            <param name="isNodeNullable">Whether to allow <c>Null</c> in <paramref name="viewNode"/>.</param>
+            <param name="themedIconManager"> </param>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelViewAnchoringRect.DefaultAnchoringDispositions">
+            <summary>
+            Gets the default dispositions to be used when creating a layouter out of this anchor.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelViewAnchoringRect.UpdateAnchor">
+            <summary>
+            Updates the anchoring rectangle as it gets dirty.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelViewAnchoringRect.CreateFromSelectionDynamic(JetBrains.Lifetimes.Lifetime,JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelView,JetBrains.Application.Icons.IThemedIconManager)">
+            <summary>
+            Creates the instance that tracks the selected node.
+            When selection changes, the anchor is updated to track the new selection.
+            </summary>
+            <param name="lifetime"></param>
+            <param name="treeModelView">The owning tree model view.</param>
+            <param name="themedIconManager"> </param>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelViewAnchoringRect.ClientToScreen(JetBrains.Lifetimes.Lifetime,JetBrains.Application.Interop.NativeHook.IWindowsHookManager)">
+            <summary>
+            Converts the <see cref="T:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelViewAnchoringRect"/>, which operates in client coordinates, into a screen-coordinates anchor suitable for layouting popups.
+            Nests the current object within a window anchor attached to the tree control.
+            </summary>
+            <param name="lifetime"></param>
+            <param name="hookman"></param>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelViewChecked.SemiIndependentParents">
+            <summary>
+            Even if all children are selected, parents could still be in indeterminate state
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelViewColorScheme">
+            <summary>
+            Represents set of colors which are used in the TreeModelView
+            </summary>
+        </member>
+        <member name="E:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelViewColorScheme.Changed">
+            <summary>
+            Occurs when the color scheme is changed
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelViewColorScheme.RaiseChanged">
+            <summary>
+            Raises Changed event
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.DevExpressTreeView.TreeModelViewToolWindowColorScheme">
+            <summary>
+            Represents color scheme for TreeModelView specific for ToolWindow
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.FeatureSuggestion.FeatureSuggestionToolView">
+            <summary>
+            FeatureSuggestionToolView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.FeatureSuggestion.FeatureSuggestionToolView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.FeatureSuggestion.SuggestionNotificationControl">
+            <summary>
+            SuggestionNotificationControl
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.FeatureSuggestion.SuggestionNotificationControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.Generate.GenerateWindowView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.Hyperlink.HyperlinkManager.ActiveHyperlinkProviders.KeysAndButtons">
+            <summary>
+            Modifier keys against which the providers were filtered, only bits from <see cref="F:JetBrains.Interop.WinApi.KeyStateMasks.MaskKeyboard" />.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.Hyperlink.HyperlinkManager.ActiveHyperlinkProviders.Equals(JetBrains.PsiFeatures.UIInteractive.Core.Hyperlink.HyperlinkManager.ActiveHyperlinkProviders)">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.Hyperlink.HyperlinkManager.ActiveHyperlinkProviders.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.Hyperlink.HyperlinkManager.ActiveHyperlinkProviders.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.Hyperlink.HyperlinkManager.HyperlinkInfo.ProvidersActiveWhenCreated">
+            <summary>The providers which were active at the moment this hyperlink were painted. This includes the modifier key combination which triggered them.</summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.Hyperlink.HyperlinkManager.State.Ready">
+            <summary>A normal state. The manager tracks mouse/keys and highlights navigation targets under the cursor.</summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.Hyperlink.HyperlinkManager.State.Steady">
+            <Summary>A mouse button is pressed and the manager is waiting for the mouse up event to perform navigation.</Summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.Hyperlink.HyperlinkManager.State.Stop">
+            <summary>
+              <para>False start. A mouse button is still pressed, but we should not navigate on mouse up (see RSRP-467688, RSRP-467053).</para>
+              <para>Navigation is disabled, an existing hyperlink is removed and new hyperlinks are not created until all mouse buttons are released.</para>
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.Hyperlink.HyperlinkManager.StubbornAsyncCommitClient">
+            <summary>
+            Retries async commit on interruption until it completes.
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.LiveTemplates.FileTemplates.RelativeLocationView">
+            <summary>
+            RelativeLocationView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.LiveTemplates.FileTemplates.RelativeLocationView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.LiveTemplates.Scope.FileMaskScopeConfig">
+            <summary>
+            FileMaskScopeConfig
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.LiveTemplates.Scope.FileMaskScopeConfig.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.LiveTemplates.Scope.ProjectReferencesScopeConfig">
+            <summary>
+            ProjectReferencesScopeConfig
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.LiveTemplates.Scope.ProjectReferencesScopeConfig.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.LiveTemplates.Scope.ScopeSelectorControl">
+            <summary>
+            ScopeSelectorControl
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.LiveTemplates.Scope.ScopeSelectorControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.LiveTemplates.Scope.ScopeSelectorDialog">
+            <summary>
+            ScopeSelectorDialog
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.LiveTemplates.Scope.ScopeSelectorDialog.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.Naming.AdvancedNamingSettingsForm`1.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.Naming.AdvancedNamingSettingsForm`1.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.Naming.AdvancedNamingSettingsForm`1.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.Naming.CustomNamingOptionsPageView">
+            <summary>
+            CustomNamingOptionsPageView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.Naming.CustomNamingOptionsPageView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.Naming.EditNamingPolicyControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.Naming.EditNamingPolicyControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.Naming.EditNamingPolicyControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.Naming.EditNamingPolicyDialog">
+            <summary>
+            Interaction logic for MainWindow.xaml
+            </summary>
+            <summary>
+            EditNamingPolicyDialog
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.Naming.EditNamingPolicyDialog.SelectedSettingsLayer">
+            <summary>
+            Gets settings layer if user used Save To, null otherwise
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.Naming.EditNamingPolicyDialog.CanSaveTo">
+            <summary>
+            Gets whether to show save to button
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.Naming.EditNamingPolicyDialog.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.Naming.EditUserRuleForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.Naming.EditUserRuleForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.Naming.EditUserRuleForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.Naming.PredefinedNamingSettingsPage">
+            <summary>
+            PredefinedNamingSettingsPage
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.Naming.PredefinedNamingSettingsPage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.OptionPages.CodeStyle.Views.CodeStylePageView">
+            <summary>
+            CodeStylePageView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.OptionPages.CodeStyle.Views.CodeStylePageView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.OptionPages.CodeStyle.Views.CodeStylePreviewView">
+            <summary>
+            CodeStylePreviewView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.OptionPages.CodeStyle.Views.CodeStylePreviewView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.OptionPages.CodeStyle.Views.Preview.CodePreviewView">
+            <summary>
+            CodePreviewView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.OptionPages.CodeStyle.Views.Preview.CodePreviewView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.OptionPages.CodeStyle.Views.Preview.DescriptionPreviewView">
+            <summary>
+            DescriptionPreviewView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.OptionPages.CodeStyle.Views.Preview.DescriptionPreviewView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.OptionPages.CodeStyle.Views.Preview.DiffPreviewView">
+            <summary>
+            DiffPreviewView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.OptionPages.CodeStyle.Views.Preview.DiffPreviewView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.OptionPages.CodeStyle.Views.Preview.NonePreviewView">
+            <summary>
+            NonePreviewView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.OptionPages.CodeStyle.Views.Preview.NonePreviewView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.OptionPages.CodeStyle.Views.ValueEditors.BoolValueEditorView">
+            <summary>
+            BoolValueEditorView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.OptionPages.CodeStyle.Views.ValueEditors.BoolValueEditorView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.OptionPages.CodeStyle.Views.ValueEditors.EnumValueEditorView">
+            <summary>
+            EnumValueEditorView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.OptionPages.CodeStyle.Views.ValueEditors.EnumValueEditorView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.OptionPages.CodeStyle.Views.ValueEditors.FlaggedEnumValueEditorView">
+            <summary>
+            FlaggedEnumValueEditorView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.OptionPages.CodeStyle.Views.ValueEditors.FlaggedEnumValueEditorView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.OptionPages.CodeStyle.Views.ValueEditors.NumericValueEditorView">
+            <summary>
+            NumericValueEditorView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.OptionPages.CodeStyle.Views.ValueEditors.NumericValueEditorView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.OptionPages.CodeStyle.Views.ValueEditors.OrderedItemCollectionEditorView">
+            <summary>
+            OrderedItemCollectionEditorView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.OptionPages.CodeStyle.Views.ValueEditors.OrderedItemCollectionEditorView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.OptionPages.CodeStyle.Views.ValueEditors.SimpleStringValueEditorView">
+            <summary>
+            SimpleStringValueEditorView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.OptionPages.CodeStyle.Views.ValueEditors.SimpleStringValueEditorView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.OptionPages.LanguageInjections.LanguageInjectionsOptionsView">
+            <summary>
+            LanguageInjectionsOptionsView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.OptionPages.LanguageInjections.LanguageInjectionsOptionsView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.ParameterInfo.InvocableControl">
+            <summary>
+            Once a control, nowadays it's only a renderer for a single signature from the <see cref="T:JetBrains.PsiFeatures.UIInteractive.Core.ParameterInfo.ParameterInfoControl"/> form.
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.ParameterInfo.ParameterInfoControlBase.ShowWithoutActivation">
+            <summary>
+            Gets a value indicating whether the window will be activated when it is shown.
+            </summary>
+            <returns>
+            True if the window will not be activated when it is shown; otherwise, false. The default is false.
+            </returns>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.ParameterInfo.ParameterInfoControlBase.WantsResize">
+            <summary>
+            Fires when the control would like to be reasked of its desired size.
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.Presentation.FindResultsPanelLegacy">
+            <summary>
+            Only for non-live tree view
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocControl">
+            <summary>
+            Displays QuickDoc
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocControl.myBrowser">
+            <summary>
+            The Web browser control than renders the content.
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocControl.DocumentText">
+            <summary>
+            Text displaying in control. Can be used for hacks
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocControl.GetPrefferedWidth">
+            <summary>
+            Performs layout calculations to eliminate scrolling.
+            </summary>
+            <returns>Width of control without line breaks and horizontal scrolling</returns>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocControl.GetPrefferedHeight(System.Int32)">
+            <summary>
+            Performs layout calculations to eliminate scrolling
+            </summary>
+            <param name="desiredWidth">Desired control width</param>
+            <returns>Height of control without vertical scrolling</returns>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocControl.OnKeyDown(System.Windows.Forms.KeyEventArgs)">
+            <summary>
+            Raises the <see cref="E:System.Windows.Forms.Control.KeyDown"></see> event.
+            </summary>
+            <param name="e">A <see cref="T:System.Windows.Forms.KeyEventArgs"></see> that contains the event data. </param>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocController">
+            <summary>
+            Controller for QuickDocControl. Performs navigation, tracks history. It <b>MUST</b> be explicitly disposed. 
+            Control can be disposed instead of controller.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocController.#ctor(JetBrains.ProjectModel.ISolution,JetBrains.ReSharper.Psi.PsiLanguageType,JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocControllerManager)">
+            <summary>
+            Creates controller
+            </summary>
+            <param name="solution">Solution</param>
+            <param name="language">Default language to render</param>
+            <param name="quickDocManager"></param>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocController.ContentUpdated">
+            <summary>
+            Raised when control content is updated
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocController.KeyPressed">
+            <summary>
+            Raised when key is pressed. Currenly only Escape passed.
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocController.DefaultLanguage">
+            <summary>
+            Default language for view
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocController.OpenInEditor(System.String)">
+            <summary>
+            Opens current item in VS editor
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocController.UpdateContent">
+            <summary>
+            Updates the entry of control
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocView">
+            <summary>
+            Implements the view that displays a QuickDoc extract from the XmlDoc help on the given declared element.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocView.myHeaderHeight">
+            <summary>
+            QuickDock window header height
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocView.OptionWidthOnScreenFactor">
+            <summary>
+            Fraction of the screen width that can be occupied, at most, by the window when auto-sizing to fit the content horizontally.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocView.myBorderSize">
+            <summary>
+            Border size, or padding of the Web browser control within the outer form bounds.
+            </summary>    
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocView.myBrowserMinSize">
+            <summary>
+            Minimum size of the Web browser control, as it wouldn't behave well when size is too small.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocView.myMinLength">
+            <summary>
+            Minimum recommended length of the window against the corresponding dimensions. Restores after new content is loaded into the window; temporarily may be scaled down below this value.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocView.myQDControl">
+            <summary>
+            The Web browser control than renders the content.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocView.myWantsResize">
+            <summary>
+            Fires when the control would like to be reasked of its desired size.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocView.myAutoSizeToFit">
+            <summary>
+            <see cref="P:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocView.AutoSizeToFit"/>.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocView.myDesiredSize">
+            <summary>
+            The size of the form that's recommended so that the browser content fit into the form.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocView.mySizeBarHitTestResults">
+            <summary>
+            A lazy-init collection of the hit test results that identify the size bars.
+            Use <see cref="P:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocView.SizeBarHitTestResults"/>.
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocView.QuickDocViewWidth">
+            <summary>
+            Gets or sets the QuickDocView custom width global setting.
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocView.AutoSizeToFit">
+            <summary>
+            Gets or sets whether the control should accomodate its size to fit the content when navigating to another documentation.
+            This mode is turned off for the current instance after the user resizes its manually.
+            </summary>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocView.SizeBarHitTestResults">
+            <summary>
+            Gets the collection of the hit test results that identify the size bars.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocView.HitTest(System.Drawing.Point)">
+            <summary>
+            Hit-tests the window areas and returns the result. <see cref="F:JetBrains.Interop.WinApi.Constants.HitTestResult.HTTRANSPARENT"/> means the result is unspecified (eg, normal client area or outside the window).
+            </summary>
+            <param name="ptHitClient">The hit point, in client coordinates.</param>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocView.InitControls(JetBrains.Lifetimes.Lifetime)">
+            <summary>
+            Inits the instance UI.
+            </summary>
+            <param name="lifetime"></param>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocView.OnClosing(System.ComponentModel.CancelEventArgs)">
+            <summary>
+            Raises the <see cref="E:System.Windows.Forms.Form.Closing"></see> event.
+            </summary>
+            
+            <param name="e">A <see cref="T:System.ComponentModel.CancelEventArgs"></see> that contains the event data. </param>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocView.OnKeyDown(System.Windows.Forms.KeyEventArgs)">
+            <summary>
+            Raises the <see cref="E:System.Windows.Forms.Control.KeyDown"></see> event.
+            </summary>
+            
+            <param name="e">A <see cref="T:System.Windows.Forms.KeyEventArgs"></see> that contains the event data. </param>
+        </member>
+        <member name="P:JetBrains.PsiFeatures.UIInteractive.Core.QuickDoc.QuickDocView.WantsResize">
+            <summary>
+            Fires when the control would like to be reasked of its desired size.
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.SearchRequestNotifications.SearchRequestNotificationControl">
+            <summary>
+            Interaction logic for TextControl.xaml
+            </summary>
+            <summary>
+            SearchRequestNotificationControl
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.SearchRequestNotifications.SearchRequestNotificationControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.SolutionTree.ProjectFilter.PassAdditionalFilter(JetBrains.ProjectModel.IProject)">
+            <summary>
+            Additional check for shared projects. It looks awful, but nobody knows how to filter shared project now.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.Tree.CodePreview.CodePanelDisplayData.Entry.HighlighterToolTip.JetBrains#TextControl#DocumentMarkup#IHighlighterTooltipProvider#TryGetTooltip(JetBrains.TextControl.DocumentMarkup.IHighlighter,JetBrains.TextControl.DocumentMarkup.HighlighterTooltipKind)">
+            <inheritdoc />
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.Tree.NewGroupingTree.CheckedRichTextLiveTreeNodeView">
+            <summary>
+            CheckedRichTextLiveTreeNodeView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.Tree.NewGroupingTree.CheckedRichTextLiveTreeNodeView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.Tree.NewGroupingTree.CompositeRichTextLiveTreeNodeView">
+            <summary>
+            CompositeRichTextLiveTreeNodeView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.Tree.NewGroupingTree.CompositeRichTextLiveTreeNodeView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.Tree.NewGroupingTree.DelegateActionBarItem">
+            <summary>
+            Interaction logic for DelegateActionBarItem.xaml
+            </summary>
+            <summary>
+            DelegateActionBarItem
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.Tree.NewGroupingTree.DelegateActionBarItem.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.Tree.NewGroupingTree.FlexibleGroupingManagerView">
+            <summary>
+            Interaction logic for FlexibleGroupingManagerView.xaml
+            </summary>
+            <summary>
+            FlexibleGroupingManagerView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.Tree.NewGroupingTree.FlexibleGroupingManagerView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.Core.Tree.NewGroupingTree.RichTextLiveTreeNodeView">
+            <summary>
+            RichTextLiveTreeNodeView
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.Core.Tree.NewGroupingTree.RichTextLiveTreeNodeView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
+        </member>
+    </members>
+</doc>

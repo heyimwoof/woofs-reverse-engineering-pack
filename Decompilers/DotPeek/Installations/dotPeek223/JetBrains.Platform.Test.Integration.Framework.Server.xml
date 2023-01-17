@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.Platform.Test.Integration.Framework.Server</name>
+    </assembly>
+    <members>
+        <member name="T:JetBrains.IntegrationTestsServer.IntegrationTestsServerModeCommandLineSwitch">
+            <summary>
+            Enables the integration tests server mode when specified.
+            </summary>
+        </member>
+        <member name="M:JetBrains.IntegrationTestsServer.Server.IntegrationTestsServerService.RegisterService(JetBrains.Lifetimes.Lifetime,JetBrains.Platform.Test.Integration.FrameworkCommon.Server.IIntegrationTestsServer,System.Boolean)">
+            <summary>
+            Starts listening for remote requests.
+            </summary>
+        </member>
+        <member name="M:JetBrains.IntegrationTestsServer.Server.IntegrationTestsServerService.JetBrains#Platform#Test#Integration#FrameworkCommon#Server#IIntegrationTestsServer#GetRunningTestMethod">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.IntegrationTestsServer.Server.IntegrationTestsServerService.JetBrains#Platform#Test#Integration#FrameworkCommon#Server#IIntegrationTestsServer#GetRunningTestName">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.IntegrationTestsServer.Server.IntegrationTestsServerService.JetBrains#Platform#Test#Integration#FrameworkCommon#Server#IIntegrationTestsServer#GetTimeoutForTest">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.IntegrationTestsServer.Server.IntegrationTestsServerService.JetBrains#Platform#Test#Integration#FrameworkCommon#Server#IIntegrationTestsServer#RunTest(System.String,JetBrains.Platform.Test.Integration.FrameworkCommon.Server.InTestInfo,JetBrains.Platform.Test.Integration.FrameworkCommon.Server.TestRunFlags,System.TimeSpan,System.Nullable{JetBrains.Diagnostics.LoggingLevel})">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.IntegrationTestsServer.Server.IntegrationTestsServerService.InvokeTestMethodBody(JetBrains.Lifetimes.Lifetime,System.Reflection.MethodInfo,System.Object[],System.Object,JetBrains.Platform.Test.Integration.FrameworkCommon.Server.TestRunFlags)">
+            <summary>
+            Invokes the test method body, sync or async, main thread or free-threaded. Awaits it if async, and extracts the value.
+            </summary>
+        </member>
+        <member name="M:JetBrains.IntegrationTestsServer.Server.IntegrationTestsServerService.TakeScreenshot(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.IntegrationTestsServer.Server.ServerObjectCache.GetOrCreateInstance(System.Type,System.Object[])">
+            <summary>
+            Instantiates requested type or gets an instance from the cache. Sites the instance, if it is an ITestWithSite.
+            </summary>
+        </member>
+        <member name="M:JetBrains.IntegrationTestsServer.Server.Shell.UiaContext.GetYieldToUia(JetBrains.Lifetimes.Lifetime)">
+            <summary>
+            Use the <c>await</c> construct on this value to switch your <c>async</c> execution flow to the UIA thread.
+            </summary>
+        </member>
+    </members>
+</doc>

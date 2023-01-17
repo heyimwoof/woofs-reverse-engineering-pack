@@ -1,0 +1,66 @@
+<!--
+***********************************************************************************************
+Eazfuscator.NET.SQL.targets
+
+Provides integration for SQL Server database projects.
+
+WARNING:  DO NOT MODIFY this file. Incorrect changes to this file will make it impossible to
+          load or build your Eazfuscator.NET projects from the command-line or the IDE.
+
+Copyright (C) 2008-2015 Gapotchenko
+***********************************************************************************************
+-->
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Import Project="Eazfuscator.NET.Common.Tasks.targets" Condition=" '$(Eazfuscator_NET_CommonTasksImported)' == '' " />
+
+  <Target Name="_Eazfuscator_NET_SQL_PrepareForBuild"
+          BeforeTargets="PrepareForBuild"
+          Condition=" '$(BuiltSqlProjectOutputGroupDependsOn)' != '' OR '$(GenerateSqlClrDdl)' != '' ">
+    <PropertyGroup>
+      <_Eazfuscator_NET_SQL_Triggered>false</_Eazfuscator_NET_SQL_Triggered>
+      <_Eazfuscator_NET_SQL_Active>true</_Eazfuscator_NET_SQL_Active>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_SQL_Trigger"
+          Condition=" '$(BuiltSqlProjectOutputGroupDependsOn)' != '' OR '$(GenerateSqlClrDdl)' != '' ">
+    <PropertyGroup>
+      <_Eazfuscator_NET_SQL_Triggered>true</_Eazfuscator_NET_SQL_Triggered>
+      <_Eazfuscator_NET_NETFramework_Specialty>true</_Eazfuscator_NET_NETFramework_Specialty>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_SQL"
+          BeforeTargets="SqlBuild"
+          Condition=" '$(_Eazfuscator_NET_SQL_Triggered)' == 'true' "
+          DependsOnTargets="$(_Eazfuscator_NET_CoreCompileTargets)">
+    <CallTarget Targets="_Eazfuscator_NET_RetargetToIntermediate;_Eazfuscator_NET" />
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_SQL_PrepareSqlBuild_RemoveReferencePaths"
+          DependsOnTargets="_Eazfuscator_NET_GetRemovedReferencePaths">
+    <ItemGroup>
+      <SqlReferencePath Remove="@(_Eazfuscator_NET_RemovedReferencePaths)" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_SQL_PrepareSqlBuild"
+          Inputs="@(SqlBuildInputItem->'%(FullPath)')"
+          Outputs="@(SqlBuildOutputItem)"
+          BeforeTargets="SqlBuild"
+          AfterTargets="_Eazfuscator_NET_SQL"
+          Condition=" '$(_Eazfuscator_NET_SQL_Active)' == 'true' "
+          DependsOnTargets="$(SqlBuildDependsOn)">
+    <CallTarget Targets="_Eazfuscator_NET_SQL_PrepareSqlBuild_RemoveReferencePaths" />
+  </Target>
+
+  <PropertyGroup>
+    <_Eazfuscator_NET_TriggerTargets>
+      $(_Eazfuscator_NET_TriggerTargets);
+      _Eazfuscator_NET_SQL_Trigger
+    </_Eazfuscator_NET_TriggerTargets>
+  </PropertyGroup>
+
+</Project>

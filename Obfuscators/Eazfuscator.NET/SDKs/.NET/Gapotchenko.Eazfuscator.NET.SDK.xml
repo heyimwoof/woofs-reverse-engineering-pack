@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Gapotchenko.Eazfuscator.NET.SDK</name>
+    </assembly>
+    <members>
+        <member name="T:Gapotchenko.Eazfuscator.NET.SDK.ISymbolDecoder">
+            <summary>
+            Represents a symbol decoder that can decode stack traces and logs produced by an app previously obfuscated with Eazfuscator.NET.
+            </summary>
+        </member>
+        <member name="M:Gapotchenko.Eazfuscator.NET.SDK.ISymbolDecoder.Decode(System.IO.TextReader,System.IO.TextWriter)">
+            <summary>
+            <para>
+            Decodes encrypted input symbols and writes the result to output.
+            </para>
+            <para>
+            This method is thread-safe.
+            </para>
+            </summary>
+            <param name="input">The input text reader.</param>
+            <param name="output">The output text writer.</param>
+        </member>
+        <member name="M:Gapotchenko.Eazfuscator.NET.SDK.ISymbolDecoder.Decode(System.String)">
+            <summary>
+            <para>
+            Decodes encrypted input symbols and returns the result.
+            </para>
+            <para>
+            This method is thread-safe.
+            </para>
+            </summary>
+            <param name="input">The input.</param>
+            <returns>The decoded symbols.</returns>
+        </member>
+        <member name="T:Gapotchenko.Eazfuscator.NET.SDK.SymbolDecoder">
+            <summary>
+            Decodes stack traces and logs produced by an app previously obfuscated with Eazfuscator.NET.
+            </summary>
+        </member>
+        <member name="M:Gapotchenko.Eazfuscator.NET.SDK.SymbolDecoder.Decode(System.String,System.String)">
+            <summary>
+            Decodes encrypted input symbols with a specified password and returns the result.
+            </summary>
+            <param name="input">The input.</param>
+            <param name="secret">The password.</param>
+            <returns>The decoded symbols.</returns>
+        </member>
+        <member name="M:Gapotchenko.Eazfuscator.NET.SDK.SymbolDecoder.Create(System.String)">
+            <summary>
+            <para>
+            Creates a symbol decoder for the specified password.
+            </para>
+            <para>
+            It is beneficial to reuse a single <see cref="T:Gapotchenko.Eazfuscator.NET.SDK.ISymbolDecoder"/> instance to minimize the time spent on key derivation.
+            </para>
+            </summary>
+            <param name="secret">The password</param>
+            <returns>The symbol decoder.</returns>
+        </member>
+    </members>
+</doc>

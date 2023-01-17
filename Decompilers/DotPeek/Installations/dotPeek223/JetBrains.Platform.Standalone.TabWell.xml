@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.Platform.Standalone.TabWell</name>
+    </assembly>
+    <members>
+        <member name="T:JetBrains.Standalone.TabWell.BuildScript.Compile.LauncherTabWellCompileTimeConstants">
+            <summary>
+            Mocks <c>LauncherTabWell</c> in a compile-time-build-script-accessible form.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Standalone.TabWell.BuildScript.Compile.LauncherTabWellCompileTimeConstants.MainMethod">
+            <summary>
+            Mocks <c>LauncherTabWell::MainMethodScattered</c> in a compile-time-build-script-accessible form.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Standalone.TabWell.BuildScript.Compile.LauncherTabWellCompileTimeConstants.MainMethodScattered">
+            <summary>
+            Mocks <c>LauncherTabWell::MainMethodScattered</c> in a compile-time-build-script-accessible form.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Standalone.TabWell.Shell.Host.LauncherTabWell">
+            <summary>
+            Entry point for the Launcher calls.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Standalone.TabWell.Shell.Host.LauncherTabWell.MainMethod">
+            <summary>
+            Refer to this if you need to get the <see cref="T:JetBrains.Build.Serialization.AssemblyQualifiedTypeMemberName" /> for the <see cref="M:JetBrains.Standalone.TabWell.Shell.Host.LauncherTabWell.Main(System.UInt64)" /> method of this launcher.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Standalone.TabWell.Shell.Host.LauncherTabWell.Main(System.UInt64)">
+            <summary>
+            The GUI entry point for calling from the native part.
+            Inits the full GUI host, including the tabwell-required services.
+            Expects to have the partial set of components written in resources, like host name and environment zone, while the set of the application packages is collected ad-hoc based on what's found in the application folder.
+            </summary>
+            <param name="hwndSplashScreen">HWND of the splash window to be hidden after the application starts, if applicable.</param>
+            <returns>The exit code for the process.</returns>
+        </member>
+        <member name="M:JetBrains.Standalone.TabWell.Shell.Host.LauncherTabWell.MainScattered(System.UInt64)">
+            <summary>
+            The GUI entry point for calling from the native part.
+            Inits the full GUI host, including the tabwell-required services.
+            Expects to have the partial set of components written in resources, like host name and product branding, while the set of the application packages is collected ad-hoc based on what's found in the application folder.
+            </summary>
+            <param name="hwndSplashScreen">HWND of the splash window to be hidden after the application starts, if applicable.</param>
+            <returns>The exit code for the process.</returns>
+        </member>
+        <member name="M:JetBrains.Standalone.TabWell.Shell.Host.LauncherTabWell.RunApplication(System.Void*)">
+            <summary>
+            The custom entry point.
+            </summary>
+            <param name="hwndSplashScreen"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JetBrains.Standalone.TabWell.Shell.Host.LauncherTabWell.ValidateCompileTimeConstants(JetBrains.Util.ILogger)">
+            <summary>
+            Vaidates <see cref="T:JetBrains.Standalone.TabWell.BuildScript.Compile.LauncherTabWellCompileTimeConstants" /> against <see cref="T:JetBrains.Standalone.TabWell.Shell.Host.LauncherTabWell" />.
+            Mounts to an attempt to declare a host.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:JetBrains.Standalone.TabWell.Shell.Host.WindowsStandaloneTabWellApplicationHost">
+            <summary>
+            Additional host features for creating standalone interactive GUI applications.
+            Extends <see cref="T:JetBrains.UI.SrcView.Application.Env.WindowsSimpleGuiApplicationHost" /> with IDE-like window frame, ActiPro controls support, etc.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Standalone.TabWell.StdApplicationUI.Docking.ActiProFocusHelper">
+            <summary>
+            There is bug in actipro docking system if you use winforms control on DockingWindow
+            
+            If you click on winform control which placed on DockingWindow (DocumentWindow or ToolWindow) actipro docking manager won't activate this window
+            (DockSite.WindowActivated/dockSite.WindowDeactivated won't be raised)
+            
+            This component fixes this bug
+            </summary>
+        </member>
+        <member name="M:JetBrains.Standalone.TabWell.StdApplicationUI.Docking.ActiProFocusHelper.GetRootUiElement(System.IntPtr)">
+            <summary>
+            Search for the first wpf root
+            </summary>
+        </member>
+        <member name="T:JetBrains.Standalone.TabWell.StdApplicationUI.MainWindow.FillTabWellMainWindow">
+            <summary>
+            When shell components are ready (at least those referenced here), takes them and fills the main window with content.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Standalone.TabWell.StdApplicationUI.MainWindow.WpfTabWellMainWindow">
+            <summary>
+            Default implementation of the <see cref="T:JetBrains.UI.StdApplicationUI.IWpfMainWindow"/> interface.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Standalone.TabWell.StdApplicationUI.Theming.ActiproThemeManager">
+            <summary>
+            This component is used to style controls with actipro themes
+            </summary>
+        </member>
+        <member name="T:JetBrains.Standalone.TabWell.ToolWindowManagement.ToolWindowFrameControlHost">
+             <summary>
+             A WPF Decorator that hosts a tool window content.
+             </summary>
+             <remarks>
+             The first purpose of this class is to fix an issue with ActiPro Switcher which is not activated when the focus is outside the WPF world.
+             For Curious Ones: DockSite class has the following method.
+             internal void ProcessPreviewKeyDown(KeyEventArgs e) {
+               DependencyObject focusedElement = Keyboard.FocusedElement as DependencyObject;
+               if (focusedElement != null) {
+                 // Do a check on the focused element to see if its parent DockSite is this one before calling the switcher... 
+                 // needed for nested DockSites to ensure the ancestor DockSite doesn't pick up the key inappropriately
+                 DockSite dockSite = DockSite.GetDockSite(focusedElement);
+                 if ((dockSite == null) || (dockSite == this) || (dockSite.Switcher == null)) {
+                   if (this.Switcher != null)
+                     this.Switcher.ProcessKeyDown(this, e);
+                 }
+               }
+             }
+             In our case there is no nested DockSites, but there are WinForms controls hosted over WPF. 
+             When the focus is within WinForms, FocusedElement is null and the Switcher is not activated.
+            
+             The other purpose is to fix focus behavior in docked Actipro window with WinForms controls.
+             To focus control in Actipro tab they use ActiproSoftware.Windows.Controls.Docking.Helper.Focus() method
+             which do the following:
+             1. Tries to set focus using IKeyboardInputSink.TabInto.
+             2. Checks if it was successful using IKeyboardInputSink.HasFocusWithin.
+             3. If method returns false it tries to set focus different ways and finally sets focus to root wpf element in tab.
+             So we have to implement IKeyboardInputSink.TabInto and IKeyboardInputSink.HasFocusWithin for this control to fix this behaviour. 
+             </remarks>
+        </member>
+        <member name="M:JetBrains.Standalone.TabWell.ToolWindowManagement.ToolWindowFrameControlHost.OnPreviewKeyDown(System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Opens ActiPro switcher.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:JetBrains.Standalone.TabWell.ToolWindowManagement.ToolWindowFrameControlHost.OnPreviewKeyUp(System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Closes ActiPro Switcher--a clone of protected override Switcher.OnKeyUp.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Standalone.TabWell.ToolWindowManagement.ToolWindowFrameControlHost.IsSwitcherKey(ActiproSoftware.Windows.Controls.Docking.Primitives.SwitcherBase,System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Determines whether the specified key is a key combination that can activate the switcher.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,485 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.ReSharper.Daemon</name>
+    </assembly>
+    <members>
+        <member name="T:JetBrains.ReSharper.Daemon.Actions.IWhyNoDaemonActionFilter">
+            <summary>
+            Filters when <see cref="T:JetBrains.ReSharper.Daemon.Actions.WhyNoDaemonAction"/> is visible
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.Actions.IWhyNoDaemonActionFilter.ShowWhyNoDaemon(JetBrains.ReSharper.Feature.Services.Daemon.DaemonStateWithDescription)">
+            <summary>
+            Whether to show <see cref="T:JetBrains.ReSharper.Daemon.Actions.WhyNoDaemonAction"/>
+            </summary>
+            <param name="stateWithDescription">Daemon state in current file</param>
+            <returns>Whether to show the action</returns>
+        </member>
+        <member name="T:JetBrains.ReSharper.Daemon.CallGraph.CallGraphInfoIndex">
+            <summary>
+            Represents call graph for entire solution
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Daemon.CallGraph.CallGraphInfoIndex.ReadWriteWatcher">
+            <summary>
+            Asserts that merge and propagate never happen in one time.
+            Lock is necessarily!! This logic can't be reproduced with Interlocked!
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Daemon.CallGraph.CallGraphRootMarksProviderBase">
+            <summary>
+            MarksProvider is responsible for creating root marks in call graph. After that, SWA will take
+            `Propagator` and propagate this marks in call graph.
+            The base solution to implement your own marksProvider is inherit it from CallGraphRootMarksProviderBase
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Daemon.CallGraph.CallGraphRootMarksProviderBase.Enabled">
+            <summary>
+            Is current marksProvider enabled for current solution
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Daemon.CallGraph.CallGraphRootMarksProviderBase.Propagator">
+            <summary>
+            Get propagator which will be responsible for propagation mark in call graph
+            </summary>
+            <returns>Propagator for mark</returns>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CallGraph.CallGraphRootMarksProviderBase.GetRootMarksFromNode(JetBrains.ReSharper.Psi.Tree.ITreeNode,JetBrains.ReSharper.Psi.IDeclaredElement)">
+            <summary>
+            This function is called for each node inside function.
+            </summary>
+            <param name="currentNode">Node inside <paramref name="containingFunction"/></param>
+            <param name="containingFunction">Function which contains <paramref name="currentNode"/></param>
+            <returns>Return list of root marks from current node</returns>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CallGraph.CallGraphRootMarksProviderBase.GetBanMarksFromNode(JetBrains.ReSharper.Psi.Tree.ITreeNode,JetBrains.ReSharper.Psi.IDeclaredElement)">
+            <summary>
+            This function is called for each node inside function. 
+            </summary>
+            <param name="currentNode">Node inside <paramref name="containingFunction"/></param>
+            <param name="containingFunction">Function which contains <paramref name="currentNode"/></param>
+            <returns>Return list of ban marks from current node</returns>
+        </member>
+        <member name="T:JetBrains.ReSharper.Daemon.CallGraph.ICallGraphEdgeProvider">
+            <summary>
+            Creates edges in call graph, e.g:
+            UnityEngine has Invoke(string) method, which Invokes method by name. Implementation of this class could be used
+            to create implicit edge from caller to implicitly invoked function
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CallGraph.ICallGraphEdgeProvider.FindEdges(JetBrains.ReSharper.Psi.Tree.ITreeNode,JetBrains.ReSharper.Psi.IDeclaredElement,JetBrains.ReSharper.Daemon.CallGraph.ICallGraphEdgeConsumer)">
+            <summary>
+            This method is used to create edges in call graph.
+            ATTENTION: !!!some edges CANNOT be represented by IDeclaredElement!!!
+            so the resulting list of edges DOES NOT include all possible edges, some of them are placed directly
+            to the provided CallGraphDataElement, be careful!!! 
+            </summary>
+            <param name="treeNode">where to find edges</param>
+            <param name="caller">current caller</param>
+            <param name="consumer">where to put edges</param>
+        </member>
+        <member name="T:JetBrains.ReSharper.Daemon.CallGraph.ICallGraphPropagator">
+            <summary>
+            ICallGraphPropagator is responsible for propagation root marks in call graph. Root marks in call graph are created by CallGraphRootMarksProviderBase
+            For each call graph modification corresponding method will be called.
+            Note: all changes in graph appears in following order
+            1. remove edges
+            2. remove root marks
+            3. remove ban marks
+            4. remove vertices
+            5. add vertices
+            6. add ban marks
+            7. add root marks
+            8. add edges
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CallGraph.ICallGraphPropagator.RemoveEdge(JetBrains.ReSharper.Daemon.CallGraph.CallGraphStructure,JetBrains.Util.Collections.IReadonlyCountingSet{JetBrains.ReSharper.Daemon.UsageChecking.ElementId},JetBrains.Util.Collections.IReadonlyCountingSet{JetBrains.ReSharper.Daemon.UsageChecking.ElementId},JetBrains.ReSharper.Daemon.UsageChecking.ElementId,JetBrains.ReSharper.Daemon.UsageChecking.ElementId)">
+            <summary>
+            This method is called before edge will be removed. Implementation should be O(1)
+            </summary>
+            <param name="structure">Current call graph</param>
+            <param name="rootMarks">Root marks</param>
+            <param name="banMarks">Ban marks</param>
+            <param name="startVertex">Start vertex of edge which will be removed</param>
+            <param name="endVertex">End vertex of edge which will be removed</param>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CallGraph.ICallGraphPropagator.UnrootVertex(JetBrains.ReSharper.Daemon.CallGraph.CallGraphStructure,JetBrains.Util.Collections.IReadonlyCountingSet{JetBrains.ReSharper.Daemon.UsageChecking.ElementId},JetBrains.Util.Collections.IReadonlyCountingSet{JetBrains.ReSharper.Daemon.UsageChecking.ElementId},JetBrains.ReSharper.Daemon.UsageChecking.ElementId)">
+            <summary>
+            This method is called before vertex will be unmarked. Implementation should be O(1)
+            </summary>
+            <param name="structure">Current call graph</param>
+            <param name="rootMarks">Root marks</param>
+            <param name="banMarks">Ban marks</param>
+            <param name="vertex">Vertex which will be unmarked</param>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CallGraph.ICallGraphPropagator.PermitVertex(JetBrains.ReSharper.Daemon.CallGraph.CallGraphStructure,JetBrains.Util.Collections.IReadonlyCountingSet{JetBrains.ReSharper.Daemon.UsageChecking.ElementId},JetBrains.Util.Collections.IReadonlyCountingSet{JetBrains.ReSharper.Daemon.UsageChecking.ElementId},JetBrains.ReSharper.Daemon.UsageChecking.ElementId)">
+            <summary>
+            This method is called before vertex will be permitted. Implementation should be O(1)
+            </summary>
+            <param name="structure">Current call graph</param>
+            <param name="rootMarks">Root marks</param>
+            <param name="banMarks">Ban marks</param>
+            <param name="vertex">Vertex which was permitted</param>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CallGraph.ICallGraphPropagator.RemoveVertex(JetBrains.ReSharper.Daemon.CallGraph.CallGraphStructure,JetBrains.Util.Collections.IReadonlyCountingSet{JetBrains.ReSharper.Daemon.UsageChecking.ElementId},JetBrains.Util.Collections.IReadonlyCountingSet{JetBrains.ReSharper.Daemon.UsageChecking.ElementId},JetBrains.ReSharper.Daemon.UsageChecking.ElementId)">
+            <summary>
+            This method is called before vertex will be removed. Implementation should be O(1)
+            </summary>
+            <param name="structure">Current call graph</param>
+            <param name="rootMarks">Root marks</param>
+            <param name="banMarks">Ban marks</param>
+            <param name="vertex">Vertex which will be removed</param>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CallGraph.ICallGraphPropagator.AddVertex(JetBrains.ReSharper.Daemon.CallGraph.CallGraphStructure,JetBrains.Util.Collections.IReadonlyCountingSet{JetBrains.ReSharper.Daemon.UsageChecking.ElementId},JetBrains.Util.Collections.IReadonlyCountingSet{JetBrains.ReSharper.Daemon.UsageChecking.ElementId},JetBrains.ReSharper.Daemon.UsageChecking.ElementId)">
+            <summary>
+            This method is called after new vertex was added. Implementation should be O(1)
+            </summary>
+            <param name="structure">Current call graph</param>
+            <param name="rootMarks">Root marks</param>
+            <param name="banMarks">Ban marks</param>
+            <param name="vertex">Vertex which was added to graph</param>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CallGraph.ICallGraphPropagator.BanVertex(JetBrains.ReSharper.Daemon.CallGraph.CallGraphStructure,JetBrains.Util.Collections.IReadonlyCountingSet{JetBrains.ReSharper.Daemon.UsageChecking.ElementId},JetBrains.Util.Collections.IReadonlyCountingSet{JetBrains.ReSharper.Daemon.UsageChecking.ElementId},JetBrains.ReSharper.Daemon.UsageChecking.ElementId)">
+            <summary>
+            This method is called after vertex was banned. Implementation should be O(1)
+            </summary>
+            <param name="structure">Current call graph</param>
+            <param name="rootMarks">Root marks</param>
+            <param name="banMarks">Ban marks</param>
+            <param name="vertex">Vertex which was banned</param>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CallGraph.ICallGraphPropagator.RootVertex(JetBrains.ReSharper.Daemon.CallGraph.CallGraphStructure,JetBrains.Util.Collections.IReadonlyCountingSet{JetBrains.ReSharper.Daemon.UsageChecking.ElementId},JetBrains.Util.Collections.IReadonlyCountingSet{JetBrains.ReSharper.Daemon.UsageChecking.ElementId},JetBrains.ReSharper.Daemon.UsageChecking.ElementId)">
+            <summary>
+            This method is called after vertex was marked. Implementation should be O(1)
+            </summary>
+            <param name="structure">Current call graph</param>
+            <param name="rootMarks">Root marks</param>
+            <param name="banMarks">Ban marks</param>
+            <param name="vertex">Vertex which was marked</param>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CallGraph.ICallGraphPropagator.AddEdge(JetBrains.ReSharper.Daemon.CallGraph.CallGraphStructure,JetBrains.Util.Collections.IReadonlyCountingSet{JetBrains.ReSharper.Daemon.UsageChecking.ElementId},JetBrains.Util.Collections.IReadonlyCountingSet{JetBrains.ReSharper.Daemon.UsageChecking.ElementId},JetBrains.ReSharper.Daemon.UsageChecking.ElementId,JetBrains.ReSharper.Daemon.UsageChecking.ElementId)">
+            <summary>
+            This method is called after new edge was added. Implementation should be O(1)
+            </summary>
+            <param name="structure">Current call graph</param>
+            <param name="rootMarks">Root marks</param>
+            <param name="banMarks">Ban marks</param>
+            <param name="startVertex">Start vertex of edge which was added</param>
+            <param name="endVertex">End vertex of edge which was added</param>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CallGraph.ICallGraphPropagator.IsMarkedLocal(JetBrains.ReSharper.Daemon.CallGraph.CallGraphStructure,JetBrains.Util.Collections.IReadonlyCountingSet{JetBrains.ReSharper.Daemon.UsageChecking.ElementId},JetBrains.Util.Collections.IReadonlyCountingSet{JetBrains.ReSharper.Daemon.UsageChecking.ElementId},JetBrains.ReSharper.Daemon.UsageChecking.ElementId)">
+            <summary>
+            Return mark of queried vertex. Implementation should be O(1)
+            </summary>
+            <param name="structure">Call graph</param>
+            <param name="rootMarks">Call graph marks</param>
+            <param name="banMarks">Ban marks</param>
+            <param name="vertex">vertex</param>
+            <returns></returns>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CallGraph.ICallGraphPropagator.IsMarkedGlobal(JetBrains.ReSharper.Daemon.CallGraph.CallGraphStructure,JetBrains.Util.Collections.IReadonlyCountingSet{JetBrains.ReSharper.Daemon.UsageChecking.ElementId},JetBrains.Util.Collections.IReadonlyCountingSet{JetBrains.ReSharper.Daemon.UsageChecking.ElementId},JetBrains.ReSharper.Daemon.UsageChecking.ElementId)">
+            <summary>
+            Return mark of queried vertex. Implementation should be interruptible
+            </summary>
+            <param name="structure">Call graph</param>
+            <param name="rootMarks">Call graph marks</param>
+            <param name="banMarks">Ban marks</param>
+            <param name="vertex">vertex</param>
+            <returns></returns>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CallGraph.ICallGraphPropagator.Clear">
+            <summary>
+            Clear internal state
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CaretDependentFeatures.MatchingBraceContextHighlighterBase`1.IsValidNode(JetBrains.ReSharper.Psi.Tree.ITokenNode)">
+            <summary>
+            Checks if the node is valid (that is, may be highlighted)
+            In C++, currentNode may come from a macro substitution and therefore may have invalid document range
+            so we should find its prototype node
+            </summary>
+            <param name="currentToken">currentToken is a matched parenthesis/bracket/brace</param>
+            <returns>true if the token or its prototype can be highlighted</returns>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CaretDependentFeatures.MatchingBraceContextHighlighterBase`1.GetActualToken(JetBrains.ReSharper.Psi.Tree.ITokenNode)">
+            <summary>
+            Returns the token itself or its prototype macro call
+            (should be overloaded in C++ to support macros)
+            </summary>
+            <param name="currentToken">currentToken is a matched parenthesis/bracket/brace</param>
+            <returns>corresponding visible token in the document</returns>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CaretDependentFeatures.MatchingHighlightingsConsumer.ConsumeInvisibleBraceHint(JetBrains.ReSharper.Daemon.CaretDependentFeatures.InvisibleBraceHint)">
+            <summary>
+            Updates a InvisibleBraceHint
+            </summary>
+            <param name="invisibleBraceHint"></param>
+        </member>
+        <member name="P:JetBrains.ReSharper.Daemon.CaretDependentFeatures.MatchingHighlightingsConsumer.MatchingBraceCookie">
+            <summary>
+            A pair of braces used from <see cref="T:JetBrains.ReSharper.Daemon.CaretDependentFeatures.MatchingBraceSuggester"/> e.g. for matched brace navigation
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CaretDependentFeatures.MatchingHighlightingsConsumer.ConsumeBraceCookie(JetBrains.DocumentModel.DocumentRange,JetBrains.DocumentModel.DocumentRange)">
+            <summary>
+            Updated a pair of ranges used for a cookie
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CaretDependentFeatures.MatchingHighlightingsConsumer.ConsumeMatchedBraces(JetBrains.DocumentModel.DocumentRange,JetBrains.DocumentModel.DocumentRange,System.Boolean)">
+            <summary>
+            Adds a pair of ranges to list of ones which should be highlighted as matched, updates the MatchingBraceCookie
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CaretDependentFeatures.MatchingHighlightingsConsumer.ConsumeUnmatchedBrace(JetBrains.DocumentModel.DocumentRange)">
+            <summary>
+            Adds a range to list of unmatched highlighters
+            </summary>
+            <param name="unmatchedBraceRange"></param>
+        </member>
+        <member name="F:JetBrains.ReSharper.Daemon.CodeFolding.CodeFoldingAttributes.DEFAULT_FOLDING_ATTRIBUTE">
+            <summary>
+            Default folding attribute id used for folding with no user customization on initial collapsed state
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Daemon.CodeFolding.CodeFoldingAttributes.METHOD_FOLDING_ATTRIBUTE">
+            <summary>
+            Folding attribute id used for folding on 'Collapse to Definitions' action
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CodeFolding.CodeFoldingUtil.AddFoldingForBracedConstruct(JetBrains.ReSharper.Daemon.CodeFolding.FoldingHighlightingConsumer,System.String,JetBrains.ReSharper.Psi.Tree.ITokenNode,JetBrains.ReSharper.Psi.Tree.ITokenNode,JetBrains.ReSharper.Psi.Tree.ITreeNode,JetBrains.ReSharper.Psi.Tree.ITreeNode,System.String)">
+            <summary>
+            Util method for creating folding ranges for { } blocks.
+            In case of code formatted with braces starting on a separate line, the code folding is shifted to the left where appropriate.
+            e.g Method()//folding-start
+            {
+              ...
+            }//folding-end
+            </summary>
+            <param name="context"> HighlighterConsumer</param>
+            <param name="attributeId"> attribute id of a corresponding highlighter <see cref="T:JetBrains.ReSharper.Daemon.CodeFolding.CodeFoldingAttributes"/></param>
+            <param name="lbrace">Offset of left brace of the block</param>
+            <param name="rbrace">Offset of the right brace of the block</param>
+            <param name="anchorToken">Token which limits the left-shifting of the folding range, e.g. RBrace in method declaration or name in a namespace declaration </param>
+            <param name="placeholder">Placeholder text shown when folding is collapsed</param>
+            <returns></returns>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CodeFolding.FoldingHighlightingConsumer.AddHigherPriorityFolding(System.String,JetBrains.DocumentModel.DocumentRange,System.String)">
+            <inheritdoc cref="M:JetBrains.ReSharper.Daemon.CodeFolding.FoldingHighlightingConsumer.AddFolding(System.String,JetBrains.DocumentModel.DocumentRange,JetBrains.DocumentModel.DocumentRange,System.String,JetBrains.ReSharper.Daemon.CodeFolding.CodeFoldingPriorities)"/>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CodeFolding.FoldingHighlightingConsumer.AddDefaultPriorityFolding(System.String,JetBrains.DocumentModel.DocumentRange,System.String)">
+            <inheritdoc cref="M:JetBrains.ReSharper.Daemon.CodeFolding.FoldingHighlightingConsumer.AddFolding(System.String,JetBrains.DocumentModel.DocumentRange,JetBrains.DocumentModel.DocumentRange,System.String,JetBrains.ReSharper.Daemon.CodeFolding.CodeFoldingPriorities)"/>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CodeFolding.FoldingHighlightingConsumer.AddDefaultPriorityFolding(System.String,JetBrains.DocumentModel.DocumentRange,JetBrains.DocumentModel.DocumentRange,System.String)">
+            <inheritdoc cref="M:JetBrains.ReSharper.Daemon.CodeFolding.FoldingHighlightingConsumer.AddFolding(System.String,JetBrains.DocumentModel.DocumentRange,JetBrains.DocumentModel.DocumentRange,System.String,JetBrains.ReSharper.Daemon.CodeFolding.CodeFoldingPriorities)"/>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CodeFolding.FoldingHighlightingConsumer.AddLowerPriorityFolding(System.String,JetBrains.DocumentModel.DocumentRange,JetBrains.DocumentModel.DocumentRange,System.String)">
+            <inheritdoc cref="M:JetBrains.ReSharper.Daemon.CodeFolding.FoldingHighlightingConsumer.AddFolding(System.String,JetBrains.DocumentModel.DocumentRange,JetBrains.DocumentModel.DocumentRange,System.String,JetBrains.ReSharper.Daemon.CodeFolding.CodeFoldingPriorities)"/>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.CodeFolding.FoldingHighlightingConsumer.AddFolding(System.String,JetBrains.DocumentModel.DocumentRange,JetBrains.DocumentModel.DocumentRange,System.String,JetBrains.ReSharper.Daemon.CodeFolding.CodeFoldingPriorities)">
+            <summary>
+            Adds code folding which can be overridden by more important ones according to priority.<br/>  
+            Checks for range validity and normalization inside
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Daemon.DaemonBase">
+            <summary>
+            Class managing background code analysis
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Daemon.DaemonBase.IsSuspended">
+            <summary>
+            Suspend/resume error highlighting &amp; quickfixes activity
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Daemon.SolutionAnalysisConfiguration.PausedByUser">
+            <summary>
+            Whether the user has explicitly paused solution analysis in UI
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.SolutionAnalysisConfiguration.Pause(JetBrains.Lifetimes.Lifetime,System.String)">
+            <summary>
+            Temporary pauses the SWEA.
+            </summary>
+            <param name="pauseLifetime">pause interval</param>
+            <param name="reason">reason or caller of pause</param>
+        </member>
+        <member name="P:JetBrains.ReSharper.Daemon.SolutionAnalysisConfiguration.Paused">
+            <summary>
+            Whether SWEA is paused by any reason. Use <see cref="M:JetBrains.ReSharper.Daemon.SolutionAnalysisConfiguration.Pause(JetBrains.Lifetimes.Lifetime,System.String)"/> method to suspend the analysis temporary.
+            Will be set on UI thread
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Daemon.SolutionAnalysisConfiguration.CompletedOnceAfterStart">
+            <summary>
+            Analysis completed at least once after caches invalidation. Property is persisted by key <see cref="F:JetBrains.ReSharper.Daemon.SolutionAnalysisConfiguration.CompletedOncePersistentKey"/>. 
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Daemon.IdentifierTooltipProvider">
+            <summary>
+            A class that generates tooltips for highlighters.
+            Note: if your language supports both quick docs and tooltips,
+            this class will be ignored in Rider.
+            Quick docs will be shown on mouse hover instead.
+            See IdentifierTooltipRequest for details
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.IdentifierTooltipProvider.JetBrains#TextControl#DocumentMarkup#IHighlighterTooltipProvider#TryGetTooltip(JetBrains.TextControl.DocumentMarkup.IHighlighter,JetBrains.TextControl.DocumentMarkup.HighlighterTooltipKind)">
+            <inheritdoc />
+        </member>
+        <member name="F:JetBrains.ReSharper.Daemon.IdentifierTooltipProvider`1.RIDER_TOOLTIP_SEPARATOR">
+            <summary>
+            A way to have tooltip separated with horizontal line (&lt;hr size=1 noshade&gt; in HTML equivalent).
+            Needed in fsharp where we can only receive a list of all tooltips on current offset from the Compiler.Services
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.IL.Highlightings.IlTooltipProvider.JetBrains#TextControl#DocumentMarkup#IHighlighterTooltipProvider#TryGetTooltip(JetBrains.TextControl.DocumentMarkup.IHighlighter,JetBrains.TextControl.DocumentMarkup.HighlighterTooltipKind)">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.Impl.DaemonImpl.OnPsiModulesChange(JetBrains.ReSharper.Psi.Modules.PsiModuleChange)">
+            <summary>
+            remove invalidated daemons
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Daemon.Impl.DaemonStageManager">
+            <summary>Stores stages in topologically sorted state and manages their lifetimes.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Daemon.Impl.SlowTooltipProvider">
+            <summary>
+            Calculates tooltip inside ShouldShowToolTip method which is called in UI thread.
+            Use this provider only when there is no other way to calculate if a tooltip should be shown
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.Impl.VisibleDocumentDaemonProcess.Committer.DaemonResultCommitter.Step">
+            <summary>
+            Returns <c>true</c> when this Committer is done
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.Impl.VisibleDocumentDaemonProcess.RefreshMarkup">
+            <summary>
+            Workaround for the changed document id between runs
+            Ensure the daemon and DocumentMarkManager uses the same markup model
+            </summary>
+            <returns>True if markup model is the same</returns>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.HighlightingBasedHighlighterTooltipProviderBase.JetBrains#TextControl#DocumentMarkup#IHighlighterTooltipProvider#TryGetTooltip(JetBrains.TextControl.DocumentMarkup.IHighlighter,JetBrains.TextControl.DocumentMarkup.HighlighterTooltipKind)">
+            <inheritdoc />
+        </member>
+        <member name="T:JetBrains.ReSharper.Daemon.SolutionAnalysisService">
+            <summary>
+            Interface which is used by daemon to interact with SWEA
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Daemon.NuGet.NuGetSolutionAnalysisSuppressor">
+            <summary>
+            This component suppress SWA on some NuGet activities
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.NuGet.NuGetSolutionAnalysisSuppressor.SuppressSwaWhenContentFileStorageIsBusy">
+            <summary>
+            Typically, NuGetContentFileStorage is busy when we discovered some new NuGet packages
+            (in some cases, it's busy "just in case", but we will optimize it later).
+            During the NuGetContentFileStorage processing session, SWA should be disabled because some projects may contain
+            content files from NuGet packages which should be ignored by SWA, but we don't know which files are content
+            files yet.
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Daemon.OptionPages.Inspections.CodeInspectionSettingsPage">
+            <summary>
+              Main settings for the code inspection.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.Syntax.SyntaxHighlightingManager.CreateProcess(JetBrains.ReSharper.Feature.Services.Daemon.IDaemonProcess,JetBrains.Application.Settings.IContextBoundSettingsStore,JetBrains.ReSharper.Psi.Tree.IFile)">
+            <summary>
+            Method for providing syntax highlighting based on parsing and resolve results (soft keywords, doc comments, etc.) 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.Syntax.SyntaxHighlightingManager.CreateSyntaxHighlighting">
+            <summary>
+            !!!Currently not used!!!
+            Method for providing lexer-based syntax highlighting
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Daemon.Syntax.SyntaxHighlightingProcessor">
+            <summary>
+            A base class for providing syntax highlighing during <see cref="T:JetBrains.ReSharper.Feature.Services.Daemon.IDaemon"/> analysis
+            <see cref="T:JetBrains.ReSharper.Daemon.Syntax.SyntaxHighlightingManager"/> for registering a syntax highlighting.
+            Also it extends <see cref="T:JetBrains.ReSharper.Daemon.SyntaxHighlighting.DefaultSyntaxHighlighting"/> which is used for syntax highlighting
+            when only a lexer is available (e.g. for code samples in Settings UI). 
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.UsageChecking.SwaExtension.ISwaExtensionData.AddData(JetBrains.ReSharper.Daemon.UsageChecking.SwaExtension.ISwaExtensionData)">
+            <summary>
+            Add data from another `ISwaExtensionData`. This method is called when several data containers
+            was created for IPsiSourceFile (e.g, for each method in c# separated data container is created)
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.UsageChecking.SwaExtension.ISwaExtensionData.ToInfo(JetBrains.ReSharper.Daemon.UsageChecking.CollectUsagesStagePersistentData)">
+            <summary>
+            Convert extension data to serialized extension data
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.UsageChecking.SwaExtension.SwaExtensionProviderBase.CreateUsageDataElement(JetBrains.ReSharper.Daemon.UsageChecking.UsageData)">
+            <summary>
+            Creates new extension data container for current usage data.
+            </summary>
+            <param name="owner">Current usage data</param>
+            <returns>Extension data container</returns>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.UsageChecking.SwaExtension.SwaExtensionProviderBase.Merge(JetBrains.ReSharper.Daemon.UsageChecking.SwaExtension.ISwaExtensionInfo,JetBrains.ReSharper.Daemon.UsageChecking.SwaExtension.ISwaExtensionInfo)">
+            <summary>
+            Calculates diff between `oldData` and `newData` and updates internal structures
+            </summary>
+            <param name="oldData">Previous data for source file. Can be null, e.g loading swa caches</param>
+            <param name="newData">Actual data for source file. Can be null, e.g file was deleted</param>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.UsageChecking.SwaExtension.SwaExtensionProviderBase.Clear">
+            <summary>
+            Clear internal data
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.UsageChecking.SwaExtension.SwaExtensionProviderBase.IsApplicable(JetBrains.ReSharper.Psi.IPsiSourceFile)">
+            <summary>
+            </summary>
+            <param name="psiSourceFile"></param>
+            <returns>true if this provider applicable to file</returns>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.Util.DaemonEnablingUtil.InvalidateCacheOnChange(JetBrains.ReSharper.Psi.GeneratedCode.DaemonExcludedFilesManager,JetBrains.DocumentModel.IDocument)">
+            <summary>
+            !HACKY!
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.VisualElements.ColorHighlighting.ColorIconAdornment.JetBrains#TextControl#DocumentMarkup#IntraTextAdornments#IHighlighterIntraTextAdornmentProvider#CreateDataModel(JetBrains.TextControl.DocumentMarkup.IHighlighter)">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.VisualElements.ColorHighlighting.ColorIconAdornment.JetBrains#TextControl#DocumentMarkup#IntraTextAdornments#IHighlighterIntraTextAdornmentProvider#IsValid(JetBrains.TextControl.DocumentMarkup.IHighlighter)">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.VisualElements.ColorHighlightingTooltipProvider.JetBrains#TextControl#DocumentMarkup#IHighlighterTooltipProvider#TryGetTooltip(JetBrains.TextControl.DocumentMarkup.IHighlighter,JetBrains.TextControl.DocumentMarkup.HighlighterTooltipKind)">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.VisualElements.DaemonIndicatorState.Equals(JetBrains.ReSharper.Daemon.VisualElements.DaemonIndicatorState)">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.VisualElements.DaemonIndicatorState.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.VisualElements.DaemonIndicatorState.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.VisualElements.DaemonIndicatorState.ToString">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.VisualElements.DaemonIndicatorStates.GetDaemonIndicatorIcon(JetBrains.ReSharper.Daemon.VisualElements.DaemonIndicatorState@,JetBrains.TextControl.DocumentMarkup.HighlighterCountsByKinds@,System.Boolean)">
+            <summary>
+            Returns an indicator icon id to be shown on error stripe indicator.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.VisualElements.DaemonIndicatorStates.GetDaemonIndicatorText(JetBrains.ReSharper.Daemon.VisualElements.DaemonIndicatorState,JetBrains.TextControl.DocumentMarkup.HighlighterCountsByKinds,System.Boolean)">
+            <summary>
+            Returns an indicator tooltip.
+            </summary>
+        </member>
+    </members>
+</doc>

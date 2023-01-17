@@ -1,0 +1,291 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.Platform.Test.Integration.FrameworkCommon</name>
+    </assembly>
+    <members>
+        <member name="M:JetBrains.Platform.Test.Integration.FrameworkCommon.Extensions.ColorExtensions.ToXyz(System.Drawing.Color)">
+            <summary>
+            Converts RGB to CIE XYZ (CIE 1931 color space)
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.Test.Integration.FrameworkCommon.Extensions.ColorExtensions.Fxyz(System.Double)">
+            <summary>
+            XYZ to L*a*b* transformation function.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.Test.Integration.FrameworkCommon.Extensions.ColorExtensions.ToLab(System.Drawing.Color)">
+            <summary>
+            Converts CIEXYZ to CIELab.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.Test.Integration.FrameworkCommon.Helpers.InTestPropertyEx.WaitForValueAsync``1(JetBrains.DataFlow.IProperty{``0},JetBrains.Lifetimes.Lifetime,JetBrains.Application.Threading.IThreading,System.TimeSpan,System.Func{``0,System.Threading.Tasks.Task{System.Boolean}},JetBrains.Application.Threading.Tasks.Scheduling)">
+            <summary>
+            Async wait for the property to receive a value.
+            </summary>
+            <param name="property">Property to check.</param>
+            <param name="lifetime">Lifetime</param>
+            <param name="threading">Threading</param>
+            <param name="timeout">Wait timeout. If timeout is expired, the exception is thrown.</param>
+            <param name="predicate">The async condition for the property value.</param>
+            <param name="scheduling">The thread on which the predicate is executed.</param>
+            <returns>The value of the property, if the condition is satisfied.</returns>
+        </member>
+        <member name="M:JetBrains.Platform.Test.Integration.FrameworkCommon.Helpers.InTestTaskEx.GetResultWithTimeoutAsync``1(System.Threading.Tasks.Task{``0},JetBrains.Lifetimes.Lifetime,System.TimeSpan,System.String)">
+            <summary>
+            For integration tests only. Do not use it in production code!
+            If timeout has expired, the task becomes abandoned, and it could lead to unpredictable side effects.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.Test.Integration.FrameworkCommon.Helpers.InTestTaskEx.While(JetBrains.Application.Threading.Tasks.ITaskHost,JetBrains.Lifetimes.Lifetime,System.Func{System.Threading.Tasks.Task{System.Boolean}},System.Nullable{System.TimeSpan},JetBrains.Threading.OnWaitTimeout)">
+            <summary>
+            Runs an async while loop for the condition.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.Test.Integration.FrameworkCommon.Helpers.MessagePumpAsyncHelper.ProcessDispatcherMessagesOnceAsync(JetBrains.Application.Threading.IThreading,JetBrains.Lifetimes.Lifetime,System.Nullable{System.TimeSpan})">
+            <summary>
+            Wait for messages in the dispatcher queue get pumped.
+            An async analogue of <see cref="M:JetBrains.Threading.JetDispatcher.PumpMessagesOnce"/>.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.Test.Integration.FrameworkCommon.IntTestCategories.BasicAcceptance">
+            Triggered every robot-merge (Trigger Pull Request Merge).
+            Essential test set for basic quality assurance
+            DO NOT use this category without QA team approval (Alexander.Petrovsky)
+        </member>
+        <member name="F:JetBrains.Platform.Test.Integration.FrameworkCommon.IntTestCategories.Temp">
+            Temp category to run only specific tests (for example, to try developer's fix)
+        </member>
+        <member name="F:JetBrains.Platform.Test.Integration.FrameworkCommon.IntTestCategories.GoldScreenshots">
+            Category to run UI specific tests (when images are used as gold files)
+        </member>
+        <member name="F:JetBrains.Platform.Test.Integration.FrameworkCommon.IntTestCategories.JustForRunManually">
+            Excluded from all triggers.
+            Will not run on server
+        </member>
+        <member name="F:JetBrains.Platform.Test.Integration.FrameworkCommon.IntTestCategories.AspNet">
+            Triggered daily (Performance InTests/Run all Performance InTests.
+            Performance InTests, downloaded from https://repo.labs.intellij.net/dotnet-intest-data/ in zip's, running with PerformanceTestAttribute
+        </member>
+        <member name="F:JetBrains.Platform.Test.Integration.FrameworkCommon.IntTestCategories.DotCover.InTest">
+            All dotCover in-tests
+        </member>
+        <member name="F:JetBrains.Platform.Test.Integration.FrameworkCommon.IntTestCategories.DotCover.VS">
+            dotCover installed as Visual Studio extension
+        </member>
+        <member name="F:JetBrains.Platform.Test.Integration.FrameworkCommon.IntTestCategories.DotCover.Standalone">
+            dotCover installed as standalone product
+        </member>
+        <member name="F:JetBrains.Platform.Test.Integration.FrameworkCommon.IntTestCategories.DotCover.Continuous">
+            Continuous testing coverage
+        </member>
+        <member name="F:JetBrains.Platform.Test.Integration.FrameworkCommon.IntTestCategories.DotCover.DotnetDotCover">
+            Tests using dotnet-dotcover.exe
+        </member>
+        <member name="M:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.Components.IUiaContext.GetYieldToUia(JetBrains.Lifetimes.Lifetime)">
+            <summary>
+            Use the <c>await</c> construct on this value to switch your <c>async</c> execution flow to the UIA thread.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.CustomSerializationContainer.Wrap(System.Object)">
+            <summary>
+            Wrap object into container, which can be serialized by WCF
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.CustomSerializationContainer.Unwrap(System.Object)">
+            <summary>
+            Unrap value. It is pair operation to <see cref="M:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.CustomSerializationContainer.Wrap(System.Object)"/>
+            It returns <paramref name="value"/> if <paramref name="value"/> cannot be wrapped before
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.CustomSerializationContainer.WrapArray(System.Object[])">
+            <summary>
+            Wrap each object in array into container, which can be serialized by WCF
+            
+            See <see cref="M:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.CustomSerializationContainer.Wrap(System.Object)" />
+            </summary>
+            <param name="methodParams"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.CustomSerializationContainer.UnwrapArray(System.Object[])">
+            <summary>
+            Uwrap each object in array. It is pair operation to <see cref="M:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.CustomSerializationContainer.WrapArray(System.Object[])"/>
+            
+            See <see cref="M:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.CustomSerializationContainer.Unwrap(System.Object)" />
+            </summary>
+            <param name="methodParams"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.IIntegrationTestsServer.GetRunningTestMethod">
+            <summary>
+            Gets the TestMethod currently running on the server, or <c>Null</c> if none.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.IIntegrationTestsServer.GetRunningTestName">
+            <summary>
+            Gets the name of the test currently running on the server, or <c>Null</c> if none.
+            This is the name passed to <see cref="M:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.IIntegrationTestsServer.RunTest(System.String,JetBrains.Platform.Test.Integration.FrameworkCommon.Server.InTestInfo,JetBrains.Platform.Test.Integration.FrameworkCommon.Server.TestRunFlags,System.TimeSpan,System.Nullable{JetBrains.Diagnostics.LoggingLevel})" />.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.IIntegrationTestsServer.GetTimeoutForTest">
+            <summary>
+            Gets the timeout for the test.
+            This is the value passed to <see cref="M:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.IIntegrationTestsServer.RunTest(System.String,JetBrains.Platform.Test.Integration.FrameworkCommon.Server.InTestInfo,JetBrains.Platform.Test.Integration.FrameworkCommon.Server.TestRunFlags,System.TimeSpan,System.Nullable{JetBrains.Diagnostics.LoggingLevel})" />.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.IIntegrationTestsServer.RunTest(System.String,JetBrains.Platform.Test.Integration.FrameworkCommon.Server.InTestInfo,JetBrains.Platform.Test.Integration.FrameworkCommon.Server.TestRunFlags,System.TimeSpan,System.Nullable{JetBrains.Diagnostics.LoggingLevel})">
+            <summary>
+            Runs a test method on the server.
+            This method does not return until the execution is complete, so it has the full test result and is subject to operation timeouts.
+            </summary>
+            <param name="testName">A freehand name for the test. While the test is running, is returned from <see cref="M:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.IIntegrationTestsServer.GetRunningTestName" />.</param>
+            <param name="testInfo">Integration test class and method info.</param>
+            <param name="flags">Flags to control how the test body is executed on the intest server.</param>
+            <param name="timeoutForTest">While the test is running, is returned from <see cref="M:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.IIntegrationTestsServer.GetTimeoutForTest" />.</param>
+            <param name="loggingLevel"></param>
+            <returns>The execution result, either a success or a list of exceptions that occurred during the test run. This includes both test method thrown exceptions and all of the async exceptions reported to the logger in the time while the test were running.</returns>
+        </member>
+        <member name="F:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.IntegrationTestsServerConstants.IsRemoteRunEnvVar">
+            <summary>
+            Environment variable is set to "True" when integration tests are running in a virtual machine.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.IntegrationTestsServerConstants.EnvInTestRunOnSingleMachine">
+            <summary>
+            Environment variable is set to "True" when tests are running in a single machine (on an agent).
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.IntegrationTestsServerConstants.EnvInTestCheckoutDir">
+            <summary>
+            Env var name. <see cref="T:System.String"/>.
+            Checkout directory
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.IntegrationTestsServerConstants.IsRunningInVM">
+            <summary>
+            Whether integration tests are running in a separate virtual machine.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.IntegrationTestsServerConstants.IsRunningOnSingleMachine">
+            <summary>
+            Whether integration tests are running on a single machine.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.IntegrationTestsServerStub">
+            <summary>
+            The <c>IntegrationTestsServer</c> lives in the separate plugin assembly. Here's the part of it that has to be shared with the client.
+            </summary>
+            <summary>
+            The <c>IntegrationTestsServer</c> lives in the separate plugin assembly. Here's the part of it that has to be shared with the client.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.IntegrationTestsServerStub.CreateServiceBinding">
+            <summary>
+            Gets a binding for client/server WCF channels.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.IntegrationTestsServerStub.GetNetTcpWcfServiceAddress(System.String,System.String)">
+            <summary>
+            Address of the IntegrationTestsServer WCF Service running on server.
+            </summary>
+            <param name="ip">IP of server</param>
+            <param name="pathValue"></param>
+        </member>
+        <member name="F:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.IntegrationTestsServerStub.IntegrationTestsServerModeCommandLineSwitchName">
+            <summary>
+            Specify this command line key for the process to make sure the integration test server component is enabled on start.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.IntegrationTestsServerStub.CreateNamedPipeBinding">
+            <summary>
+            Gets a binding for client/server WCF channels.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.IntegrationTestsServerStub.GetPipeWcfServiceAddress(System.String)">
+            <summary>
+            Address of the IntegrationTestsServer WCF Service running on server.
+            </summary>
+            <param name="pathValue"></param>
+        </member>
+        <member name="T:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.ITestWithSite">
+            <summary>
+            A test which can be sited into the product container context when executed in the integration test server.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.ITestWithSite.SetSite(JetBrains.Lifetimes.Lifetime,JetBrains.Application.Components.IComponentContainer)">
+            <summary>
+            Sites the test. This allows the test code to access the running components.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.TaskResult">
+            <summary>
+            Throwing an exception thru a channel kills that channel, so we'd rather transfer the exception data.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.TaskResult.HasIgnoreExceptions">
+            <summary>
+            Whether there're <see cref="T:NUnit.Framework.IgnoreException"/>s among <see cref="F:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.TaskResult.myExceptions"/>.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.TaskResult.HasRequireCaptureTracesExceptions">
+            <summary>
+            Whether there're <see cref="T:JetBrains.Platform.Test.Integration.FrameworkCommon.RequireCaptureTracesException"/>s among <see cref="F:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.TaskResult.myExceptions"/>.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.TaskResult.NewServerPid">
+            <summary>
+            If server hasn't been created it will be InTestServerId.DefaultInstance
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.TaskResult.SetNewServerPid(System.Int32)">
+            <summary>
+            Pid must be (int)InTestServerId.DefaultInstance if new server instance isn't created.
+            Otherwise pid must be the new server process id (pid)
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.Test.Integration.FrameworkCommon.Server.TestRunFlags.RunOnMainThread">
+            <summary>
+            The legacy behavior, to run the test method body on the main thread and make sure it's not all-guarded.
+            Omitting this flag will allow for running test body free-threaded with tasks enabled.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.Test.Integration.FrameworkCommon.Utils.MainWindowDecal">
+            <summary>
+            Places a decal over the application main window to indicate its special mode.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.Test.Integration.FrameworkCommon.Utils.MainWindowDecal.Update">
+            <summary>
+            Updates the visual presentation on the screen to respect the new coordinates.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.Test.Integration.FrameworkCommon.Utils.MainWindowDecal.CheckCreateWindow">
+            <summary>
+            Creates the window when it's finally needed.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.Test.Integration.FrameworkCommon.Utils.MainWindowDecalInTest">
+            <summary>
+            Intest-specific, incapsulates colors, manages threading.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.Test.Integration.FrameworkCommon.Utils.ParentProcessWatchdog">
+            <summary>
+            Checks if the parent process is running. If not, shuts down.
+            If parent process is not TaskRunner - watches also grandparent
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.Test.Integration.FrameworkCommon.Utils.ParentProcessWatchdog.ourGracefulShutdownTimeout">
+            <summary>
+            Allow one minute for shutting down gracefully, by closing the main window, then kill self process.
+            </summary>
+        </member>
+    </members>
+</doc>

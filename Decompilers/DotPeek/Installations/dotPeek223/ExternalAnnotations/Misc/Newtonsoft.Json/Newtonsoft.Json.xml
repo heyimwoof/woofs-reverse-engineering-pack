@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<assembly name="Newtonsoft.Json">
+  <member name="T:Newtonsoft.Json.JsonPropertyAttribute">
+    <attribute ctor="M:JetBrains.Annotations.MeansImplicitUseAttribute.#ctor(JetBrains.Annotations.ImplicitUseKindFlags)">
+      <argument>7</argument>
+    </attribute>
+  </member>
+  <member name="T:Newtonsoft.Json.JsonObjectAttribute">
+    <attribute ctor="M:JetBrains.Annotations.MeansImplicitUseAttribute.#ctor(JetBrains.Annotations.ImplicitUseTargetFlags)">
+      <argument>3</argument>
+    </attribute>
+  </member>
+  <member name="T:Newtonsoft.Json.JsonConstructorAttribute">
+    <attribute ctor="M:JetBrains.Annotations.MeansImplicitUseAttribute.#ctor"/>
+  </member>
+  <member name="M:Newtonsoft.Json.JsonConvert.DeserializeObject``1(System.String)">
+    <typeparameter name="T">
+      <attribute ctor="M:JetBrains.Annotations.MeansImplicitUseAttribute.#ctor(JetBrains.Annotations.ImplicitUseKindFlags)">
+        <argument>8</argument>
+      </attribute>
+    </typeparameter>
+  </member>
+  <member name="M:Newtonsoft.Json.JsonConvert.DeserializeObject``1(System.String,Newtonsoft.Json.JsonConverter[])">
+    <typeparameter name="T">
+      <attribute ctor="M:JetBrains.Annotations.MeansImplicitUseAttribute.#ctor(JetBrains.Annotations.ImplicitUseKindFlags)">
+        <argument>8</argument>
+      </attribute>
+    </typeparameter>
+  </member>
+  <member name="M:Newtonsoft.Json.JsonConvert.DeserializeObject``1(System.String,Newtonsoft.Json.JsonSerializerSettings)">
+    <typeparameter name="T">
+      <attribute ctor="M:JetBrains.Annotations.MeansImplicitUseAttribute.#ctor(JetBrains.Annotations.ImplicitUseKindFlags)">
+        <argument>8</argument>
+      </attribute>
+    </typeparameter>
+  </member>
+  <member name="M:Newtonsoft.Json.JsonConvert.DeserializeObjectAsync``1(System.String)">
+    <typeparameter name="T">
+      <attribute ctor="M:JetBrains.Annotations.MeansImplicitUseAttribute.#ctor(JetBrains.Annotations.ImplicitUseKindFlags)">
+        <argument>8</argument>
+      </attribute>
+    </typeparameter>
+  </member>
+  <member name="M:Newtonsoft.Json.JsonConvert.DeserializeObjectAsync``1(System.String,Newtonsoft.Json.JsonSerializerSettings)">
+    <typeparameter name="T">
+      <attribute ctor="M:JetBrains.Annotations.MeansImplicitUseAttribute.#ctor(JetBrains.Annotations.ImplicitUseKindFlags)">
+        <argument>8</argument>
+      </attribute>
+    </typeparameter>
+  </member>
+  <member name="M:Newtonsoft.Json.Linq.JToken.ToObject``1">
+    <typeparameter name="T">
+      <attribute ctor="M:JetBrains.Annotations.MeansImplicitUseAttribute.#ctor(JetBrains.Annotations.ImplicitUseKindFlags)">
+        <argument>8</argument>
+      </attribute>
+    </typeparameter>
+  </member>
+  <member name="M:Newtonsoft.Json.Linq.JToken.ToObject``1(Newtonsoft.Json.JsonSerializer)">
+    <typeparameter name="T">
+      <attribute ctor="M:JetBrains.Annotations.MeansImplicitUseAttribute.#ctor(JetBrains.Annotations.ImplicitUseKindFlags)">
+        <argument>8</argument>
+      </attribute>
+    </typeparameter>
+  </member>
+</assembly>

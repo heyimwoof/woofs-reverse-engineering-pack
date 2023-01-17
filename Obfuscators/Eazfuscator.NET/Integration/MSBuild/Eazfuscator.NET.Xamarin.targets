@@ -1,0 +1,57 @@
+<!--
+***********************************************************************************************
+Eazfuscator.NET.Xamarin.targets
+
+WARNING:  DO NOT MODIFY this file. Incorrect changes to this file will make it impossible to
+          load or build your Eazfuscator.NET projects from the command-line or the IDE.
+
+Copyright (C) 2008-2020 Gapotchenko
+***********************************************************************************************
+-->
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Import Project="Eazfuscator.NET.Common.Tasks.targets" Condition=" '$(Eazfuscator_NET_CommonTasksImported)' == '' " />
+  <Import Project="Eazfuscator.NET.Cooperation.targets" Condition=" '$(Eazfuscator_NET_Cooperation_Imported)' == '' " />
+
+  <Target Name="_Eazfuscator_NET_Xamarin_PrepareForBuild"
+          BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <_Eazfuscator_NET_Xamarin_Triggered>false</_Eazfuscator_NET_Xamarin_Triggered>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_Xamarin_Trigger"
+          Condition=" '$(TargetFrameworkIdentifier)' == 'MonoAndroid' OR '$(TargetFrameworkIdentifier)' == 'MonoTouch' OR '$(TargetFrameworkIdentifier)' == 'MonoMac' OR $(TargetFrameworkIdentifier.StartsWith('Xamarin.', StringComparison.OrdinalIgnoreCase)) ">
+    <PropertyGroup>
+      <_Eazfuscator_NET_Xamarin_Triggered>true</_Eazfuscator_NET_Xamarin_Triggered>
+      <_Eazfuscator_NET_TrackCompilationTimestamps>true</_Eazfuscator_NET_TrackCompilationTimestamps>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_Xamarin"
+          Condition=" '$(_Eazfuscator_NET_Xamarin_Triggered)' == 'true' "
+          DependsOnTargets="$(_Eazfuscator_NET_CoreCompileTargets);$(_Eazfuscator_NET_Cooperation_DependsOnTargets)"
+	  AfterTargets="AfterCompile">
+    <CallTarget Targets="_Eazfuscator_NET_RetargetToIntermediate;_Eazfuscator_NET" />
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_Xamarin_RemoveReferencePaths"
+          Condition=" '$(_Eazfuscator_NET_Xamarin_Triggered)' == 'true' AND '$(EazfuscatorIntegration)' == 'MSBuild' AND '$(EazfuscatorSkipExecution)' != 'true' "
+          DependsOnTargets="_Eazfuscator_NET_Xamarin;_Eazfuscator_NET_GetRemovedReferencePaths"
+          BeforeTargets="_ResolveAssemblies">
+    <ItemGroup>
+      <ReferenceCopyLocalPaths Remove="@(_Eazfuscator_NET_RemovedReferencePaths)" />
+      <_ReferenceDependencyPaths Remove="@(_Eazfuscator_NET_RemovedReferencePaths)" />
+      <_ReferencePath Remove="@(_Eazfuscator_NET_RemovedReferencePaths)" />
+    </ItemGroup>
+  </Target>
+
+  <PropertyGroup>
+    <_Eazfuscator_NET_TriggerTargets>
+      $(_Eazfuscator_NET_TriggerTargets);
+      _Eazfuscator_NET_Xamarin_Trigger
+    </_Eazfuscator_NET_TriggerTargets>
+  </PropertyGroup>
+
+</Project>

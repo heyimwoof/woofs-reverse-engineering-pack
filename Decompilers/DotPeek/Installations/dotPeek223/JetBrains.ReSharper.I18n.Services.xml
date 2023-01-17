@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.ReSharper.I18n.Services</name>
+    </assembly>
+    <members>
+        <member name="M:JetBrains.ReSharper.I18n.Services.ElementFactory.CreateByValue(JetBrains.ReSharper.Psi.Tree.ITreeNode,System.String)">
+            <summary>
+            Create literal expression for the specified <paramref name="value"/>.
+            </summary>
+            <param name="element">PSI module.</param>
+            <param name="value">literal value.</param>
+            <returns>if success - instance of <see cref="T:JetBrains.ReSharper.Psi.Tree.IExpression"/>; otherwise - <c>null</c>.</returns>
+        </member>
+        <member name="M:JetBrains.ReSharper.I18n.Services.ElementFactory.CreateByValue(JetBrains.ReSharper.Psi.Tree.ITreeNode,JetBrains.ReSharper.Psi.ConstantValue)">
+            <summary>
+            Create literal expression for the specified <paramref name="value"/>.
+            </summary>
+            <param name="element">PSI module.</param>
+            <param name="value">literal value.</param>
+            <returns>if success - instance of <see cref="T:JetBrains.ReSharper.Psi.Tree.IExpression"/>; otherwise - <c>null</c>.</returns>
+        </member>
+        <member name="M:JetBrains.ReSharper.I18n.Services.ElementFactory.CreateExpression(JetBrains.ReSharper.Psi.Tree.ITreeNode,JetBrains.ReSharper.Psi.IDeclaredElement)">
+            <summary>
+            Create expression for the specified <paramref name="element"/>.
+            </summary>
+            <param name="element">PSI module</param>
+            <param name="declaredElement">declared element.</param>
+            <returns>if success - instance of <see cref="T:JetBrains.ReSharper.Psi.Tree.IExpression"/>; otherwise - <c>null</c>.</returns>
+        </member>
+        <member name="M:JetBrains.ReSharper.I18n.Services.ElementFactory.CreateExpression(JetBrains.ReSharper.Psi.Tree.ITreeNode,System.String,System.Object[])">
+            <summary>
+            Create expression by <paramref name="format"/> and optional <paramref name="args"/>.
+            </summary>
+            <param name="element">PSI module.</param>
+            <param name="format">Format string is specified with $0, $1, ... as placeholders for arguments</param>
+            <param name="args">arguments for placeholders</param>
+            <returns>if success - instance of <see cref="T:JetBrains.ReSharper.Psi.Tree.IExpression"/>; otherwise - <c>null</c>.</returns>
+        </member>
+        <member name="M:JetBrains.ReSharper.I18n.Services.ElementFactory.CreateByValue(JetBrains.ReSharper.Psi.IClrDeclaredElement,System.String)">
+            <summary>
+            Create literal expression for the specified <paramref name="value"/>.
+            </summary>
+            <param name="element">PSI module.</param>
+            <param name="value">literal value.</param>
+            <returns>if success - instance of <see cref="T:JetBrains.ReSharper.Psi.Tree.IExpression"/>; otherwise - <c>null</c>.</returns>
+        </member>
+        <member name="M:JetBrains.ReSharper.I18n.Services.ElementFactory.CreateByValue(JetBrains.ReSharper.Psi.IClrDeclaredElement,JetBrains.ReSharper.Psi.ConstantValue)">
+            <summary>
+            Create literal expression for the specified <paramref name="value"/>.
+            </summary>
+            <param name="element">PSI module.</param>
+            <param name="value">literal value.</param>
+            <returns>if success - instance of <see cref="T:JetBrains.ReSharper.Psi.Tree.IExpression"/>; otherwise - <c>null</c>.</returns>
+        </member>
+        <member name="M:JetBrains.ReSharper.I18n.Services.ElementFactory.CreateExpression(JetBrains.ReSharper.Psi.IClrDeclaredElement,JetBrains.ReSharper.Psi.IDeclaredElement)">
+            <summary>
+            Create expression for the specified <paramref name="element"/>.
+            </summary>
+            <param name="element">PSI module</param>
+            <param name="declaredElement">declared element.</param>
+            <returns>if success - instance of <see cref="T:JetBrains.ReSharper.Psi.Tree.IExpression"/>; otherwise - <c>null</c>.</returns>
+        </member>
+        <member name="M:JetBrains.ReSharper.I18n.Services.ElementFactory.CreateExpression(JetBrains.ReSharper.Psi.IClrDeclaredElement,System.String,System.Object[])">
+            <summary>
+            Create expression by <paramref name="format"/> and optional <paramref name="args"/>.
+            </summary>
+            <param name="element">PSI module.</param>
+            <param name="format">Format string is specified with $0, $1, ... as placeholders for arguments</param>
+            <param name="args">arguments for placeholders</param>
+            <returns>if success - instance of <see cref="T:JetBrains.ReSharper.Psi.Tree.IExpression"/>; otherwise - <c>null</c>.</returns>
+        </member>
+        <member name="M:JetBrains.ReSharper.I18n.Services.ElementFactoryService.Get(JetBrains.ReSharper.Psi.PsiLanguageType)">
+            <summary>
+            Gets instance of <see cref="T:JetBrains.ReSharper.I18n.Services.ElementFactoryService"/> for the specified <paramref name="language"/>.
+            </summary>
+            <param name="language">factory language.</param>
+            <returns>instance of <see cref="T:JetBrains.ReSharper.I18n.Services.ElementFactoryService"/></returns>
+        </member>
+        <member name="M:JetBrains.ReSharper.I18n.Services.ElementFactoryService.CreateByValue(JetBrains.ReSharper.Psi.ConstantValue)">
+            <summary>
+            Create literal expression for the specified <paramref name="value"/>.
+            </summary>
+            <param name="value">literal value.</param>
+            <returns>if success - instance of <see cref="T:JetBrains.ReSharper.Psi.Tree.IExpression"/>; otherwise - <c>null</c>.</returns>
+        </member>
+        <member name="M:JetBrains.ReSharper.I18n.Services.ElementFactoryService.CreateExpression(JetBrains.ReSharper.Psi.Modules.IPsiModule,JetBrains.ReSharper.Psi.IDeclaredElement)">
+            <summary>
+            Create expression for the specified <paramref name="declaredElement"/>.
+            </summary>
+            <param name="module">psi module</param>
+            <param name="declaredElement">declared element.</param>
+            <returns>if success - instance of <see cref="T:JetBrains.ReSharper.Psi.Tree.IExpression"/>; otherwise - <c>null</c>.</returns>
+        </member>
+        <member name="M:JetBrains.ReSharper.I18n.Services.ElementFactoryService.CreateExpression(JetBrains.ReSharper.Psi.Modules.IPsiModule,System.String,System.Object[])">
+            <summary>
+            Create expression by <paramref name="format"/> and optional <paramref name="args"/>.
+            </summary>
+            <param name="module">PSI module.</param>
+            <param name="format">Format string is specified with $0, $1, ... as placeholders for arguments</param>
+            <param name="args">arguments for placeholders</param>
+            <returns>if success - instance of <see cref="T:JetBrains.ReSharper.Psi.Tree.IExpression"/>; otherwise - <c>null</c>.</returns>
+        </member>
+        <member name="F:JetBrains.ReSharper.I18n.Services.LocalizableInspector.Optimistic">
+            <summary>
+            Analyze only localizable elements
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.I18n.Services.LocalizableInspector.Pessimistic">
+            <summary>
+            Analyze all possible elements
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.I18n.Services.PsiService.LanguageType">
+            <summary>
+            Gets the type of the language.
+            </summary>
+            <value>The type of the language.</value>
+        </member>
+        <member name="M:JetBrains.ReSharper.I18n.Services.PsiService.GetInstance(JetBrains.ReSharper.Psi.PsiLanguageType)">
+            <summary>
+            Gets the instance.
+            </summary>
+            <value>The instance.</value>
+        </member>
+        <member name="M:JetBrains.ReSharper.I18n.Services.PsiService.GetInstance(JetBrains.ReSharper.Psi.Tree.ITreeNode)">
+            <summary>
+            Gets the instance.
+            </summary>
+            <param name="element">The declared element.</param>
+            <returns></returns>
+        </member>
+        <member name="M:JetBrains.ReSharper.I18n.Services.PsiService.GetArgumentValue(JetBrains.ReSharper.Psi.Tree.IArgument)">
+            <summary>
+            Gets the argument value.
+            </summary>
+            <param name="argument">The argument.</param>
+            <returns></returns>
+        </member>
+        <member name="M:JetBrains.ReSharper.I18n.Services.Refactoring.ExtractToResource.MoveToResourceDrivenWorkflow.PreExecute(JetBrains.Application.Progress.IProgressIndicator)">
+            <summary>
+             Performs pre-execute steps
+             </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.I18n.Services.Refactoring.Inline.IResourceInliner.Priority">
+            <summary>
+            Inliner with the biggest value will be first.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>dotPeek</name>
+    </assembly>
+    <members>
+        <member name="T:JetBrains.DotPeek.Actions.DotPeekViewParameterInfoPlaceholderActionGroup">
+            <summary>
+            Marks insertion location inside <see cref="T:JetBrains.DotPeek.Actions.DotPeekViewActionGroup" />.
+            </summary>
+        </member>
+        <member name="T:JetBrains.DotPeek.Actions.DotPeekViewParameterInfoZonedInserterActionGroup">
+            <summary>
+            Zoned. Inserts its action if available into the placeholder.
+            </summary>
+        </member>
+        <member name="T:JetBrains.DotPeek.AssemblyProperties.AssemblyPropertiesControl">
+            <summary>
+            Interaction logic for AssemblyPropertiesControl.xaml
+            </summary>
+            <summary>
+            AssemblyPropertiesControl
+            </summary>
+        </member>
+        <member name="M:JetBrains.DotPeek.AssemblyProperties.AssemblyPropertiesControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:JetBrains.DotPeek.Daemon.CSharp.Stages.CSharpContextualKeywordTooltipProvider.JetBrains#TextControl#DocumentMarkup#IHighlighterTooltipProvider#TryGetTooltip(JetBrains.TextControl.DocumentMarkup.IHighlighter,JetBrains.TextControl.DocumentMarkup.HighlighterTooltipKind)">
+            <inheritdoc />
+        </member>
+        <member name="T:JetBrains.DotPeek.Options.Pages.View.FontFamilyAndSizeView">
+            <summary>
+            FontFamilyAndSizeView
+            </summary>
+        </member>
+        <member name="M:JetBrains.DotPeek.Options.Pages.View.FontFamilyAndSizeView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.DotPeek.Options.Pages.View.SymbolServerAddressView">
+            <summary>
+            SymbolServerAddressView
+            </summary>
+        </member>
+        <member name="M:JetBrains.DotPeek.Options.Pages.View.SymbolServerAddressView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.DotPeek.Options.Pages.View.SymbolServerPortView">
+            <summary>
+            SymbolServerPortView
+            </summary>
+        </member>
+        <member name="M:JetBrains.DotPeek.Options.Pages.View.SymbolServerPortView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.DotPeek.Options.Pages.View.SymbolServerTutorialLinkView">
+            <summary>
+            SymbolServerTutorialLinkView
+            </summary>
+        </member>
+        <member name="M:JetBrains.DotPeek.Options.Pages.View.SymbolServerTutorialLinkView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.DotPeek.Options.Pages.DotPeekEnvironmentPage">
+            <summary>
+            Root options page for the global environment options.
+            </summary>
+        </member>
+        <member name="M:JetBrains.DotPeek.SymbolServer.InMemoryAssemblyByPdbProvider.GetMemoryModulesFileNames(System.String)">
+            <summary>
+            Gets file names of modules which names start with name
+            </summary>
+        </member>
+        <member name="M:JetBrains.DotPeek.SymbolServer.SymbolServer.StartHandlePdbRequest(System.Net.HttpListenerContext,JetBrains.Metadata.Utils.PE.Directories.DebugInfoType)">
+            <summary>
+            Sends first 32 bytes of pdb
+            (StartHandlePdbRequest should be executed before FinishHandlePdbRequest)
+            </summary>
+        </member>
+        <member name="M:JetBrains.DotPeek.SymbolServer.SymbolServer.FinishHandlePdbRequest(System.Net.HttpListenerContext,JetBrains.Util.FileSystemPath,JetBrains.Metadata.Utils.PE.Directories.DebugInfoType)">
+            <summary>
+            Sends remaining bytes of pdb
+            (StartHandlePdbRequest should be executed before FinishHandlePdbRequest)
+            </summary>
+        </member>
+        <member name="M:JetBrains.DotPeek.SymbolServer.SymbolServerManager.DoStart">
+            <summary>
+            Start / restart
+            </summary>
+        </member>
+        <member name="M:JetBrains.DotPeek.Theming.DotPeekLookupThemeColorFiller.FillColorTheme(JetBrains.Application.UI.Components.Theming.ColorTheme)">
+            <summary>
+            For values origin see commented lines in <see cref="T:JetBrains.Standalone.Shell.Components.Theming.StandaloneThemeColorFiller"/>.
+            </summary>
+        </member>
+        <member name="M:JetBrains.DotPeek.Theming.DotPeekParameterInfoThemeColorFiller.FillColorTheme(JetBrains.Application.UI.Components.Theming.ColorTheme)">
+            <summary>
+            For values origin see commented lines in <see cref="T:JetBrains.Standalone.Shell.Components.Theming.StandaloneThemeColorFiller"/>.
+            </summary>
+        </member>
+        <member name="T:JetBrains.DotPeek.Theming.DotPeekPsiSymbolIconThemeSettingsLoader">
+            <summary>
+            Loads and publishes as the theme aspect the psi symbol icon theme settings.
+            </summary>
+        </member>
+        <member name="T:JetBrains.DotPeek.Theming.DotPeekThemedIconSettingsLoader">
+            <summary>
+            Select default icon theme
+            </summary>
+        </member>
+        <member name="M:JetBrains.DotPeek.Theming.DotPeekThemedIconSettingsLoader.GetDefaultGenericIconThemeForDotPeek(System.Nullable{System.Boolean},System.Nullable{System.Boolean})">
+            <summary>
+            The default generic (non-symbol) icon theme.
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.ReSharper.Features.Environment</name>
+    </assembly>
+    <members>
+        <member name="M:JetBrains.ReSharper.Features.Environment.GitCommandRunner.Run(System.String,JetBrains.Util.VirtualFileSystemPath,System.Int32)">
+            <summary>
+            Executes a git command a return output.
+            </summary>
+            <param name="command"></param>
+            <param name="workingDirectory"></param>
+            <param name="timeoutMs"></param>
+            <returns>command output or null, if git is not available</returns>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.Environment.Options.FeaturesEnvironmentGeneralPageCaches">
+            <summary>The environment options page.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.Environment.Options.FeaturesEnvironmentGeneralPageIcons">
+            <summary>The environment options page.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.Environment.PackageChecker.VulnerabilitiesApi.Query(System.Collections.Generic.IEnumerable{JetBrains.ProjectModel.Assemblies.Interfaces.INugetPackageName},System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Query JetBrains vulnerabilities service
+            </summary>
+            <param name="packageNames">the list of packages to check. No more than <see cref="F:JetBrains.ReSharper.Features.Environment.PackageChecker.VulnerabilitiesApi.MaxBatchSize"/></param>
+            <param name="uid"></param>
+            <param name="cancel"></param>
+            <returns></returns>
+            <exception cref="T:System.Net.Http.HttpRequestException"></exception>
+            <exception cref="T:Newtonsoft.Json.JsonSerializationException"></exception>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.Environment.PackageChecker.VulnerabilitiesApi.Query(JetBrains.ReSharper.Features.Environment.PackageChecker.VulnerabilitiesApi.VulRequest,System.Threading.CancellationToken)">
+            <summary>
+            Query JetBrains vulnerabilities service
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.Net.Http.HttpRequestException"></exception>
+            <exception cref="T:Newtonsoft.Json.JsonSerializationException"></exception>
+        </member>
+        <member name="P:JetBrains.ReSharper.Features.Environment.PackageChecker.VulnerablePackagesTracker.VulnerablePackages">
+            <summary>
+            The life list of detected vulnerable Packages in current project. Updated on background thread.
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Features.Environment.PackageChecker.VulnerablePackagesTracker.InSync">
+            <summary>
+            True when the status in <see cref="P:JetBrains.ReSharper.Features.Environment.PackageChecker.VulnerablePackagesTracker.VulnerablePackages"/> is actual with the list of <see cref="T:JetBrains.ReSharper.Feature.Services.PackageChecker.IPackageCheckerPackagesProvider"/>
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.Environment.PackageChecker.VulnerablePackagesTracker.myDefaultMaxAge">
+            <summary>
+            Connections issue, when max age isn't set, 
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.Environment.PackageChecker.VulnerablePackagesTracker.myLongTermMaxAge">
+            <summary>
+            Unknown serialization format, banned regions, wrong format of request.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.Environment.PackageChecker.VulnerablePackagesTracker.myServerErrorMaxAge">
+            <summary>
+            Server-side issues. Grow on each hit.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.Environment.PackageChecker.VulnerablePackagesTracker.myThrottlingMaxAge">
+            <summary>
+            Throttling timeout. Grow on each hit by random amount to reduce probability of collisions with simultaneously active instances
+            </summary>
+        </member>
+    </members>
+</doc>

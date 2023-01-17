@@ -1,0 +1,502 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.ReSharper.Feature.Services.CSharp</name>
+    </assembly>
+    <members>
+        <member name="M:JetBrains.ReSharper.Feature.Services.CSharp.CodeCompletion.CodeCompletionArgumentsContext.Create(JetBrains.ReSharper.Psi.CSharp.Tree.ICSharpIdentifier,JetBrains.ReSharper.Psi.TreeTextRange@)">
+            <summary>
+            Calculates completion range for the specified reference
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.CSharp.CodeCompletion.CSharpReparseContext">
+            <summary>
+            Extract part of the physical file as context, which could be reparsed multiple times
+            to check if some construct could be parsed in given context, or not
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.CSharp.CodeStyle.Inspections.CodeBodyInspectionUtil.TryGetStatementToExpressionConversion(JetBrains.ReSharper.Psi.CSharp.Tree.IExpressionBodyOwnerDeclaration)">
+            <summary>
+            Checks whether the statement can be converted to expression body
+            </summary>
+            <returns>Not null conversion struct if the conversion is possible, null if the conversion is impossible</returns>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.CSharp.CodeStyle.Inspections.CodeBodyInspectionUtil.CanConvertToExpressionBodyWithHeuristics(JetBrains.ReSharper.Psi.CSharp.Tree.IExpressionBodyOwnerDeclaration,JetBrains.ReSharper.Psi.CSharp.Util.StatementToExpressionConversion)">
+            <summary>
+            Checks whether the block body can be converted to expression body considering that the heuristics of the
+            code body are switched on (<see cref="F:JetBrains.ReSharper.Psi.CSharp.CodeStyle.Settings.CSharpCodeStyleSettingsAccessors.USE_HEURISTICS_FOR_BODY_STYLE"/>) 
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.CSharp.CodeStyle.Inspections.CodeBodyInspectionUtil.IsNiceEnoughForExpressionBody(JetBrains.ReSharper.Psi.CSharp.Tree.IExpressionBodyOwnerDeclaration,JetBrains.ReSharper.Psi.CSharp.Tree.ICSharpExpression)">
+            <summary>
+            Checks if the "Expression-bodied" IExpressionBodyOwnerDeclaration can be in expression-body mode if the
+            heuristic (<see cref="F:JetBrains.ReSharper.Psi.CSharp.CodeStyle.Settings.CSharpCodeStyleSettingsAccessors.USE_HEURISTICS_FOR_BODY_STYLE"/>) is considered to be switched on. 
+            </summary>
+            <returns>
+            True if it is OK that this IExpressionBodyOwnerDeclaration has expression body
+            False if is should have had a block body, if heuristic is switched on
+            </returns>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.CSharp.CodeStyle.Inspections.ModifiersOrderGraph">
+             <summary>
+             We want to detect the order of modifiers. Let's generalize this task:
+            
+             GIVEN:
+             We have number of words (modifiers), we know the amount of them.
+             We have a set of sentences each of them consists of these given words. Each word can occur one or zero
+             times in one sentence.
+            
+             The words order in a sentence determine the relationship between modifiers.
+             E.G. "private static readonly" means that "private" > "static", "private" > "readonly", "static" > "readonly" 
+             But on the other hand, we can have another case like "static private readonly", and this case conflicts with
+             the first one.
+             The idea is to determine possible relations between modifiers while analyzing given sentences.
+             We can image it as a directed graph, where nodes are the modifiers, and connections represent the relationships
+             between modifiers. The connection now is an integer number (weight), if it is less than zero (a ->(-4) -> b) then
+             a less than b, if weight == 0 then a = b, if weight > 0 then a > b
+            
+             After we analyzed all sentences we managed to find, we can sort the array of modifiers (or only modifiers
+             which were processed during sentences' analysis) with custom comparator which will use the relations from this graph.
+             </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.CSharp.CodeStyle.Inspections.BinaryExpressionDescriptor.ParentExpression">
+            <summary>
+            ParentExpression is not equals to Expression.Parent (e.g. Expression.Parent = IParenthesizedExpression,
+            than ParentExpression = IParenthesizedExpression.Parent)
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.CSharp.CodeStyle.Inspections.TypeSpecificationAnalysisResult.ContextNode">
+            <summary>
+            Context node which can be set to process corner cases, e.g:
+            <see cref="M:JetBrains.ReSharper.Feature.Services.CSharp.CodeStyle.Inspections.TypeSpecificationStyleSuggester.ShouldReturnNoneWhenRedundantEvident(JetBrains.ReSharper.Feature.Services.CSharp.CodeStyle.Inspections.TypeSpecificationAnalysisResult,JetBrains.Application.Settings.IContextBoundSettingsStore,JetBrains.ReSharper.Psi.CodeStyle.ICodeStyleAdviser[],JetBrains.ReSharper.Feature.Services.CSharp.CodeStyle.Inspections.TypeSpecification.ITypeSpecificationStyleAdviser)"/>
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.CSharp.CodeStyle.Inspections.TypeSpecificationStyleSuggester.ShouldReturnNoneWhenRedundantEvident(JetBrains.ReSharper.Feature.Services.CSharp.CodeStyle.Inspections.TypeSpecificationAnalysisResult,JetBrains.Application.Settings.IContextBoundSettingsStore,JetBrains.ReSharper.Psi.CodeStyle.ICodeStyleAdviser[],JetBrains.ReSharper.Feature.Services.CSharp.CodeStyle.Inspections.TypeSpecification.ITypeSpecificationStyleAdviser)">
+            <summary>
+            Checks corner cases when we don't want to return <see cref="F:JetBrains.ReSharper.Feature.Services.CSharp.CodeStyle.Inspections.TypeSpecificationSuggestion.RedundantInEvidentContext"/>
+            For example, when the user prefers to use "var" then don't suggest removing type specification
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.CSharp.ConditionalAccess.Expressions.IAccess.MergeWithSubset(JetBrains.ReSharper.Feature.Services.CSharp.ConditionalAccess.Expressions.IAccess)">
+            <summary>Do not use directly, use <see cref="M:JetBrains.ReSharper.Feature.Services.CSharp.ConditionalAccess.Expressions.AccessExtensions.TryMergeTopWithSubset(JetBrains.ReSharper.Feature.Services.CSharp.ConditionalAccess.Expressions.IAccess,JetBrains.ReSharper.Feature.Services.CSharp.ConditionalAccess.Expressions.IAccess)"/> instead</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.CSharp.ConditionalAccess.Statements.LiftedAssignmentStatement">
+            <summary>
+            Expression statement with assignment is lifted if destination
+            is simple lifted reference and source expression can be lifted.
+            </summary>
+            <example>
+             x = x.M(); => x = x?.M();
+            </example>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.CSharp.ConditionalAccess.Statements.LiftedBlockStatement">
+            <summary>
+            Blocks are lifted if containing statements are all lifted.
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.CSharp.ConditionalAccess.Statements.LiftedDeclarationStatement">
+            <summary>
+            Declaration statement is lifted if all it's variables are initialized by lifted expressions.
+            </summary>
+            <example>
+             var t = x.M(); => var t = x?.M();
+             int i = x.Val; => int? i = x?.Val;
+            </example>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.CSharp.ConditionalAccess.Statements.LiftedExpressionStatement">
+            <summary>
+            Expression statement is lifted if it's expression can be lifted.
+            </summary>
+            <example>
+             x.M(); => x?.M();
+            </example>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.CSharp.ConditionalAccess.Statements.LiftedIfStatement">
+            <summary>
+            If statement with no else block is lifted when condition
+            is lifted (or if first of conjuncted conditions can be lifted).
+            </summary>
+            <example>
+             if (x != null) { }
+             if (x != null &amp;&amp; ...) { }
+            </example>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.CSharp.ConditionalAccess.Statements.LiftedInvertedIfStatement">
+            <summary>
+            If statement with negative check, no else statement and control flow jump as then statement.
+            </summary>
+            <example>
+             if (x == null) return;
+             if (x == null || ...) continue;
+            </example>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.CSharp.ConditionalAccess.Statements.LiftedJumpStatement">
+            <summary>
+            Jump statement (break/continue/return/goto/goto case/yield break) is lifted if merged.
+            </summary>
+            <example>
+             return x.M(); => return x?.M();
+            </example>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.CSharp.ConditionalAccess.Statements.LiftedReturnStatement">
+            <summary>
+            Return statement is lifted if it's return value can be lifted
+            and there is lifted jump statement to merge with.
+            </summary>
+            <example>
+             return x.M(); => return x?.M();
+            </example>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.CSharp.ConditionalAccess.Statements.LiftedUsingStatement">
+            <summary>
+            Using statement is lifted if resource expression is lifted
+            or all resource variables are initialized by lifted expressions.
+            </summary>
+            <example>
+             using (var t = x.M()) { } => using (var t = x?.M()) { }
+             using (x.M()) { }         => using (x?.M()) { }
+            </example>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.CSharp.Daemon.RedundantCastAnalyzer.CheckInvariantSemantics(JetBrains.ReSharper.Psi.IType)">
+            <summary>
+            Checks if semantic will not be broken if the cast will be removed
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.CSharp.Intentions.CSharpImplementInterfaceIntention.Implement(JetBrains.ReSharper.Psi.ITypeElement,JetBrains.ReSharper.Psi.IDeclaredType[])">
+            <summary>
+            Implements interfaces
+            </summary>
+            <param name="implementor">Type to implement interface for</param>
+            <param name="interfacesToImplement">Interfaces to implement</param>
+            <returns>Post-execute action to run template for generated methods body</returns>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.CSharp.Intentions.CSharpImplementInterfaceIntention.Implement(JetBrains.ReSharper.Psi.CSharp.Tree.IClassLikeDeclaration,JetBrains.ReSharper.Psi.IDeclaredType[])">
+            <summary>
+            Implements interfaces
+            </summary>
+            <param name="declaration">Declaration to implement intarfaces</param>
+            <param name="interfacesToImplement">Interfaces to implement</param>
+            <returns>Post-execute action to run template for generated methods body</returns>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.CSharp.OptionPages.CsharpPage">
+            <summary>
+            Root options page for the C# language options.
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.CSharp.ParameterInfo.CsParameterInfoInvocationContext.BoundsRange">
+            <summary>
+            Offsets within this range allow showing parameter information.
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.CSharp.ParameterInfo.CsParameterInfoInvocationContext.Arguments">
+            <summary>
+            Actual arguments of invocation. Convert them to nodes and use to find on which argument caret is.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.CSharp.ParameterInfo.CsParameterInfoInvocationContext.CreateInvocationContext(JetBrains.ReSharper.Psi.Tree.ITreeNode,JetBrains.ReSharper.Psi.TreeOffset,JetBrains.ReSharper.Psi.TreeOffset,JetBrains.ReSharper.Feature.Services.CSharp.ParameterInfo.CsParameterInfoInvocationContext.UseParentContext)">
+            <summary>
+            Finds appropriate invocation seeking at the specified tree node
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.CSharp.PropertiesExtender.ConfigureAwaitAnalysisMode.Disabled">
+            <summary>
+            'ConfigureAwait' calls are not analyzed.
+            It is up to a developer to decide whether 'ConfigureAwait' call is needed or not in each specific case. 
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.CSharp.PropertiesExtender.ConfigureAwaitAnalysisMode.Library">
+            <summary>
+            In this case project code will be treated as a library,
+            therefore 'ConfigureAwait(false)' calls should be used in most cases,
+            so ReSharper will analyze 'await' expressions and statements for missing 'ConfigureAwait(false)' calls.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.CSharp.PropertiesExtender.ConfigureAwaitAnalysisMode.UI">
+            <summary>
+            In this case project code will be treated as a client code working heavily with UI,
+            therefore 'ConfigureAwait(false)' calls are not needed, instead default task behaviour should be preferred,
+            so ReSharper will analyze 'await' expressions and statements for redundant 'ConfigureAwait(true)' calls.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.CSharp.SelectEmbracingConstruct.CSharpSelectEmbracingConstructProvider.ExtendRangeSelection(JetBrains.ReSharper.Psi.CSharp.Tree.ICSharpFile,JetBrains.ReSharper.Psi.Tree.ITreeNode,JetBrains.ReSharper.Psi.Tree.ITreeNode)">
+            <summary>
+            Try to build the tree range selection leaving it on the same tree level (i.e. don't walk to parent)
+            Return null if such selection couldn't be built
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.CSharp.SelectEmbracingConstruct.CSharpSelectEmbracingConstructProvider.BuildNodeSelection(JetBrains.ReSharper.Psi.CSharp.Tree.ICSharpFile,JetBrains.ReSharper.Psi.Tree.ITreeNode)">
+            <summary>
+            Try to build selection from the given node
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.CSharp.StringManipulation.SliceableStringExpressionToken">
+            <summary>
+            A token of a string expression that can be sliced or cut from the string.
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.CSharp.StringManipulation.StringExpressionSlice`1">
+            <summary>
+            A slice of a string expression. That is, a string expression coupled with a valid tree range that can span more than one token,
+            where both offsets correspond to valid positions inside sliceable tokens or point to the start or end boundaries
+            (but not to the middle) of a non-sliceable node, such as an interpolated string insert.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.CSharp.StringManipulation.StringExpressionSlice`1.CreateExpression(JetBrains.ReSharper.Feature.Services.Util.IStringInterpolationHelper,System.Boolean)">
+            <summary>
+            Produce a new string expression corresponding to this slice.
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.CSharp.StringManipulation.StringCuttingStylePreference">
+            <summary>
+            Describes a preferred way to cut a substring from a string expression.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.CSharp.StringManipulation.StringCuttingStylePreference.Auto">
+            <summary>
+            Produce a concatenation if the original expression is a literal. If it's an interpolated string, make a new hole for the substring.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.CSharp.StringManipulation.StringCuttingStylePreference.PreferInterpolation">
+            <summary>
+            If possible, produce an interpolated string with a hole, as long as converting a simple literal to an interpolated string
+            wouldn't lead to worse codegen. Currently that means said conversion is performed if the project is targeting C# 10+.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.CSharp.StringManipulation.StringCuttingStylePreference.ForceConcatenation">
+            <summary>
+            Always produce a concatenation, even if the original expression is an interpolated string.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.CSharp.StringManipulation.StringCuttingStylePreference.ForceInterpolation">
+            <summary>
+            Always produce an interpolated string with a hole, even if converting a simple literal to an interpolated string
+            would lead to additional allocations.
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.CSharp.StringManipulation.StringExpressionTokenSlice`1">
+            <summary>
+            A slice of a string expression token. That is, a sliceable token coupled with a valid tree range, where both left and right offsets
+            correspond to valid character positions inside its value.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.CSharp.StringManipulation.StringExpressionTokenSlice`1.CreateExpression(System.Boolean)">
+            <summary>
+            Produce a new string expression corresponding to this slice.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.CSharp.StringManipulation.StringExpressionTokenSlice`1.CreateExpression(JetBrains.ReSharper.Feature.Services.Util.IStringInterpolationHelper,System.Boolean)">
+            <summary>
+            Produce a new string expression corresponding to this slice.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.CSharp.StringManipulation.StringExpressionTokenSlice`1.Cut(JetBrains.ReSharper.Feature.Services.CSharp.StringManipulation.StringCuttingStylePreference,System.Boolean,System.Boolean)">
+            <summary>
+            Cut a substring corresponding to this slice from the containing string expression. Depending on <paramref name="cuttingStylePreference"/>,
+            it can produce a concatenation of multiple substrings or an interpolated string with a new hole.
+            </summary>
+            <remarks>Modifies the original string expression.</remarks>
+            <returns>The substring corresponding to the slice.</returns>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.CSharp.StructuralSearch.CSharpPlaceholderStructuralMatcher">
+            <summary>
+            Special structural matcher if IElementMatcher underneath is in fact Placeholder matcher.
+            Used for optimization in Daemon
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.CSharp.TypingAssist.NullabilityAnnotationAssist.CaretPositionKind.StrictlyAfterTypeName">
+            <summary>
+              Type   entity
+                  ^
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.CSharp.TypingAssist.NullabilityAnnotationAssist.CaretPositionKind.StrictlyAfterEntityName">
+            <summary>
+              Type   entity
+                           ^
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.CSharp.TypingAssist.NullabilityAnnotationAssist.CaretPositionKind.BeforeTypeName">
+             <summary>
+               Type   entity
+            ^^^
+             </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.CSharp.TypingAssist.NullabilityAnnotationAssist.CaretPositionKind.BeforeEntityName">
+            <summary>
+              Type   entity
+                   ^^
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.CSharp.TypingAssist.NullabilityAnnotationAssist.CaretPositionKind.WithinTypeName">
+            <summary>
+              Type   entity
+              ^^^^
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.CSharp.TypingAssist.NullabilityAnnotationAssist.CaretPositionKind.WithinEntityName">
+            <summary>
+              Type   entity
+                     ^^^^^^
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.CSharp.TypingAssist.NullabilityAnnotationAssist.CaretPositionKind.WithinValueNullabilityAttribute">
+            <summary>
+            [NotNull] Type entity
+             ^^^^^^^
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.CSharp.TypingAssist.NullabilityAnnotationAssist.CaretPositionKind.WithinContainerNullabilityAttribute">
+            <summary>
+            [ItemNotNull] Type entity
+             ^^^^^^^^^^^
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.CSharp.TypingAssist.NullabilityAnnotationAssist.CaretPositionKind.WithinTypeArgument">
+            <summary>
+            Type&lt;EmbeddedType&gt; entity
+                    ^^^^^^^^^^^^
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.CSharp.TypingAssist.NullabilityAnnotationAssist.CaretPositionKind.WithinArrayElementType">
+            <summary>
+            Type []
+            ^^^^^
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.CSharp.TypingAssist.NullabilityAnnotationAssist.CaretPositionKind.WithinLastButOneArrayRank">
+            <summary>
+            Type [] []
+                 ^^^
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.CSharp.Util.CSharpAutoPropertyUtil.IsDefaultInitializer(JetBrains.ReSharper.Psi.IDeclaredElement,JetBrains.ReSharper.Psi.IType,JetBrains.ReSharper.Psi.CSharp.Tree.ICSharpExpression)">
+            <summary>
+            Check if this expression initializer field with given type to default value, i.e. could be safely omitted.
+            This means '0' for integral types, default ctor for value types, null for reference types.
+            NOTE: initializing with named constant is not counted as default!
+            NOTE: initializing with the same value with different nullability i.e. 'default!' is no counted as default!
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.CSharp.Util.CSharpStringInterpolationBuilder">
+             <summary>
+             Builds interpolated string expression from literals, parts of literals, and raw text.
+             </summary>
+             <remarks>
+             IMPLEMENTATION NOTES
+            
+             C# has three kind of string verbatimity: regular, verbatim, and raw.
+             Specific implementation strategy is abstracted via <see cref="T:JetBrains.ReSharper.Feature.Services.CSharp.Util.CSharpStringInterpolationBuilder.IBuilderWithFixedVerbatimity"/>.
+            
+             Until implementation is defined the raw text added through <see cref="M:JetBrains.ReSharper.Feature.Services.CSharp.Util.CSharpStringInterpolationBuilder.AppendTextNoEscaping(System.String)"/>
+             is collected in <see cref="F:JetBrains.ReSharper.Feature.Services.CSharp.Util.CSharpStringInterpolationBuilder.myReservedTextWithoutEscaping"/>.
+             </remarks>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.CSharp.Util.DeconstructionsLookupStrategy.Basic">
+            <summary>
+            Don't search for nested deconstructions.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.CSharp.Util.DeconstructionsLookupStrategy.Deepest">
+            <summary>
+            Include only "deepest" deconstructions where every component is deconstructed as deep as possible.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.CSharp.Util.DeconstructionsLookupStrategy.Hybrid">
+            <summary>
+            Basic + Deepest.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.CSharp.Util.DeconstructionsLookupStrategy.All">
+            <summary>
+            Include all deconstruction combination.
+            There are mitigations to prevent combinatorial explosion.
+            When certain threshold of combinations is reached lookup strategy is changed to 'Hybrid'.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.CSharp.Util.DefiniteAssignmentUtil.IsDefinitelyAssignedForSure(JetBrains.ReSharper.Psi.CSharp.Tree.ICSharpExpression)">
+            <summary>
+            This method checks if some expression is definitely is not a subject of C# definite assignment analysis.
+            You can pass expressions in write context, like out argument value or assignment target expression.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.CSharp.Util.ForeachLoopUtil.WrapInForeachLoop(JetBrains.ReSharper.Psi.CSharp.Tree.ICSharpExpression,System.Boolean,System.Boolean,System.Boolean,JetBrains.ReSharper.Psi.CSharp.Tree.IReferenceExpression@,JetBrains.DocumentModel.DocumentOffset@)">
+            <summary>
+            Creates foreach statement with original expression used as collection.
+            </summary>
+            <param name="collectionExpression">An expression to wrap.</param>
+            <param name="isAwaitForeach">Indicates whether to use asynchronous foreach statement.</param>
+            <param name="replaceOriginalExpressionWithIterationVariableUsage">
+              Indicates whether original expression should not only be used as collection,
+              but also should be replaced with a usage of iteration variable.
+              For example, if original expression is 'expr'
+              when argument is true:
+              foreach (var x in expr)
+              {
+              x;
+              }
+            
+              when argument is false:
+              foreach (var x in expr)
+              {
+              
+              }
+            </param>
+            <param name="enforceBraces">Indicates whether code style for foreach statement braces should be overrided to always use braces</param>
+            <param name="iterationVariableUsage">
+              When <paramref name="replaceOriginalExpressionWithIterationVariableUsage"/> is true represents usage of iteration variable.
+              Otherwise null.
+            </param>
+            <param name="iterationVariableUsageEndOffset">
+              When <paramref name="replaceOriginalExpressionWithIterationVariableUsage"/> is true represents end offset of iteration variable usage:
+              foreach (var x in expr)
+              {
+              x{here};
+              }
+              Otherwise represents document offset of the foreach statement body (inside block if block braces are required):
+              foreach (var x in expr)
+              {
+              {here}
+              }
+              Can be used as possible end caret position for hotspot sessions.
+            </param>
+            <returns></returns>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.CSharp.Util.ImplicitConversions.ImplicitConversionTreeNodeProcessor.ConversionProcessingMode.AsTuple">
+            <summary>
+            Conversion contains a nested conversion and should be processed component by component 
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.CSharp.Util.ImplicitConversions.ImplicitConversionTreeNodeProcessor.ConversionProcessingMode.NoProcessing">
+            <summary>
+            There is no conversion here
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.CSharp.Util.ImplicitConversions.ImplicitConversionTreeNodeProcessor.ConversionProcessingMode.Unacceptable">
+            <summary>
+            Conversion isn't valid and it can't be a deconstruction
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.CSharp.ValueTracking.Nodes.LocalDeclarationNode">
+            <summary>
+            Local variable to usages or initializer...
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.CSharp.ValueTracking.Nodes.PropertyInitialNode">
+            <summary>
+            This node is created when value tracking runs on property declaration.
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.CSharp.ValueTracking.Nodes.PropertySelfValueNode">
+            <summary>
+            This node is descendant of <see cref="T:JetBrains.ReSharper.Feature.Services.CSharp.ValueTracking.Nodes.PropertyInitialNode"/>.
+            It is expanded into return value of getter or 'value' parameter of setter.
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.CSharp.ValueTracking.PreNodes.PreExpandedNodeParameterOut">
+            <summary>
+            Parameter to argument value
+            </summary>
+        </member>
+    </members>
+</doc>

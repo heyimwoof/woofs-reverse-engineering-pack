@@ -1,0 +1,31 @@
+<!--
+***********************************************************************************************
+Eazfuscator.NET.Bootstrap.Core.targets
+
+WARNING:  DO NOT MODIFY this file. Incorrect changes to this file will make it impossible to
+          load or build your Eazfuscator.NET projects from the command-line or the IDE.
+
+Copyright (C) 2008-2015 Gapotchenko
+***********************************************************************************************
+-->
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Import Project="Eazfuscator.NET.Common.Tasks.targets" Condition=" '$(Eazfuscator_NET_CommonTasksImported)' == '' " />
+
+  <PropertyGroup>
+    <Eazfuscator_NET_Bootstrap_Home>$([System.IO.Path]::GetFullPath($([System.IO.Path]::Combine($(MSBuildThisFileDirectory), '..\..'))))</Eazfuscator_NET_Bootstrap_Home>
+    <EAZFUSCATOR_NET_HOME>$(Eazfuscator_NET_Bootstrap_Home)</EAZFUSCATOR_NET_HOME>
+  </PropertyGroup>
+
+  <Target Name="_Eazfuscator_NET_Bootstrap">
+    <Eazfuscator_NET_SetEnvironmentVariableTask Name="EAZFUSCATOR_NET_HOME" Value="$(Eazfuscator_NET_Bootstrap_Home)" />
+    <Eazfuscator_NET_AddPathToEnvironmentTask Path="$(Eazfuscator_NET_Bootstrap_Home)" />
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_BootstrapInjection"
+          BeforeTargets="PostBuildEvent;PreBuildEvent;Build;_Eazfuscator_NET"
+          DependsOnTargets="_Eazfuscator_NET_Bootstrap">
+  </Target>
+
+</Project>

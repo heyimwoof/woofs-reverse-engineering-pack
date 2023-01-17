@@ -1,0 +1,72 @@
+<!--
+***********************************************************************************************
+Eazfuscator.NET.VSIX.targets
+
+WARNING:  DO NOT MODIFY this file. Incorrect changes to this file will make it impossible to
+          load or build your Eazfuscator.NET projects from the command-line or the IDE.
+
+Copyright (C) 2008-2020 Gapotchenko
+***********************************************************************************************
+-->
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Import Project="Eazfuscator.NET.Common.Tasks.targets" Condition=" '$(Eazfuscator_NET_CommonTasksImported)' == '' " />
+
+  <Target Name="_Eazfuscator_NET_VSIX_PrepareForBuild"
+          BeforeTargets="PrepareForBuild"
+          Condition=" '$(GeneratePkgDefFile)' != '' OR '$(IncludeAssemblyInVSIXContainer)' != '' ">
+    <PropertyGroup>
+      <_Eazfuscator_NET_VSIX_Triggered>false</_Eazfuscator_NET_VSIX_Triggered>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_VSIX_Trigger"
+          Condition=" '$(GeneratePkgDefFile)' != '' OR '$(IncludeAssemblyInVSIXContainer)' != '' ">
+    <PropertyGroup>
+      <_Eazfuscator_NET_VSIX_Triggered>true</_Eazfuscator_NET_VSIX_Triggered>
+      <_Eazfuscator_NET_NETFramework_Specialty>true</_Eazfuscator_NET_NETFramework_Specialty>
+      <_Eazfuscator_NET_ProjectType>VSIX</_Eazfuscator_NET_ProjectType>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_VSIX"
+          AfterTargets="AfterCompile"
+          Condition=" '$(_Eazfuscator_NET_VSIX_Triggered)' == 'true' "
+          DependsOnTargets="CoreCompile">
+    <CallTarget Targets="_Eazfuscator_NET_RetargetToIntermediate;_Eazfuscator_NET" />          
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_VSIX_RemoveReferencePaths"
+          Condition=" '$(_Eazfuscator_NET_VSIX_Triggered)' == 'true' "
+          DependsOnTargets="_Eazfuscator_NET_VSIX;_Eazfuscator_NET_GetRemovedReferencePaths"
+          AfterTargets="GetVsixSourceItems">
+    <ItemGroup>
+      <VsixSourceItem Remove="@(_Eazfuscator_NET_RemovedReferencePaths)" />
+    </ItemGroup>
+    <Eazfuscator_NET_CorrelateAssemblyAliasedFiles InputFiles="@(VsixSourceItem)" PatternFiles="@(_Eazfuscator_NET_RemovedReferencePaths)">
+      <Output TaskParameter="CorrelatedFiles" ItemName="_Eazfuscator_NET_VSIX_CorrelatedSourceItems" />
+    </Eazfuscator_NET_CorrelateAssemblyAliasedFiles>
+    <ItemGroup>
+      <VsixSourceItem Remove="@(_Eazfuscator_NET_VSIX_CorrelatedSourceItems)" />
+      <_Eazfuscator_NET_VSIX_CorrelatedSourceItems Remove="@(_Eazfuscator_NET_VSIX_CorrelatedSourceItems)" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_VSIX_SynthesizeSatelliteAssemblies"
+          Condition=" '$(_Eazfuscator_NET_VSIX_Triggered)' == 'true' "
+          DependsOnTargets="_Eazfuscator_NET_GetNewOutputFilePaths_SA"
+          AfterTargets="GetVsixSourceItems">
+    <ItemGroup>
+      <VsixSourceItem Include="@(_Eazfuscator_NET_NewOutputSatelliteAssemblies)"/>
+    </ItemGroup>
+  </Target>
+
+  <PropertyGroup>
+    <_Eazfuscator_NET_TriggerTargets>
+      $(_Eazfuscator_NET_TriggerTargets);
+      _Eazfuscator_NET_VSIX_Trigger
+    </_Eazfuscator_NET_TriggerTargets>
+  </PropertyGroup>
+
+</Project>

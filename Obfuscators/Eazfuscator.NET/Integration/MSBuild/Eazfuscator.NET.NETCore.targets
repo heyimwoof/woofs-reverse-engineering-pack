@@ -1,0 +1,53 @@
+<!--
+***********************************************************************************************
+Eazfuscator.NET.NETCore.targets
+
+WARNING:  DO NOT MODIFY this file. Incorrect changes to this file will make it impossible to
+          load or build your Eazfuscator.NET projects from the command-line or the IDE.
+
+Copyright (C) 2008-2020 Gapotchenko
+***********************************************************************************************
+-->
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Import Project="Eazfuscator.NET.Common.Tasks.targets" Condition=" '$(Eazfuscator_NET_CommonTasksImported)' == '' " />
+  <Import Project="Eazfuscator.NET.Cooperation.targets" Condition=" '$(Eazfuscator_NET_Cooperation_Imported)' == '' " />
+
+  <Target Name="_Eazfuscator_NET_NETCore_PrepareForBuild"
+          BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <_Eazfuscator_NET_NETCore_Triggered>false</_Eazfuscator_NET_NETCore_Triggered>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_NETCore_Trigger_A"
+          Condition=" '$(TargetFrameworkIdentifier)' == '.NETCoreApp' ">
+    <PropertyGroup>
+      <_Eazfuscator_NET_NETCore_Triggered>true</_Eazfuscator_NET_NETCore_Triggered>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_NETCore_Trigger_B"
+          Condition=" '$(_Eazfuscator_NET_NETCore_Triggered)' != 'true' AND '$(TargetFrameworkIdentifier)' == '' AND $(TargetFramework.StartsWith('netcoreapp', StringComparison.OrdinalIgnoreCase)) ">
+    <PropertyGroup>
+      <_Eazfuscator_NET_NETCore_Triggered>true</_Eazfuscator_NET_NETCore_Triggered>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_NETCore"
+          Condition=" '$(_Eazfuscator_NET_NETCore_Triggered)' == 'true' "
+          DependsOnTargets="$(_Eazfuscator_NET_CoreCompileTargets);$(_Eazfuscator_NET_Cooperation_DependsOnTargets)"
+	  AfterTargets="AfterCompile">
+    <CallTarget Targets="_Eazfuscator_NET_RetargetToIntermediate;_Eazfuscator_NET" />
+  </Target>
+
+  <PropertyGroup>
+    <_Eazfuscator_NET_TriggerTargets>
+      $(_Eazfuscator_NET_TriggerTargets);
+      _Eazfuscator_NET_NETCore_Trigger_A;
+      _Eazfuscator_NET_NETCore_Trigger_B
+    </_Eazfuscator_NET_TriggerTargets>
+  </PropertyGroup>
+
+</Project>

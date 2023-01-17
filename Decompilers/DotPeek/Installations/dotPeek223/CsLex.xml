@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CsLex</name>
+    </assembly>
+    <members>
+        <member name="T:JetBrains.ReSharper.CsLex.resources.DefaultRefs">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.CsLex.resources.DefaultRefs.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.CsLex.resources.DefaultRefs.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.CsLex.resources.DefaultRefs.Unicode_lex">
+            <summary>
+              Looks up a localized string similar to UNICODE_CN=[\u0370-\u0373\u0376-\u0379\u037F-\u0383\u038B\u038D\u03A2\u03CF\u0487\u0514-\u0530\u0557-\u0558\u0560\u0588\u058B-\u0590\u05C8-\u05CF\u05EB-\u05EF\u05F5-\u05FF\u0604-\u060A\u0616-\u061A\u061C-\u061D\u0620\u063B-\u063F\u065F\u070E\u074B-\u074C\u076E-\u077F\u07B2-\u07BF\u07FB-\u0900\u093A-\u093B\u094E-\u094F\u0955-\u0957\u0971-\u097A\u0980\u0984\u098D-\u098E\u0991-\u0992\u09A9\u09B1\u09B3-\u09B5\u09BA-\u09BB\u09C5-\u09C6\u09C9-\u09CA\u09CF-\u09D6\u09D8-\u09DB\u09DE\u09E4-\u09E5\u09FB-\u0A00\u0A04\ [rest of string was truncated]&quot;;.
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.CsLex.CsLexTaskStub">
+             <summary>
+             This complies with the <c>ProxyToSolutionCompiledTask</c> calling convention.
+            
+             Expected parameters (task items with metadata <c>ParameterName</c> equal to these):
+             • <c>Inputs</c>, multiple input files to process. Metadata:
+             • • <c>FullPath</c> — full path to the input file.
+             • • <c>OutputFile</c> — full path to the output file.
+             • • <c>References</c> — a collection of paths (like an item group substitution, i.e. semicolon-separated) for resolving “%include”s given just as file names.
+             • <c>DontCache</c> — do not use distributed cache, if present.
+             • <c>DistributedCacheSettings</c> — allows to turn on network upload.
+             <c></c>
+             </summary>
+        </member>
+        <member name="M:Lex.Alloc.NewNLPair(Lex.Spec)">
+            NewNLPair
+            return a new NfaPair that matches a new line
+            (\r\n?|\n)
+        </member>
+        <member name="F:Lex.Gen.tokens">
+            <summary>
+            Hashtable that maps characters to their corresponding lexical code for
+             the internal lexical analyzer. 
+            </summary>
+        </member>
+        <member name="M:Lex.Preprocess.PreprocessException.#ctor(System.String,System.Exception)">
+            <inheritdoc />
+        </member>
+        <member name="M:Lex.Preprocess.PreprocessException.#ctor(System.String)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

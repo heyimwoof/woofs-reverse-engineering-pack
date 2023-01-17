@@ -1,0 +1,1548 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NuGet.Configuration</name>
+    </assembly>
+    <members>
+        <member name="M:NuGet.Configuration.IClientCertificateProvider.AddOrUpdate(NuGet.Configuration.ClientCertItem)">
+            <summary>
+                Adds a new client certificate or updates an existing one in the settings.
+            </summary>
+            <param name="item">Client certificate to be added or updated</param>
+        </member>
+        <member name="M:NuGet.Configuration.IClientCertificateProvider.GetClientCertificates">
+            <summary>
+                Get a list of all the trusted signer entries under the computer trusted signers section.
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.IClientCertificateProvider.Remove(System.Collections.Generic.IReadOnlyList{NuGet.Configuration.ClientCertItem})">
+            <summary>
+                Removes client certificates from the settings.
+            </summary>
+            <param name="items">Client certificates to be removed</param>
+        </member>
+        <member name="F:NuGet.Configuration.CredentialRequestType.Proxy">
+            <summary>
+            Indicates that the request credentials are to be used to access a proxy.
+            </summary>
+        </member>
+        <member name="F:NuGet.Configuration.CredentialRequestType.Unauthorized">
+            <summary>
+            Indicates that the remote server rejected the previous request as unauthorized. This 
+            suggests that the server does not know who the caller is (i.e. the caller is not
+            authenticated).
+            </summary>
+        </member>
+        <member name="F:NuGet.Configuration.CredentialRequestType.Forbidden">
+            <summary>
+            Indicates that the remote server rejected the previous request as forbidden. This
+            suggests that the server knows who the caller is (i.e. the caller is authorized) but
+            is not allowed to access the request resource. A different set of credentials could
+            solve this failure.
+            </summary>
+        </member>
+        <member name="T:NuGet.Configuration.ICredentialService">
+            <summary>
+            A credentials service.
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.ICredentialService.GetCredentialsAsync(System.Uri,System.Net.IWebProxy,NuGet.Configuration.CredentialRequestType,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Asynchronously gets credentials.
+            </summary>
+            <param name="uri">The URI for which credentials should be retrieved.</param>
+            <param name="proxy">A web proxy.</param>
+            <param name="type">The credential request type.</param>
+            <param name="message">A message to display when prompting for credentials.</param>
+            <param name="cancellationToken">A cancellation token.</param>
+            <returns>A task that represents the asynchronous operation.
+            The task result (<see cref="P:System.Threading.Tasks.Task`1.Result" />) returns a <see cref="T:System.Net.ICredentials" />.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="uri" /> is <c>null</c>.</exception>
+            <exception cref="T:System.OperationCanceledException">Thrown if <paramref name="cancellationToken" />
+            is cancelled.</exception>
+        </member>
+        <member name="M:NuGet.Configuration.ICredentialService.TryGetLastKnownGoodCredentialsFromCache(System.Uri,System.Boolean,System.Net.ICredentials@)">
+            <summary>
+            Attempts to retrieve last known good credentials for a URI from a credentials cache.
+            </summary>
+            <remarks>
+            When the return value is <c>true</c>, <paramref name="credentials" /> will have last known
+            good credentials from the credentials cache.  These credentials may have become invalid
+            since their last use, so there is no guarantee that the credentials are currently valid.
+            </remarks>
+            <param name="uri">The URI for which cached credentials should be retrieved.</param>
+            <param name="isProxy"><c>true</c> for proxy credentials; otherwise, <c>false</c>.</param>
+            <param name="credentials">Cached credentials or <c>null</c>.</param>
+            <returns><c>true</c> if a result is returned from the cache; otherwise, false.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="uri" /> is <c>null</c>.</exception>
+        </member>
+        <member name="P:NuGet.Configuration.ICredentialService.HandlesDefaultCredentials">
+            <summary>
+            Gets a value indicating whether this credential service wants to handle "default credentials" specially,
+            instead of relying on DefaultNetworkCredentials
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.PackageSourceMapping.PackageIdMaxLength">
+            <summary>
+            Max allowed length for package Id.
+            In case update this value please update in src\NuGet.Core\NuGet.Packaging\PackageCreation\Utility\PackageIdValidator.cs too.
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.PackageSourceMapping.Patterns">
+            <summary>
+            Source name to package patterns list.
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.PackageSourceMapping.IsEnabled">
+            <summary>
+            Indicate if any packageSource exist in package source mapping section
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.PackageSourceMapping.GetConfiguredPackageSources(System.String)">
+            <summary>
+            Get package source names with matching prefix "packageId" from package source mapping section.
+            </summary>
+            <param name="packageId">Search packageId. Cannot be null, empty, or whitespace only. </param>
+            <returns>Package source names with matching prefix "packageId" from package patterns.</returns>
+            <exception cref="T:System.ArgumentException"> if <paramref name="packageId"/> is null, empty, or whitespace only.</exception>
+        </member>
+        <member name="M:NuGet.Configuration.PackageSourceMapping.GetPackageSourceMapping(NuGet.Configuration.ISettings)">
+            <summary>
+            Generates a <see cref="T:NuGet.Configuration.PackageSourceMapping"/> based on the settings object.
+            </summary>
+            <param name="settings">Search packageId. Cannot be null, empty, or whitespace only. </param>
+            <returns>A <see cref="T:NuGet.Configuration.PackageSourceMapping"/> based on the settings.</returns>
+            <exception cref="T:System.ArgumentNullException"> if <paramref name="settings"/> is null.</exception>
+        </member>
+        <member name="M:NuGet.Configuration.SearchTree.GetConfiguredPackageSources(System.String)">
+            <summary>
+            Get package source names with matching prefix "term" from package source mapping section.
+            </summary>
+            <param name="term">Search term. Cannot be null, empty, or whitespace only. </param>
+            <returns>Package source names with matching prefix "term" from package source mapping section.</returns>
+            <exception cref="T:System.ArgumentException"> if <paramref name="term"/> is null, empty, or whitespace only.</exception>
+        </member>
+        <member name="M:NuGet.Configuration.IPackageSourceProvider.LoadPackageSources">
+            <summary>
+            Gets an enumerable of all of the package sources
+            </summary>
+            <returns>Enumerable of all of the package sources</returns>
+        </member>
+        <member name="M:NuGet.Configuration.IPackageSourceProvider.GetPackageSourceByName(System.String)">
+            <summary>
+            Gets the source that matches a given name.
+            </summary>
+            <param name="name">Name of source to be searched for</param>
+            <returns>PackageSource that matches the given name. Null if none was found</returns>
+            <throws>ArgumentException when <paramref name="name"/> is null or empty.</throws>
+        </member>
+        <member name="M:NuGet.Configuration.IPackageSourceProvider.GetPackageSourceBySource(System.String)">
+            <summary>
+            Gets the source that matches a given source url.
+            </summary>
+            <param name="source">Url of source to be searched for</param>
+            <returns>PackageSource that matches the given source. Null if none was found</returns>
+            <throws>ArgumentException when <paramref name="source"/> is null or empty.</throws>
+        </member>
+        <member name="E:NuGet.Configuration.IPackageSourceProvider.PackageSourcesChanged">
+            <summary>
+            Event raised when the package sources have been changed.
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.IPackageSourceProvider.RemovePackageSource(System.String)">
+            <summary>
+            Removes the package source that matches the given name
+            </summary>
+            <param name="name">Name of source to remove</param>
+        </member>
+        <member name="M:NuGet.Configuration.IPackageSourceProvider.EnablePackageSource(System.String)">
+            <summary>
+            Enables the package source that matches the given name
+            </summary>
+            <param name="name">Name of source to enable</param>
+        </member>
+        <member name="M:NuGet.Configuration.IPackageSourceProvider.DisablePackageSource(System.String)">
+            <summary>
+            Disables the package source that matches the given name
+            </summary>
+            <param name="name">Name of source to disable</param>
+        </member>
+        <member name="M:NuGet.Configuration.IPackageSourceProvider.UpdatePackageSource(NuGet.Configuration.PackageSource,System.Boolean,System.Boolean)">
+            <summary>
+            Updates the values of the given package source.
+            </summary>
+            <remarks>The package source is matched by name.</remarks>
+            <param name="source">Source with updated values</param>
+            <param name="updateCredentials">Describes if credentials values from <paramref name="source"/> should be updated or ignored</param>
+            <param name="updateEnabled">Describes if enabled value from <paramref name="source"/> should be updated or ignored</param>
+        </member>
+        <member name="M:NuGet.Configuration.IPackageSourceProvider.AddPackageSource(NuGet.Configuration.PackageSource)">
+            <summary>
+            Adds a package source to the current configuration
+            </summary>
+            <param name="source">PackageSource to add</param>
+        </member>
+        <member name="M:NuGet.Configuration.IPackageSourceProvider.SavePackageSources(System.Collections.Generic.IEnumerable{NuGet.Configuration.PackageSource})">
+            <summary>
+            Compares the given list of PackageSources with the current PackageSources in the configuration
+            and adds, removes or updates each source as needed.
+            </summary>
+            <param name="sources">PackageSources to be saved</param>
+        </member>
+        <member name="M:NuGet.Configuration.IPackageSourceProvider.IsPackageSourceEnabled(System.String)">
+            <summary>
+            Checks if a package source with a given name is part of the disabled sources configuration
+            </summary>
+            <param name="name">Name of the source to be queried</param>
+            <returns>true if the source with the given name is not part of the disabled sources</returns>
+        </member>
+        <member name="P:NuGet.Configuration.IPackageSourceProvider.ActivePackageSourceName">
+            <summary>
+            Gets the name of the active PackageSource
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.IPackageSourceProvider.DefaultPushSource">
+            <summary>
+            Gets the Default push source
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.IPackageSourceProvider.SaveActivePackageSource(NuGet.Configuration.PackageSource)">
+            <summary>
+            Updates the active package source with the given source.
+            </summary>
+            <param name="source">Source to be set as the active package source</param>
+        </member>
+        <member name="M:NuGet.Configuration.IPackageSourceProvider2.SavePackageSources(System.Collections.Generic.IEnumerable{NuGet.Configuration.PackageSource},NuGet.Configuration.PackageSourceUpdateOptions)">
+            <summary>
+            Compares the given list of PackageSources with the current PackageSources in the configuration and adds, removes or updates each source as needed.
+            </summary>
+            <param name="sources">PackageSources to be saved</param>
+            <param name="packageSourceUpdateOptions">Settings to use when updating the sources</param>
+        </member>
+        <member name="F:NuGet.Configuration.NuGetConstants.DefaultGalleryServerUrl">
+            <summary>
+            NuGet.org gallery Url used as a source display name and as a default "id" when storing nuget.org API key.
+            </summary>
+            <remarks>
+            Albeit this url is not actual feed we should keep it unchanged for back-compat with earlier NuGet versions.
+            Typical scenario leading to adding this url to config file is to run setApiKey command without a source:
+            nuget.exe setApiKey XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+            </remarks>
+        </member>
+        <member name="F:NuGet.Configuration.PackageSource.DefaultProtocolVersion">
+            <summary>
+            The feed version for NuGet prior to v3.
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.PackageSource.TrySourceAsUri">
+            <summary>
+            Returns null if Source is an invalid URI
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.PackageSource.SourceUri">
+            <summary>
+            Throws if Source is an invalid URI
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.PackageSource.IsOfficial">
+            <summary>
+            This does not represent just the NuGet Official Feed alone
+            It may also represent a Default Package Source set by Configuration Defaults
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.PackageSource.ProtocolVersion">
+            <summary>
+            Gets or sets the protocol version of the source. Defaults to 2.
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.PackageSource.IsHttp">
+            <summary>
+            Whether the source is using the HTTP protocol, including HTTPS.
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.PackageSource.IsHttps">
+            <summary>
+            Whether the source is using the HTTPS protocol.
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.PackageSource.IsLocal">
+            <summary>
+            True if the source path is file based. Unc shares are not included.
+            </summary>
+        </member>
+        <member name="T:NuGet.Configuration.PackageSourceCredential">
+            <summary>
+            Represents credentials required to authenticate user within package source web requests.
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.PackageSourceCredential.Username">
+            <summary>
+            User name
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.PackageSourceCredential.PasswordText">
+            <summary>
+            Password text as stored in config file. May be encrypted.
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.PackageSourceCredential.IsPasswordClearText">
+            <summary>
+            Indicates if password is stored in clear text.
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.PackageSourceCredential.ValidAuthenticationTypes">
+            <summary>
+            List of authentication types the credential is valid for, e.g. 'basic'. If empty, all authentication types
+            are allowed.
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.PackageSourceCredential.ValidAuthenticationTypesText">
+            <summary>
+            Comma-delimited list of authentication types the credential is valid for as stored in the config file.
+            If null or empty, all authentication types are valid. Example: 'basic,negotiate'
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.PackageSourceCredential.Password">
+            <summary>
+            Retrieves password in clear text. Decrypts on-demand.
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.PackageSourceCredential.Source">
+            <summary>
+            Associated source ID
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.PackageSourceCredential.IsValid">
+            <summary>
+            Verifies if object contains valid data, e.g. not empty user name and password.
+            </summary>
+            <returns>True if credentials object is valid</returns>
+        </member>
+        <member name="M:NuGet.Configuration.PackageSourceCredential.#ctor(System.String,System.String,System.String,System.Boolean,System.String)">
+            <summary>
+            Instantiates the credential instance out of raw values read from a config file.
+            </summary>
+            <param name="source">Associated source ID (needed for reporting errors)</param>
+            <param name="username">User name</param>
+            <param name="passwordText">Password as stored in config file</param>
+            <param name="isPasswordClearText">Hints if password provided in clear text</param>
+            <param name="validAuthenticationTypesText">
+            Comma-delimited list of authentication types the credential is valid for as stored in the config file.
+            If null or empty, all authentication types are valid. Example: 'basic,negotiate'
+            </param>
+        </member>
+        <member name="M:NuGet.Configuration.PackageSourceCredential.FromUserInput(System.String,System.String,System.String,System.Boolean,System.String)">
+            <summary>
+            Creates new instance of credential object out values provided by user.
+            </summary>
+            <param name="source">Source ID needed for reporting errors if any</param>
+            <param name="username">User name</param>
+            <param name="password">Password text in clear</param>
+            <param name="storePasswordInClearText">Hints if the password should be stored in clear text on disk.</param>
+            <param name="validAuthenticationTypesText">
+            Comma-delimited list of authentication types the credential is valid for as stored in the config file.
+            If null or empty, all authentication types are valid. Example: 'basic,negotiate'
+            </param>
+            <returns>New instance of <see cref="T:NuGet.Configuration.PackageSourceCredential"/></returns>
+        </member>
+        <member name="M:NuGet.Configuration.PackageSourceCredential.ToICredentials">
+            <summary>
+            Converts this object to an ICredentials, capturing the username, password and valid authentication types
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.PackageSourceCredential.ParseAuthTypeFilterString(System.String)">
+            <summary>
+            Converts an authentication type filter string from the config file syntax to a list of valid authentication
+            types
+            </summary>
+            <param name="str">
+            Comma-delimited list of authentication types the credential is valid for as stored in the config file.
+            If null or empty, all authentication types are valid. Example: 'basic,negotiate'
+            </param>
+            <returns>
+            Enumeration of valid authentication types. If empty, all authentication types are valid.
+            </returns>
+        </member>
+        <member name="M:NuGet.Configuration.PackageSourceProvider.LoadPackageSources">
+            <summary>
+            Returns PackageSources specified in the config file merged with any default sources specified in the
+            constructor.
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.PackageSourceProvider.LoadPackageSources(NuGet.Configuration.ISettings)">
+            <summary>
+            Returns PackageSources if specified in the settings object, combined with the default sources from the default configuration.
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.PackageSourceProvider.OnPackageSourcesChanged">
+            <summary>
+            Fires event PackageSourcesChanged
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.PackageSourceProvider.ActivePackageSourceName">
+            <summary>
+            Gets the name of the ActivePackageSource from NuGet.Config
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.PackageSourceProvider.SaveActivePackageSource(NuGet.Configuration.PackageSource)">
+            <summary>
+            Saves the <paramref name="source" /> as the active source.
+            </summary>
+            <param name="source"></param>
+        </member>
+        <member name="T:NuGet.Configuration.IProxyCredentialCache">
+            <summary>
+            <see cref="T:System.Net.CredentialCache"/>-like interface with Update credential semantics rather than Add/Remove
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.IProxyCredentialCache.Version">
+            <summary>
+            Tracks the cache version. Changes every time proxy credential is updated.
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.IProxyCredentialCache.UpdateCredential(System.Uri,System.Net.NetworkCredential)">
+            <summary>
+            Add or update proxy credential
+            </summary>
+            <param name="proxyAddress">Proxy network address</param>
+            <param name="credentials">New credential object</param>
+        </member>
+        <member name="F:NuGet.Configuration.ProxyCache._originalSystemProxy">
+            <summary>
+            Capture the default System Proxy so that it can be re-used by the IProxyFinder
+            because we can't rely on WebRequest.DefaultWebProxy since someone can modify the DefaultWebProxy
+            property and we can't tell if it was modified and if we are still using System Proxy Settings or not.
+            One limitation of this method is that it does not look at the config file to get the defined proxy
+            settings.
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.ProxyCache.IsSystemProxySet(System.Uri)">
+            <summary>
+            Return true or false if connecting through a proxy server
+            </summary>
+            <param name="uri"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NuGet.Configuration.WebProxy">
+            <summary>
+            Internal implementation of <see cref="T:System.Net.IWebProxy"/> mirroring default desktop one.
+            Introduced for XPlat coreFx support.
+            </summary>
+        </member>
+        <member name="T:NuGet.Configuration.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.Argument_Cannot_Be_Null_Empty_Or_WhiteSpaceOnly">
+            <summary>
+              Looks up a localized string similar to Argument cannot be null, empty, or whitespace only..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.Argument_Cannot_Be_Null_Or_Empty">
+            <summary>
+              Looks up a localized string similar to Value cannot be null or empty string..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.AttributeNotAllowed">
+            <summary>
+              Looks up a localized string similar to Attribute &apos;{0}&apos; is not allowed in element &apos;{1}&apos;..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.AttributeValueNotAllowed">
+            <summary>
+              Looks up a localized string similar to The attribute &apos;{0}&apos; has an unallowed value &apos;{1}&apos; in element &apos;{2}&apos;..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.CannotUpdateDifferentItems">
+            <summary>
+              Looks up a localized string similar to The item passed to the Update method cannot refer to a different item than the one being updated..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.CannotUpdateMachineWide">
+            <summary>
+              Looks up a localized string similar to Unable to update setting since it is in a machine-wide NuGet.Config..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.CannotUpdateNode">
+            <summary>
+              Looks up a localized string similar to Cannot update the node of a setting..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.CannotUpdateReadOnlyConfig">
+            <summary>
+              Looks up a localized string similar to Unable to update setting since it is in an uneditable config file..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.ClientCertificateDuplicateConfiguration">
+            <summary>
+              Looks up a localized string similar to There are multiple client certificate configurations associated with the same package source(s): {0}.
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.CredentialsItemMustHaveUsernamePassword">
+            <summary>
+              Looks up a localized string similar to Credentials item must have username and password..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.Error_DuplicatePackageSource">
+            <summary>
+              Looks up a localized string similar to PackageSourceMapping is enabled and there are multiple package sources associated with the same key(s): {0}. Path: {1}.
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.Error_EncryptionUnsupported">
+            <summary>
+              Looks up a localized string similar to Encryption is not supported on non-Windows platforms..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.Error_InvalidAttribute">
+            <summary>
+              Looks up a localized string similar to The attribute {0}-{1} is not valid..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.Error_ItemNeedsAtLeastOnePackagePattern">
+            <summary>
+              Looks up a localized string similar to Package source &apos;{0}&apos; must have at least one package pattern..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.Error_ItemNeedsAtLeastOnePackagePatternWithPath">
+            <summary>
+              Looks up a localized string similar to Package source &apos;{0}&apos; must have at least one package pattern. Path: &apos;{1}&apos;.
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.Error_MergeTwoDifferentSections">
+            <summary>
+              Looks up a localized string similar to Cannot merge two different sections..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.Error_MoreThanOnePassword">
+            <summary>
+              Looks up a localized string similar to A credentials item must have only one Password or ClearTextPassword entry..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.Error_MoreThanOneUsername">
+            <summary>
+              Looks up a localized string similar to A credentials item must have only one Username entry..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.Error_MoreThanOneValidAuthenticationTypes">
+            <summary>
+              Looks up a localized string similar to A credentials item must have only one ValidAuthenticationTypes entry..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.Error_StoreCertCertificateNotFound">
+            <summary>
+              Looks up a localized string similar to Certificate for the package source &apos;{0}&apos; was not found in &apos;{1}.{2}&apos; storage by &apos;{3}&apos; criteria with &apos;{4}&apos; value..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.FileCertItemPasswordAndClearTextPasswordAtSameTime">
+            <summary>
+              Looks up a localized string similar to Password and ClearTextPassword cannot be used at the same time..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.FileCertItemPasswordCannotBeDecrypted">
+            <summary>
+              Looks up a localized string similar to Client certificate configuration password for the package source &apos;{0}&apos; cannot be decrypted.
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.FileCertItemPathFileNotExist">
+            <summary>
+              Looks up a localized string similar to A fileCert path specified a file that does not exist..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.FileCertItemPathFileNotSet">
+            <summary>
+              Looks up a localized string similar to A fileCert item path was not set..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.FileDoesNotExist">
+            <summary>
+              Looks up a localized string similar to File &apos;{0}&apos; does not exist..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.InvalidNullSettingsOperation">
+            <summary>
+              Looks up a localized string similar to &quot;{0}&quot; cannot be called on a NullSettings. This may be caused on account of insufficient permissions to read or write to &quot;%AppData%\NuGet\NuGet.config&quot;..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.ItemDoesNotExist">
+            <summary>
+              Looks up a localized string similar to The item does not exist in the {0} section..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.MissingRequiredAttribute">
+            <summary>
+              Looks up a localized string similar to Missing required attribute &apos;{0}&apos; in element &apos;{1}&apos;..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.MustContainAbsolutePath">
+            <summary>
+              Looks up a localized string similar to &apos;{0}&apos; must contain an absolute path &apos;{1}&apos;..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.NoAttributesAllowed">
+            <summary>
+              Looks up a localized string similar to The {0} item should not have any attributes and it was found with {1}..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.NoWritteableConfig">
+            <summary>
+              Looks up a localized string similar to There is no NuGet.Config that could be used for writing settings. Please create one at the desired location and restart the client..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.OwnersItemMustHaveAtLeastOneOwner">
+            <summary>
+              Looks up a localized string similar to Owners item must have at least one owner..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.OwnersMustOnlyHaveContent">
+            <summary>
+              Looks up a localized string similar to Owners item must only have text content and cannot be empty..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.PropertyCannotBeNullOrEmpty">
+            <summary>
+              Looks up a localized string similar to {0} cannot be null or empty..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.RepositoryMustHaveOneOwners">
+            <summary>
+              Looks up a localized string similar to The repository item with name &apos;{0}&apos; and service index &apos;{1}&apos; has more than one owners item in it..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.SectionDoesNotExist">
+            <summary>
+              Looks up a localized string similar to The section &apos;{0}&apos; does not exist in the settings..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.Settings_FileName_Cannot_Be_A_Path">
+            <summary>
+              Looks up a localized string similar to Parameter &apos;fileName&apos; to Settings must be just a file name and not a path..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.ShowError_CannotHaveChildren">
+            <summary>
+              Looks up a localized string similar to Error parsing NuGet.Config. Element &apos;{0}&apos; cannot have descendant elements. Path: &apos;{1}&apos;..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.ShowError_ConfigHasInvalidPackageSource">
+            <summary>
+              Looks up a localized string similar to {0}: NuGet.Config has an invalid package source value &apos;{1}&apos;. Reason: {2}.
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.ShowError_ConfigInvalidOperation">
+            <summary>
+              Looks up a localized string similar to NuGet.Config is malformed. Path: &apos;{0}&apos;..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.ShowError_ConfigInvalidXml">
+            <summary>
+              Looks up a localized string similar to NuGet.Config is not valid XML. Path: &apos;{0}&apos;..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.ShowError_ConfigRootInvalid">
+            <summary>
+              Looks up a localized string similar to NuGet.Config does not contain the expected root element: &apos;configuration&apos;. Path: &apos;{0}&apos;..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.ShowError_ConfigUnauthorizedAccess">
+            <summary>
+              Looks up a localized string similar to Failed to read NuGet.Config due to unauthorized access. Path: &apos;{0}&apos;..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.TextShouldNotBeEmpty">
+            <summary>
+              Looks up a localized string similar to Text elements should not be empty..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.TrustedSignerMustHaveCertificates">
+            <summary>
+              Looks up a localized string similar to A trusted signer entry must have at least one certificate entry..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.Unknown_Config_Exception">
+            <summary>
+              Looks up a localized string similar to Unexpected failure reading NuGet.Config. Path: &apos;{0}&apos;..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.UnknownHashAlgorithmNotSupported">
+            <summary>
+              Looks up a localized string similar to Unknown hash algorithm is not supported..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.UnsupportedDecryptPassword">
+            <summary>
+              Looks up a localized string similar to Password decryption is not supported on .NET Core for this platform. The following feed uses an encrypted password: &apos;{0}&apos;. You can use a clear text password as a workaround..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.UnsupportedEncryptPassword">
+            <summary>
+              Looks up a localized string similar to Password encryption is not supported on .NET Core for this platform. The following feed try to use an encrypted password: &apos;{0}&apos;. You can use a clear text password as a workaround..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.UnsupportedHashAlgorithm">
+            <summary>
+              Looks up a localized string similar to Certificate entry has an unsupported hash algorithm: &apos;{0}&apos;..
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Resources.UserSettings_UnableToParseConfigFile">
+            <summary>
+              Looks up a localized string similar to Unable to parse config file because: {0} Path: &apos;{1}&apos;..
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.ConfigurationDefaults.#ctor(System.String,System.String)">
+            <summary>
+            An internal constructor MAINLY INTENDED FOR TESTING THE CLASS. But, the product code is only expected to
+            use the static Instance property
+            Only catches FileNotFoundException. Will throw all exceptions including other IOExceptions and
+            XmlExceptions for invalid xml and so on
+            </summary>
+            <param name="directory">The directory that has the NuGetDefaults.Config</param>
+            <param name="configFile">Name of the NuGetDefaults.Config</param>
+        </member>
+        <member name="T:NuGet.Configuration.ISettings">
+            <summary>
+            Interface to expose NuGet Settings
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.ISettings.GetSection(System.String)">
+            <summary>
+            Gets the section with a given name.
+            </summary>
+            <param name="sectionName">name to match sections</param>
+            <returns>null if no section with the given name was found</returns>
+        </member>
+        <member name="M:NuGet.Configuration.ISettings.AddOrUpdate(System.String,NuGet.Configuration.SettingItem)">
+            <summary>
+            Adds or updates the given <paramref name="item"/> to the settings.
+            If the <paramref name="item"/> has to be added this method will add it
+            in the user wide settings file, or walk down the hierarchy (starting from the user wide config)
+            until it finds a config where the given section is not cleared.
+            </summary>
+            <param name="sectionName">section where the <paramref name="item"/> has to be added. If this section does not exist, one will be created.</param>
+            <param name="item">item to be added to the settings.</param>
+        </member>
+        <member name="M:NuGet.Configuration.ISettings.Remove(System.String,NuGet.Configuration.SettingItem)">
+            <summary>
+            Removes the given <paramref name="item"/> from the settings.
+            If the <paramref name="item"/> is the last item in the section, the section will also be removed.
+            If the item is overriding any items from other configs it will delete all the merged items that are
+            not in a machine wide config.
+            </summary>
+            <param name="sectionName">Section where the <paramref name="item"/> is stored. If this section does not exist, the method will throw</param>
+            <param name="item">item to be removed from the settings</param>
+            <remarks> If the <paramref name="item"/> is in a machine wide config this method will throw</remarks>
+        </member>
+        <member name="M:NuGet.Configuration.ISettings.SaveToDisk">
+            <summary>
+            Flushes any update that has been done in memory through the ISettings API to the settings file in disk.
+            </summary>
+        </member>
+        <member name="E:NuGet.Configuration.ISettings.SettingsChanged">
+            <summary>
+            Event raised when the setting have been changed.
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.ISettings.GetConfigFilePaths">
+            <summary>
+            Get a list of all the paths of the settings files used as part of this settings object. The paths are ordered with the closest one to user first.
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.ISettings.GetConfigRoots">
+            <summary>
+            Get a list of all the roots of the settings files used as part of this settings object
+            </summary>
+        </member>
+        <member name="T:NuGet.Configuration.CredentialsItem">
+            <summary>
+            A CredentialsItem has a name and it can have between 2 or 3 children:
+                - [Required] Username (AddItem)
+                - [Required] Either Password or ClearTextPassword (AddItem)
+                - [Optional] ValidAuthenticationTypes (AddItem)
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.CredentialsItem.Update(NuGet.Configuration.SettingItem)">
+            <remarks>
+            This method is internal because it updates directly the xElement behind this abstraction.
+            It should only be called whenever the underlaying config file is intended to be changed.
+            To persist changes to disk one must save the corresponding setting files
+            </remarks>
+        </member>
+        <member name="T:NuGet.Configuration.FileClientCertItem">
+            <summary>
+                A FileClientCertItem have 4 attributes:
+                - [Required] packageSource
+                - [Required] path
+                - [Optional] password
+                - [Optional] clearTextPassword
+            </summary>
+        </member>
+        <member name="T:NuGet.Configuration.PackagePatternItem">
+            <summary>
+            A PackagePatternItem has only a key and no children.
+                - [Required] Id
+            </summary>
+        </member>
+        <member name="T:NuGet.Configuration.PackageSourceMappingSourceItem">
+            <summary>
+            A PackageSourceMappingSourceItem has only a key and at least 1 <see cref="T:NuGet.Configuration.PackagePatternItem"/> child item.
+                - [Required] Key
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.PackageSourceMappingSourceItem.Patterns">
+            <summary>
+            List of package pattern items part of this package source element.
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.PackageSourceMappingSourceItem.Key">
+            <summary>
+            Each PackageSourceMappingSourceItem item needs a key.
+            The key should correspond a package source key.
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.PackageSourceMappingSourceItem.#ctor(System.String,System.Collections.Generic.IEnumerable{NuGet.Configuration.PackagePatternItem})">
+            <summary>
+            Creates a package source mapping source item with the given name, which equals the key and non-empty list of package patters items.
+            </summary>
+            <param name="name">A non-empty name of the item which corresponds a package source name.</param>
+            <param name="packagePatternItems">A non empty list of package pattern items.</param>
+            <exception cref="T:System.ArgumentException">If <paramref name="name"/> is null or empty, or <paramref name="packagePatternItems"/> is null or empty.</exception>
+        </member>
+        <member name="T:NuGet.Configuration.StoreClientCertItem">
+            <summary>
+                A StoreClientCertItem have 4 Attributes:
+                - [Required] packageSource
+                - [Optional] storeLocation. StoreLocation.CurrentUser by default.
+                - [Optional] storeName. StoreName.My by default.
+                - [Optional] findBy. X509FindType.FindByThumbprint by default.
+                - [Required] findValue
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.NuGetConfiguration.#ctor(System.Collections.Generic.IReadOnlyDictionary{System.String,System.String},System.Collections.Generic.IEnumerable{NuGet.Configuration.SettingSection})">
+            <remarks>
+            There should not be a NuGetConfiguration without an Origin.
+            This constructor should only be used for tests.
+            </remarks>
+        </member>
+        <member name="M:NuGet.Configuration.NuGetConfiguration.#ctor(NuGet.Configuration.SettingSection[])">
+            <remarks>
+            There should not be a NuGetConfiguration without an Origin.
+            This constructor should only be used for tests.
+            </remarks>
+        </member>
+        <member name="P:NuGet.Configuration.NuGetPathContext.FallbackPackageFolders">
+            <summary>
+            Fallback package folders. There many be zero or more of these.
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.NuGetPathContext.UserPackageFolder">
+            <summary>
+            User global packages folder.
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.NuGetPathContext.HttpCacheFolder">
+            <summary>
+            User level http cache.
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.NuGetPathContext.Create(NuGet.Configuration.ISettings)">
+            <summary>
+            Load paths from already loaded settings.
+            </summary>
+            <param name="settings">NuGet.Config settings.</param>
+        </member>
+        <member name="M:NuGet.Configuration.NuGetPathContext.Create(System.String)">
+            <summary>
+            Load settings based on the solution or project root directory. NuGet.Config files will 
+            be discovered based on this path. The machine wide config will also be loaded.
+            </summary>
+            <param name="settingsRoot">Root directory of the solution or project.</param>
+        </member>
+        <member name="M:NuGet.Configuration.SettingBase.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.SettingBase.IsAbstract">
+            <summary>
+            Specifies if the setting is an in-memory-only setting. 
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.SettingBase.IsCopy">
+            <summary>
+            Specifies if the setting is a copy of a concrete setting in a file.
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.SettingBase.IsEmpty">
+            <summary>
+            Specifies if the setting has attributes or values.
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.SettingBase.AsXNode">
+            <summary>
+            Gives the representation of this setting as an XNode object
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.SettingBase.Clone">
+            <summary>
+            Creates a shallow copy of the setting.
+            Does not copy any pointer to the original data structure.
+            Just copies the abstraction.
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.SettingBase.SetOrigin(NuGet.Configuration.SettingsFile)">
+            <summary>
+            Convenience method to add an element to an origin.
+            Since an origin should not be updated, any update will be ignored.
+            </summary>
+            <remarks>Each setting can override this method to include any descendants to the origin</remarks>
+        </member>
+        <member name="M:NuGet.Configuration.SettingBase.RemoveFromSettings">
+            <summary>
+            Convenience method to remove an element from it's origin and convert to abstract
+            </summary>
+            <remarks>Each setting can override this method to remove any descendants from their origin</remarks>
+        </member>
+        <member name="P:NuGet.Configuration.SettingElement.ElementName">
+            <summary>
+            Text that differentiates element tag
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.SettingElement.AllowedAttributes">
+            <summary>
+            Specifies the keys for the attributes that the element can have
+            </summary>
+            <remarks>If null then all attributes are allowed</remarks>
+        </member>
+        <member name="P:NuGet.Configuration.SettingElement.RequiredAttributes">
+            <summary>
+            Specifies the keys for the attributes that the element should have
+            </summary>
+            <remarks>If null or empty then no attributes are required</remarks>
+        </member>
+        <member name="P:NuGet.Configuration.SettingElement.AllowedValues">
+            <summary>
+            Specifies which values are allowed for a specific attribute.
+            If an attribute is not defined every value is allowed.
+            Having allowed values does not imply that the attribute is required.
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.SettingElement.DisallowedValues">
+            <summary>
+            Specifies values that are explicitely disallowed for a specific attribute.
+            If an attribute is not defined no value is disallowed.
+            Having disallowed values does not imply that the attribute is required.
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.SettingElement.MutableAttributes">
+            <summary>
+             Key-value pairs that give more information about the element
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.SettingElement.Attributes">
+            <summary>
+            Read only key-value pairs that give more information about the element
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.SettingElement.IsEmpty">
+            <summary>
+            Specifies if the element is empty.
+            Each element defines its own definition of empty.
+            The default definition of empty is an element without attributes.
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.SettingElement.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.SettingElement.#ctor(System.Xml.Linq.XElement,NuGet.Configuration.SettingsFile)">
+            <summary>
+            Constructor used when element is read from a file
+            </summary>
+            <param name="element">Xelement read from XML file document tree</param>
+            <param name="origin">Settings file that this element was read from</param>
+        </member>
+        <member name="F:NuGet.Configuration.SettingElementType.ActivePackageSource">
+            ---- Known sections --- *
+        </member>
+        <member name="F:NuGet.Configuration.SettingElementType.Add">
+            ---- Known items --- *
+        </member>
+        <member name="F:NuGet.Configuration.SettingElementType.PackageSourceMapping">
+            Package Source Mapping *
+        </member>
+        <member name="M:NuGet.Configuration.SettingItem.Update(NuGet.Configuration.SettingItem)">
+            <remarks>
+            This method is internal because it updates directly the xElement behind this abstraction.
+            It should only be called whenever the underlying config file is intended to be changed.
+            To persist changes to disk one must save the corresponding setting files
+            </remarks>
+        </member>
+        <member name="T:NuGet.Configuration.Settings">
+            <summary>
+            Concrete implementation of ISettings to support NuGet Settings
+            Wrapper for computed settings from given settings files
+            </summary>
+        </member>
+        <member name="F:NuGet.Configuration.Settings.DefaultSettingsFileName">
+            <summary>
+            Default file name for a settings file is 'NuGet.config'
+            Also, the user level setting file at '%APPDATA%\NuGet' always uses this name
+            </summary>
+        </member>
+        <member name="F:NuGet.Configuration.Settings.OrderedSettingsFileNames">
+            <summary>
+            NuGet config names with casing ordered by precedence.
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.Settings.SettingsFiles">
+            <summary>
+            All the SettingsFiles represent by this settings object.
+            The ordering is important, closest to furthest from the user.
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.Settings.#ctor(System.Collections.Generic.IList{NuGet.Configuration.SettingsFile})">
+            <summary>
+            Create a settings object.
+            The settings files need to be ordered from closest to furthest from the user.
+            </summary>
+            <param name="settingsFiles"></param>
+        </member>
+        <member name="P:NuGet.Configuration.Settings.Priority">
+            <summary>
+            Enumerates the sequence of <see cref="T:NuGet.Configuration.SettingsFile"/> instances
+            ordered from closer to user to furthest
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.Settings.LoadDefaultSettings(System.String)">
+            <summary>
+            Load default settings based on a directory.
+            This includes machine wide settings.
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.Settings.LoadDefaultSettings(System.String,System.String,NuGet.Configuration.IMachineWideSettings)">
+            <summary>
+            Loads user settings from the NuGet configuration files. The method walks the directory
+            tree in <paramref name="root" /> up to its root, and reads each NuGet.config file
+            it finds in the directories. It then reads the user specific settings,
+            which is file <paramref name="configFileName" />
+            in <paramref name="root" /> if <paramref name="configFileName" /> is not null,
+            If <paramref name="configFileName" /> is null, the user specific settings file is
+            %AppData%\NuGet\NuGet.config.
+            After that, the machine wide settings files are added.
+            </summary>
+            <remarks>
+            For example, if <paramref name="root" /> is c:\dir1\dir2, <paramref name="configFileName" />
+            is "userConfig.file", the files loaded are (in the order that they are loaded):
+            c:\dir1\dir2\nuget.config
+            c:\dir1\nuget.config
+            c:\nuget.config
+            c:\dir1\dir2\userConfig.file
+            machine wide settings (e.g. c:\programdata\NuGet\Config\*.config)
+            </remarks>
+            <param name="root">
+            The file system to walk to find configuration files.
+            Can be null.
+            </param>
+            <param name="configFileName">The user specified configuration file.</param>
+            <param name="machineWideSettings">
+            The machine wide settings. If it's not null, the
+            settings files in the machine wide settings are added after the user specific
+            config file.
+            </param>
+            <returns>The settings object loaded.</returns>
+        </member>
+        <member name="M:NuGet.Configuration.Settings.LoadDefaultSettings(System.String,System.String,NuGet.Configuration.IMachineWideSettings,NuGet.Configuration.SettingsLoadingContext)">
+            <summary>
+            Loads user settings from the NuGet configuration files. The method walks the directory
+            tree in <paramref name="root" /> up to its root, and reads each NuGet.config file
+            it finds in the directories. It then reads the user specific settings,
+            which is file <paramref name="configFileName" />
+            in <paramref name="root" /> if <paramref name="configFileName" /> is not null,
+            If <paramref name="configFileName" /> is null, the user specific settings file is
+            %AppData%\NuGet\NuGet.config.
+            After that, the machine wide settings files are added.
+            </summary>
+            <remarks>
+            For example, if <paramref name="root" /> is c:\dir1\dir2, <paramref name="configFileName" />
+            is "userConfig.file", the files loaded are (in the order that they are loaded):
+            c:\dir1\dir2\nuget.config
+            c:\dir1\nuget.config
+            c:\nuget.config
+            c:\dir1\dir2\userConfig.file
+            machine wide settings (e.g. c:\programdata\NuGet\Config\*.config)
+            </remarks>
+            <param name="root">
+            The file system to walk to find configuration files.
+            Can be null.
+            </param>
+            <param name="configFileName">The user specified configuration file.</param>
+            <param name="machineWideSettings">
+            The machine wide settings. If it's not null, the
+            settings files in the machine wide settings are added after the user specific
+            config file.
+            </param>
+            <param name="settingsLoadingContext">A <see cref="T:NuGet.Configuration.SettingsLoadingContext" /> object to use when loading the settings.</param>
+            <returns>The settings object loaded.</returns>
+        </member>
+        <member name="M:NuGet.Configuration.Settings.LoadSpecificSettings(System.String,System.String)">
+            <summary>
+            Loads Specific NuGet.Config file. The method only loads specific config file 
+            which is file <paramref name="configFileName"/>from <paramref name="root"/>.
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.Settings.LoadSettings(System.String,System.String,NuGet.Configuration.IMachineWideSettings,System.Boolean,System.Boolean,NuGet.Configuration.SettingsLoadingContext)">
+            <summary>
+            For internal use only
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.Settings.LoadSettings(System.IO.DirectoryInfo,NuGet.Configuration.IMachineWideSettings,System.Boolean,System.Boolean,NuGet.Configuration.SettingsLoadingContext)">
+            <summary>
+            For internal use only.
+            Finds and loads all configuration files within <paramref name="root" />.
+            Does not load configuration files outside of <paramref name="root" />.
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.Settings.LoadUserSpecificSettings(System.String,System.String,System.Boolean,NuGet.Configuration.SettingsLoadingContext)">
+            <summary>
+            Load the user specific settings
+            </summary>
+            <param name="root"></param>
+            <param name="configFileName"></param>
+            <param name="useTestingGlobalPath"></param>
+            <param name="settingsLoadingContext"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NuGet.Configuration.Settings.LoadMachineWideSettings(System.String,System.String[])">
+            <summary>
+            Loads the machine wide settings.
+            </summary>
+            <remarks>
+            For example, if <paramref name="paths" /> is {"IDE", "Version", "SKU" }, then
+            the files loaded are (in the order that they are loaded):
+            %programdata%\NuGet\Config\IDE\Version\SKU\*.config
+            %programdata%\NuGet\Config\IDE\Version\*.config
+            %programdata%\NuGet\Config\IDE\*.config
+            %programdata%\NuGet\Config\*.config
+            </remarks>
+            <param name="root">The file system in which the settings files are read.</param>
+            <param name="paths">The additional paths under which to look for settings files.</param>
+            <returns>The list of settings read.</returns>
+        </member>
+        <member name="M:NuGet.Configuration.Settings.GetConfigFilePaths">
+            <summary>
+            Get a list of all the paths of the settings files used as part of this settings object
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.Settings.GetConfigRoots">
+            <summary>
+            Get a list of all the roots of the settings files used as part of this settings object
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.Settings.GetSettingsFilesFullPath(System.String)">
+            <remarks>
+            Order is most significant (e.g. applied last) to least significant (applied first)
+            ex:
+            c:\someLocation\nuget.config
+            c:\nuget.config
+            </remarks>
+        </member>
+        <member name="M:NuGet.Configuration.Settings.GetSettingsFileNameFromDir(System.String)">
+            <summary>
+            Checks for each possible casing of nuget.config in the directory. The first match is
+            returned. If there are no nuget.config files null is returned.
+            </summary>
+            <remarks>For windows <see cref="F:NuGet.Configuration.Settings.OrderedSettingsFileNames"/> contains a single casing since
+            the file system is case insensitive.</remarks>
+        </member>
+        <member name="P:NuGet.Configuration.SettingsFile.ConfigFilePath">
+            <summary>
+            Full path to the settings file
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.SettingsFile.DirectoryPath">
+            <summary>
+            Folder under which the settings file is present
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.SettingsFile.FileName">
+            <summary>
+            Filename of the settings file
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.SettingsFile.IsDirty">
+            <summary>
+            Defines if the configuration settings have been changed but have not been saved to disk
+            </summary>
+        </member>
+        <member name="P:NuGet.Configuration.SettingsFile.IsMachineWide">
+            <summary>
+            Defines if the settings file is considered a machine wide settings file
+            </summary>
+            <remarks>Machine wide settings files cannot be edited.</remarks>
+        </member>
+        <member name="P:NuGet.Configuration.SettingsFile.IsReadOnly">
+            <summary>
+            Determines if the settings file is considered read-only from NuGet perspective.
+            </summary>
+            <remarks>User-wide configuration files imported from non-default locations are not considered editable.
+            Note that this is different from <see cref="P:NuGet.Configuration.SettingsFile.IsMachineWide"/>. <see cref="P:NuGet.Configuration.SettingsFile.IsReadOnly"/> will return <see langword="true"/> for every machine-wide config. </remarks>
+        </member>
+        <member name="F:NuGet.Configuration.SettingsFile._xDocument">
+            <summary>
+            XML element for settings file
+            </summary>
+        </member>
+        <member name="F:NuGet.Configuration.SettingsFile._rootElement">
+            <summary>
+            Root element of configuration file.
+            By definition of a nuget.config, the root element has to be a 'configuration' element
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.SettingsFile.#ctor(System.String)">
+            <summary>
+            Creates an instance of a non machine wide SettingsFile with the default filename.
+            </summary>
+            <param name="directoryPath">path to the directory where the file is</param>
+        </member>
+        <member name="M:NuGet.Configuration.SettingsFile.#ctor(System.String,System.String)">
+            <summary>
+            Creates an instance of a non machine wide SettingsFile.
+            </summary>
+            <param name="directoryPath">path to the directory where the file is</param>
+            <param name="fileName">name of config file</param>
+        </member>
+        <member name="M:NuGet.Configuration.SettingsFile.#ctor(System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Creates an instance of a SettingsFile
+            </summary>
+            <remarks>It will parse the specified document,
+            if it doesn't exist it will create one with the default configuration.</remarks>
+            <param name="directoryPath">path to the directory where the file is</param>
+            <param name="fileName">name of config file</param>
+            <param name="isMachineWide">specifies if the SettingsFile is machine wide.</param>
+            <param name="isReadOnly">specifies if the SettingsFile is read only. If the config is machine wide, the value passed here is irrelevant. <see cref="P:NuGet.Configuration.SettingsFile.IsReadOnly"/> will return <see langword="true"/> for every machine-wide config.</param>
+        </member>
+        <member name="M:NuGet.Configuration.SettingsFile.GetSection(System.String)">
+            <summary>
+            Gets the section with a given name.
+            </summary>
+            <param name="sectionName">name to match sections</param>
+            <returns>null if no section with the given name was found</returns>
+        </member>
+        <member name="M:NuGet.Configuration.SettingsFile.AddOrUpdate(System.String,NuGet.Configuration.SettingItem)">
+            <summary>
+            Adds or updates the given <paramref name="item"/> to the settings.
+            </summary>
+            <param name="sectionName">section where the <paramref name="item"/> has to be added. If this section does not exist, one will be created.</param>
+            <param name="item">item to be added to the settings.</param>
+            <returns>true if the item was successfully updated or added in the settings</returns>
+        </member>
+        <member name="M:NuGet.Configuration.SettingsFile.Remove(System.String,NuGet.Configuration.SettingItem)">
+            <summary>
+            Removes the given <paramref name="item"/> from the settings.
+            If the <paramref name="item"/> is the last item in the section, the section will also be removed.
+            </summary>
+            <param name="sectionName">Section where the <paramref name="item"/> is stored. If this section does not exist, the method will throw</param>
+            <param name="item">item to be removed from the settings</param>
+            <remarks> If the SettingsFile is a machine wide config this method will throw</remarks>
+        </member>
+        <member name="M:NuGet.Configuration.SettingsFile.SaveToDisk">
+            <summary>
+            Flushes any in-memory updates in the SettingsFile to disk.
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.SettingsFile.TryGetSection(System.String,NuGet.Configuration.SettingSection@)">
+            <remarks>
+            This method gives you a reference to the actual abstraction instead of a clone of it.
+            It should be used only when intended. For most purposes you should be able to use
+            GetSection(...) instead.
+            </remarks>
+        </member>
+        <member name="T:NuGet.Configuration.XPlatMachineWideSetting">
+            <summary>
+            Machine wide settings based on the default machine wide config directory.
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.FileSystemUtility.chmod(System.String,System.Int32)">
+            <summary>Only to be used for setting nuget.config permissions on Linux/Mac. Do not use elsewhere.</summary>
+        </member>
+        <member name="T:NuGet.Configuration.IExtensionLocator">
+            <summary>
+            Provides a common facility for locating extensions
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.IExtensionLocator.FindExtensions">
+            <summary>
+            Find paths to all extensions
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.IExtensionLocator.FindCredentialProviders">
+            <summary>
+            Find paths to all credential providers
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.SettingsUtility.GetConfigValue(NuGet.Configuration.ISettings,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Retrieves a config value for the specified key
+            </summary>
+            <param name="settings">The settings instance to retrieve </param>
+            <param name="key">The key to look up</param>
+            <param name="decrypt">Determines if the retrieved value needs to be decrypted.</param>
+            <param name="isPath">Determines if the retrieved value is returned as a path.</param>
+            <returns>Null if the key was not found, value from config otherwise.</returns>
+        </member>
+        <member name="M:NuGet.Configuration.SettingsUtility.SetConfigValue(NuGet.Configuration.ISettings,System.String,System.String,System.Boolean)">
+            <summary>
+            Sets a config value in the setting.
+            </summary>
+            <param name="settings">The settings instance to store the key-value in.</param>
+            <param name="key">The key to store.</param>
+            <param name="value">The value to store.</param>
+            <param name="encrypt">Determines if the value needs to be encrypted prior to storing.</param>
+        </member>
+        <member name="M:NuGet.Configuration.SettingsUtility.DeleteConfigValue(NuGet.Configuration.ISettings,System.String)">
+            <summary>
+            Deletes a config value from settings
+            </summary>
+            <param name="settings">The settings instance to delete the key from.</param>
+            <param name="key">The key to delete.</param>
+            <returns>True if the value was deleted, false otherwise.</returns>
+        </member>
+        <member name="M:NuGet.Configuration.SettingsUtility.GetFallbackPackageFolders(NuGet.Configuration.ISettings)">
+            <summary>
+            Read fallback folders from the environment variable or from nuget.config.
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.SettingsUtility.GetFallbackPackageFoldersFromConfig(NuGet.Configuration.ISettings)">
+            <summary>
+            Read fallback folders only from nuget.config.
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.SettingsUtility.GetHttpCacheFolder">
+            <summary>
+            Get the HTTP cache folder from either an environment variable or a default.
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.SettingsUtility.GetPluginsCacheFolder">
+            <summary>
+             Get plugins cache folder
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.SettingsUtility.GetDefaultPushSource(NuGet.Configuration.ISettings)">
+            <summary>
+            The DefaultPushSource can be:
+            - An absolute URL
+            - An absolute file path
+            - A relative file path
+            - The name of a registered source from a config file
+            </summary>
+        </member>
+        <member name="M:NuGet.Configuration.SettingsUtility.VerifyPathIsRooted(System.String,System.String)">
+            <summary>
+            Throw if a path is relative.
+            </summary>
+        </member>
+        <member name="M:NuGet.Shared.EqualityUtility.OrderedEquals``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IComparer{``1},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Compares two enumerables for equality, ordered according to the specified key and optional comparer. Handles null values gracefully.
+            </summary>
+            <typeparam name="TSource">The type of the list</typeparam>
+            <typeparam name="TKey">The type of the sorting key</typeparam>
+            <param name="self">This list</param>
+            <param name="other">The other list</param>
+            <param name="keySelector">The function to extract the key from each item in the list</param>
+            <param name="orderComparer">An optional comparer for comparing keys</param>
+            <param name="sequenceComparer">An optional comparer for sequences</param>
+        </member>
+        <member name="M:NuGet.Shared.EqualityUtility.OrderedEquals``2(System.Collections.Generic.ICollection{``0},System.Collections.Generic.ICollection{``0},System.Func{``0,``1},System.Collections.Generic.IComparer{``1},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Compares two collections for equality, ordered according to the specified key and optional comparer. Handles null values gracefully.
+            </summary>
+            <typeparam name="TSource">The type of the list</typeparam>
+            <typeparam name="TKey">The type of the sorting key</typeparam>
+            <param name="self">This list</param>
+            <param name="other">The other list</param>
+            <param name="keySelector">The function to extract the key from each item in the list</param>
+            <param name="orderComparer">An optional comparer for comparing keys</param>
+            <param name="sequenceComparer">An optional comparer for sequences</param>
+        </member>
+        <member name="M:NuGet.Shared.EqualityUtility.OrderedEquals``2(System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``0},System.Func{``0,``1},System.Collections.Generic.IComparer{``1},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Compares two lists for equality, ordered according to the specified key and optional comparer. Handles null values gracefully.
+            </summary>
+            <typeparam name="TSource">The type of the list</typeparam>
+            <typeparam name="TKey">The type of the sorting key</typeparam>
+            <param name="self">This list</param>
+            <param name="other">The other list</param>
+            <param name="keySelector">The function to extract the key from each item in the list</param>
+            <param name="orderComparer">An optional comparer for comparing keys</param>
+            <param name="sequenceComparer">An optional comparer for sequences</param>
+        </member>
+        <member name="M:NuGet.Shared.EqualityUtility.SequenceEqualWithNullCheck``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Compares two sequence for equality, allowing either sequence to be null. If one is null, both have to be
+            null for equality.
+            </summary>
+        </member>
+        <member name="M:NuGet.Shared.EqualityUtility.SequenceEqualWithNullCheck``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Compares two collections for equality, allowing either collection to be null. If one is null, both have to be
+            null for equality.
+            </summary>
+        </member>
+        <member name="M:NuGet.Shared.EqualityUtility.SequenceEqualWithNullCheck``1(System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``0},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Compares two lists for equality, allowing either list to be null. If one is null, both have to be
+            null for equality.
+            </summary>
+        </member>
+        <member name="M:NuGet.Shared.EqualityUtility.SetEqualsWithNullCheck``1(System.Collections.Generic.ISet{``0},System.Collections.Generic.ISet{``0},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Compares two sets for equality, allowing either sequence to be null.
+            If one is null, both have to be null for equality.
+            </summary>
+        </member>
+        <member name="M:NuGet.Shared.EqualityUtility.EqualsFalse(System.String)">
+            <summary>
+            Determines if the current string contains a value equal "false".  Leading and trailing whitespace are trimmed and the comparision is case-insensitive
+            </summary>
+            <param name="value">The string to compare.</param>
+            <returns><c>true</c> if the current string is equal to a value of "false", otherwise <c>false></c>.</returns>
+        </member>
+        <member name="T:NuGet.Shared.HashCodeCombiner">
+            <summary>
+            Hash code creator, based on the original NuGet hash code combiner/ASP hash code combiner implementations
+            </summary>
+        </member>
+        <member name="M:NuGet.Shared.HashCodeCombiner.GetHashCode``2(``0,``1)">
+            <summary>
+            Create a unique hash code for the given set of items
+            </summary>
+        </member>
+        <member name="M:NuGet.Shared.HashCodeCombiner.GetHashCode``3(``0,``1,``2)">
+            <summary>
+            Create a unique hash code for the given set of items
+            </summary>
+        </member>
+        <member name="M:NuGet.Shared.Extensions.AsList``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Return the enumerable as a List of T, copying if required. Optimized for common case where it is an List of T.
+            Avoid mutating the return value.
+            </summary>
+            <remarks>https://aspnetwebstack.codeplex.com/SourceControl/latest#src/Common/CollectionExtensions.cs</remarks>
+        </member>
+        <member name="M:NuGet.Shared.Extensions.AsHashSet``1(System.Collections.Generic.ISet{``0},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Return the ISet as a HashSet of T, copying if required. Optimized for common case where it is a HashSet of T.
+            Avoid mutating the return value.
+            </summary>
+        </member>
+        <member name="M:NuGet.Shared.XmlUtility.Load(System.String)">
+            <summary>
+            Creates a new <see cref="T:System.Xml.Linq.XDocument"/> from a file.
+            </summary>
+            <param name="path">The complete file path to be read into a new <see cref="T:System.Xml.Linq.XDocument"/>.</param>
+            <returns>An <see cref="T:System.Xml.Linq.XDocument"/> that contains the contents of the specified file.</returns>
+        </member>
+        <member name="M:NuGet.Shared.XmlUtility.Load(System.String,System.Xml.Linq.LoadOptions)">
+            <summary>
+            Creates a new <see cref="T:System.Xml.Linq.XDocument"/> from a file. Optionally, whitespace can be preserved.
+            </summary>
+            <param name="path">The complete file path to be read into a new <see cref="T:System.Xml.Linq.XDocument"/>.</param>
+            <param name="options">A set of <see cref="T:System.Xml.Linq.LoadOptions"/>.</param>
+            <returns>An <see cref="T:System.Xml.Linq.XDocument"/> that contains the contents of the specified file.</returns>
+        </member>
+        <member name="M:NuGet.Shared.XmlUtility.Load(System.IO.Stream)">
+            <summary>
+            Creates a new <see cref="T:System.Xml.Linq.XDocument"/> from a stream.
+            </summary>
+            <param name="input">The stream that contains the XML data.</param>
+            <returns>An <see cref="T:System.Xml.Linq.XDocument"/> that contains the contents of the specified stream.</returns>
+        </member>
+        <member name="M:NuGet.Shared.XmlUtility.Load(System.IO.Stream,System.Xml.Linq.LoadOptions)">
+            <summary>
+            Creates a new System.Xml.Linq.XDocument from a stream. Optionally, whitespace can be preserved.
+            </summary>
+            <param name="input">The stream that contains the XML data.</param>
+            <param name="options">A set of <see cref="T:System.Xml.Linq.LoadOptions"/>.</param>
+            <returns>An <see cref="T:System.Xml.Linq.XDocument"/> that contains the contents of the specified stream.</returns>
+        </member>
+        <member name="M:NuGet.Shared.XmlUtility.GetEncodedXMLName(System.String)">
+            <summary>
+            Converts the name to a valid XML local name, if it is invalid.
+            </summary>
+            <param name="name">The name to be encoded.</param>
+            <returns>The encoded name.</returns>
+        </member>
+        <member name="M:NuGet.Shared.XmlUtility.GetXmlReaderSettings(System.Xml.Linq.LoadOptions)">
+            <summary>
+            Creates an instance of <see cref="T:System.Xml.XmlReaderSettings"/> with safe settings
+            <param name="options">A set of <see cref="T:System.Xml.Linq.LoadOptions"/>.</param>
+            </summary>
+        </member>
+        <member name="T:NuGet.StringBuilderPool">
+            <summary>
+            Provides a resource pool that enables reusing instances of <see cref="T:System.Text.StringBuilder"/> instances.
+            </summary>
+            <remarks>
+            <para>
+            Renting and returning buffers with an <see cref="T:NuGet.StringBuilderPool"/> can increase performance
+            in situations where <see cref="T:System.Text.StringBuilder"/> instances are created and destroyed frequently,
+            resulting in significant memory pressure on the garbage collector.
+            </para>
+            <para>
+            This class is thread-safe.  All members may be used by multiple threads concurrently.
+            </para>
+            </remarks>
+        </member>
+        <member name="F:NuGet.StringBuilderPool.Shared">
+            <summary>
+            Retrieves a shared <see cref="T:NuGet.StringBuilderPool"/> instance.
+            </summary>
+        </member>
+        <member name="M:NuGet.StringBuilderPool.Rent(System.Int32)">
+            <summary>
+            Retrieves a <see cref="T:System.Text.StringBuilder"/> that is at least the requested length.
+            </summary>
+            <param name="minimumCapacity">The minimum capacity of the <see cref="T:System.Text.StringBuilder"/> needed.</param>
+            <returns>
+            A <see cref="T:System.Text.StringBuilder"/> that is at least <paramref name="minimumCapacity"/> in length.
+            </returns>
+            <remarks>
+            This buffer is loaned to the caller and should be returned to the same pool via
+            <see cref="M:NuGet.StringBuilderPool.Return(System.Text.StringBuilder)"/> so that it may be reused in subsequent usage of <see cref="M:NuGet.StringBuilderPool.Rent(System.Int32)"/>.
+            It is not a fatal error to not return a rented string builder, but failure to do so may lead to
+            decreased application performance, as the pool may need to create a new instance to replace
+            the one lost.
+            </remarks>
+        </member>
+        <member name="M:NuGet.StringBuilderPool.Return(System.Text.StringBuilder)">
+            <summary>
+            Returns to the pool an array that was previously obtained via <see cref="M:NuGet.StringBuilderPool.Rent(System.Int32)"/> on the same
+            <see cref="T:NuGet.StringBuilderPool"/> instance.
+            </summary>
+            <param name="builder">
+            The <see cref="T:System.Text.StringBuilder"/> previously obtained from <see cref="M:NuGet.StringBuilderPool.Rent(System.Int32)"/> to return to the pool.
+            </param>
+            <remarks>
+            Once a <see cref="T:System.Text.StringBuilder"/> has been returned to the pool, the caller gives up all ownership
+            of the instance and must not use it. The reference returned from a given call to <see cref="M:NuGet.StringBuilderPool.Rent(System.Int32)"/>
+            must only be returned via <see cref="M:NuGet.StringBuilderPool.Return(System.Text.StringBuilder)"/> once.  The default <see cref="T:NuGet.StringBuilderPool"/>
+            may hold onto the returned instance in order to rent it again, or it may release the returned instance
+            if it's determined that the pool already has enough instances stored.
+            </remarks>
+        </member>
+    </members>
+</doc>

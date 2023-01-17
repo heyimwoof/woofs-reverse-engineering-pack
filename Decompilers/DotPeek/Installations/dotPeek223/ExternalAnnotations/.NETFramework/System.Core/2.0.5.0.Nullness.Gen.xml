@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<assembly name="System.Core, Version=2.0.5.0">
+  <member name="M:System.Linq.EnumerableRewriter.FindEnumerableMethod(System.String,System.Collections.ObjectModel.ReadOnlyCollection{System.Linq.Expressions.Expression},System.Type[])">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+    <parameter name="name">
+      <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+    </parameter>
+  </member>
+  <member name="M:System.Linq.EnumerableRewriter.FindMethod(System.Type,System.String,System.Collections.ObjectModel.ReadOnlyCollection{System.Linq.Expressions.Expression},System.Type[],System.Reflection.BindingFlags)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+    <parameter name="type">
+      <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+    </parameter>
+  </member>
+  <member name="M:System.Linq.EnumerableRewriter.StripExpression(System.Type)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+    <parameter name="type">
+      <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+    </parameter>
+  </member>
+</assembly>

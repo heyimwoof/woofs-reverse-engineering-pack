@@ -1,0 +1,122 @@
+<!--
+***********************************************************************************************
+Eazfuscator.NET.NETSdk.targets
+
+WARNING:  DO NOT MODIFY this file. Incorrect changes to this file will make it impossible to
+          load or build your Eazfuscator.NET projects from the command-line or the IDE.
+
+Copyright (C) 2008-2022 Gapotchenko
+***********************************************************************************************
+-->
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Import Project="Eazfuscator.NET.Common.Tasks.targets" Condition=" '$(Eazfuscator_NET_CommonTasksImported)' == '' " />
+  <Import Project="Eazfuscator.NET.Cooperation.targets" Condition=" '$(Eazfuscator_NET_Cooperation_Imported)' == '' " />
+
+  <Target Name="_Eazfuscator_NET_NETSdk_PrepareForBuild"
+          BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <_Eazfuscator_NET_NETSdk_Active>false</_Eazfuscator_NET_NETSdk_Active>
+      <_Eazfuscator_NET_NETSdk_Triggered>false</_Eazfuscator_NET_NETSdk_Triggered>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_NETSdk_Activation"
+          Condition=" '$(UsingMicrosoftNETSdk)' == 'true' OR '$(NETCoreSdkBundledVersionsProps)' != '' ">
+    <PropertyGroup>
+      <_Eazfuscator_NET_NETSdk_Active>true</_Eazfuscator_NET_NETSdk_Active>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_NETSdk_Trigger"
+          DependsOnTargets="_Eazfuscator_NET_NETSdk_Activation">
+    <PropertyGroup>
+      <_Eazfuscator_NET_NETSdk_Triggered>$(_Eazfuscator_NET_NETSdk_Active)</_Eazfuscator_NET_NETSdk_Triggered>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_NETSdk_TriggeredTarget"
+          Condition=" '$(_Eazfuscator_NET_NETSdk_Triggered)' == 'true' AND '$(EazfuscatorSkipExecution)' != 'true' ">
+    <Delete Files="$(ProjectDepsFilePath)" Condition=" '$(GenerateDependencyFile)' == 'true' AND '$(ProjectDepsFilePath)' != '' AND Exists('$(ProjectDepsFilePath)') " />
+
+    <Touch Files="@(CopyUpToDateMarker)" AlwaysCreate="true" />
+    <ItemGroup>
+      <FileWrites Include="@(CopyUpToDateMarker)" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_NETSdk_RemoveReferencePaths"
+          Condition=" '$(_Eazfuscator_NET_NETSdk_Active)' == 'true' AND '$(EazfuscatorSkipExecution)' != 'true' "
+          DependsOnTargets="_Eazfuscator_NET_GetRemovedReferencePaths"
+          BeforeTargets="GenerateBuildDependencyFile;CopyFilesToOutputDirectory;_CopyFilesMarkedCopyLocal">
+    <ItemGroup>
+      <ReferenceCopyLocalPaths Remove="@(_Eazfuscator_NET_RemovedReferencePaths)" />
+    </ItemGroup>
+  </Target>
+                                                 
+  <Target Name="_Eazfuscator_NET_NETSdk_RemovePublishFilePaths"
+          Condition=" '$(_Eazfuscator_NET_NETSdk_Active)' == 'true' AND '$(EazfuscatorSkipExecution)' != 'true' "
+          DependsOnTargets="_Eazfuscator_NET_GetRemovedReferencePaths"
+          AfterTargets="ComputeResolvedFilesToPublishList"
+          BeforeTargets="GenerateSingleFileBundle">
+    <ItemGroup>
+      <ResolvedFileToPublish Remove="@(_Eazfuscator_NET_RemovedReferencePaths)" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_NETSdk_RemasterDependencies"
+          Condition=" '$(_Eazfuscator_NET_NETSdk_Active)' == 'true' AND '$(EazfuscatorSkipExecution)' != 'true' "
+          DependsOnTargets="_Eazfuscator_NET_NETSdk_RemoveReferencePaths"
+          AfterTargets="GenerateBuildDependencyFile">
+    <ItemGroup>
+      <ReferencePath Remove="@(_Eazfuscator_NET_RemovedReferencePaths)" />
+    </ItemGroup>
+    <CallTarget Targets="_Eazfuscator_NET_NETSdk_RemasterDependencyFile" Condition=" @(_Eazfuscator_NET_RemovedReferencePaths->Count()) != 0 AND '$(GenerateDependencyFile)' == 'true' AND '$(ProjectDepsFilePath)' != '' AND Exists('$(ProjectDepsFilePath)') AND '%(FileWrites.Identity)' == '$(ProjectDepsFilePath)' " />
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_NETSdk_RemasterDependencyFile"
+          DependsOnTargets="_Eazfuscator_NET_GetRemovedReferencePaths">
+    <PropertyGroup>
+      <_Eazfuscator_NET_ResponseFile>$(IntermediateOutputPath)Eazfuscator.NET.DependencyFileRemastering.rsp</_Eazfuscator_NET_ResponseFile>
+    </PropertyGroup>
+    <ItemGroup>
+      <_Eazfuscator_NET_Arg Remove="@(_Eazfuscator_NET_Arg)" />
+      <_Eazfuscator_NET_Arg Include="--msbuild-project-assets-file &quot;$(ProjectAssetsFile)&quot;" Condition=" '$(ProjectAssetsFile)' != '' " />
+      <_Eazfuscator_NET_Arg Include="--visual-studio-version &quot;$(VisualStudioVersion)&quot;" Condition=" '$(VisualStudioVersion)' != '' " />
+      <_Eazfuscator_NET_Arg Include="-n -v &quot;$(EazfuscatorCompatibilityVersion)&quot;" />
+      <_Eazfuscator_NET_Arg Include="--newline-flush" />
+      <_Eazfuscator_NET_Arg Include="--reference-paths &quot;" />
+      <_Eazfuscator_NET_Arg Include="@(_Eazfuscator_NET_RemovedReferencePaths)" />
+      <_Eazfuscator_NET_Arg Include="&quot;" />
+    </ItemGroup>
+    <WriteLinesToFile File="$(_Eazfuscator_NET_ResponseFile)" Lines="@(_Eazfuscator_NET_Arg)" Overwrite="true" Encoding="UTF-8" />
+    <ItemGroup>
+      <_Eazfuscator_NET_Arg Remove="@(_Eazfuscator_NET_Arg)" />
+    </ItemGroup>
+    <Exec Command="&quot;$(EazfuscatorPath)&quot; --remaster-dependency-file &quot;$(ProjectDepsFilePath)&quot; -q &quot;@$(_Eazfuscator_NET_ResponseFile)&quot;" IgnoreExitCode="true">
+      <Output TaskParameter="ExitCode" PropertyName="_Eazfuscator_NET_ExitCode" />
+    </Exec>
+    <Error Text="Obfuscation failed. Error occurred during dependency file remastering" File="$(ProjectDepsFilePath)" Condition=" '$(_Eazfuscator_NET_ExitCode)' != '0' " />
+    <Delete Files="$(_Eazfuscator_NET_ResponseFile)" TreatErrorsAsWarnings="true" Condition=" '$(EazfuscatorKeepResponseFile)' != 'true' " />
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_NETSdk_SynthesizeSatelliteAssemblies"
+          Condition=" '$(_Eazfuscator_NET_NETSdk_Active)' == 'true' AND '$(Configuration)' == '$(EazfuscatorActiveConfiguration)' AND '$(EazfuscatorSkipExecution)' != 'true' "
+          DependsOnTargets="_Eazfuscator_NET_GetNewOutputFilePaths_SA"
+          AfterTargets="GenerateSerializationAssemblies">
+    <ItemGroup>
+      <IntermediateSatelliteAssembliesWithTargetPath Include="%(_Eazfuscator_NET_NewOutputSatelliteAssemblies.Identity)">
+        <Culture>%(Culture)</Culture>
+        <TargetPath>%(TargetPath)</TargetPath>
+      </IntermediateSatelliteAssembliesWithTargetPath>
+    </ItemGroup>
+  </Target>
+
+  <PropertyGroup>
+    <_Eazfuscator_NET_ActivationTargets>$(_Eazfuscator_NET_ActivationTargets);_Eazfuscator_NET_NETSdk_Activation</_Eazfuscator_NET_ActivationTargets>
+    <_Eazfuscator_NET_TriggerTargets>$(_Eazfuscator_NET_TriggerTargets);_Eazfuscator_NET_NETSdk_Trigger</_Eazfuscator_NET_TriggerTargets>
+    <_Eazfuscator_NET_TriggeredTargets>$(_Eazfuscator_NET_TriggeredTargets);_Eazfuscator_NET_NETSdk_TriggeredTarget</_Eazfuscator_NET_TriggeredTargets>
+  </PropertyGroup>
+
+</Project>

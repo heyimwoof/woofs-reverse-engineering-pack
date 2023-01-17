@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.ReSharper.Features.Running</name>
+    </assembly>
+    <members>
+        <member name="P:JetBrains.ReSharper.Features.Running.ProjectRunnableOutputDetector.IsAllowedToPreferDllOverAppHostOnMacOs">
+            <remarks>See <see cref="M:JetBrains.ReSharper.Features.Running.ProjectRunnableOutputDetector.ShouldPreferDllWhenAppHostIsAvailable(JetBrains.ProjectModel.IProject)"/>.</remarks>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.Running.ProjectRunnableOutputDetector.CalculateProjectOutput(JetBrains.ProjectModel.IProject,JetBrains.Util.Dotnet.TargetFrameworkIds.TargetFrameworkId,System.Boolean)">
+            <summary>Calculates a project output (executable, arguments, working directory) for passed TFM.</summary>
+            <param name="project">Project to process.</param>
+            <param name="tfm">Target framework identifier to generate the project output.</param>
+            <param name="areRunCommandPropertiesRequired">
+            Whether the method should check <see cref="P:JetBrains.ProjectModel.Properties.Managed.IManagedProjectConfiguration.HasRunCommand"/> property before
+            generating output. This is required for all .NET Core projects by default, and could only be omitted in special
+            cases (such as libraries runnable using an existing launchSettings.json file).
+            <para/>
+            If this isn't passed, then the method will also try to automatically calculate the process working directory
+            from the project output path, if other ways to calculate it failed. Useful for the "Executable"
+            launchSettings.json command that should be available even in the projects with the output type = LIBRARY.
+            </param>
+            <returns><c>null</c> if the project cannot be run with the passed TFM.</returns>
+            <remarks>
+            See also <see cref="M:JetBrains.ReSharper.Features.Running.ProjectRunnableOutputDetector.ShouldPreferDllWhenAppHostIsAvailable(JetBrains.ProjectModel.IProject)"/>.
+            </remarks>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.Running.ProjectRunnableOutputDetector.ShouldPreferDllWhenAppHostIsAvailable(JetBrains.ProjectModel.IProject)">
+            <remarks>
+            This was introduced to mitigate issues with app host causing too many keychain requests on macOS and .NET 6,
+            see RIDER-70609 for details.
+            </remarks>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.Running.ProjectRunnableOutputDetector.DetectRunCommandFromMsBuild(JetBrains.ProjectModel.IProject,JetBrains.Util.Dotnet.TargetFrameworkIds.TargetFrameworkId,System.Boolean)">
+            <summary>
+            Tries to detect executable command from "RunCommand" and "RunArguments" MSBuild properties.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.Running.ProjectRunnableOutputDetector.CalculateWorkingDirectory(JetBrains.ProjectModel.IProject,JetBrains.Util.Dotnet.TargetFrameworkIds.TargetFrameworkId,JetBrains.Util.VirtualFileSystemPath)">
+            <summary>Determines working directory for TFM and project output path.</summary>
+            <returns><c>null</c> if this TFM is not executable, best estimate for working directory otherwise.</returns>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.Running.RunnableProjectFactory.CreateRunnableProjects(JetBrains.ProjectModel.IProject)">
+            <summary>Returns all the runnable projects of the most prioritized priority generated for project.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.Running.IRunnableProjectActivator">
+            <summary>
+            Allows some specific project to be treated as runnable
+            All regular and website projects treated as runnable by default
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.Running.Providers.ConsoleRunnableProjectProvider.GetRunnableProjectFromProjectDebugConfiguration(JetBrains.ProjectModel.IProject,System.String,System.String)">
+            <summary>
+            Provide runnable project based on project Debug Configuration properties
+            Do not launch browser:
+              <StartAction>NoStartPage</StartAction>
+            Start URL:
+              <StartAction>URL</StartAction>
+              <StartExternalURL>http://ya.ru</StartExternalURL>
+            Start external program:
+              <StartAction>Program</StartAction>
+              <StartProgram>C:\Windows\test.exe</StartProgram>
+              <StartArguments>Test.txt</StartArguments>
+              <StartWorkingDirectory>C:\Users\test\Desktop\</StartWorkingDirectory>
+              In core project: <RunWorkingDirectory Condition="'$(RunWorkingDirectory)' == ''">$(StartWorkingDirectory)</RunWorkingDirectory>
+            Start specific page:
+              <StartAction>SpecificPage</StartAction>
+              <StartPageUrl>Views/Home/Index.cshtml</StartPageUrl>
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.Running.Providers.LaunchSettingsRunnableProjectProvider">
+            <summary>
+            Class library may be "runnable" if it contains launchSettings.json.
+            </summary>
+        </member>
+    </members>
+</doc>

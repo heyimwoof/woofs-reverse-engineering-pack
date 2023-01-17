@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.ReSharper.Daemon.Xaml</name>
+    </assembly>
+    <members>
+        <member name="T:JetBrains.ReSharper.Daemon.Xaml.AssemblyReferenceClass_DaemonXaml">
+            <summary>
+            Forces the compiler to add assembly references.
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Daemon.Xaml.Highlightings.Inlay.XamlInlayHintDataModelBase`2.Data">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.Xaml.Stages.XamlErrorStage.XamlErrorStageProcess.HighlightUnexpectedTextToken(JetBrains.ReSharper.Psi.Xml.Tree.IXmlFloatingTextTokenNode,System.String)">
+            <summary>
+            Adds error highlightings for all closing angle brackets
+            </summary>
+            <param name="floatingTextToken">Floating text token that contains closing angle brackets</param>
+            <param name="message">Error message. Optional.</param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+JetBrains.ReSharper.Daemon.VB
+</name>
+</assembly>
+<members>
+<member name="M:JetBrains.ReSharper.Daemon.VB.Stages.Analysis.ArrayCreation.ArrayBoundAnalyzer.BoundToLong(JetBrains.ReSharper.Psi.VB.Tree.IVBExpression)">
+ <returns>Long value of the bound. Nothing means that the bound doesn't contain constant value.</returns>
+</member>
+<member name="M:JetBrains.ReSharper.Daemon.VB.Stages.Analysis.SpecifyStringComparisonAnalyzer.Matchers.EnsureCreatedIfAvailable">
+ <summary>
+ Creates matchers on demand if VB language exists
+ </summary>
+ <returns>True if VB language existst, false otherwis</returns>
+ <remarks></remarks>
+</member>
+<member name="M:JetBrains.ReSharper.Daemon.VB.Stages.Analysis.TypeCheck.TypeCheckAnalyzer.CheckTypes(JetBrains.ReSharper.Feature.Services.Daemon.IHighlightingConsumer,JetBrains.ReSharper.Psi.IExpressionType,JetBrains.ReSharper.Psi.IType,JetBrains.ReSharper.Psi.IType,JetBrains.ReSharper.Psi.VB.Types.IVBTypeConversionRule,System.Boolean,System.Func{JetBrains.ReSharper.Feature.Services.Daemon.IHighlighting},System.Func{JetBrains.ReSharper.Feature.Services.Daemon.IHighlighting},System.Func{JetBrains.ReSharper.Feature.Services.Daemon.IHighlighting})">
+ <remarks>perform <code>If Not targetType.IsResolved OrElse targetType.IsUninferredType() Then Return</code> before calling this method</remarks>
+</member>
+</members>
+</doc>

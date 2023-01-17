@@ -1,0 +1,244 @@
+<!--
+***********************************************************************************************
+Eazfuscator.NET.Common.targets
+
+WARNING:  DO NOT MODIFY this file. Incorrect changes to this file will make it impossible to
+          load or build your Eazfuscator.NET projects from the command-line or the IDE.
+
+Copyright (C) 2008-2022 Gapotchenko
+***********************************************************************************************
+-->
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Import Project="Eazfuscator.NET.props" Condition=" '$(Eazfuscator_NET_Properties_Imported)' == '' " />
+
+  <PropertyGroup>
+    <!-- The default Eazfuscator.NET integration mode is PostBuildEvent.
+         There are other modes available: https://www.gapotchenko.com/eazfuscator.net/kb/100036 -->
+    <EazfuscatorIntegration Condition=" '$(EazfuscatorIntegration)' == '' ">PostBuildEvent</EazfuscatorIntegration>
+
+    <!-- Specifies a project configuration Eazfuscator.NET works at. The default is Release. -->
+    <EazfuscatorActiveConfiguration Condition=" '$(EazfuscatorActiveConfiguration)' == '' "></EazfuscatorActiveConfiguration>
+
+    <!-- Specifies a set of project configurations Eazfuscator.NET works at separated by semicolon. This property is only honored when EazfuscatorActiveConfiguration is not set.  -->
+    <EazfuscatorActiveConfigurations Condition=" '$(EazfuscatorActiveConfigurations)' == '' "></EazfuscatorActiveConfigurations>
+
+    <!-- The default 'top' compatibility version says that Eazfuscator.NET should use the latest
+         heuristics for your project.
+         This is probably not what you want, so you have to define an explicit value in your .proj file.
+         Note that Eazfuscator.NET Assistant does this for you when you drop the project in
+         the green zone and it's a subject to MSBuild integration mode. -->
+    <EazfuscatorCompatibilityVersion Condition=" '$(EazfuscatorCompatibilityVersion)' == '' ">top</EazfuscatorCompatibilityVersion>
+
+    <!-- The default path to Eazfuscator.NET.exe tool. -->
+    <EazfuscatorPath Condition=" '$(EazfuscatorPath)' == '' ">Eazfuscator.NET.exe</EazfuscatorPath>
+
+    <!-- The default target that does the obfuscation job. -->
+    <EazfuscatorTargetName Condition=" '$(EazfuscatorTargetName)' == '' ">_Eazfuscator_NET_Default</EazfuscatorTargetName>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <ProduceReferenceAssembly Condition=" '$(ProduceReferenceAssembly)' == '' AND '$(Configuration)' == '$(EazfuscatorActiveConfiguration)' ">false</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Activates IDE extension for Eazfuscator.NET if it is installed. -->
+    <Service Include="{D9192153-8F53-43BD-A30D-69733DB09731}" />
+  </ItemGroup>
+
+  <!-- Override to specify actions to happen before obfuscating the project. -->
+  <Target Name="BeforeEazfuscator" />
+
+  <!-- Override to specify actions to happen after obfuscating the project. -->
+  <Target Name="AfterEazfuscator" />
+
+  <PropertyGroup>
+    <_Eazfuscator_NET_DependsOn>
+      $(_EazfuscatorDependsOn);
+      BeforeEazfuscator;
+      $(EazfuscatorTargetName);
+      AfterEazfuscator
+    </_Eazfuscator_NET_DependsOn>
+    <_Eazfuscator_NET_CoreCompileTargets>
+      CoreCompile;
+      CreateSatelliteAssemblies
+    </_Eazfuscator_NET_CoreCompileTargets>
+  </PropertyGroup>
+
+  <!-- The core Eazfuscator.NET target which can be used for customization purposes from your own targets. -->
+  <Target Name="RunEazfuscator"
+          Condition=" '$(DesignTimeBuild)' != 'true' AND !('$(BuildingInsideVisualStudio)' == 'true' AND '$(BuildingOutOfProcess)' != 'true' AND '$(BuildingProject)' == 'false') AND ('$(_Eazfuscator_NET_TrackCompilationTimestamps)' == 'true' OR ($(NonExistentFile) == '' OR '$(_Eazfuscator_NET_IgnoreNonExistentFile)' == 'true')) AND ('$(_Eazfuscator_NET_TrackCompilationTimestamps)' != 'true' OR '$(_Eazfuscator_NET_AssemblyTimestampChanged)' == 'true')"
+          DependsOnTargets="_Eazfuscator_NET_ValidatePrerequisites">
+    <PropertyGroup>
+      <_Eazfuscator_NET_TargetPath>$(_Eazfuscator_NET_RetargetedPath)</_Eazfuscator_NET_TargetPath>
+      <_Eazfuscator_NET_RetargetedPath />
+      <_Eazfuscator_NET_TargetPath Condition=" '$(_Eazfuscator_NET_TargetPath)' == '' ">$(TargetPath)</_Eazfuscator_NET_TargetPath>
+      <_Eazfuscator_NET_ResponseFile>$(EazfuscatorResponseFilePath)</_Eazfuscator_NET_ResponseFile>
+      <_Eazfuscator_NET_ResponseFile Condition=" '$(_Eazfuscator_NET_ResponseFile)' == '' ">$(IntermediateOutputPath)Eazfuscator.NET.rsp</_Eazfuscator_NET_ResponseFile>
+      <_Eazfuscator_NET_CrossTargetingBuild>false</_Eazfuscator_NET_CrossTargetingBuild>
+      <_Eazfuscator_NET_CrossTargetingBuild Condition=" '$(TargetFrameworks)' != '' AND '$(TargetFrameworks)' != '$(TargetFramework)' ">true</_Eazfuscator_NET_CrossTargetingBuild>
+    </PropertyGroup>
+    <ItemGroup>
+      <_Eazfuscator_NET_NuGet_PkgPathProperties Include="@(PackageReference)" Condition=" '%(PackageReference.GeneratePathProperty)' == 'True' " KeepMetadata="Identity">
+        <PropertyName>$([System.String]::new('%(Identity)').Replace('.', '_').Insert(0, 'Pkg'))</PropertyName>
+      </_Eazfuscator_NET_NuGet_PkgPathProperties>
+      <_Eazfuscator_NET_NuGet_PkgPathArguments Include="@(_Eazfuscator_NET_NuGet_PkgPathProperties)" Condition=" '$(%(PropertyName))' != '' ">
+        <CmdArgument>--msbuild-property %(PropertyName)=&quot;$(%(PropertyName))&quot;</CmdArgument>
+      </_Eazfuscator_NET_NuGet_PkgPathArguments>
+    </ItemGroup>
+    <ItemGroup>
+      <_Eazfuscator_NET_Arg Remove="@(_Eazfuscator_NET_Arg)" />
+
+      <_Eazfuscator_NET_Arg Include="--msbuild-project-path &quot;$(ProjectPath)&quot;" />
+      <_Eazfuscator_NET_Arg Include="--msbuild-project-configuration &quot;$(ConfigurationName)&quot;" />
+      <_Eazfuscator_NET_Arg Include="--msbuild-project-platform &quot;$(PlatformName)&quot;" />
+      <_Eazfuscator_NET_Arg Include="--msbuild-solution-path &quot;$(SolutionPath)&quot;" />
+
+      <_Eazfuscator_NET_Arg Include="--msbuild-sign-assembly &quot;$(SignAssembly)&quot;" />
+      <_Eazfuscator_NET_Arg Include="--msbuild-assembly-originator-key-file &quot;$(AssemblyOriginatorKeyFile)&quot;" />
+      <_Eazfuscator_NET_Arg Include="--msbuild-delay-sign &quot;$(DelaySign)&quot;" />
+
+      <_Eazfuscator_NET_Arg Include="--msbuild-sign-manifests &quot;$(SignManifests)&quot;" />
+      <_Eazfuscator_NET_Arg Include="--msbuild-manifest-key-file &quot;$(ManifestKeyFile)&quot;" />
+      <_Eazfuscator_NET_Arg Include="--msbuild-manifest-certificate-thumbprint &quot;$(ManifestCertificateThumbprint)&quot;" />
+      <_Eazfuscator_NET_Arg Include="--msbuild-manifest-timestamp-url &quot;$(ManifestTimestampUrl)&quot;" />
+
+      <_Eazfuscator_NET_Arg Include="--msbuild-target-framework &quot;$(TargetFramework)&quot;" Condition=" '$(TargetFramework)' != '' " />
+      <_Eazfuscator_NET_Arg Include="--msbuild-cross-targeting" Condition="$(_Eazfuscator_NET_CrossTargetingBuild)" />
+
+      <_Eazfuscator_NET_Arg Include="--msbuild-runtime-identifier &quot;$(RuntimeIdentifier)&quot;" Condition=" '$(RuntimeIdentifier)' != '' " />
+      <_Eazfuscator_NET_Arg Include="--msbuild-runtime-identifiers &quot;$(RuntimeIdentifiers)&quot;" Condition=" '$(RuntimeIdentifiers)' != '' " />
+
+      <_Eazfuscator_NET_Arg Include="--msbuild-intermediate-output-path &quot;$(IntermediateOutputPath.TrimEnd('\'))&quot;" />
+      <_Eazfuscator_NET_Arg Include="--msbuild-project-assets-file &quot;$(ProjectAssetsFile)&quot;" Condition=" '$(ProjectAssetsFile)' != '' " />
+
+      <_Eazfuscator_NET_Arg Include="--visual-studio-version &quot;$(VisualStudioVersion)&quot;" Condition=" '$(VisualStudioVersion)' != '' " />
+      <_Eazfuscator_NET_Arg Include="--msbuild-project-type &quot;$(_Eazfuscator_NET_ProjectType)&quot;" Condition=" '$(_Eazfuscator_NET_ProjectType)' != '' " />
+
+      <_Eazfuscator_NET_Arg Include="-n -v &quot;$(EazfuscatorCompatibilityVersion)&quot;" />
+      <_Eazfuscator_NET_Arg Include="--newline-flush" />
+
+      <_Eazfuscator_NET_Arg Include="--reference-paths &quot;" />
+      <_Eazfuscator_NET_Arg Include="@(ReferencePath)" />
+      <_Eazfuscator_NET_Arg Include="&quot;" />
+
+      <_Eazfuscator_NET_Arg Include="%(_Eazfuscator_NET_NuGet_PkgPathArguments.CmdArgument)" />
+      <_Eazfuscator_NET_Arg Include="--msbuild-property EazfuscatorLicense=&quot;$(EazfuscatorLicense)&quot;" Condition=" '$(EazfuscatorLicense)' != '' " />
+
+      <_Eazfuscator_NET_Arg Include="$(EazfuscatorExtraArgs)" Condition=" '$(EazfuscatorExtraArgs)' != '' " />
+    </ItemGroup>
+    <PropertyGroup>
+      <_Eazfuscator_NET_ProjectType />
+    </PropertyGroup>
+    <WriteLinesToFile File="$(_Eazfuscator_NET_ResponseFile)" Lines="@(_Eazfuscator_NET_Arg)" Overwrite="true" Encoding="UTF-8" />
+    <ItemGroup>
+      <_Eazfuscator_NET_Arg Remove="@(_Eazfuscator_NET_Arg)" />
+    </ItemGroup>
+    <Exec Command="&quot;$(EazfuscatorPath)&quot; &quot;$(_Eazfuscator_NET_TargetPath)&quot; &quot;@$(_Eazfuscator_NET_ResponseFile)&quot;" IgnoreExitCode="true" Condition=" '$(EazfuscatorSkipExecution)' != 'true' ">
+      <Output TaskParameter="ExitCode" PropertyName="_Eazfuscator_NET_ExitCode" />
+    </Exec>
+    <Error Text="Obfuscation failed" File="$(TargetFileName)" Condition=" '$(EazfuscatorSkipExecution)' != 'true' AND '$(_Eazfuscator_NET_ExitCode)' != '0' " />
+    <Delete Files="$(_Eazfuscator_NET_ResponseFile)" TreatErrorsAsWarnings="true" Condition=" '$(EazfuscatorKeepResponseFile)' != 'true' " />
+
+    <CallTarget Targets="$(_Eazfuscator_NET_TriggeredTargets)" Condition=" '$(_Eazfuscator_NET_TriggeredTargets)' != '' " />
+
+    <CallTarget Targets="$(EazfuscatorTriggeredTargets)" Condition=" '$(EazfuscatorTriggeredTargets)' != '' " />
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_Default"
+          Condition=" '$(Configuration)' == '$(EazfuscatorActiveConfiguration)' "
+          DependsOnTargets="RunEazfuscator" />
+
+  <Target Name="_Eazfuscator_NET"
+          Condition=" '$(EazfuscatorIntegration)' == 'MSBuild' AND (Exists('$(TargetPath)') OR Exists('$(_Eazfuscator_NET_RetargetedPath)')) "
+          DependsOnTargets="$(_Eazfuscator_NET_DependsOn)" />
+
+  <Target Name="_Eazfuscator_NET_ValidatePrerequisites"
+          Condition=" '$(EazfuscatorSkipExecution)' != 'true' ">
+    <Eazfuscator_NET_PrerequisitesValidationTask />
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_RetargetToIntermediate">
+    <CreateProperty Value="@(IntermediateAssembly)">
+      <Output TaskParameter="Value" PropertyName="_Eazfuscator_NET_RetargetedPath" />
+    </CreateProperty>
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_GetRemovedReferencePaths"
+          Condition=" '$(Configuration)' == '$(EazfuscatorActiveConfiguration)' AND Exists('$(IntermediateOutputPath)eazfuscator_cache\$packaging\RemovedReferencePaths.txt') ">
+    <PropertyGroup>
+      <_Eazfuscator_NET_RemovedReferencePaths_FilePath>$(IntermediateOutputPath)eazfuscator_cache\$packaging\RemovedReferencePaths.txt</_Eazfuscator_NET_RemovedReferencePaths_FilePath>
+    </PropertyGroup>
+    <ReadLinesFromFile File="$(_Eazfuscator_NET_RemovedReferencePaths_FilePath)">
+      <Output TaskParameter="Lines" ItemName="_Eazfuscator_NET_RemovedReferencePaths"/>
+    </ReadLinesFromFile>
+  </Target>
+
+  <!-- ====================================================================================== -->
+
+  <Target Name="_Eazfuscator_NET_CheckActivation"
+          BeforeTargets="BeforeBuild">
+    <Eazfuscator_NET_CheckActivation
+	CurrentConfiguration="$(Configuration)" ActiveConfigurations="$(EazfuscatorActiveConfigurations)"
+	Condition=" '$(EazfuscatorActiveConfiguration)' == '' AND '$(EazfuscatorActiveConfigurations)' != '' " >
+      <Output TaskParameter="ActivationEnabled" PropertyName="_Eazfuscator_NET_ActivationEnabled"/>
+    </Eazfuscator_NET_CheckActivation>
+    <PropertyGroup>
+      <EazfuscatorActiveConfiguration Condition=" '$(_Eazfuscator_NET_ActivationEnabled)' == 'True' ">$(Configuration)</EazfuscatorActiveConfiguration>
+      <EazfuscatorActiveConfiguration Condition=" '$(EazfuscatorActiveConfiguration)' == '' AND '$(_Eazfuscator_NET_ActivationEnabled)' == '' ">Release</EazfuscatorActiveConfiguration>
+    </PropertyGroup>
+  </Target>
+
+  <!-- ====================================================================================== -->
+
+  <Target Name="_Eazfuscator_NET_ActivationTrigger"
+          Condition=" '$(Configuration)' == '$(EazfuscatorActiveConfiguration)' "
+          BeforeTargets="CoreCompile">
+    <CallTarget Targets="$(_Eazfuscator_NET_ActivationTargets)" Condition=" '$(_Eazfuscator_NET_ActivationTargets)' != '' " />
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_CompilationTrigger"
+          Condition=" '$(Configuration)' == '$(EazfuscatorActiveConfiguration)' "
+          DependsOnTargets="_Eazfuscator_NET_ActivationTrigger">
+    <CallTarget Targets="$(_Eazfuscator_NET_TriggerTargets)" Condition=" '$(_Eazfuscator_NET_TriggerTargets)' != '' " />
+  </Target>
+
+  <PropertyGroup>
+    <TargetsTriggeredByCompilation>$(TargetsTriggeredByCompilation);_Eazfuscator_NET_CompilationTrigger</TargetsTriggeredByCompilation>
+  </PropertyGroup>
+
+  <!-- ====================================================================================== -->
+
+  <Import Project="Eazfuscator.NET.Bootstrap.Prerequisites.targets" Condition=" '$(Eazfuscator_NET_BootstrapPrerequisites_Imported)' == '' " />
+
+  <!-- ====================================================================================== -->
+
+  <PropertyGroup>
+    <_Eazfuscator_NET_TrackCompilationTimestamps />
+    <_Eazfuscator_NET_TrackCompilationTimestamps Condition=" '$(VisualStudioVersion)' == '10.0' OR '$(VisualStudioVersion)' == '11.0' OR '$(VisualStudioVersion)' == '12.0' OR '$(Eazfuscator_NET_RiderVersion)' != '' ">true</_Eazfuscator_NET_TrackCompilationTimestamps>
+  </PropertyGroup>
+
+  <Target Name="_Eazfuscator_NET_TimeStampBeforeCompile"
+          Condition=" '$(_Eazfuscator_NET_TrackCompilationTimestamps)' == 'true' "
+          BeforeTargets="CoreCompile">
+    <PropertyGroup>
+      <_Eazfuscator_NET_AssemblyTimestampBeforeCompile>%(IntermediateAssembly.ModifiedTime)</_Eazfuscator_NET_AssemblyTimestampBeforeCompile>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="_Eazfuscator_NET_TimeStampAfterCompile"
+          Condition=" '$(_Eazfuscator_NET_TrackCompilationTimestamps)' == 'true' "
+          AfterTargets="CoreCompile">
+    <PropertyGroup>
+      <_Eazfuscator_NET_AssemblyTimestampAfterCompile>%(IntermediateAssembly.ModifiedTime)</_Eazfuscator_NET_AssemblyTimestampAfterCompile>
+      <_Eazfuscator_NET_AssemblyTimestampChanged Condition=" '$(_Eazfuscator_NET_AssemblyTimestampBeforeCompile)' != '$(_Eazfuscator_NET_AssemblyTimestampAfterCompile)' ">true</_Eazfuscator_NET_AssemblyTimestampChanged>
+    </PropertyGroup>
+  </Target>
+
+  <!-- ====================================================================================== -->
+
+  <Import Project="Eazfuscator.NET.Silverlight.targets" Condition=" '$(SilverlightVersion)' != '' " />
+  <Import Project="Eazfuscator.NET.Common.MsbV40.targets" Condition=" '$(Eazfuscator_NET_MSBuildToolsVersion)' &gt;= '4.0' " />
+
+</Project>

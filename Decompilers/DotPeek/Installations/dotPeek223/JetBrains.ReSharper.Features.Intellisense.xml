@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.ReSharper.Features.Intellisense</name>
+    </assembly>
+    <members>
+        <member name="M:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.BuildScripts.MSBuild.LookupItems.MSBuildElementLookupItem.Accept(JetBrains.TextControl.ITextControl,JetBrains.DocumentModel.DocumentRange,JetBrains.ReSharper.Feature.Services.Lookup.LookupItemInsertType,JetBrains.ReSharper.Feature.Services.Lookup.Suffix,JetBrains.ProjectModel.ISolution,System.Boolean)">
+            <summary>
+            Completes the item at the specified range.
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.BuildScripts.MSBuild.Rules.MSBuildTagCompletionRule.CanGenerate">
+            <summary>
+            Gets flag indicating whether the rule can generate members
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.BuildScripts.MSBuild.Rules.MSBuildTagCompletionRule.IsAvailable(JetBrains.ReSharper.Features.Intellisense.CodeCompletion.BuildScripts.MSBuild.MSBuildCodeCompletionContext)">
+            <summary>
+            Determines whether the rule is applicable in the given context
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.BuildScripts.MSBuild.Rules.MSBuildTagCompletionRule.AddLookupItems(JetBrains.ReSharper.Features.Intellisense.CodeCompletion.BuildScripts.MSBuild.MSBuildCodeCompletionContext,JetBrains.ReSharper.Feature.Services.CodeCompletion.Infrastructure.LookupItems.IItemsCollector)">
+            <summary>
+            Applies the rule
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.BuildScripts.MSBuild.Rules.MSBuildTagCompletionRule.CompleteItemGroupElement(JetBrains.ReSharper.Features.Intellisense.CodeCompletion.BuildScripts.MSBuild.MSBuildCodeCompletionContext,JetBrains.ReSharper.Feature.Services.CodeCompletion.Infrastructure.LookupItems.IItemsCollector)">
+            <summary>
+            Completes item group element
+            </summary>
+            <param name="context"></param>
+            <param name="collector"></param>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.BuildScripts.NAnt.LookupItems.NAntAttributeLookupItem.Accept(JetBrains.TextControl.ITextControl,JetBrains.DocumentModel.DocumentRange,JetBrains.ReSharper.Feature.Services.Lookup.LookupItemInsertType,JetBrains.ReSharper.Feature.Services.Lookup.Suffix,JetBrains.ProjectModel.ISolution,System.Boolean)">
+            <summary>
+            Completes the item at the specified range.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.BuildScripts.NAnt.LookupItems.NAntElementLookupItem.Accept(JetBrains.TextControl.ITextControl,JetBrains.DocumentModel.DocumentRange,JetBrains.ReSharper.Feature.Services.Lookup.LookupItemInsertType,JetBrains.ReSharper.Feature.Services.Lookup.Suffix,JetBrains.ProjectModel.ISolution,System.Boolean)">
+            <summary>
+            Completes the item at the specified range.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.BuildScripts.NAnt.LookupItems.NAntFunctionLookupItem.Accept(JetBrains.TextControl.ITextControl,JetBrains.DocumentModel.DocumentRange,JetBrains.ReSharper.Feature.Services.Lookup.LookupItemInsertType,JetBrains.ReSharper.Feature.Services.Lookup.Suffix,JetBrains.ProjectModel.ISolution,System.Boolean)">
+            <summary>
+            Completes the item at the specified range.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.BuildScripts.NAnt.LookupItems.NAntPropertyLookupItem.Accept(JetBrains.TextControl.ITextControl,JetBrains.DocumentModel.DocumentRange,JetBrains.ReSharper.Feature.Services.Lookup.LookupItemInsertType,JetBrains.ReSharper.Feature.Services.Lookup.Suffix,JetBrains.ProjectModel.ISolution,System.Boolean)">
+            <summary>
+            Completes the item at the specified range.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.BuildScripts.NAnt.LookupItems.NAntScriptElementLookupItem.Accept(JetBrains.TextControl.ITextControl,JetBrains.DocumentModel.DocumentRange,JetBrains.ReSharper.Feature.Services.Lookup.LookupItemInsertType,JetBrains.ReSharper.Feature.Services.Lookup.Suffix,JetBrains.ProjectModel.ISolution,System.Boolean)">
+            <summary>
+            Completes the item at the specified range.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.BuildScripts.NAnt.LookupItems.NAntSimpleLookupItem.Accept(JetBrains.TextControl.ITextControl,JetBrains.DocumentModel.DocumentRange,JetBrains.ReSharper.Feature.Services.Lookup.LookupItemInsertType,JetBrains.ReSharper.Feature.Services.Lookup.Suffix,JetBrains.ProjectModel.ISolution,System.Boolean)">
+            <summary>
+            Completes the item at the specified range.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.BuildScripts.NAnt.LookupItems.NAntTargetLookupItem.Accept(JetBrains.TextControl.ITextControl,JetBrains.DocumentModel.DocumentRange,JetBrains.ReSharper.Feature.Services.Lookup.LookupItemInsertType,JetBrains.ReSharper.Feature.Services.Lookup.Suffix,JetBrains.ProjectModel.ISolution,System.Boolean)">
+            <summary>
+            Completes the item at the specified range.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.BuildScripts.NAnt.Rules.NAntPropertyCompletionRule.AddLookupItems(JetBrains.ReSharper.Features.Intellisense.CodeCompletion.BuildScripts.NAnt.NAntCodeCompletionContext,JetBrains.ReSharper.Feature.Services.CodeCompletion.Infrastructure.LookupItems.IItemsCollector)">
+            <summary>
+            Applies the rule
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.BuildScripts.NAnt.Rules.NAntScriptCompletionRule.IsAvailable(JetBrains.ReSharper.Features.Intellisense.CodeCompletion.BuildScripts.NAnt.NAntCodeCompletionContext)">
+            <summary>
+            Determines whether the rule is applicable in the given context
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.BuildScripts.NAnt.Rules.NAntScriptCompletionRule.AddLookupItems(JetBrains.ReSharper.Features.Intellisense.CodeCompletion.BuildScripts.NAnt.NAntCodeCompletionContext,JetBrains.ReSharper.Feature.Services.CodeCompletion.Infrastructure.LookupItems.IItemsCollector)">
+            <summary>
+            Applies the rule
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.BuildScripts.NAnt.Rules.NAntTargetCompletionRule.CanGenerate">
+            <summary>
+            Gets flag indicating whether the rule can generate members
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.BuildScripts.NAnt.Rules.NAntTargetCompletionRule.IsAvailable(JetBrains.ReSharper.Features.Intellisense.CodeCompletion.BuildScripts.NAnt.NAntCodeCompletionContext)">
+            <summary>
+            Determines whether the rule is applicable in the given context
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.BuildScripts.NAnt.Rules.NAntTargetCompletionRule.AddLookupItems(JetBrains.ReSharper.Features.Intellisense.CodeCompletion.BuildScripts.NAnt.NAntCodeCompletionContext,JetBrains.ReSharper.Feature.Services.CodeCompletion.Infrastructure.LookupItems.IItemsCollector)">
+            <summary>
+            Applies the rule
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.CSharp.CSharpLookupItemFactory">
+            <summary>
+              Creates code completion items for certain scenarios
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.CSharp.Rules.AutomaticCompletionWhereValueIsExpected">
+            <summary>
+            Fix automatic completiuon behaviour where value is expected...
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.CSharp.Rules.DynamicQualifierRule">
+            <summary>
+            If qualifier expression is of `dynamic` type:
+            1. Removes added extension methods (you can't invoke them on dynamic)
+            2. Enforces soft selection, since this is dynamic dispatch
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.CSharp.Rules.MemberInitializerExpressionRule">
+            <summary>
+            Correct lookup focus behaviour when member initializer is being completed.
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.CSharp.Rules.MethodGroupOrLambdaExpectedRule">
+            <summary>
+            Rule for completing methods in delegate creation expressions
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.CSharp.Rules.MethodGroupOrLambdaExpectedRuleForLambdaParameterName">
+            <summary>
+            Rule for completing methods in delegate creation expressions for second parameter (x, y|)
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.CSharp.Rules.LambdaParameterNameExpectedRuleWithReparse">
+            <summary>
+            Rule for completing methods in delegate creation expressions for second parameter (x, y|)
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.CSharp.Rules.NewStatementRule">
+            <summary>
+            Decorates ReferenceName in the 'new' expression.
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.CSharp.Rules.Smart.AddThisExpression">
+            <summary>
+            Adds extra items (not originally included in basic completion)
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.CSharp.Rules.Smart.AddTypeOf">
+            <summary>
+            Adds extra items (not originally included in basic completion)
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.CSharp.Rules.Smart.CorellationAndProximityComparer">
+            <summary>
+            This comparer first compares by proximity to expected name, then by declared element type, 
+            then (for locals) by proximity of declaration to usage
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.CSharp.Rules.Smart.NewStatementSmartCompletionType">
+            <summary>
+            Smart completion logic after new
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.CSharp.Rules.Smart.SmartCompletionRule">
+            <summary>
+            Smart code completion: filter symbol table regarding expected types...
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.CSharp.Rules.Smart.SmartCompletionRuleWhereValueIgnored">
+            <summary>
+            Smart completion of type members where statement/void value is expected.
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.CSharp.Rules.Smart.SmartTypeInCast">
+            <summary>
+            Smart completion logic for casts
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.Filters.ContextMenuServiceExtensions">
+            <summary>
+            For solving problem with unknown data context in context menus.
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.Intellisense.CodeCompletion.Sessions.CodeCompletionSession">
+            <summary>
+            Represents one session of using code completion
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.Intellisense.Options.CompletionAppearancePage">
+            <summary>
+            The visual completion settings.
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.Intellisense.Options.EditorBehaviorPage">
+            <summary>
+              The Editor-related options.
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.Intellisense.Options.IntelliSensePage">
+            <summary>
+            The IntelliSense node in the options tree.
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.Intellisense.Options.ParameterInfoPage">
+            <summary>
+            IntelliSense Parameter Info.
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.Intellisense.Options.VBEditorBehaviorPage">
+            <summary>
+              The VB Editor-related options.
+            </summary>
+        </member>
+    </members>
+</doc>

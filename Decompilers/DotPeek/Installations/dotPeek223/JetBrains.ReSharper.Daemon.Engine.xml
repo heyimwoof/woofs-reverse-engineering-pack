@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.ReSharper.Daemon.Engine</name>
+    </assembly>
+    <members>
+        <member name="M:JetBrains.ReSharper.Daemon.UsageChecking.CLRUsageCheckingServices.GetMemberId(JetBrains.ReSharper.Psi.ITypeMember,System.Boolean)">
+            <summary>
+            Static method for use if you hasn't access to instance of UsageCheckingService
+            </summary>
+            <param name="member">Type, Method, Property, etc.</param>
+            <param name="forceCreateForPrivateMembers"></param>
+            <returns></returns>
+        </member>
+        <member name="T:JetBrains.ReSharper.Daemon.UsageChecking.IHierarchyAnalysisStageProcess">
+            <summary>
+            Methods of this interface are Invoked only when FullRehighlightingRequired is true
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Daemon.UsageChecking.IUsageAnalysisHighlighting">
+            <summary>
+            Marker interface for all usage checking highlighting.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Daemon.UsageChecking.LocalMembersUsageFilter.myReferenceNames">
+            <summary>
+            Set of suspicious reference names which should be resolved to check usages
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Daemon.UsageChecking.LocalMembersUsageFilter.myMembers">
+            <summary>
+            Set of declared elements declared in this file. Only their usages should be checked
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Daemon.StatusBarMessenger">
+            <summary>
+            When a caret is placed over a highlighter (error/warning etc), advertises its text in the status bar.
+            This way you can see the text of the error under caret without using mouse.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.StatusBarMessenger.UpdateMessage">
+            <summary>
+            Applies a new message to the status bar based on the current text control caret position.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Daemon.InheritanceMarkOnGutterBase`1.JetBrains#ReSharper#Feature#Services#Daemon#IRichTextToolTipHighlighting#TryGetTooltip(JetBrains.TextControl.DocumentMarkup.HighlighterTooltipKind)">
+            <inheritdoc />
+        </member>
+        <member name="T:JetBrains.ReSharper.Daemon.Stages.FileStructureBase">
+            <summary>Handy base class for language-specific <see cref="T:JetBrains.ReSharper.Daemon.Stages.IFileStructure"/></summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Daemon.Stages.IFileStructure">
+            <summary>
+            Explores specific information for file and return it's coordinates relative to file
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Daemon.Stages.GlobalFileStructureCollectorStage">
+            <summary>
+            Marker stage to order all of file structure collector stages. All of them must precede this one.
+            </summary>
+        </member>
+    </members>
+</doc>

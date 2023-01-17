@@ -1,0 +1,235 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.Platform.Standalone.TextControl</name>
+    </assembly>
+    <members>
+        <member name="M:JetBrains.Standalone.TextControl.TextControl.ErrorStripe.SyntaxEditorErrorStripeService.VerticalScrollBarValueToPosition(ActiproSoftware.Windows.Controls.SyntaxEditor.IEditorView,System.Double)">
+            <summary>
+            Converts vertical scrollbar value into text position.
+            </summary>
+            <remarks>
+            See: ActiproSoftware.Windows.Controls.SyntaxEditor.Implementation.EditorViewScrollBarManager.VerticalScrollBarValueToPosition
+            See also ActiproSoftware.Windows.Controls.SyntaxEditor.Implementation.EditorViewScrollBarManager.UpdateScrollBarRanges
+            </remarks>
+        </member>
+        <member name="M:JetBrains.Standalone.TextControl.TextControl.GutterMarks.SyntaxEditorGutterMarginView.MeasureCore(System.Windows.Size)">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.Standalone.TextControl.TextControl.GutterMarks.SyntaxEditorGutterMarginView.ArrangeCore(System.Windows.Rect)">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.Standalone.TextControl.TextControl.GutterMarks.SyntaxEditorGutterMarginView.OnRender(System.Windows.Media.DrawingContext)">
+            <inheritdoc />
+        </member>
+        <member name="T:JetBrains.Standalone.TextControl.TextControl.GutterMarks.SyntaxEditorGutterMarginView.ArrangedGlyph">
+            <summary>
+            Glyph totally ready for rendering and mousing.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Standalone.TextControl.TextControl.GutterMarks.SyntaxEditorGutterMarksService.JetActionMarginActiveSession">
+            <summary>
+            Pushed to the text view to pass the shared lines request session object, and its presence tells whether the action margin should be active.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Standalone.TextControl.TextControl.JetSyntaxEditor">
+            <summary>
+            Derived from SyntaxEditor to override methods.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Standalone.TextControl.TextControl.NotRevised.Collapse.ActiproCollapsedRegionAdornmentManager.OnClosed">
+            <summary>
+            Occurs when the manager is closed and detached from the view.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Standalone.TextControl.TextControl.NotRevised.Collapse.SyntaxEditorCollapsedRegionTagger">
+            <summary>
+            Token-based region collapser
+            We need to use cache (myCachedTags) because ActiPro GetTags method is very slow!
+            </summary>
+        </member>
+        <member name="M:JetBrains.Standalone.TextControl.TextControl.NotRevised.Highlightings.ActiproTaggerBase`1.GetTags(ActiproSoftware.Text.NormalizedTextSnapshotRangeCollection,System.Object)">
+            <summary>
+            Returns the tag ranges that intersect with the specified normalized snapshot ranges.
+            </summary>
+            <param name="snapshotRanges">The collection of normalized snapshot ranges.</param>
+            <param name="parameter">An optional parameter that provides contextual information about the tag request.</param>
+            <returns>The tag ranges that intersect with the specified normalized snapshot ranges.</returns>
+        </member>
+        <member name="F:JetBrains.Standalone.TextControl.TextControl.Obsolete.SyntaxEditorTextControl.myLifetimeDefinition">
+            <summary>
+            Guarded disposal of the text control.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Standalone.TextControl.TextControl.Obsolete.SyntaxEditorTextControl.EmulateAction(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.Standalone.TextControl.TextControl.Obsolete.SyntaxEditorTextControl.EmulateTyping(System.Char)">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.Standalone.TextControl.TextControl.Obsolete.SyntaxEditorTextControl.FillVirtualSpaceUntilCaret">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.Standalone.TextControl.TextControl.Obsolete.SyntaxEditorTextControl.GetUpdateCookie(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.Standalone.TextControl.TextControl.Obsolete.SyntaxEditorTextControl.IsPositionInTextView(JetBrains.TextControl.Coords.ITextControlPos)">
+            <inheritdoc />
+        </member>
+        <member name="P:JetBrains.Standalone.TextControl.TextControl.Obsolete.SyntaxEditorTextControl.ErrorStripe">
+            <inheritdoc />
+        </member>
+        <member name="P:JetBrains.Standalone.TextControl.TextControl.Obsolete.SyntaxEditorTextControl.JetBrains#TextControl#ITextControl#Transport">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.Standalone.TextControl.TextControl.Obsolete.SyntaxEditorTextControlCoordinateConversion.Screen_To_Viewport(JetBrains.Util.Media.JetPhysicalPoint)">
+            <summary>
+            Helper conversion for deriving screen conversions from canvas ones.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Standalone.TextControl.TextControl.Obsolete.SyntaxEditorTextControlCoordinateConversion.Viewport_To_Screen(JetBrains.Util.Media.JetPhysicalPoint)">
+            <summary>
+            Helper conversion for deriving screen conversions from canvas ones.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Standalone.TextControl.TextControl.QuickInfo.QuickInfoTransport.BwdGetTooltipRange">
+            <summary>
+            Get the text range where tooltip is not changed.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Standalone.TextControl.TextControl.QuickInfo.QuickInfoTransport.BwdGetTooltip">
+            <summary>
+            Calculate text for the tooltip
+            </summary>
+        </member>
+        <member name="M:JetBrains.Standalone.TextControl.TextControl.Shell.SyntaxEditorViewMarginFactory.ActiproSoftware#Windows#Controls#SyntaxEditor#Margins#IEditorViewMarginFactory#CreateMargins(ActiproSoftware.Windows.Controls.SyntaxEditor.IEditorView)">
+            <summary>
+            Creates the collection of <see cref="T:ActiproSoftware.Windows.Controls.SyntaxEditor.Margins.IEditorViewMargin"/> objects to place within a <see cref="T:ActiproSoftware.Windows.Controls.SyntaxEditor.IEditorView"/>.
+            </summary>
+            <param name="view">The <see cref="T:ActiproSoftware.Windows.Controls.SyntaxEditor.IEditorView"/> that will host the margins.</param>
+            <returns>A <see cref="T:ActiproSoftware.Windows.Controls.SyntaxEditor.Margins.IEditorViewMarginCollection"/> containing the <see cref="T:ActiproSoftware.Windows.Controls.SyntaxEditor.Margins.IEditorViewMargin"/> objects that were created.</returns>
+        </member>
+        <member name="T:JetBrains.Standalone.TextControl.TextControl.StandaloneTextControlView">
+            <summary>
+            Renders a view for the Text Control Automation Object.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Standalone.TextControl.TextControl.StandaloneTextControlView.#ctor">
+            <inheritdoc />
+        </member>
+        <member name="T:JetBrains.Standalone.TextControl.TextControl.StandaloneTextControlViewFactory">
+            <summary>
+            A component backing the <see cref="T:JetBrains.Standalone.TextControl.TextControl.StandaloneTextControlView" />.
+            Mainly we need to have a guarded limiting lifetime: views get unguarded lifetimes, and if we execute-or-queue one to get a guarded, we might get lagging behind upon shell shutdown.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Standalone.TextControl.TextControl.StandaloneTextControlViewFactory.GetSyntaxEditorViewsLive(JetBrains.Lifetimes.Lifetime,ActiproSoftware.Windows.Controls.SyntaxEditor.SyntaxEditor,JetBrains.Application.Threading.IThreading,JetBrains.Util.ILogger)">
+            <summary>
+            An editor might have more than one view if split, and each needs a backing text control to operate correctly.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Standalone.TextControl.TextControl.StandaloneTextControlViewFactory.SyntaxEditorTextControlIdAllocator">
+            <summary>
+            Front-side allocation of text control IDs.
+            Negative values, to keep a different “namespace” from backend.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Standalone.TextControl.TextControl.Syntax.SyntaxLanguageProvider">
+            <summary>
+            Base impl. Creates the default all-language syntax service locator. Overridden in IDE.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Standalone.TextControl.TextControl.Syntax.SyntaxResources.SyntaxResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Standalone.TextControl.TextControl.Syntax.SyntaxResources.SyntaxResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Standalone.TextControl.TextControl.Syntax.SyntaxResources.SyntaxResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Standalone.TextControl.TextControl.Syntax.SyntaxResources.SyntaxResources.CSharp">
+            <summary>
+              Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Standalone.TextControl.TextControl.Syntax.SyntaxResources.SyntaxResources.Html">
+            <summary>
+              Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Standalone.TextControl.TextControl.Syntax.SyntaxResources.SyntaxResources.VB">
+            <summary>
+              Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Standalone.TextControl.TextControl.Syntax.SyntaxResources.SyntaxResources.Xaml">
+            <summary>
+              Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Standalone.TextControl.TextControl.Syntax.SyntaxResources.SyntaxResources.Xml">
+            <summary>
+              Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Standalone.TextControl.TextControl.TextControlComponents.StandaloneTextControlComponentAttribute">
+            <summary>
+            Component classes which wire up a <see cref="T:JetBrains.TextControl.Transport.TransportTextControl" /> to an <see cref="T:ActiproSoftware.Windows.Controls.SyntaxEditor.SyntaxEditor" />.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Standalone.TextControl.TextControl.TextControlComponents.SyntaxEditorCoords">
+            <summary>
+            <para>Syntax editor from/to document coordinates conversion.</para>
+            <para>
+            Actipro does not preserve line endings. It replaces all line endings with single '\n'.
+            As a result Actipro's syntax document text differs from the original <see cref="T:JetBrains.DocumentModel.IDocument"/>'s text.
+            It's not possible to directly convert Actipro offset to document offset.
+            We have to translate Actipro coords to document line/column (which are the same for Actipro and IDocument)
+            and than document line/column to R# document offset (and vice versa).
+            </para>
+            <para><see cref="T:JetBrains.Standalone.TextControl.TextControl.TextControlComponents.SyntaxEditorCoords"/> is not a text control component.
+            It requires <see cref="T:JetBrains.DocumentModel.IDocument"/> for correct conversions and it is created as an explicit parameter for the text control component container.</para>
+            </summary>
+        </member>
+        <member name="T:JetBrains.Standalone.TextControl.TextControl.TextControlComponents.SyntaxEditorQuickInfo.Context">
+            <summary>
+            Tooltip context.
+            While context is not changed, the tooltip is shown and a new tooltip is not requested by Actipro.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Standalone.TextControl.TextControl.TextControlComponents.SyntaxEditorSelection.ourSyncFromViewToken">
+            <summary>
+            Change with this token when setting value by syncing from view rather than user's setting the prop to change the view.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Standalone.TextControl.TextControl.Theming.ThemingResources.ThemingResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Standalone.TextControl.TextControl.Theming.ThemingResources.ThemingResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Standalone.TextControl.TextControl.Theming.ThemingResources.ThemingResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Standalone.TextControl.TextControl.Theming.ThemingResources.ThemingResources.DarkVssettings">
+            <summary>
+              Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+            </summary>
+        </member>
+    </members>
+</doc>

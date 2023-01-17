@@ -1,0 +1,937 @@
+<assembly name="NUnit.Framework">
+  <member name="M:NUnit.Framework.Assert.AreEqual(System.Object,System.Object)">
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>expected:null,actual:notnull =&gt; halt;expected:notnull,actual:null =&gt; halt</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assert.Fail(System.String,System.Object[])">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assert.Fail(System.String)">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assert.Fail">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assertion.Fail">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assertion.Fail(System.String)">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assert.Inconclusive(System.String,System.Object[])">
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assert.Inconclusive(System.String)">
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assert.Inconclusive">
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>=&gt;void</argument>
+    </attribute>
+  </member>
+
+  <member name="M:NUnit.Framework.Assert.IsTrue(System.Boolean,System.String,System.Object[])">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>condition:false=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assert.IsTrue(System.Boolean,System.String)">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>condition:false=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assert.IsTrue(System.Boolean)">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>condition:false=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assert.Multiple(NUnit.Framework.TestDelegate)">
+    <parameter name="testDelegate">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor"/>
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.Multiple(NUnit.Framework.AsyncTestDelegate)">
+    <parameter name="testDelegate">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor"/>
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.That(System.Boolean,System.String,System.Object[])">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>condition:false=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assert.That(System.Boolean)">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>condition:false=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assert.That(System.Boolean,System.Func{System.String})">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>condition:false=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assert.That(System.Func{System.Boolean})">
+    <parameter name="condition">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor"/>
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.That(System.Func{System.Boolean},System.String,System.Object[])">
+    <parameter name="condition">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor"/>
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.That(System.Func{System.Boolean},System.Func{System.String})">
+    <parameter name="condition">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor"/>
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.That``1(NUnit.Framework.Constraints.ActualValueDelegate{``0},NUnit.Framework.Constraints.IResolveConstraint)">
+    <parameter name="del">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor"/>
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.That``1(NUnit.Framework.Constraints.ActualValueDelegate{``0},NUnit.Framework.Constraints.IResolveConstraint,System.String,System.Object[])">
+    <parameter name="del">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor"/>
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.That``1(NUnit.Framework.Constraints.ActualValueDelegate{``0},NUnit.Framework.Constraints.IResolveConstraint,System.Func{System.String})">
+    <parameter name="del">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor"/>
+    </parameter>
+    <parameter name="getExceptionMessage">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor"/>
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.That(NUnit.Framework.TestDelegate,NUnit.Framework.Constraints.IResolveConstraint)">
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor"/>
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.That(NUnit.Framework.TestDelegate,NUnit.Framework.Constraints.IResolveConstraint,System.String,System.Object[])">
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor"/>
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.That(NUnit.Framework.TestDelegate,NUnit.Framework.Constraints.IResolveConstraint,System.Func{System.String})">
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor"/>
+    </parameter>
+    <parameter name="getExceptionMessage">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor"/>
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.That``1(``0,NUnit.Framework.Constraints.IResolveConstraint,System.Func{System.String})">
+    <parameter name="getExceptionMessage">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor"/>
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.True(System.Boolean,System.String,System.Object[])">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>condition:false=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assert.True(System.Boolean,System.String)">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>condition:false=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assert.True(System.Boolean)">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>condition:false=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assert.That(System.Boolean,System.String,System.Object[])">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>condition:false=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assert.That(System.Boolean,System.String)">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>condition:false=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assert.That(System.Boolean)">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>condition:false=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assertion.Assert(System.String,System.Boolean)">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>condition:false=&gt;void</argument>
+    </attribute>
+  </member>
+
+  <member name="M:NUnit.Framework.Assert.IsFalse(System.Boolean,System.String,System.Object[])">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>condition:true=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assert.IsFalse(System.Boolean,System.String)">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>condition:true=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assert.IsFalse(System.Boolean)">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>condition:true=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assert.False(System.Boolean,System.String,System.Object[])">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>condition:true=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assert.False(System.Boolean,System.String)">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>condition:true=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assert.False(System.Boolean)">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>condition:true=&gt;void</argument>
+    </attribute>
+  </member>
+
+  <member name="M:NUnit.Framework.Assert.IsNotNull(System.Object,System.String,System.Object[])">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>anObject:null=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assert.IsNotNull(System.Object,System.String)">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>anObject:null=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assert.IsNotNull(System.Object)">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>anObject:null=&gt;void</argument>
+    </attribute>
+  </member>
+
+  <member name="M:NUnit.Framework.Assert.NotNull(System.Object,System.String,System.Object[])">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>anObject:null=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assert.NotNull(System.Object,System.String)">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>anObject:null=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assert.NotNull(System.Object)">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>anObject:null=&gt;void</argument>
+    </attribute>
+  </member>
+
+  <member name="M:NUnit.Framework.Assertion.AssertNotNull(System.Object)">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>anObject:null=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assertion.AssertNotNull(System.String,System.Object)">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>anObject:null=&gt;void</argument>
+    </attribute>
+  </member>
+
+  <member name="M:NUnit.Framework.Assert.IsNull(System.Object,System.String,System.Object[])">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>anObject:notnull=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assert.IsNull(System.Object,System.String)">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>anObject:notnull=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assert.IsNull(System.Object)">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>anObject:notnull=&gt;void</argument>
+    </attribute>
+  </member>
+
+  <member name="M:NUnit.Framework.Assert.Null(System.Object,System.String,System.Object[])">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>anObject:notnull=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assert.Null(System.Object,System.String)">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>anObject:notnull=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assert.Null(System.Object)">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>anObject:notnull=&gt;void</argument>
+    </attribute>
+  </member>
+
+  <member name="M:NUnit.Framework.Assertion.AssertNull(System.Object)">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>anObject:notnull=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assertion.AssertNull(System.String,System.Object)">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>anObject:notnull=&gt;void</argument>
+    </attribute>
+  </member>
+
+  <member name="T:NUnit.Framework.SetUpFixtureAttribute">
+    <attribute ctor="M:JetBrains.Annotations.MeansImplicitUseAttribute.#ctor" />
+  </member>
+  <member name="T:NUnit.Framework.TestFixtureAttribute">
+    <attribute ctor="M:JetBrains.Annotations.MeansImplicitUseAttribute.#ctor" />
+  </member>
+  <member name="T:NUnit.Framework.TestAttribute">
+    <attribute ctor="M:JetBrains.Annotations.MeansImplicitUseAttribute.#ctor" />
+  </member>
+  <member name="T:NUnit.Framework.TestCaseAttribute">
+    <attribute ctor="M:JetBrains.Annotations.MeansImplicitUseAttribute.#ctor" />
+  </member>
+  <member name="T:NUnit.Framework.TestCaseSourceAttribute">
+    <attribute ctor="M:JetBrains.Annotations.MeansImplicitUseAttribute.#ctor" />
+  </member>
+  <member name="T:NUnit.Framework.TestFixtureSetUpAttribute">
+    <attribute ctor="M:JetBrains.Annotations.MeansImplicitUseAttribute.#ctor" />
+  </member>
+  <member name="T:NUnit.Framework.TestFixtureTearDownAttribute">
+    <attribute ctor="M:JetBrains.Annotations.MeansImplicitUseAttribute.#ctor" />
+  </member>
+  <member name="T:NUnit.Framework.SetUpAttribute">
+    <attribute ctor="M:JetBrains.Annotations.MeansImplicitUseAttribute.#ctor" />
+  </member>
+  <member name="T:NUnit.Framework.TearDownAttribute">
+    <attribute ctor="M:JetBrains.Annotations.MeansImplicitUseAttribute.#ctor" />
+  </member>
+  <member name="T:NUnit.Framework.OneTimeSetUpAttribute">
+    <attribute ctor="M:JetBrains.Annotations.MeansImplicitUseAttribute.#ctor" />
+  </member>
+  <member name="T:NUnit.Framework.OneTimeTearDownAttribute">
+    <attribute ctor="M:JetBrains.Annotations.MeansImplicitUseAttribute.#ctor" />
+  </member>
+  <member name="T:NUnit.Framework.CombiningStrategyAttribute">
+    <attribute ctor="M:JetBrains.Annotations.MeansImplicitUseAttribute.#ctor" />
+  </member>
+  <member name="T:NUnit.Framework.DatapointAttribute">
+    <attribute ctor="M:JetBrains.Annotations.MeansImplicitUseAttribute.#ctor" />
+  </member>
+  <member name="T:NUnit.Framework.DatapointsAttribute">
+    <attribute ctor="M:JetBrains.Annotations.MeansImplicitUseAttribute.#ctor" />
+  </member>
+  <member name="T:NUnit.Framework.DataPointSourceAttribute">
+    <attribute ctor="M:JetBrains.Annotations.MeansImplicitUseAttribute.#ctor" />
+  </member>
+  
+  <member name="M:NUnit.Framework.Assert.Catch(NUnit.Framework.TestDelegate)">
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.Catch(NUnit.Framework.TestDelegate,System.String)">
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.Catch(NUnit.Framework.TestDelegate,System.String,System.Object[])">
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.Catch(System.Type,NUnit.Framework.TestDelegate)">
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.Catch(System.Type,NUnit.Framework.TestDelegate,System.String)">
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.Catch(System.Type,NUnit.Framework.TestDelegate,System.String,System.Object[])">
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.Catch``1(NUnit.Framework.TestDelegate)">
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.Catch``1(NUnit.Framework.TestDelegate,System.String)">
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.Catch``1(NUnit.Framework.TestDelegate,System.String,System.Object[])">
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.DoesNotThrow(NUnit.Framework.TestDelegate)">
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.DoesNotThrow(NUnit.Framework.TestDelegate,System.String)">
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.DoesNotThrow(NUnit.Framework.TestDelegate,System.String,System.Object[])">
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.Throws(NUnit.Framework.Constraints.IResolveConstraint,NUnit.Framework.TestDelegate)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.Throws(NUnit.Framework.Constraints.IResolveConstraint,NUnit.Framework.TestDelegate,System.String)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.Throws(NUnit.Framework.Constraints.IResolveConstraint,NUnit.Framework.TestDelegate,System.String,System.Object[])">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.Throws(System.Type,NUnit.Framework.TestDelegate)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.Throws(System.Type,NUnit.Framework.TestDelegate,System.String)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.Throws(System.Type,NUnit.Framework.TestDelegate,System.String,System.Object[])">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.Throws``1(NUnit.Framework.TestDelegate)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.Throws``1(NUnit.Framework.TestDelegate,System.String)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.Throws``1(NUnit.Framework.TestDelegate,System.String,System.Object[])">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  
+  <member name="M:NUnit.Framework.Assert.CatchAsync(NUnit.Framework.AsyncTestDelegate)">
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.CatchAsync(NUnit.Framework.AsyncTestDelegate,System.String)">
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.CatchAsync(NUnit.Framework.AsyncTestDelegate,System.String,System.Object[])">
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.CatchAsync(System.Type,NUnit.Framework.AsyncTestDelegate)">
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.CatchAsync(System.Type,NUnit.Framework.AsyncTestDelegate,System.String)">
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.CatchAsync(System.Type,NUnit.Framework.AsyncTestDelegate,System.String,System.Object[])">
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.CatchAsync``1(NUnit.Framework.AsyncTestDelegate)">
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.CatchAsync``1(NUnit.Framework.AsyncTestDelegate,System.String)">
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.CatchAsync``1(NUnit.Framework.AsyncTestDelegate,System.String,System.Object[])">
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.DoesNotThrowAsync(NUnit.Framework.AsyncTestDelegate)">
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.DoesNotThrowAsync(NUnit.Framework.AsyncTestDelegate,System.String,System.Object[])">
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.ThrowsAsync(NUnit.Framework.AsyncTestDelegate)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.ThrowsAsync(NUnit.Framework.AsyncTestDelegate,System.String,System.Object[])">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.ThrowsAsync(NUnit.Framework.Constraints.IResolveConstraint,NUnit.Framework.AsyncTestDelegate)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.ThrowsAsync(NUnit.Framework.Constraints.IResolveConstraint,NUnit.Framework.AsyncTestDelegate,System.String,System.Object[])">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.ThrowsAsync(System.Type,NUnit.Framework.AsyncTestDelegate)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.ThrowsAsync``1(NUnit.Framework.AsyncTestDelegate)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:NUnit.Framework.Assert.ThrowsAsync``1(NUnit.Framework.AsyncTestDelegate,System.String,System.Object[])">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+    <parameter name="code">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+
+  <member name="M:NUnit.Framework.Assert.Ignore">
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assert.Ignore(System.String)">
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>=&gt;void</argument>
+    </attribute>
+  </member>
+  <member name="M:NUnit.Framework.Assert.Ignore(System.String,System.Object[])">
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>=&gt;void</argument>
+    </attribute>
+  </member>
+  
+  <member name="P:NUnit.Framework.Is.Not">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Is.All">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Is.Null">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Is.True">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Is.False">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Is.Positive">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Is.Negative">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Is.Zero">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Is.NaN">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Is.Empty">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Is.Unique">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Is.BinarySerializable">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Is.XmlSerializable">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Is.EqualTo(System.Object)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Is.SameAs(System.Object)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Is.GreaterThan(System.Object)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Is.GreaterThanOrEqualTo(System.Object)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Is.AtLeast(System.Object)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Is.LessThan(System.Object)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Is.LessThanOrEqualTo(System.Object)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Is.AtMost(System.Object)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Is.TypeOf(System.Type)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Is.TypeOf``1()">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Is.InstanceOf(System.Type)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Is.InstanceOf``1()">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Is.AssignableFrom(System.Type)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Is.AssignableFrom``1()">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Is.AssignableTo(System.Type)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Is.AssignableTo``1()">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Is.EquivalentTo(System.Collections.IEnumerable)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Is.SubsetOf(System.Collections.IEnumerable)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Is.SupersetOf(System.Collections.IEnumerable)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Is.Ordered">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Is.SamePath(System.String)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Is.SubPathOf(System.String)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Is.SamePathOrUnder(System.String)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Is.InRange(System.Object,System.Object)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Is.AnyOf(System.Object[])">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  
+  <member name="P:NUnit.Framework.Constraints.ConstraintExpression.Not">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Constraints.ConstraintExpression.No">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Constraints.ConstraintExpression.All">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Constraints.ConstraintExpression.Some">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Constraints.ConstraintExpression.None">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Constraints.ConstraintExpression.Exactly(System.Int32)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Constraints.ConstraintExpression.One">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Constraints.ConstraintExpression.Property(System.String)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Constraints.ConstraintExpression.Length">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Constraints.ConstraintExpression.Count">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Constraints.ConstraintExpression.Message">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Constraints.ConstraintExpression.InnerException">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Constraints.ConstraintExpression.Attribute(System.Type)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Constraints.ConstraintExpression.Attribute``1()">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Constraints.ConstraintExpression.With">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Constraints.ConstraintExpression.Null">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Constraints.ConstraintExpression.True">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Constraints.ConstraintExpression.False">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Constraints.ConstraintExpression.Positive">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Constraints.ConstraintExpression.Negative">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Constraints.ConstraintExpression.Zero">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Constraints.ConstraintExpression.NaN">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Constraints.ConstraintExpression.Empty">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Constraints.ConstraintExpression.Unique">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Constraints.ConstraintExpression.BinarySerializable">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Constraints.ConstraintExpression.XmlSerializable">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Constraints.ConstraintExpression.EqualTo(System.Object)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Constraints.ConstraintExpression.SameAs(System.Object)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Constraints.ConstraintExpression.GreaterThan(System.Object)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Constraints.ConstraintExpression.GreaterThanOrEqualTo(System.Object)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Constraints.ConstraintExpression.AtLeast(System.Object)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Constraints.ConstraintExpression.LessThan(System.Object)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Constraints.ConstraintExpression.LessThanOrEqualTo(System.Object)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Constraints.ConstraintExpression.AtMost(System.Object)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Constraints.ConstraintExpression.TypeOf(System.Type)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Constraints.ConstraintExpression.TypeOf``1()">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Constraints.ConstraintExpression.InstanceOf(System.Type)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Constraints.ConstraintExpression.InstanceOf``1()">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Constraints.ConstraintExpression.AssignableFrom(System.Type)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Constraints.ConstraintExpression.AssignableFrom``1()">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Constraints.ConstraintExpression.AssignableTo(System.Type)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Constraints.ConstraintExpression.AssignableTo``1()">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Constraints.ConstraintExpression.EquivalentTo(System.Collections.IEnumerable)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Constraints.ConstraintExpression.SubsetOf(System.Collections.IEnumerable)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Constraints.ConstraintExpression.SupersetOf(System.Collections.IEnumerable)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Constraints.ConstraintExpression.Ordered">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Constraints.ConstraintExpression.SamePath(System.String)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Constraints.ConstraintExpression.SubPathOf(System.String)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Constraints.ConstraintExpression.SamePathOrUnder(System.String)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Constraints.ConstraintExpression.InRange(System.Object,System.Object)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Constraints.ConstraintExpression.AnyOf(System.Object[])">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+
+  <member name="P:NUnit.Framework.Constraints.Constraint.And">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Constraints.Constraint.With">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Constraints.Constraint.Or">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+
+  <member name="P:NUnit.Framework.Does.Not">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="P:NUnit.Framework.Does.Exist">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Does.Contain(System.Object)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Does.Contain(System.String)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Does.ContainKey(System.Object)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Does.ContainValue(System.Object)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Does.StartWith(System.String)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Does.EndWith(System.String)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Does.Match(System.String)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+
+  <member name="M:NUnit.Framework.Contains.Item(System.Object)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Contains.Key(System.Object)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Contains.Value(System.Object)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.Contains.Substring(System.String)">
+    <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor"/>
+  </member>
+  <member name="M:NUnit.Framework.AssertionHelper.Expect``1(``0,NUnit.Framework.Constraints.IResolveConstraint)">
+    <attribute ctor="M:JetBrains.Annotations.AssertionMethodAttribute.#ctor"/>
+    <attribute ctor="M:JetBrains.Annotations.ContractAnnotationAttribute.#ctor(System.String)">
+        <argument>actual:null,expression:notnull =&gt; halt;actual:notnull,expression:null =&gt; halt</argument>
+    </attribute>
+  </member>  
+</assembly>

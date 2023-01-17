@@ -1,0 +1,189 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.Platform.UIInteractive.Shell.Common</name>
+    </assembly>
+    <members>
+        <member name="T:JetBrains.UI.Resources.Strings">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:JetBrains.UI.Resources.Strings.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:JetBrains.UI.Resources.Strings.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:JetBrains.UI.Resources.Strings.CouldNotInitializeTheBasicException_Text">
+             <summary>
+               Looks up a localized string similar to Failed to initialize the basic exception reporting service. Should there be any startup failures, they will be silent.
+            
+            {0}.
+             </summary>
+        </member>
+        <member name="P:JetBrains.UI.Resources.Strings.ShowInExplorer_Text">
+            <summary>
+              Looks up a localized string similar to Show in Explorer.
+            </summary>
+        </member>
+        <member name="F:JetBrains.UI.Common.JetTextWrapping.WrapWithOverflow">
+            <summary> Line-breaking occurs if the line overflows beyond the available block width. However, a line may overflow beyond the block width if the line breaking algorithm cannot determine a line break opportunity, as in the case of a very long word constrained in a fixed-width container with no scrolling allowed. </summary>
+        </member>
+        <member name="F:JetBrains.UI.Common.JetTextWrapping.NoWrap">
+            <summary> No line wrapping is performed.</summary>
+        </member>
+        <member name="F:JetBrains.UI.Common.JetTextWrapping.Wrap">
+            <summary> Line-breaking occurs if the line overflows beyond the available block width, even if the standard line breaking algorithm cannot determine any line break opportunity, as in the case of a very long word constrained in a fixed-width container with no scrolling allowed. </summary>
+        </member>
+        <member name="F:JetBrains.UI.Common.JetVisibility.Visible">
+            <summary>Display the element.</summary>
+        </member>
+        <member name="F:JetBrains.UI.Common.JetVisibility.Hidden">
+            <summary>Do not display the element, but reserve space for the element in layout.</summary>
+        </member>
+        <member name="F:JetBrains.UI.Common.JetVisibility.Collapsed">
+            <summary>Do not display the element, and do not reserve space for it in layout.</summary>
+        </member>
+        <member name="T:JetBrains.UI.Components.Unix.Linux.LinuxCommonLocateFile">
+            <inheritdoc cref="T:JetBrains.Application.UI.Controls.FileSystem.ICommonLocateFile"/>
+        </member>
+        <member name="M:JetBrains.UI.Components.Unix.Linux.LinuxCommonLocateFile.LocateActionName">
+            <inheritdoc cref="T:JetBrains.Application.UI.Controls.FileSystem.ICommonLocateFile"/>
+        </member>
+        <member name="M:JetBrains.UI.Components.Unix.Linux.LinuxCommonLocateFile.LocateFile(JetBrains.Util.FileSystemPath)">
+            <inheritdoc cref="T:JetBrains.Application.UI.Controls.FileSystem.ICommonLocateFile"/>
+        </member>
+        <member name="T:JetBrains.UI.Components.Unix.Mac.MacCommonLocateFile">
+            <inheritdoc cref="T:JetBrains.Application.UI.Controls.FileSystem.ICommonLocateFile"/>
+        </member>
+        <member name="M:JetBrains.UI.Components.Unix.Mac.MacCommonLocateFile.LocateActionName">
+            <inheritdoc cref="T:JetBrains.Application.UI.Controls.FileSystem.ICommonLocateFile"/>
+        </member>
+        <member name="M:JetBrains.UI.Components.Unix.Mac.MacCommonLocateFile.LocateFile(JetBrains.Util.FileSystemPath)">
+            <inheritdoc cref="T:JetBrains.Application.UI.Controls.FileSystem.ICommonLocateFile"/>
+        </member>
+        <member name="T:JetBrains.UI.Components.Windows.WindowsCommonLocateFile">
+            <inheritdoc cref="T:JetBrains.Application.UI.Controls.FileSystem.ICommonLocateFile"/>
+        </member>
+        <member name="M:JetBrains.UI.Components.Windows.WindowsCommonLocateFile.LocateActionName">
+            <inheritdoc cref="T:JetBrains.Application.UI.Controls.FileSystem.ICommonLocateFile"/>
+        </member>
+        <member name="M:JetBrains.UI.Components.Windows.WindowsCommonLocateFile.LocateFile(JetBrains.Util.FileSystemPath)">
+            <inheritdoc cref="T:JetBrains.Application.UI.Controls.FileSystem.ICommonLocateFile"/>
+        </member>
+        <member name="T:JetBrains.UI.Controls.GotoByName.GotoByNameMenuBase">
+            <summary>
+            Implements the presentation of the Goto By Name functionality that works thru a <see cref="T:JetBrains.Application.UI.Controls.JetPopupMenu.JetPopupMenu"/>.
+            </summary>
+        </member>
+        <member name="F:JetBrains.UI.Controls.GotoByName.GotoByNameMenuBase.MenuView">
+            <summary>
+            Gets the menu view, when the menu is running onscreen.
+            Otherwise <c>Null</c>.
+            </summary>
+        </member>
+        <member name="F:JetBrains.UI.Controls.GotoByName.GotoByNameMenuBase.PopupWindow">
+            <summary>
+            Gets the menu popup window, when the menu is running onscreen.
+            Otherwise <c>Null</c>.
+            </summary>
+        </member>
+        <member name="M:JetBrains.UI.Controls.GotoByName.GotoByNameMenuBase.#ctor(JetBrains.UI.Controls.GotoByName.GotoByNameMenuComponent,JetBrains.Lifetimes.LifetimeDefinition,JetBrains.Application.UI.Controls.GotoByName.GotoByNameModel,JetBrains.Application.UI.UIAutomation.ControlWrapper,JetBrains.Application.UI.Controls.GotoByName.GotoByNameDataConstants.SearchTextData,JetBrains.Application.UI.PopupLayout.PopupWindowContextSource)">
+            <summary>
+            Spawns the Goto By Name <see cref="T:JetBrains.Application.UI.Controls.JetPopupMenu.JetPopupMenu"/>-based UI upon the given model.
+            Disposes of the model when done.
+            </summary>
+            <param name="gotoByNameMenuComponent"></param>
+            <param name="lifetimeDefinition"></param>
+            <param name="model">Goto-by-name model that provides data for the UI.</param>
+            <param name="ownerwin"></param>
+            <param name="initialSearchTextData"></param>
+            <param name="customPopupWindowContext"></param>
+        </member>
+        <member name="T:JetBrains.UI.ExceptionReport.ShellLessExceptionReporting">
+            <summary>
+            Helpers for setting up exception reporting when the product shell is not running yet.
+            User-interactive mode helpers.
+            </summary>
+        </member>
+        <member name="M:JetBrains.UI.ExceptionReport.ShellLessExceptionReporting.CreateAndInstall(JetBrains.Lifetimes.Lifetime,JetBrains.Application.BuildScript.Application.HostInfo,JetBrains.Application.BuildScript.Application.IWindowBranding,System.Lazy{System.Collections.Generic.IEnumerable{JetBrains.Application.BuildScript.PackageSpecification.JetPackageMetadata}})">
+            <summary>
+            An exception reporter which knows the static product details and can submit smth to the issue tracker.
+            </summary>
+        </member>
+        <member name="M:JetBrains.UI.ExceptionReport.ShellLessExceptionReporting.CreateAndInstall(JetBrains.Lifetimes.Lifetime,JetBrains.Build.Serialization.SerializedValuesResolver)">
+            <summary>
+            An exception reporter which knows the static product details and can submit smth to the issue tracker.
+            </summary>
+        </member>
+        <member name="M:JetBrains.UI.ExceptionReport.ShellLessExceptionReporting.CreateAndInstallWithoutContext">
+            <summary>
+            An exception reporter which does not have the product context or any components yet.
+            Shows a primitive message box without the submit-to-tracker capability.
+            Reports failures in creation of the context for the full reporter.
+            We MUST NOT obey <see cref="P:JetBrains.Application.ExceptionReport.IsModeReportExceptionsComponent.IsShowingExceptionsToUser" /> flag here: after we have the context, we push another exception reporter that obeys the flag, but startup-related errors are most likely FATAL and MUST be shown to the user. — NOTE: not necessarily deemed true in wave01
+            </summary>
+        </member>
+        <member name="T:JetBrains.UI.PopupLayout.PopupWindowManager">
+            <summary>
+            Manages the display, positioning, and destroying popup windows.
+            </summary>
+        </member>
+        <member name="F:JetBrains.UI.PopupLayout.PopupWindowManager.myPopupWindows">
+            <summary>
+            This must be an instance member.
+            </summary>
+        </member>
+        <member name="P:JetBrains.UI.PopupLayout.PopupWindowManager.PopupWindows">
+            <summary>
+            Gets the collection of popup windows currently active in the system.
+            Some of them may be invisible.
+            </summary>
+        </member>
+        <member name="M:JetBrains.UI.PopupLayout.PopupWindowManager.CreatePopupWindow(JetBrains.Lifetimes.LifetimeDefinition,System.Object,JetBrains.Application.UI.PopupLayout.IPopupWindowContext,JetBrains.Application.UI.WindowManagement.HideFlags,System.Boolean,JetBrains.Application.UI.PopupLayout.PopupWindowMutex)">
+            <summary>
+            Shows a popup window, controls its location and position against the layouter, and destroys the form upon one of the predefined actions.
+            </summary>
+            <param name="lifetimeDefinition">Defines the lifetime of the popup window. Could be terminated by this class in case the window is closed due to one of the conditions. Bind all of the layouters, window context, and per-popup-window additional resources to this lifetime.</param>
+            <param name="form">A form to be shown as a popup window.</param>
+            <param name="context">The owning context for the popup window.</param>
+            <param name="hideflags">Flags that identify when to destroy the form (or hide, if the <see cref="!:PopupFormController.HideMethod" /> has been overridden to <see cref="F:JetBrains.Application.UI.PopupLayout.FormHideMethod.Visibility" />).</param>
+            <param name="wantsfocus">If <c>True</c>, sets the focus to the popup window when it's first shown. The default is <c>True</c>.</param>
+            <param name="mutex">Specifies the popup window's identity group. Creates a new unique group if omitted.</param>
+            <returns>Identifies the popup window controller.</returns>
+        </member>
+        <member name="M:JetBrains.UI.PopupLayout.PopupWindowManager.CreatePopupWindow(JetBrains.Lifetimes.LifetimeDefinition,System.Object,JetBrains.Application.UI.PopupLayout.PopupWindowContextSource,JetBrains.Application.UI.WindowManagement.HideFlags,System.Boolean,JetBrains.Application.UI.PopupLayout.PopupWindowMutex)">
+            <inheritdoc cref="!:CreatePopupWindow(JetBrains.Lifetimes.LifetimeDefinition,System.Windows.Forms.Form,JetBrains.Application.UI.PopupLayout.IPopupWindowContext,JetBrains.Application.UI.WindowManagement.HideFlags,bool,JetBrains.Application.UI.PopupLayout.PopupWindowMutex)" />
+        </member>
+        <member name="M:JetBrains.UI.PopupLayout.PopupWindowManagerEx.ShowPopupWindow(JetBrains.UI.PopupLayout.PopupWindowManager,JetBrains.Lifetimes.Lifetime,JetBrains.Application.UI.Controls.IConstrainableControl,System.Func{JetBrains.Lifetimes.Lifetime,JetBrains.Application.UI.PopupLayout.IPopupWindowContext},JetBrains.Application.UI.WindowManagement.HideFlags,JetBrains.Application.UI.PopupLayout.FormHideMethod)">
+            <summary>
+            Shows a popup window, controls its location and position against the layouter, and destroys the form upon one of the predefined actions.
+            </summary>
+            <param name="thіs"></param>
+            <param name="lifetime">The limiting lifetime for the window session.</param>
+            <param name="form">A form to be shown as a popup window.</param>
+            <param name="FCreateContext">The owning context for the popup window.</param>
+            <param name="hideflags">Flags that identify when to destroy the form.</param>
+            <param name="hidemethod">What to do to the window if it should be hidden (e.g. when app is deactivated). By default, the popup window will be closed, and its resources freed.</param>
+            <returns>Identifies the popup window controller.</returns>
+        </member>
+        <member name="M:JetBrains.UI.PopupLayout.PopupWindowManagerEx.ShowPopupWindow(JetBrains.UI.PopupLayout.PopupWindowManager,JetBrains.Lifetimes.Lifetime,JetBrains.Application.UI.Controls.IConstrainableControl,JetBrains.Application.UI.PopupLayout.PopupWindowContextSource,JetBrains.Application.UI.WindowManagement.HideFlags,JetBrains.Application.UI.PopupLayout.FormHideMethod)">
+            <summary>
+            Shows a popup window, controls its location and position against the layouter, and destroys the form upon one of the predefined actions.
+            </summary>
+            <param name="thіs"></param>
+            <param name="lifetime">The limiting lifetime for the window session.</param>
+            <param name="form">A form to be shown as a popup window.</param>
+            <param name="contextsource">The owning context for the popup window.</param>
+            <param name="hideflags">Flags that identify when to destroy the form.</param>
+            <param name="hidemethod">What to do to the window if it should be hidden (e.g. when app is deactivated). By default, the popup window will be closed, and its resources freed.</param>
+            <returns>Identifies the popup window controller.</returns>
+        </member>
+    </members>
+</doc>

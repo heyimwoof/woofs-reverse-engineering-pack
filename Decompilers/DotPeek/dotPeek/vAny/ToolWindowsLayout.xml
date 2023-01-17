@@ -1,0 +1,14 @@
+﻿<DockSiteLayout xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SerializationFormat="ToolWindowsOnly" Version="2">
+	<AutoHideHost />
+	<Content xsi:type="SplitContainer" Orientation="Horizontal" DockedSize="998,923">
+		<UIElement xsi:type="ToolWindowContainer" DockedSize="300,300" SelectedWindowUniqueId="93e4ba69-849f-499b-a598-c53d94814197">
+			<UIElement xsi:type="ToolWindowRef" UniqueId="93e4ba69-849f-499b-a598-c53d94814197" />
+		</UIElement>
+		<UIElement xsi:type="Workspace">
+			<Content xsi:type="TabbedMdiHost" />
+		</UIElement>
+	</Content>
+	<ToolWindows>
+		<ToolWindow UniqueId="93e4ba69-849f-499b-a598-c53d94814197" Name="dotPeekAssemblyExplorer" ContainerDockedSize="300,300" IsOpen="true" LastActiveDateTime="2023-01-15T21:18:41.2214308+11:00" State="Docked" />
+	</ToolWindows>
+</DockSiteLayout>

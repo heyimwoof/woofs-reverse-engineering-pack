@@ -1,0 +1,18 @@
+<!--
+***********************************************************************************************
+Eazfuscator.NET.Silverlight.targets
+
+WARNING:  DO NOT MODIFY this file. Incorrect changes to this file will make it impossible to
+          load or build your Eazfuscator.NET projects from the command-line or the IDE.
+
+Copyright (C) 2008-2015 Gapotchenko
+***********************************************************************************************
+-->
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup Condition=" '$(Configuration)' == '$(EazfuscatorActiveConfiguration)' AND ('$(VisualStudioVersion)' == '' OR '$(VisualStudioVersion)' &gt;= '10.0') ">
+    <ValidateXaml>false</ValidateXaml>
+  </PropertyGroup>
+
+</Project>

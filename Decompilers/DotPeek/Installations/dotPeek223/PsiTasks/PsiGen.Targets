@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" InitialTargets="ParserGen_CheckProperties">
+  <PropertyGroup>
+    <!-- Enables support for the “ParserGen” build action in the projects. -->
+    <PsiGenToolsDir Condition="'$(PsiGenToolsDir)' == ''">$(MSBuildThisFileDirectory)</PsiGenToolsDir>
+    <!-- Setup default folder for ParserGen output if not defined. -->
+    <ParserGenOutputBase Condition="'$(ParserGenOutputBase)' == ''">$(IntermediateOutputPath)ParserGen\</ParserGenOutputBase>
+    <!-- File to write output and input PsiGen -->
+    <_ParserGenInputItemsFile>$(ParserGenOutputBase)generatorInput.items</_ParserGenInputItemsFile>
+    <_ParserGenOutputItemsFile>$(ParserGenOutputBase)generatorOutput.items</_ParserGenOutputItemsFile>
+    <!-- Plug into the build process before the Compile target executes. -->
+    <CoreCompileDependsOn>$(CoreCompileDependsOn);ParserGen_Generate;</CoreCompileDependsOn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Add to the Visual Studio Build Action list on the files. -->
+    <AvailableItemName Include="ParserGen" />
+    <!-- Handle case when projectt used single PSI language -->
+    <PsiLanguageNames Condition="'@(PsiLanguageNames)' == ''" Include="$(PsiLanguageName)">
+      <Visible>False</Visible>
+    </PsiLanguageNames>
+    <!-- Include old parser gen output -->
+    <Compile Include="$(ParserGenOutputBase)**\*.cs" Link="ParserGen\%(Compile.RecursiveDir)Stub" />
+  </ItemGroup>
+
+  <!-- Read previous generation result and set flag _ParserGenShouldRegenerate if regenerate needed -->
+  <Target Name="ParserGen_GetPreviousGeneratedItems">
+    <ReadLinesFromFile File="$(_ParserGenInputItemsFile)" Condition="Exists('$(_ParserGenInputItemsFile)')">
+      <Output TaskParameter="Lines" ItemName="_PargerGenInputItemsFileContent" />
+    </ReadLinesFromFile>
+    <ReadLinesFromFile File="$(_ParserGenOutputItemsFile)" Condition="Exists('$(_ParserGenOutputItemsFile)')">
+      <Output TaskParameter="Lines" ItemName="_ParserGenOutputItemsFileContent" />
+    </ReadLinesFromFile>
+    <PropertyGroup>
+      <_NoPargerGenInputItemsFileContent>False</_NoPargerGenInputItemsFileContent>
+      <_NoPargerGenInputItemsFileContent Condition="'@(_PargerGenInputItemsFileContent)' == '' And '@(ParserGen)' != ''">True</_NoPargerGenInputItemsFileContent>
+      <_NoParserGenOutputItemsFileContent>False</_NoParserGenOutputItemsFileContent>
+      <_NoParserGenOutputItemsFileContent Condition="'@(_ParserGenOutputItemsFileContent)' == '' And '@(ParserGen)' != ''">True</_NoParserGenOutputItemsFileContent>
+      <_NoPargerGenInputItemsFileContentMatchParserGen>False</_NoPargerGenInputItemsFileContentMatchParserGen>
+      <_NoPargerGenInputItemsFileContentMatchParserGen Condition="'@(_PargerGenInputItemsFileContent)' != '@(ParserGen)' And '@(ParserGen)' != ''">True</_NoPargerGenInputItemsFileContentMatchParserGen>
+      <_ParserGenShouldRegenerate>False</_ParserGenShouldRegenerate>
+      <_ParserGenShouldRegenerate Condition="$(_NoPargerGenInputItemsFileContent) Or $(_NoParserGenOutputItemsFileContent) Or $(_NoPargerGenInputItemsFileContentMatchParserGen)">True</_ParserGenShouldRegenerate>
+    </PropertyGroup>
+    <Message Text="Should regenerate because output items file is empty"
+             Condition="$(_NoParserGenOutputItemsFileContent) == True" />
+    <Message Text="Should regenerate because input items file is empty"
+             Condition="$(_NoPargerGenInputItemsFileContent) == True" />
+    <Message Text="Should regenerate because input items: '@(_PargerGenInputItemsFileContent)' not eqauls to: @(ParserGen)"
+             Condition="$(_NoPargerGenInputItemsFileContentMatchParserGen) == True" />
+    <ItemGroup>
+      <_ParserGenPreviousGeneratedItems Include="$([System.Guid]::NewGuid())" Condition="$(_ParserGenShouldRegenerate) == True" />
+      <_ParserGenPreviousGeneratedItems Include="@(_ParserGenOutputItemsFileContent)" Condition="$(_ParserGenShouldRegenerate) == False" />
+    </ItemGroup>
+  </Target>
+
+  <!-- Generate ParserGen if neened -->
+  <Target Name="ParserGen_Generate" Inputs="$(MSBuildThisFileFullPath);@(ParserGen)" Outputs="@(_ParserGenPreviousGeneratedItems)"
+          DependsOnTargets="ParserGen_GetPreviousGeneratedItems" Condition="'$(DesignTimeBuild)' != 'true' AND '$(BuildingProject)' == 'true'">
+    <ItemGroup>
+      <ParserGenProxyParam Include="@(ParserGen)">
+        <ParameterName>Inputs</ParameterName>
+      </ParserGenProxyParam>
+      <ParserGenProxyParam Include="$(ParserGenOutputBase)">
+        <ParameterName>OutputFolder</ParameterName>
+      </ParserGenProxyParam>
+      <ParserGenProxyParam Include="MandatoryInclude">
+        <ParameterName>DistributedCacheSettings</ParameterName>
+        <RemoteCacheUrl>$(PsiTasksRemoteCacheUrl)</RemoteCacheUrl>
+      </ParserGenProxyParam>
+      <!-- Don't try to load reference assemblies at runtime. -->
+      <ParserGenStubReferences Include="@(ReferencePath)" Condition="'%(ResolvedFrom)' != '{TargetFrameworkDirectory}'" />
+    </ItemGroup>
+    <ProxyToSolutionCompiledTask Parameters="@(ParserGenProxyParam)" TargetAssemblySimpleName="PsiGen"
+                                 TargetClassSimpleName="ParserGenTaskStub" References="@(ParserGenStubReferences)" />
+    <ItemGroup>
+      <Compile Include="$(ParserGenOutputBase)**\*.cs" />
+      <CompileX Remove="%(CompileX.Identity)" />
+      <_ParserGenExistedFiles Remove="%(_ParserGenExistedFiles.Identity)" />
+      <CompileX Include="%(Compile.FullPath)" />
+      <Compile Remove="%(Compile.Identity)" />
+    </ItemGroup>
+    <RemoveDuplicates Inputs="@(CompileX)">
+      <Output TaskParameter="Filtered" ItemName="CompileX" />
+    </RemoveDuplicates>
+    <CreateItem Include="@(CompileX)">
+      <Output TaskParameter="Include" ItemName="_ParserGenExistedFiles" Condition="Exists('%(CompileX.FullPath)')" />
+    </CreateItem>
+    <ItemGroup>
+      <Compile Include="%(_ParserGenExistedFiles.FullPath)" />
+      <_ParserGenOutputItems Include="$(ParserGenOutputBase)**\*.cs" />
+      <FileWrites Include="@(_ParserGenOutputItems)" />
+      <FileWrites Include="$(_ParserGenOutputItemsFile)" />
+      <FileWrites Include="$(_ParserGenInputItemsFile)" />
+    </ItemGroup>
+    <Message Text="Write input items: @(ParserGen) to file $(_PargerGenInputItemsFileContent)" />
+    <WriteLinesToFile File="$(_ParserGenInputItemsFile)" Lines="@(ParserGen)" Overwrite="True" />
+    <Message Text="Write output items: @(_ParserGenOutputItems) to file $(_ParserGenOutputItemsFile)" />
+    <WriteLinesToFile File="$(_ParserGenOutputItemsFile)" Lines="@(_ParserGenOutputItems)" Overwrite="True" />
+  </Target>
+
+  <!-- Ensures that necessary properties have been specified. -->
+  <Target Name="ParserGen_CheckProperties">
+    <Error Condition="'@(PsiLanguageNames)'=='' and '@(ParserGen)' != ''"
+           Text="The PsiLanguageName property must be specified in order to use the ParserGen build tool." />
+  </Target>
+</Project>

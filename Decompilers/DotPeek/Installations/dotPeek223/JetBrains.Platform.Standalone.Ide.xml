@@ -1,0 +1,634 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.Platform.Standalone.Ide</name>
+    </assembly>
+    <members>
+        <member name="T:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageRenderer">
+            <summary>
+            Represents render of the image
+            </summary>
+        </member>
+        <member name="E:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageRenderer.Click">
+            <summary>
+            Occurs when user performs click
+            </summary>
+        </member>
+        <member name="E:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageRenderer.DoubleClick">
+            <summary>
+            Occurs when user performs double click
+            </summary>
+        </member>
+        <member name="F:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageRenderer.SourceProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for Source. 
+            This enables animation, styling, binding, etc...
+            </summary>
+        </member>
+        <member name="P:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageRenderer.Source">
+            <summary>
+            Gets or sets image source of the presenter
+            </summary>
+        </member>
+        <member name="F:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageRenderer.ViewportProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for Viewport.  
+            This enables animation, styling, binding, etc...
+            </summary>
+        </member>
+        <member name="P:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageRenderer.Viewport">
+            <summary>
+            Gets or sets viewport (visible rect of the canvas)
+            </summary>
+        </member>
+        <member name="F:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageRenderer.HasInertionProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for HasInertion.  
+            This enables animation, styling, binding, etc...
+            </summary>
+        </member>
+        <member name="P:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageRenderer.HasInertion">
+            <summary>
+            Gets or sets whether changes should be 
+            with some inertion (true by default)
+            </summary>
+        </member>
+        <member name="F:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageRenderer.ZoomProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for Zoom.
+            This enables animation, styling, binding, etc...
+            </summary>
+        </member>
+        <member name="P:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageRenderer.Zoom">
+            <summary>
+            Gets or sets zoom
+            </summary>
+        </member>
+        <member name="M:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageRenderer.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="P:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageRenderer.IsDragging">
+            <summary>
+            Gets whether dragging is performed
+            </summary>
+        </member>
+        <member name="M:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageRenderer.CancelDrag">
+            <summary>
+            Cancels current drag
+            </summary>
+        </member>
+        <member name="M:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageRenderer.FitImage">
+            <summary>
+            Fits image
+            </summary>
+        </member>
+        <member name="M:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageRenderer.ZoomTo(System.Windows.Point,System.Double)">
+            <summary>
+            Zooms to the given point (normalized coords)
+            </summary>
+            <param name="point">Point (normalized coords)</param>
+            <param name="zoom">Zoom</param>
+        </member>
+        <member name="M:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageRenderer.ZoomTo(System.Windows.Point,System.Windows.Point,System.Double)">
+            <summary>
+            Zooms to the given point (normalized coords)
+            </summary>
+            <param name="point">Point (normalized coords)</param>
+            <param name="center">Center point in control coordinate space (normalized [0..1])</param>
+            <param name="zoom">Zoom</param>
+        </member>
+        <member name="M:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageRenderer.OnRender(System.Windows.Media.DrawingContext)">
+            <summary>
+            Participates in rendering operations that are directed by the layout system. 
+            The rendering instructions for this element are not used directly when this method is invoked, 
+            and are instead preserved for later asynchronous use by layout and drawing. 
+            </summary>
+            <param name="drawingContext">The drawing instructions for a specific element. 
+            This context is provided to the layout system.</param>
+        </member>
+        <member name="M:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageRenderer.GetCurrentZoom">
+            <summary>
+            Gets cuurent zoom based on current RenderSize and Viewport
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageRenderer.CalculateViewport(System.Windows.Point,System.Windows.Point,System.Double)">
+            <summary>
+            Calculates viewpoort to the given point (normalized coords)
+            </summary>
+            <param name="point">Point (normalized coords)</param>
+            <param name="center">Center point in control coordinate space (normalized [0..1])</param>
+            <param name="zoom">Zoom</param>
+        </member>
+        <member name="M:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageRenderer.PointToImage(System.Windows.Point)">
+            <summary>
+            Calculate point on the image, in pixels
+            </summary>
+            <param name="point">Screen point</param>
+            <returns>Point, in pixels</returns>
+        </member>
+        <member name="M:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageRenderer.PointToImageNormalized(System.Windows.Point)">
+            <summary>
+            Calculate point on the images, in normalized units
+            </summary>
+            <param name="point">Screen point</param>
+            <returns>Point, in normalized units</returns>
+        </member>
+        <member name="M:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageRenderer.GetMousePositionInImage">
+            <summary>
+            Gets current mouse position relative to image, pixles
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageRenderer.GetMousePositionInImageNormalizaed">
+            <summary>
+            Gets current mouse position relative to image, normalized units
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewer">
+            <summary>
+            Interaction logic for ImageViewer.xaml
+            </summary>
+            <summary>
+            ImageViewer
+            </summary>
+        </member>
+        <member name="F:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewer.ImageSourceProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for Source. 
+            This enables animation, styling, binding, etc...
+            </summary>
+        </member>
+        <member name="P:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewer.Source">
+            <summary>
+            Gets or sets image source of the presenter
+            </summary>
+        </member>
+        <member name="M:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewer.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewer.Fit">
+            <summary>
+            Fits image to fill all space
+            </summary>
+        </member>
+        <member name="M:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewer.LoadFile(JetBrains.Util.FileSystemPath)">
+            <summary>
+            Loads image from path
+            </summary>
+            <param name="path"></param>
+        </member>
+        <member name="M:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewer.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ZoomSlider">
+            <summary>
+            Represents zoom slider (non-uniform slider w/label support)
+            </summary>
+            <summary>
+            ZoomSlider
+            </summary>
+        </member>
+        <member name="F:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ZoomSlider.LabelFormatProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for LabelFormat.  
+            This enables animation, styling, binding, etc...
+            </summary>
+        </member>
+        <member name="F:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ZoomSlider.ValuesProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for Values.
+            This enables animation, styling, binding, etc...
+            </summary>
+        </member>
+        <member name="F:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ZoomSlider.ValueProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for Value.
+            This enables animation, styling, binding, etc...
+            </summary>
+        </member>
+        <member name="P:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ZoomSlider.LabelFormat">
+            <summary>
+            Gets or sets format of labels
+            </summary>
+        </member>
+        <member name="P:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ZoomSlider.Values">
+            <summary>
+            Gets or sets non-uniform values
+            </summary>
+        </member>
+        <member name="P:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ZoomSlider.Value">
+            <summary>
+            Gets or sets current value
+            </summary>
+        </member>
+        <member name="M:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ZoomSlider.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ZoomSlider.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ZoomSliderTickBar">
+            <summary>
+            Represents zoom slider tickbar (should be used in control 
+            template of slider to make possible labels)
+            </summary>
+        </member>
+        <member name="F:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ZoomSliderTickBar.FontFamilyProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for FontFamily.  
+            This enables animation, styling, binding, etc...
+            </summary>
+        </member>
+        <member name="F:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ZoomSliderTickBar.FontSizeProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for FontSize.  
+            This enables animation, styling, binding, etc...
+            </summary>
+        </member>
+        <member name="F:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ZoomSliderTickBar.ValuesProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for Ticks.  
+            This enables animation, styling, binding, etc...
+            </summary>
+        </member>
+        <member name="F:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ZoomSliderTickBar.LabelFormatProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for LabelFormat.  
+            This enables animation, styling, binding, etc...
+            </summary>
+        </member>
+        <member name="P:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ZoomSliderTickBar.FontFamily">
+            <summary>
+            Gets or sets FontFamily
+            </summary>
+        </member>
+        <member name="P:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ZoomSliderTickBar.FontSize">
+            <summary>
+            Gets or sets FonSize
+            </summary>
+        </member>
+        <member name="P:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ZoomSliderTickBar.Values">
+            <summary>
+            Gets or sets ticks values
+            </summary>
+        </member>
+        <member name="P:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ZoomSliderTickBar.LabelFormat">
+            <summary>
+            Gets or sets format of labels
+            </summary>
+        </member>
+        <member name="T:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewerThemedIcons.ImageViewerThemedIcons">
+             <summary>
+            	<para>
+            		<para>Autogenerated identifier classes and identifier objects to Themed Icons registered with <see cref="T:JetBrains.Application.Icons.IThemedIconManager"></see>.</para>
+            		<para>Identifier classes should be used in attributes, XAML, or generic parameters. Where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected, use the identifier object in the <c>Id</c> field of the identifier class.</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>This code was compile-time generated to support Themed Icons in the JetBrains application.</para>
+            	<para>It has two primary goals: load the icons of this assembly to be registered with <see cref="T:JetBrains.Application.Icons.IThemedIconManager"></see> so that they were WPF-accessible and theme-sensitive; and emit early-bound accessors for referencing icons in codebehind in a compile-time-validated manner.</para>
+            	<h1>XAML</h1>
+            	<para>For performance reasons, the icons are not individually exposed with application resources. There is a custom markup extension to bind an image source in markup.</para>
+            	<para>To use an icon from XAML, set an <see cref="T:System.Windows.Media.ImageSource"></see> property to the <see cref="T:System.CodeDom.CodeTypeReference"></see> markup extension, which takes an icon identifier class (nested in <see cref="T:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewerThemedIcons.ImageViewerThemedIcons"></see> class) as a parameter.</para>
+            	<para>Example:</para>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:ImageViewerThemedIcons+Trinity}" /&gt;</code>
+            	<h1>Attributes</h1>
+            	<para>Sometimes you have to reference an icon from a type attriute when you're defining objects in code. Typical examples are Options pages and Tool Windows.</para>
+            	<para>To avoid the use of string IDs which are not validated very well, we've emitted identifier classes to be used with <c>typeof()</c> expression, one per each icon. Use the attribute overload which takes a <see cref="T:System.Type"></see> for an image, and choose your icon class from nested classes in the <see cref="T:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewerThemedIcons.ImageViewerThemedIcons"></see> class.</para>
+            	<para>Example:</para>
+            	<code>[Item(Name="Sample", Icon=typeof(ImageViewerThemedIcons.Trinity))]</code>
+            	<h1>CodeBehind</h1>
+            	<para>In codebehind, we have two distinct tasks: (a) specify some icon in the APIs and (b) render icon images onscreen.</para>
+            	<para>On the APIs stage you should only manipulate icon identifier objects (of type <see cref="T:JetBrains.UI.Icons.IconId"></see>, statically defined in <see cref="T:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewerThemedIcons.ImageViewerThemedIcons"></see> in <c>Id</c> fields). Icon identifier classes (nested in <see cref="T:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewerThemedIcons.ImageViewerThemedIcons"></see>) should be turned into icon identifier objects as early as possible. Rendering is about getting an <see cref="T:System.Windows.Media.ImageSource"></see> to assign to WPF, or <see cref="T:System.Drawing.Bitmap"></see> to use with GDI+ / Windows Forms.</para>
+            	<para>You should turn an identifier object into a rendered image as late as possible. The identifier is static and lightweight and does not depend on the current theme, while the image is themed and has to be loaded or generated/rasterized. You need an <see cref="T:JetBrains.Application.Icons.IThemedIconManager"></see> instance to get the image out of an icon identifier object. Once you got the image, you should take care to change it with theme changes — either by using a live image property, or by listening to the theme change event. See <see cref="T:JetBrains.Application.Icons.IThemedIconManager"></see> and its extensions for the related facilities.</para>
+            	<para>Example:</para>
+            	<code>// Getting IconId identifier object to use with APIs
+            IconId iconid = ImageViewerThemedIcons.Trinity.Id;</code>
+            	<code>// Getting IconId out of an Icon Identifier Class type
+            IconId iconid = new JetBrains.Application.Icons.CompiledIconsCs.CompiledIconCsId(typeof(ImageViewerThemedIcons.Trinity));</code>
+            	<code>// Getting image for screen rendering by IconId
+            themediconmanager.Icons[icnoid]</code>
+            	<code>// Getting image for screen rendering by Icon Identifier Class
+            themediconmanager.GetIcon&lt;ImageViewerThemedIcons.Trinity&gt;()</code>
+            	<h1>Icons Origin</h1>
+            	<para>This code was generated by a pre-compile build task from a set of input files which are XAML files adhering to a certain convention, as convenient for exporting them from the Illustrator workspace, plus separate PNG files with raster icons. In the projects, these files are designated with <c>ThemedIconsXamlV3</c> and <c>ThemedIconPng</c> build actions and do not themselves get into the output assembly. All of such files are processed, vector images for different themes of the same icon are split and combined into the single list of icons in this assembly. This list is then written into the genearted XAML file (compiled into BAML within assembly), and serves as the source for this generated code.</para>
+            </remarks>
+        </member>
+        <member name="T:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewerThemedIcons.ImageViewerThemedIcons.Coordinates">
+             <summary>
+            	<para>
+            		<para>Coordinates Themed Icon autogenerated identifier class.</para>
+            		<para>Identifier classes should be used in attributes, XAML, or generic parameters. Where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected, use the identifier object in the <see cref="F:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewerThemedIcons.ImageViewerThemedIcons.Coordinates.Id"></see> field of the identifier class.</para>
+            		<para>
+            			<code>
+                                             
+                     aa5+`                   
+                     yy_ia+`                 
+                     kk  _lVr`               
+                     PP    _tEr`             
+                     XX      _{ZL`           
+                     44        _C6L.         
+                     bb          :1wc.       
+                     pp            :3b|      
+                     AA        +AAAAAAA      
+                     RR   "t=   rRl          
+                     DD`+4HPD=   rDt         
+                     DDDy= `5D;   rD{        
+                            `S8!`!j8Z        
+                             `V%%Xr.         
+                                             
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:ImageViewerThemedIcons+Coordinates}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(ImageViewerThemedIcons.Coordinates))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = ImageViewerThemedIcons.Coordinates.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;ImageViewerThemedIcons.Coordinates&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewerThemedIcons.ImageViewerThemedIcons.Coordinates.Id">
+             <summary>
+            	<para>
+            		<para>Coordinates Themed Icon autogenerated identifier object.</para>
+            		<para>Identifier objects should be used where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected. In attributes, XAML, or generic parameters use the containing <see cref="T:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewerThemedIcons.ImageViewerThemedIcons.Coordinates"></see> identifier class.</para>
+            		<para>
+            			<code>
+                                             
+                     aa5+`                   
+                     yy_ia+`                 
+                     kk  _lVr`               
+                     PP    _tEr`             
+                     XX      _{ZL`           
+                     44        _C6L.         
+                     bb          :1wc.       
+                     pp            :3b|      
+                     AA        +AAAAAAA      
+                     RR   "t=   rRl          
+                     DD`+4HPD=   rDt         
+                     DDDy= `5D;   rD{        
+                            `S8!`!j8Z        
+                             `V%%Xr.         
+                                             
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:ImageViewerThemedIcons+Coordinates}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(ImageViewerThemedIcons.Coordinates))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = ImageViewerThemedIcons.Coordinates.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;ImageViewerThemedIcons.Coordinates&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="M:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewerThemedIcons.ImageViewerThemedIcons.Coordinates.Load_Color">
+            <summary>Loads the image for Themed Icon Coordinates theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewerThemedIcons.ImageViewerThemedIcons.Coordinates.Load_Gray">
+            <summary>Loads the image for Themed Icon Coordinates theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewerThemedIcons.ImageViewerThemedIcons.Coordinates.Load_GrayDark">
+            <summary>Loads the image for Themed Icon Coordinates theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewerThemedIcons.ImageViewerThemedIcons.Coordinates.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon Coordinates.</summary>
+        </member>
+        <member name="T:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewerThemedIcons.ImageViewerThemedIcons.Dimensions">
+             <summary>
+            	<para>
+            		<para>Dimensions Themed Icon autogenerated identifier class.</para>
+            		<para>Identifier classes should be used in attributes, XAML, or generic parameters. Where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected, use the identifier object in the <see cref="F:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewerThemedIcons.ImageViewerThemedIcons.Dimensions.Id"></see> field of the identifier class.</para>
+            		<para>
+            			<code>
+                                             
+                !aa+`||||||||||||||||||||||  
+              -{2^,oI}T                  TT  
+             /kT`  `cE2  `````````.....  JJ  
+             XXXX  XXXX  ``_~~:`````...  tt  
+               99  99FF  ``_=="```````.  FF  
+               bb  bb11   `````-:~!~-``  11  
+               GG  GGuu  `':~/???????=-  uu  
+             RRRR  RRRR  |||||)?+!;!L||  22  
+             tD|`   ?DA  s|Lr\!!!!!!!+T  aa  
+              ~Ow,_6Rbk                  kk  
+               `1%%y.KKKEkSyyKKKKKKyySkKKKK  
+                     `!ukr-UUUUUUUUUU-+Vj/.  
+                     bb)                rbb  
+                     _THU\.RRRRRRRRRR`!kOJ,  
+                        =2888      888V!`    
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:ImageViewerThemedIcons+Dimensions}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(ImageViewerThemedIcons.Dimensions))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = ImageViewerThemedIcons.Dimensions.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;ImageViewerThemedIcons.Dimensions&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewerThemedIcons.ImageViewerThemedIcons.Dimensions.Id">
+             <summary>
+            	<para>
+            		<para>Dimensions Themed Icon autogenerated identifier object.</para>
+            		<para>Identifier objects should be used where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected. In attributes, XAML, or generic parameters use the containing <see cref="T:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewerThemedIcons.ImageViewerThemedIcons.Dimensions"></see> identifier class.</para>
+            		<para>
+            			<code>
+                                             
+                !aa+`||||||||||||||||||||||  
+              -{2^,oI}T                  TT  
+             /kT`  `cE2  `````````.....  JJ  
+             XXXX  XXXX  ``_~~:`````...  tt  
+               99  99FF  ``_=="```````.  FF  
+               bb  bb11   `````-:~!~-``  11  
+               GG  GGuu  `':~/???????=-  uu  
+             RRRR  RRRR  |||||)?+!;!L||  22  
+             tD|`   ?DA  s|Lr\!!!!!!!+T  aa  
+              ~Ow,_6Rbk                  kk  
+               `1%%y.KKKEkSyyKKKKKKyySkKKKK  
+                     `!ukr-UUUUUUUUUU-+Vj/.  
+                     bb)                rbb  
+                     _THU\.RRRRRRRRRR`!kOJ,  
+                        =2888      888V!`    
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:ImageViewerThemedIcons+Dimensions}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(ImageViewerThemedIcons.Dimensions))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = ImageViewerThemedIcons.Dimensions.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;ImageViewerThemedIcons.Dimensions&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="M:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewerThemedIcons.ImageViewerThemedIcons.Dimensions.Load_Color">
+            <summary>Loads the image for Themed Icon Dimensions theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewerThemedIcons.ImageViewerThemedIcons.Dimensions.Load_Gray">
+            <summary>Loads the image for Themed Icon Dimensions theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewerThemedIcons.ImageViewerThemedIcons.Dimensions.Load_GrayDark">
+            <summary>Loads the image for Themed Icon Dimensions theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewerThemedIcons.ImageViewerThemedIcons.Dimensions.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon Dimensions.</summary>
+        </member>
+        <member name="T:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewerThemedIcons.ImageViewerThemedIcons.Zoom">
+             <summary>
+            	<para>
+            		<para>Zoom Themed Icon autogenerated identifier class.</para>
+            		<para>Identifier classes should be used in attributes, XAML, or generic parameters. Where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected, use the identifier object in the <see cref="F:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewerThemedIcons.ImageViewerThemedIcons.Zoom.Id"></see> field of the identifier class.</para>
+            		<para>
+            			<code>
+                                             
+                    `"!+cJJ)r!"`             
+                  ,co7/=~,,^=!To)^           
+                `cer":^=;!!;=^,"*o7`         
+               `xo;,^="'`   .,=^,~1u'        
+               LVr"""-        ."""!Vs        
+               uk;^__``````````__^^kk        
+               TZc~_.----------.-~!Z]        
+               -kS\=-`.-,"",_.`-=!oXL`       
+                .IXT!~-`    `-^!cZy!)l=`     
+                  /a4uTL+//+?|IXhi"_-"Ll=`   
+                    -+luEqqKVwRPr=~":_-,?l=` 
+                              _oDSL=~":_-,cl"
+                                _oDEc=~":__1l
+                                  _oDE);=+1o"
+                                    _|yH6t!` 
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:ImageViewerThemedIcons+Zoom}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(ImageViewerThemedIcons.Zoom))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = ImageViewerThemedIcons.Zoom.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;ImageViewerThemedIcons.Zoom&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewerThemedIcons.ImageViewerThemedIcons.Zoom.Id">
+             <summary>
+            	<para>
+            		<para>Zoom Themed Icon autogenerated identifier object.</para>
+            		<para>Identifier objects should be used where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected. In attributes, XAML, or generic parameters use the containing <see cref="T:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewerThemedIcons.ImageViewerThemedIcons.Zoom"></see> identifier class.</para>
+            		<para>
+            			<code>
+                                             
+                    `"!+cJJ)r!"`             
+                  ,co7/=~,,^=!To)^           
+                `cer":^=;!!;=^,"*o7`         
+               `xo;,^="'`   .,=^,~1u'        
+               LVr"""-        ."""!Vs        
+               uk;^__``````````__^^kk        
+               TZc~_.----------.-~!Z]        
+               -kS\=-`.-,"",_.`-=!oXL`       
+                .IXT!~-`    `-^!cZy!)l=`     
+                  /a4uTL+//+?|IXhi"_-"Ll=`   
+                    -+luEqqKVwRPr=~":_-,?l=` 
+                              _oDSL=~":_-,cl"
+                                _oDEc=~":__1l
+                                  _oDE);=+1o"
+                                    _|yH6t!` 
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:ImageViewerThemedIcons+Zoom}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(ImageViewerThemedIcons.Zoom))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = ImageViewerThemedIcons.Zoom.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;ImageViewerThemedIcons.Zoom&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="M:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewerThemedIcons.ImageViewerThemedIcons.Zoom.Load_Color">
+            <summary>Loads the image for Themed Icon Zoom theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewerThemedIcons.ImageViewerThemedIcons.Zoom.Load_Gray">
+            <summary>Loads the image for Themed Icon Zoom theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewerThemedIcons.ImageViewerThemedIcons.Zoom.Load_GrayDark">
+            <summary>Loads the image for Themed Icon Zoom theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.Standalone.Ide.Ide.Controls.ImageViewer.ImageViewerThemedIcons.ImageViewerThemedIcons.Zoom.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon Zoom.</summary>
+        </member>
+        <member name="T:JetBrains.Standalone.Ide.Ide.Syntax.SyntaxLanguageProviderIde">
+            <summary>
+            Gets language-specific: gets the language of the project file of this document, calls language-specific creator (if any).
+            </summary>
+        </member>
+        <member name="T:JetBrains.Standalone.Ide.Ide.Syntax.ISyntaxLanguageServicePerProjectFileProvider">
+            <summary>
+            Interface for project-file-type specific providers.
+            </summary>
+        </member>
+    </members>
+</doc>

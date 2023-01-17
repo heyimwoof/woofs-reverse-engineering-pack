@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.ReSharper.Intentions</name>
+    </assembly>
+    <members>
+        <member name="T:JetBrains.ReSharper.Intentions.Bulbs.BulbMenuOnGutterMark">
+            <summary>
+            In the mode when Editor Appearance option “Action indicator — show in the Action Bar”, Alt+Enter bulb is placed on our custom Glyph Margin (“Action Bar”), and this gutter mark kind represents this glyph.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Intentions.Bulbs.IBulbItemsProvider.PreExecute(JetBrains.TextControl.ITextControl,JetBrains.Lifetimes.Lifetime)">
+            <summary>
+            Executed synchronously in UI thread without interruption. All documents are committed.
+            </summary>
+            <param name="textControl">Current text control</param>
+            <param name="lifetime"></param>
+            <returns>Pre-calculated data, that will be used in <see cref="M:JetBrains.ReSharper.Intentions.Bulbs.IBulbItemsProvider.CollectActions(JetBrains.ReSharper.Intentions.Bulbs.IntentionsBulbItems,JetBrains.ReSharper.Intentions.Bulbs.BulbItemsCache,JetBrains.TextControl.ITextControl,JetBrains.Lifetimes.Lifetime,JetBrains.ReSharper.Psi.IPsiSourceFile,System.Object)"/> method call</returns>
+        </member>
+        <member name="M:JetBrains.ReSharper.Intentions.Bulbs.IBulbItemsProvider.CollectActions(JetBrains.ReSharper.Intentions.Bulbs.IntentionsBulbItems,JetBrains.ReSharper.Intentions.Bulbs.BulbItemsCache,JetBrains.TextControl.ITextControl,JetBrains.Lifetimes.Lifetime,JetBrains.ReSharper.Psi.IPsiSourceFile,System.Object)">
+            <summary>
+            Executed under interruptable read activity to produce bulb items.
+            Use <see cref="M:JetBrains.Application.InterruptableActivityCookie.CheckAndThrow(JetBrains.Application.Progress.IProgressIndicator)"/> in implementation. 
+            </summary>
+            <param name="intentionsBulbItems">Bulb items collection</param>
+            <param name="bulbItemsCache">Bulb context</param>
+            <param name="textControl">Current text control</param>
+            <param name="caretPositionLifetime">Lifetime is alive until caret remains at the same position</param>
+            <param name="psiSourceFile">Current source file</param>
+            <param name="preExecuteData">Data calculated while <see cref="M:JetBrains.ReSharper.Intentions.Bulbs.IBulbItemsProvider.PreExecute(JetBrains.TextControl.ITextControl,JetBrains.Lifetimes.Lifetime)"/></param>
+        </member>
+        <member name="M:JetBrains.ReSharper.Intentions.Bulbs.IBulbItemsProvider.CollectSyncResults(System.Object,JetBrains.ReSharper.Intentions.Bulbs.IntentionsBulbItems,JetBrains.TextControl.ITextControl)">
+            <summary>
+            Executed on the UI thread in case <see cref="M:JetBrains.ReSharper.Intentions.Bulbs.IBulbItemsProvider.CollectActions(JetBrains.ReSharper.Intentions.Bulbs.IntentionsBulbItems,JetBrains.ReSharper.Intentions.Bulbs.BulbItemsCache,JetBrains.TextControl.ITextControl,JetBrains.Lifetimes.Lifetime,JetBrains.ReSharper.Psi.IPsiSourceFile,System.Object)"/>> completes successfully.
+            </summary>
+            <param name="preExecuteData">Data calculated while <see cref="M:JetBrains.ReSharper.Intentions.Bulbs.IBulbItemsProvider.PreExecute(JetBrains.TextControl.ITextControl,JetBrains.Lifetimes.Lifetime)"/></param>
+            <param name="intentionsBulbItems">Bulb items collection</param>
+            <param name="textControl">Current text control</param>
+        </member>
+        <member name="M:JetBrains.ReSharper.Intentions.Bulbs.IntentionsBulbItems.AddItemsNoRepost(System.Collections.Generic.IEnumerable{JetBrains.Application.UI.Controls.BulbMenu.Items.BulbMenuItem})">
+            <summary>
+            Use the method if and only if <see cref="!:item"/> is already present in the menu. I.e. unit test items from gutter menu.
+            Normally <see cref="M:JetBrains.ReSharper.Intentions.Bulbs.IntentionsBulbItems.AddItems(System.Collections.Generic.IEnumerable{JetBrains.Application.UI.Controls.BulbMenu.Items.BulbMenuItem})"/> should be used.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Intentions.ContextActions.Inject.InjectionHandlerBase.Do">
+            <summary>
+            Invoked from action, so threading model already validate
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Intentions.ContextActions.Inject.InjectionHandlerBase.Undo">
+            <summary>
+            Invoked from VS, use IThreading
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Intentions.ContextActions.Inject.InjectionHandlerBase.Redo">
+            <summary>
+            Invoked from VS, use IThreading
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Intentions.Explanatory.CodeInspectionWikiProvider">
+            <summary>
+            Provides bulb items that offer to explain why ReSharper is
+            issuing a particular warning or suggestion.
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Intentions.Formatting.TemporaryWritableLayerUtils">
+            <summary>
+              <para>Adds a temporary high-priority layer to allow temporary writes even if most-priority layer is readonly.</para>
+              <para>It has no availability condition, so it will be available with every binding with the highest priority - for reading values in features.</para>
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Intentions.Formatting.TemporaryWritableLayerUtils.TemporaryWritableLayerCreator.BoundStore">
+            <summary>
+              <para>The settings store bound to an application-wide context, with writes restricted to the temporary layer only.</para>
+              <para>Reads would go as if in <see cref="M:JetBrains.Application.Settings.ContextRange.Smart(System.Func{JetBrains.Lifetimes.Lifetime,JetBrains.Application.DataContext.DataContexts,JetBrains.Application.DataContext.IDataContext})" /> context, which now includes the temp layer. In environments with Project Model, this includes Solution settings.</para>
+              <para>The live context is bound for the lifetime of this component.</para>
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Intentions.Formatting.TemporaryWritableLayerUtils.TemporaryWritableLayerCreator.Mount">
+            <summary>
+            The mounting point of the layer created.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Intentions.Formatting.TemporaryWritableLayerUtils.TemporaryWritableLayerCreator.Storage">
+            <summary>
+            The physical storage of the layer created.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Intentions.Util.ContextActionUtils.ApplyCodeStyleRecursiveAndFormat(JetBrains.ReSharper.Psi.Tree.ITreeNode)">
+            <summary>
+            Applies code style recursively to provided node (and all descendants) and reformats code.
+            </summary>
+            <param name="root">The <see cref="T:JetBrains.ReSharper.Psi.Tree.ITreeNode"/> to apply code style and format.</param>
+        </member>
+        <member name="M:JetBrains.ReSharper.Intentions.Util.ContextActionUtils.ApplyCodeStyleAndFormat(JetBrains.ReSharper.Psi.Tree.ITreeNode)">
+            <summary>
+            Applies code style to provided node (only) and reformats code.
+            </summary>
+            <param name="root">The <see cref="T:JetBrains.ReSharper.Psi.Tree.ITreeNode"/> to apply code style and format.</param>
+        </member>
+        <member name="M:JetBrains.ReSharper.Intentions.Util.ContextActionUtils.ApplyCodeStyleAndFormat``1(JetBrains.ReSharper.Psi.Tree.ITreeNode)">
+            <summary>
+            Applies specified code styles to provided node (only) and reformats code.
+            </summary>
+            <typeparam name="TCodeStyleSuggestion">The code style suggestion type
+            that determines specific code style(s) to be applied to provided node.</typeparam>
+            <param name="root">The <see cref="T:JetBrains.ReSharper.Psi.Tree.ITreeNode"/> to apply code style and format.</param>
+        </member>
+    </members>
+</doc>

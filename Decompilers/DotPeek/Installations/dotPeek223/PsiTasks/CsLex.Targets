@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- Supports pre-compiling CsLex-marked .lex files into .cs sources in the projects. -->
+<!-- Must be imported after the language targets. -->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <CsLexToolsDir Condition="'$(CsLexToolsDir)' == ''">$(MSBuildThisFileDirectory)</CsLexToolsDir>
+    <CsLexOutputBase Condition="'$(CsLexOutputBase)' == ''">$(IntermediateOutputPath)CsLex\</CsLexOutputBase>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Add to the Visual Studio Build Action list on the files. -->
+    <AvailableItemName Include="CsLex" />
+    <!-- Calculate output. -->
+    <CsLexOutput Include="@(CsLex->'$(CsLexOutputBase)%(RelativeDir)%(Filename)_lex.cs')" />
+    <CsLexDepends Include="@(CsLex->'$(CsLexOutputBase)%(RelativeDir)%(Filename)_lex.depends')" />
+
+    <Compile Include="@(CsLex->'$(CsLexOutputBase)%(RelativeDir)%(Filename)_lex.cs')" Link="@(CsLex->'CsLex\%(RelativeDir)%(Filename)_lex.cs')" />
+    <FileWrites Include="@(CsLexOutput)" />
+    <FileWrites Include="@(CsLexDepends)" />
+    <CsLexDependencies Include="$(MSBuildThisFileFullPath)" />
+  </ItemGroup>
+
+  <!-- Dispatch. -->
+  <PropertyGroup>
+    <GenerateCsLexDependsOn>
+      $(GenerateCsLexDependsOn);
+      GenerateCsLex_Dependencies;
+      <!--GenerateCsLex_AddToItemGroups; -->
+      <!--GenerateCsLex_UndupeCompile;-->
+      GenerateCsLex_Generate;
+    </GenerateCsLexDependsOn>
+    <CleanCsLexDependsOn>
+      $(CleanCsLexDependsOn);
+      CleanCsLex_Clean;
+    </CleanCsLexDependsOn>
+  </PropertyGroup>
+
+  <!-- Plugin. -->
+  <PropertyGroup>
+    <!-- Plug into the build process before the Compile target executes. -->
+    <PrepareResourcesDependsOn>
+      $(GenerateCsLexDependsOn);
+      $(PrepareResourcesDependsOn);
+    </PrepareResourcesDependsOn>
+    <!-- Clean the files, this enables proper Rebuild. -->
+    <CleanDependsOn>
+      $(CleanDependsOn);
+      $(CleanCsLexDependsOn);
+    </CleanDependsOn>
+  </PropertyGroup>
+
+  <!-- Read dependencies list -->
+  <Target Name="GenerateCsLex_Dependencies" Condition="'@(CsLexDepends)'!=''">
+    <ReadLinesFromFile File="%(CsLexDepends.Identity)">
+      <Output TaskParameter="Lines" ItemName="CsLexDependencies" />
+    </ReadLinesFromFile>
+  </Target>
+
+  <!-- Produces the list of the output files for needs-rebuild check and Clean. -->
+  <Target Name="GenerateCsLex_AddToItemGroups" DependsOnTargets="GenerateCsLex_Dependencies">
+    <CreateItem Include="@(CsLexOutput)">
+      <!-- Use the result in the build process. -->
+      <Output TaskParameter="Include" ItemName="Compile" /> 
+      <!-- Support incremental clean for our files. -->
+      <Output TaskParameter="Include" ItemName="FileWrites"/>
+    </CreateItem>
+    <CreateItem Include="@(CsLexDependencies)">
+      <!-- Support incremental clean for our files. -->
+      <Output TaskParameter="Include" ItemName="FileWrites"/>
+    </CreateItem>
+  </Target>
+
+  <!-- After adding the outputs to the @(Compile) group, we might encounter duplicates — remove them. -->
+  <Target Name="GenerateCsLex_UndupeCompile">
+    <ItemGroup>
+      <CompileUnfiltered Remove="%(CompileUnfiltered.Identity)" />
+      <CompileUnfiltered Include="%(Compile.FullPath)" />
+      <Compile Remove="%(Compile.Identity)" />
+    </ItemGroup>
+    <RemoveDuplicates Inputs="@(CompileUnfiltered)">
+      <Output TaskParameter="Filtered" ItemName="Compile" />
+    </RemoveDuplicates>
+  </Target>
+
+  <!-- The generation itself. -->
+  <Target Name="GenerateCsLex_Generate" DependsOnTargets="GenerateCsLex_Dependencies; ResolveProjectReferences; ResolveAssemblyReferences" Inputs="@(CsLexDependencies);@(CsLex)" Outputs="@(CsLexOutput);@(CsLexDepends);" Returns="@(CsLexOutput)" Condition="'@(CsLex)'!='' AND '$(DesignTimeBuild)' != 'true' AND '$(BuildingProject)' == 'true'">
+    <ItemGroup>
+      <CsLexProxyInput Include="@(CsLex)">
+        <ParameterName>Inputs</ParameterName>
+        <OutputFile>$(CsLexOutputBase)%(RelativeDir)%(Filename)_lex.cs</OutputFile>
+      </CsLexProxyInput>
+      <CsLexProxyParam Include="@(CsLexProxyInput)"/>
+      <CsLexProxyParam Include="MandatoryInclude">
+        <ParameterName>DistributedCacheSettings</ParameterName>
+        <RemoteCacheUrl>$(PsiTasksRemoteCacheUrl)</RemoteCacheUrl>
+      </CsLexProxyParam>
+      <!-- Don't try to load reference assemblies at runtime. -->
+      <CsLexStubReferences Include="@(ReferencePath)" Condition="'%(ResolvedFrom)' != '{TargetFrameworkDirectory}'" />
+    </ItemGroup>
+    <ProxyToSolutionCompiledTask References="@(CsLexStubReferences)" Parameters="@(CsLexProxyParam)" TargetAssemblySimpleName="CsLex" TargetClassSimpleName="CsLexTaskStub">
+      <Output TaskParameter="Returns" ItemName="CsLexProxyOutput" />
+    </ProxyToSolutionCompiledTask>
+    <WriteLinesToFile File="%(CsLexDepends.Identity)" Lines="@(CsLexProxyOutput);" Overwrite="true" />
+    <Message Text="%(CsLexProxyInput.FullPath) --(*)--> %(OutputFile)" />
+  </Target>
+
+  <!-- Cleans the generated files. -->
+  <Target Name="CleanCsLex_Clean">
+    <Delete Files="@(CsLexOutput)" TreatErrorsAsWarnings="true"  />
+    <Delete Files="@(CsLexDepends)" TreatErrorsAsWarnings="true" />
+  </Target>
+
+</Project>

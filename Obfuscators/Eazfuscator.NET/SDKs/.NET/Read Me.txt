@@ -1,0 +1,6 @@
+Software Development Kit (SDK) for Eazfuscator.NET provides programmatic
+access to specific features of the product.
+
+Eazfuscator.NET SDK is also available as a NuGet package:
+
+  https://www.nuget.org/packages/Gapotchenko.Eazfuscator.NET.SDK

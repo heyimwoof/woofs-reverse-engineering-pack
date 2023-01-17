@@ -1,0 +1,15 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+JetBrains.ReSharper.Feature.Services.VB
+</name>
+</assembly>
+<members>
+<member name="T:JetBrains.ReSharper.Feature.Services.VB.CodeCompletion.ISmartCompleatebleReference">
+ <summary>
+ Reference with custom smart completion
+ </summary>
+</member>
+</members>
+</doc>

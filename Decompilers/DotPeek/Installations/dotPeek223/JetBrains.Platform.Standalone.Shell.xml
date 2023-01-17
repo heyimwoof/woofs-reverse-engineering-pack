@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.Platform.Standalone.Shell</name>
+    </assembly>
+    <members>
+        <member name="T:JetBrains.Standalone.Shell.Host.SingleInstanceStandaloneProduct">
+            <summary>
+            For a single-instance product (“allow only one instance”), prevents the second instance from starting and yields its cmdline keys to the first instance.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Standalone.Shell.Host.SingleInstanceStandaloneProduct.ProcessSingleInstanceAndCheckIfContinueStarting(JetBrains.Lifetimes.Lifetime,JetBrains.Application.SingleInstanceStandaloneProductBehaviorFlags,JetBrains.Application.IApplicationHost,JetBrains.Application.Hosting.HostCommandLine,JetBrains.Application.Threading.IThreading,JetBrains.Application.StdApplicationUI.IMainWindow)">
+            <summary>
+            Handles the single-instance logic and tells whether to continue starting up this instance of the application.
+            </summary>
+            <param name="lifetime">Limiting lifetime of the instance, used for the primary instance registration as such.</param>
+            <param name="behavior">Single instance application behavior.</param>
+            <param name="applicationHost">The default product of this host, determines if we're running in the single-instance mode.</param>
+            <param name="cmdline">Host command line. Might give the command line parameter to circumvent single-instance logic. On the fist instance, command lines received from secondary instances are added to this command line.</param>
+            <param name="threading">Threading tasks of the application.</param>
+            <param name="mainWindow">Main app window, if any.</param>
+            <returns>Whether to continue starting up the current instance.</returns>
+        </member>
+        <member name="F:JetBrains.Standalone.Shell.Host.SingleInstanceStandaloneProduct.CmdLineNewInstance.KeyName">
+            <summary>
+            Tells to circumvent the normal single-instance logic and always run a new instance instead of passing parameters to the primary instance and exiting.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Standalone.Shell.Host.SingleInstanceStandaloneProductServer.JoinSecondaryInstance(System.String,System.String[])">
+            <summary>
+            To be called by the secondary instance, passing the additional command line args.
+            </summary>
+            <param name="workingdir">Working directory of the secondary instance. Will be applied to the primary instance, as might affect parsing the commandline.</param>
+            <param name="args">Command lines.</param>
+            <returns>
+            Some window from the called process which could be made a foreground window by the foreground process. 
+            As we the primary instance are not the foreground process when we serve the request, we cannot manipulate the foreground window setting, 
+            so let the calling process (which is most likely the foreground one) do the thing.
+            </returns>
+            <remarks>
+            In the current implementation the calling process (secondary instance) uses AllowSetForegroundWindow to pass the
+            "foreground" rights to the called process (this instance). In fact it needs the process id, not the window handle.
+            Process id can be obtained by window handle, and window handle is still used here to keep backward compatibility with the previous versions.
+            </remarks>>
+        </member>
+        <member name="F:JetBrains.Standalone.Shell.Host.StandaloneApplicationCommandLineHelp.AllCommandLineHelpKeyNames">
+            <summary>
+            Quick lookup, case-insensitively.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Standalone.Shell.Host.StandaloneJetComponentManager">
+            <summary>
+            Jet component manager for standalone applications.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Standalone.Shell.StdApplicationUI.StatusBar.StandaloneStatusBarAutomation">
+            <summary>
+            Automation object for the status bar in the standard standalone UI.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Standalone.Shell.StdApplicationUI.StatusBar.StandaloneStatusBarView">
+            <summary>
+            View object for the status bar in the standard standalone UI.
+            </summary>
+        </member>
+    </members>
+</doc>

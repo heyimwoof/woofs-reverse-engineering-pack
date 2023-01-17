@@ -1,0 +1,26 @@
+<!--
+***********************************************************************************************
+Eazfuscator.NET.Bootstrap.Prerequisites.targets
+
+WARNING:  DO NOT MODIFY this file. Incorrect changes to this file will make it impossible to
+          load or build your Eazfuscator.NET projects from the command-line or the IDE.
+
+Copyright (C) 2008-2021 Gapotchenko
+***********************************************************************************************
+-->
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Eazfuscator_NET_BootstrapPrerequisites_Imported>true</Eazfuscator_NET_BootstrapPrerequisites_Imported>
+
+    <Eazfuscator_NET_MSBuildToolsVersion>$(MSBuildToolsVersion)</Eazfuscator_NET_MSBuildToolsVersion>
+    <Eazfuscator_NET_MSBuildToolsVersion Condition=" '$(Eazfuscator_NET_MSBuildToolsVersion)' == '' ">2.0</Eazfuscator_NET_MSBuildToolsVersion>
+    <Eazfuscator_NET_MSBuildToolsVersion Condition=" '$(Eazfuscator_NET_MSBuildToolsVersion)' == 'Current' ">$(VisualStudioVersion)</Eazfuscator_NET_MSBuildToolsVersion>
+    <Eazfuscator_NET_MSBuildToolsVersion Condition=" '$(Eazfuscator_NET_MSBuildToolsVersion)' == '' ">16.0</Eazfuscator_NET_MSBuildToolsVersion>
+
+    <Eazfuscator_NET_RiderVersion />
+    <Eazfuscator_NET_RiderVersion Condition=" '$(BUNDLED_TOOLS_PATH)' != '' AND '$(RESHARPER_REPORT_VERSION)' != '' ">$(RESHARPER_REPORT_VERSION)</Eazfuscator_NET_RiderVersion>
+    <Eazfuscator_NET_RiderVersion Condition=" '$(Eazfuscator_NET_RiderVersion)' == '' AND '$(RESHARPER_FRONT_PRODUCT_CODE)' == 'RD' AND '$(BuildingByReSharper)' != '' ">0</Eazfuscator_NET_RiderVersion>
+    <Eazfuscator_NET_RiderVersion Condition=" '$(Eazfuscator_NET_RiderVersion)' == '' AND '$(IDEA_INITIAL_DIRECTORY)' != '' AND '$(BuildingByReSharper)' != '' ">0</Eazfuscator_NET_RiderVersion>
+  </PropertyGroup>
+</Project>

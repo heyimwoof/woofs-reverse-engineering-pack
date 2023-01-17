@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Enables support for the “ErrorsGen” build action in the projects. -->
+
+  <PropertyGroup>
+    <PsiGenToolsDir Condition="'$(PsiGenToolsDir)' == ''">$(MSBuildThisFileDirectory)</PsiGenToolsDir>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <ErrorsGenHomeDir Condition="'$(ErrorsGenHomeDir)' == ''">$(MSBuildThisFileDirectory)</ErrorsGenHomeDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Add to the Visual Studio Build Action list on the files. -->
+    <AvailableItemName Include="ErrorsGen" />
+    <!-- Calculate output. -->
+    <ErrorsGenOutput Include="@(ErrorsGen->'$(MSBuildProjectDirectory)\%(OutputFile)')">
+      <AutoGen>True</AutoGen>
+    </ErrorsGenOutput>
+  </ItemGroup>
+
+  <!-- Plugin. -->
+  <PropertyGroup Condition="'$(DisableAutoAttachErrorsGenTargets)' != 'true'">
+    <!-- Plug into the build process before the Compile target executes. Basing it on PrepareResources rather than Compile makes it also run in XAML Markup Compiler pass correctly. -->
+    <PrepareResourcesDependsOn>
+      GenerateErrorsGen;
+      $(PrepareResourcesDependsOn);
+    </PrepareResourcesDependsOn>
+    <!-- vcxproj-specific binding. Works for v120, but fails for v100 because smb erases dependency property lists for it. For v100, a special hack is written into the project file to call the entry target. -->
+    <BuildGenerateSourcesTargets>
+      $(BuildGenerateSourcesTargets);
+      GenerateErrorsGen;
+    </BuildGenerateSourcesTargets>
+    <!-- Clean the files, this enables proper Rebuild. -->
+    <CleanDependsOn>
+      $(CleanDependsOn);
+      CleanErrorsGen;
+    </CleanDependsOn>
+  </PropertyGroup>
+
+  <!-- Entry point target. -->
+  <Target Name="GenerateErrorsGen" DependsOnTargets="GenerateErrorsGen_AddToItemGroups;GenerateErrorsGen_UndupeCompile;GenerateErrorsGen_Generate;" />
+
+  <!-- Produces the list of the output files for needs-rebuild check and Clean. -->
+  <Target Name="GenerateErrorsGen_AddToItemGroups">
+    <ItemGroup>
+      <!-- Use the result in the build process. -->
+      <Compile Include="@(ErrorsGenOutput)" />
+
+      <!-- Support incremental clean for our files. -->
+      <FileWrites Include="@(ErrorsGenOutput)" />
+    </ItemGroup>
+  </Target>
+
+  <!-- After adding the outputs to the @(Compile) group, we might encounter duplicates — remove them. -->
+  <Target Name="GenerateErrorsGen_UndupeCompile">
+    <ItemGroup>
+      <CompileUnfiltered Remove="%(CompileUnfiltered.Identity)" />
+      <CompileUnfiltered Include="%(Compile.FullPath)" />
+      <Compile Remove="%(Compile.Identity)" />
+    </ItemGroup>
+    <RemoveDuplicates Inputs="@(CompileUnfiltered)">
+      <Output TaskParameter="Filtered" ItemName="Compile" />
+    </RemoveDuplicates>
+  </Target>
+
+  <!-- The generation itself. -->
+  <ItemGroup>
+    <!-- Sources. -->
+    <GenerateErrorsGenInputs Include="@(ErrorsGen)" />
+    <!-- Tool files. -->
+    <GenerateErrorsGenInputs Include="$(PsiGenToolsDir)ErrorsGen.exe" />
+    <GenerateErrorsGenInputs Include="$(MSBuildThisFileFullPath)" />
+  </ItemGroup>
+  <Target Name="GenerateErrorsGen_Generate" Inputs="@(GenerateErrorsGenInputs)" Outputs="@(ErrorsGenOutput)" Condition="'@(ErrorsGen)' != ''">
+    <ItemGroup>
+      <ErrorsGenProxyInput Include="@(ErrorsGen)">
+        <ParameterName>Inputs</ParameterName>
+      </ErrorsGenProxyInput>
+      <!-- Don't try to load reference assemblies at runtime. -->
+      <ErrorsGenStubReferences Include="@(ReferencePath)" Condition="'%(ResolvedFrom)' != '{TargetFrameworkDirectory}'" />
+    </ItemGroup>
+    <ProxyToSolutionCompiledTask Parameters="@(ErrorsGenProxyInput)" TargetAssemblySimpleName="ErrorsGen" TargetClassSimpleName="ErrorsGenTaskStub" References="@(ErrorsGenStubReferences)" />
+    <Message Text="%(ErrorsGen.FullPath) --(*)--> %(OutputFile)" />
+  </Target>
+
+    <!-- Cleans the generated files. -->
+  <Target Name="CleanErrorsGen">
+    <Delete Files="@(ErrorsGenOutput)" TreatErrorsAsWarnings="true"  />
+  </Target>
+
+</Project>

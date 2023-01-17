@@ -1,0 +1,114 @@
+<!--
+***********************************************************************************************
+Eazfuscator.NET.Cooperation.targets
+
+WARNING:  DO NOT MODIFY this file. Incorrect changes to this file will make it impossible to
+          load or build your Eazfuscator.NET projects from the command-line or the IDE.
+
+Copyright (C) 2008-2020 Gapotchenko
+
+===================
+ STANDARD PROPOSAL
+===================
+
+This file defines the rules for cooperation with other build tools.
+
+The most important factor is the build order. Most tools need to run before obfuscation takes
+place. In order to achieve that, Eazfuscator.NET establishes a public standard so that a tool
+can enlist itself, and thus can take a benefit from the right build order out of the box.
+
+Say you are a tool developer and offer a new AOP weaver for .NET assemblies. To make it
+friendly to obfuscation, please append your tool's target to ObfuscationDependsOn property in
+your .props or .targets MSBuild file, like so:
+
+  <PropertyGroup>
+    <ObfuscationDependsOn>
+      $(ObfuscationDependsOn);
+      YourToolTarget
+    </ObfuscationDependsOn>
+  </PropertyGroup>
+
+In this way, any compliant obfuscator that follows that simple notation will be automatically
+compatible with your tool and vice versa.
+
+=======
+ NOTES
+=======
+
+* Some tools appear independently, so Eazfuscator.NET defines the specific rules for them
+  by itself. As you can see, this is a combined effort
+
+* You can also use ObfuscationDependsOn property in your own projects as an end user of
+  the obfuscation tool
+
+* A copy of this file is available online. You are welcome to pass it to fellow developers:
+  https://www.gapotchenko.com/eazfuscator.net/gist/Eazfuscator.NET.Cooperation.targets
+
+* Encountered a popular build tool that needs a special support in Eazfuscator.NET, or have
+  a comment? Let us know: https://www.gapotchenko.com/eazfuscator.net/support
+
+***********************************************************************************************
+-->
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <Eazfuscator_NET_Cooperation_Imported>true</Eazfuscator_NET_Cooperation_Imported>
+  </PropertyGroup>
+
+  <Target Name="_Eazfuscator_NET_Cooperation_Fody_TouchCache">
+    <Touch Files="$(IntermediateOutputPath)$(MSBuildProjectFile).Fody.CopyLocal.cache" Condition=" Exists('$(IntermediateOutputPath)$(MSBuildProjectFile).Fody.CopyLocal.cache') "/>
+  </Target>
+  
+  <Target Name="_Eazfuscator_NET_Cooperation_Compute">
+    <PropertyGroup>
+      <_Eazfuscator_NET_Cooperation_DependsOnTargets>$(ObfuscationDependsOn);$(ObfuscatorDependsOn)</_Eazfuscator_NET_Cooperation_DependsOnTargets>
+
+      <!-- ============================================= -->
+      <!-- Begin of specific rules for third-party tools -->
+      <!-- ============================================= -->
+
+      <!-- Xamarin.Forms: exposes a complete cross-platform UI toolkit for .NET developers. https://docs.microsoft.com/en-us/xamarin/xamarin-forms/ -->
+      <_Eazfuscator_NET_Cooperation_DependsOnTargets Condition=" ( '$(XamlGDependsOn)' != '' OR '$(_XFTargetsImported)' == 'True' ) AND ( $(TargetFramework.StartsWith('netstandard', StringComparison.OrdinalIgnoreCase)) OR $(TargetFramework.StartsWith('portable-', StringComparison.OrdinalIgnoreCase)) ) ">
+        <!-- Xamarin.Forms compiler (XamlC) should run before obfuscator -->
+        $(_Eazfuscator_NET_Cooperation_DependsOnTargets);XamlC
+      </_Eazfuscator_NET_Cooperation_DependsOnTargets>
+
+      <!-- Fody: extensible tool for weaving .NET assemblies. https://github.com/Fody/Fody -->
+      <_Eazfuscator_NET_Cooperation_DependsOnTargets Condition=" '$(FodyPath)' != '' AND '$(ProjectWeaverXml)' != '' ">
+        <!-- Fody should run before obfuscator -->
+        $(_Eazfuscator_NET_Cooperation_DependsOnTargets);FodyTarget;FodyVerifyTarget
+      </_Eazfuscator_NET_Cooperation_DependsOnTargets>
+      <_Eazfuscator_NET_TriggeredTargets Condition=" '$(FodyPath)' != '' AND '$(ProjectWeaverXml)' != '' ">
+        $(_Eazfuscator_NET_TriggeredTargets);_Eazfuscator_NET_Cooperation_Fody_TouchCache
+      </_Eazfuscator_NET_TriggeredTargets>
+
+      <!-- PostSharp: the #1 pattern-aware extension to C# and VB. https://www.postsharp.net/ -->
+      <_Eazfuscator_NET_Cooperation_DependsOnTargets Condition=" '$(PostSharp21Imported)' == 'true' ">
+        <!-- PostSharp 2.1 should run before obfuscator -->
+        $(_Eazfuscator_NET_Cooperation_DependsOnTargets);PostSharp21TimestampAfterCompile;PostSharp21
+      </_Eazfuscator_NET_Cooperation_DependsOnTargets>
+      <_Eazfuscator_NET_Cooperation_DependsOnTargets Condition=" '$(PostSharp30Imported)' == 'true' AND '$(PostSharpImported)' == '' ">
+        <!-- PostSharp 3.0+ should run before obfuscator -->
+        $(_Eazfuscator_NET_Cooperation_DependsOnTargets);PostSharp30TimestampAfterCompile;PostSharp30
+      </_Eazfuscator_NET_Cooperation_DependsOnTargets>
+      <_Eazfuscator_NET_Cooperation_DependsOnTargets Condition=" '$(PostSharpImported)' == 'true' ">
+        <!-- PostSharp 6.0+ should run before obfuscator -->
+        $(_Eazfuscator_NET_Cooperation_DependsOnTargets);PostSharpTimestampAfterCompile;PostSharp
+      </_Eazfuscator_NET_Cooperation_DependsOnTargets>
+
+      <!-- =========================================== -->
+      <!-- End of specific rules for third-party tools -->
+      <!-- =========================================== -->
+
+    </PropertyGroup>
+  </Target>
+
+  <PropertyGroup>
+    <_Eazfuscator_NET_TriggerTargets>
+      $(_Eazfuscator_NET_TriggerTargets);
+      _Eazfuscator_NET_Cooperation_Compute
+    </_Eazfuscator_NET_TriggerTargets>
+  </PropertyGroup>
+
+</Project>
